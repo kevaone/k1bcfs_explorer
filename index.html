@@ -65,8 +65,7 @@
             <!-- <div class="w3-col m12"> -->
             <!-- <div class="w3-card w3-round w3-white"> -->
             <!-- <div class="w3-container w3-padding"> -->
-            <span contenteditable="true" class="w3-border w3-padding">Status: Feeling Blue</span>
-            <button type="button" class="w3-button w3-theme"><i class="fa fa-pencil"></i> Search</button>
+            
             <!-- </div> -->
             <!-- </div> -->
             <!-- </div> -->
@@ -75,6 +74,10 @@
                 title="My Account">
                 <img src="images/keva_one_logo.png" class="w3-circle" style="height:23px;width:23px" alt="Avatar">
             </a>
+            <div class="w3-bar-item w3-right">
+                <span contenteditable="true" class="w3-border w3-padding">Status: Feeling Great</span>
+                <button type="button" class="w3-button w3-theme"><i class="fa fa-pencil"></i> Search</button>
+            </div>
         </div>
     </div>
 
@@ -224,12 +227,10 @@
                         <img src="images/keva_one_logo.png" alt="Avatar" class="w3-left w3-circle w3-margin-right"
                             style="width:60px">
                         <span class="w3-right w3-opacity">1 min</span>
-                        <h4>John Doe</h4><br>
+                        <h4>Information</h4><br>
                         <hr class="w3-clear">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        <div class="w3-row-padding" style="margin:0 -16px">
+                        <p id="bexp_inftext"></p>
+                        <!-- <div class="w3-row-padding" style="margin:0 -16px">
                             <div class="w3-half">
                                 <img src="images/keva_one_logo.png" style="width:100%" alt="Northern Lights"
                                     class="w3-margin-bottom">
@@ -244,7 +245,7 @@
                              Like</button>
                         <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i
                                 class="fa fa-comment"></i>
-                             Comment</button>
+                             Comment</button> -->
                     </div>
                 </div>
                 <div id="bexp_news" class="w3-hide">
@@ -252,7 +253,7 @@
                         <img src="images/keva_one_logo.png" alt="Avatar" class="w3-left w3-circle w3-margin-right"
                             style="width:60px">
                         <span class="w3-right w3-opacity">16 min</span>
-                        <h4>Jane Doe</h4><br>
+                        <h4>News</h4><br>
                         <hr class="w3-clear">
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
                             labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -270,7 +271,7 @@
                         <img src="images/keva_one_logo.png" alt="Avatar" class="w3-left w3-circle w3-margin-right"
                             style="width:60px">
                         <span class="w3-right w3-opacity">32 min</span>
-                        <h4>Angie Jane</h4><br>
+                        <h4>Stats</h4><br>
                         <hr class="w3-clear">
                         <p>Have you seen this?</p>
                         <img src="images/keva_one_logo.png" style="width:100%" class="w3-margin-bottom">
@@ -287,15 +288,24 @@
                 </div>
                 <div id="bexp_exp" class="w3-hide">
                     <div class="w3-container w3-card w3-white w3-round w3-margin">
+                        
                         <div class="w3-container w3-padding">
+                            <button type="button" class="w3-button w3-theme" onclick="exp_section_toggle('exp_rb')"><i
+                                class="fa fa-pencil"></i>
+                            Recent Blocks</button>
+                        <button type="button" class="w3-button w3-theme"
+                            onclick="exp_section_toggle('exp_rt')"><i class="fa fa-pencil"></i>
+                            Recent Transactions</button>
+                            <div class="w3-right">
                             <input id="uibssrc" class="w3-border w3-padding" />
                             <button type="button" class="w3-button w3-theme" onclick="nww_main.search()"><i
                                     class="fa fa-pencil"></i>
                                 Search</button>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+                    <div id="exp_rb" class="w3-hide w3-container w3-card w3-white w3-round w3-margin w3-show"><br>
                         <img src="images/keva_one_logo.png" alt="Avatar" class="w3-left w3-circle w3-margin-right"
                             style="width:60px">
                         <span class="w3-right w3-opacity">32 min</span>
@@ -317,7 +327,7 @@
                         </table>
                     </div>
 
-                    <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+                    <div id="exp_rt" class="w3-hide w3-container w3-card w3-white w3-round w3-margin"><br>
                         <img src="images/keva_one_logo.png" alt="Avatar" class="w3-left w3-circle w3-margin-right"
                             style="width:60px">
                         <span class="w3-right w3-opacity">32 min</span>
@@ -537,23 +547,6 @@
     <script src="js/main.js"></script>
     <script>
 
-
-        function w(e) {
-            let x = new XMLHttpRequest();
-            x.onreadystatechange = function () {
-                let r = this.readyState;
-                let s = this.status;
-                if (r == 4 && s == 200) { console.log(this.responseText); }
-                else if (r == 4 && s >= 400) { console.log(this.responseText); }
-                else if (r == 4 && s >= 500) { console.log(this.responseText); }
-            };
-            x.open('GET', 'https://kva.keva.one/get_supply', true);
-            //x.setRequestHeader('Authorization', e['auth']);
-            x.setRequestHeader('Access-Control-Allow-Origin', '*');
-            //x.setRequestHeader('Content-type', 'application/json');
-            x.setRequestHeader('Content-type', 'text/plain');
-            x.send();
-        };
         nww_main.get_supply("dd");
         // Accordion
         function myFunction(id) {
@@ -567,12 +560,8 @@
                     x.previousElementSibling.className.replace(" w3-theme-d1", "");
             }
         }
-        function section_toggle(id) {
-            let sections = ["bexp_inf", "bexp_news", "bexp_stats", "bexp_exp"];
-            // var x = document.getElementById("bexp_inf");
-            // var y = document.getElementById("bexp_news");
-            // var z = document.getElementById("bexp_stats");
-            // var s = document.getElementById("bexp_exp");
+        function isection_toggle(id, sections) {
+            // let sections = ["bexp_inf", "bexp_news", "bexp_stats", "bexp_exp"];
             for (let i = 0; i < sections.length; i++) {
                 let section = document.getElementById(sections[i]);
                 if (sections[i] == id) {
@@ -585,12 +574,14 @@
                     }
                 }
             }
-
-            // if (x.className.indexOf("w3-show") == -1) {
-            //     x.className += " w3-show";
-            // } else {
-            //     x.className = x.className.replace("w3-show", "");
-            // }
+        }
+        function section_toggle(id) {
+            let sections = ["bexp_inf", "bexp_news", "bexp_stats", "bexp_exp"];
+            isection_toggle(id, sections);
+        }
+        function exp_section_toggle(id) {
+            let sections = ["exp_rb", "exp_rt"];
+            isection_toggle(id, sections);
         }
 
         // Used to toggle the menu on smaller screens when clicking on the menu button

@@ -48,6 +48,10 @@ var nww_main = new (function () {
             else if (e['data'][0]['call'] === 'get_address') {
                 nww_main.prototype.ui_update_address(e['data'][1])
             }
+            // else if (e['data'][0]['call'] === 'get_info') {
+            else if (e['data'][0]['call'] === 'README.md') {
+                nww_main.prototype.ui_update_info(e['data'][1])
+            }
         };
     };
 
@@ -104,16 +108,26 @@ var nww_main = new (function () {
         Q.postMessage(_pl);
     };
 
+    nww_main.prototype.get_info = function (e) {
+        let _pl = {};
+        _pl['endPoint'] = 'https://raw.githubusercontent.com/kevacoin-project/kevacoin/master/';
+        _pl['call'] = 'README.md';
+        // _pl['endPoint'] = ep;
+        // _pl['call'] = 'get_info';
+        _pl['type'] = 'GET';
+        Q.postMessage(_pl);
+    };
+
     nww_main.prototype.update_recentblocks = function (e) {
         
         let _uibexp_rb = document.getElementById('uibexp_rb');
-        console.log(_uibexp_rb.childNodes[3].childElementCount)
+        // console.log(_uibexp_rb.childNodes[3].childElementCount)
         for (let i = 0; i <= _uibexp_rb.childNodes[3].childElementCount; i++){
             _uibexp_rb.childNodes[3].childNodes[0].remove();
         }
         
 
-        console.log(_uibexp_rb.childNodes[3].childElementCount)
+        // console.log(_uibexp_rb.childNodes[3].childElementCount)
         // let _pl = {};
         // _pl['endPoint'] = ep;
         // _pl['call'] = 'get_supply';
@@ -134,6 +148,7 @@ var nww_main = new (function () {
         nww_main.prototype.get_address('VMw8Xj3FvJVDhyBfaomtq84fkFWg4xFCGc')
         nww_main.prototype.update_recentblocks(e['block_height'])
         nww_main.prototype.get_block(0)
+        nww_main.prototype.get_info()
         nww_main.prototype.get_transaction('6b71f4be495a06d1e03b3deaa090b8ff9763c2ce01416e1a8f6b6fd92d4dbae1')
         
     };
@@ -148,7 +163,7 @@ var nww_main = new (function () {
         let _bits = document.getElementById('uibexp_bbits');
         let _nonce = document.getElementById('uibexp_bnonce');
         let _extra = document.getElementById('uibexp_bextra');
-
+        let _bt = document.getElementById('uibexp_bt');
 
         _height.innerText = 0;
         _hash.innerText = e['blockhash'];
@@ -162,6 +177,12 @@ var nww_main = new (function () {
         _bits.innerText = e['header']['bits'];
         _nonce.innerText = e['header']['nonce'];
         _extra.innerText = e['header']['extra'];
+
+        for (result in e['transactions']) {
+            let r = e['transactions'][result]
+            // console.log('result', result)
+            add_row(_bt, [r['txid'], '']);
+        }
     };
 
     nww_main.prototype.ui_update_transaction = function (e) {
@@ -173,6 +194,7 @@ var nww_main = new (function () {
         let _vsize = document.getElementById('uibexp_tvs');
         let _vin = document.getElementById('uibexp_tin');
         let _vout = document.getElementById('uibexp_tout');
+        let _wit = document.getElementById('uibexp_twit');
         
         _id.innerText = e['txid'];
         _hash.innerText = e['hash'];
@@ -182,13 +204,17 @@ var nww_main = new (function () {
         _vsize.innerText = 0;
 
         for (result in e['vin']) {
-            console.log('result', result)
+            // console.log('result', result)
             add_row(_vin, e['vin'][result]);
         }
 
         for (result in e['vout']) {
-            console.log('result', result)
+            // console.log('result', result)
             add_row(_vout, e['vout'][result]);
+        }
+        for (result in e['witness']) {
+            // console.log('result', result)
+            add_row(_wit, e['witness'][result]);
         }
     };
 
@@ -208,7 +234,7 @@ var nww_main = new (function () {
         // "pages": 1,
         
         for (result in e[1]['page_results']) {
-            console.log('result', result)
+            // console.log('result', result)
             let r = e[1]['page_results'][result]
             // block": 455557,
             //     "txid": "6b71f4be495a06d1e03b3deaa090b8ff9763c2ce01416e1a8f6b6fd92d4dbae1:0",
@@ -238,12 +264,37 @@ var nww_main = new (function () {
         // ]
     };
 
+    nww_main.prototype.ui_update_info = function (e) {
+        let _received = document.getElementById('bexp_inftext');
+
+        _received.innerText = e;
+
+    };
+
     nww_main.prototype.search = function () {
         // get_block
         let _search = document.getElementById('uibssrc');
         
         let _sv = parseInt(_search.value)
-        console.log(typeof _sv, _sv)
+        if (_sv != NaN & _search.value.length <= 16) {
+            let _height = document.getElementById('uibs_height');
+            if (_sv <= parseInt(_height.innerText) & _sv >= 0) {
+                console.log(typeof _sv, _sv, '_sv might be block')
+            }
+
+            if (_search.value.length > parseInt(_search.value[0]) + 1) {
+                if (parseInt(_height.innerText) > _search.value.slice(1,parseInt(_search.value[0])+1)) {
+                    console.log(typeof _sv, _sv, '_sv might be shortcode')
+                }
+            }
+        }
+        else if (_search.value.length === 64) {
+            console.log(typeof _sv, _sv, '_sv might be blockhash / txhash')
+        }
+        else if (_search.value.length === 34) {
+            console.log(typeof _sv, _sv, '_sv might be address / namespace')
+        }
+        console.log(typeof _sv, _sv, _search.value.length, _search.value.slice(1,parseInt(_search.value[0])+1))
     };
 
     nww_main.prototype.action_modal = function (action_type, tx) {

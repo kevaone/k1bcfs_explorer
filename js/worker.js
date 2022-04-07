@@ -8,7 +8,14 @@ new (function wt() {
         x.onreadystatechange = function () {
             let r = this.readyState;
             let s = this.status;
-            if (r == 4 && s == 200) { c([e, JSON.parse(this.responseText)]); }
+            if (r == 4 && s == 200) {
+                if (e['call'] === 'README.md') {
+                    c([e, this.responseText]);
+                }
+                else {
+                    c([e, JSON.parse(this.responseText)]);
+                }
+            }
             else if (r == 4 && s >= 400) { console.log(this.responseText); c([e, JSON.parse(this.responseText)]); }
             else if (r == 4 && s >= 500) { console.log(this.responseText); c([e, JSON.parse(this.responseText)]); }
         };
@@ -18,7 +25,7 @@ new (function wt() {
             x.open(e['type'], e['endPoint']+e['call'], true);
         }
         //x.setRequestHeader('Authorization', e['auth']);
-        x.setRequestHeader('Access-Control-Allow-Origin', '*');
+        // x.setRequestHeader('Access-Control-Allow-Origin', '*');
         //x.setRequestHeader('Content-type', 'application/json');
         x.setRequestHeader('Content-type', 'text/plain');
         if (e['type'] === 'GET') {
