@@ -1,5 +1,5 @@
 var nww_main = new (function () {
-    let Q = new Worker('js/worker.js');
+    let Q = new Worker('/js/worker.js');
     let modal = document.getElementById('modal-main');
     let modal_body = document.getElementById('modal-body');
     let modal_close = document.getElementById('modal-close');
@@ -7,34 +7,47 @@ var nww_main = new (function () {
     let modal_submit = document.getElementById('modal-submit');
     let ep = 'https://kva.keva.one/'
 
+    let bc_general_update = 0;
+    let bc_info_update = 0;
+    let bc_news_update = 0;
+    let bc_recent_blocks_update = 0;
+    let bc_recent_transactions_update = 0;
+    let bc_general_vis = true;
+    let bc_info_vis = false;
+    let bc_news_vis = false;
+    let bc_stats_vis = false;
+    let bc_explorer_recent_blocks_vis = false;
+    let bc_explorer_recent_transactions_vis = false;
+
     function nww_main() {
         //console.log('main');
+        check_state();
         check_for_auction();
 
-        modal_close.onclick = function() {
+        modal_close.onclick = function () {
             modal.style.display = 'none';
             clear_modal();
         };
 
-        modal_cancel.onclick = function() {
+        modal_cancel.onclick = function () {
             modal.style.display = 'none';
             clear_modal();
         };
 
-        modal_submit.onclick = function() {
+        modal_submit.onclick = function () {
             nww_main.prototype.action();
             modal.style.display = 'none';
             clear_modal();
         };
 
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             if (event.target == modal) {
                 modal.style.display = 'none';
                 clear_modal();
             };
         };
 
-        Q.onmessage = function(e) {
+        Q.onmessage = function (e) {
             console.log('Message received from worker', e['data']);
             if (e['data'][0]['call'] === 'get_supply') {
                 nww_main.prototype.ui_update_supply(e['data'][1])
@@ -52,6 +65,144 @@ var nww_main = new (function () {
             else if (e['data'][0]['call'] === 'README.md') {
                 nww_main.prototype.ui_update_info(e['data'][1])
             }
+        };
+    };
+
+    function check_refresh(id, delay) {
+        let _d = new Date()
+        if (id < _d.getTime() - delay) {
+            id = _d;
+            return true;
+        }
+        return false;
+    };
+
+    function check_state() {
+        let _path = window.location.pathname;
+        let _d = new Date().getTime()
+
+        if (_path.startsWith("/info")) {
+            if (bc_info_update < _d - 3000) {
+                nww_main.prototype.get_info()
+                bc_info_update = _d
+            };
+            if (!bc_info_vis) {
+                nww_main.prototype.section_toggle("bexp_inf", false);
+                bc_info_vis = true;
+            }
+        }
+        else if (_path.startsWith("/news")) {
+            if (!bc_news_vis) {
+                nww_main.prototype.section_toggle("bexp_news", false);
+                bc_news_vis = true;
+            };
+        }
+        else if (_path.startsWith("/stats")) {
+            if (!bc_stats_vis) {
+                nww_main.prototype.section_toggle("bexp_stats", false);
+                bc_stats_vis = true;
+            };
+        }
+        else if (_path.startsWith("/explorer")) {
+            if (!bc_stats_vis) {
+                nww_main.prototype.section_toggle("bexp_exp", false);
+                bc_explorer_vis = true;
+            };
+            if (_path === "/explorer/recent-blocks") {
+                if (!bc_info_vis) {
+                    nww_main.prototype.exp_section_toggle("exp_rb", false);
+                    bc_explorer_recent_blocks_vis = true;
+                };
+            }
+            else if (_path === "/explorer/recent-transactions") {
+                if (!bc_info_vis) {
+                    nww_main.prototype.exp_section_toggle("exp_rt", false);
+                    bc_explorer_recent_transactions_vis = true;
+                };
+            }
+            else if (_path.startsWith("/explorer/block/")) {
+
+            }
+            else if (_path.startsWith("/explorer/transaction/")) {
+
+            }
+            else if (_path.startsWith("/explorer/address/")) {
+
+            }
+            else if (_path.startsWith("/explorer/search")) {
+
+            };
+
+            //     nww_main.prototype.get_address('VMw8Xj3FvJVDhyBfaomtq84fkFWg4xFCGc')
+            // nww_main.prototype.update_recentblocks(e['block_height'])
+            // nww_main.prototype.get_block(220550)
+            // nww_main.prototype.get_info()
+            // nww_main.prototype.get_transaction('6b71f4be495a06d1e03b3deaa090b8ff9763c2ce01416e1a8f6b6fd92d4dbae1')
+        };
+
+        // window.history.replaceState(null, document.title, "/info")
+    };
+
+    nww_main.prototype.myFunction = function (id) {
+        var x = document.getElementById(id);
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+            x.previousElementSibling.className += " w3-theme-d1";
+        } else {
+            x.className = x.className.replace("w3-show", "");
+            x.previousElementSibling.className =
+                x.previousElementSibling.className.replace(" w3-theme-d1", "");
+        }
+    }
+
+    nww_main.prototype.isection_toggle = function (id, sections) {
+        // let sections = ["bexp_inf", "bexp_news", "bexp_stats", "bexp_exp"];
+        for (let i = 0; i < sections.length; i++) {
+            let section = document.getElementById(sections[i]);
+            if (sections[i] == id) {
+                if (section.className.indexOf("w3-show") == -1) {
+                    section.className += " w3-show";
+                }
+            } else {
+                if (section.className.indexOf("w3-show") != -1) {
+                    section.className = section.className.replace(" w3-show", "");
+                }
+            }
+        };
+    };
+
+    nww_main.prototype.section_toggle = function (id, cs = true) {
+        let sections = ["bexp_inf", "bexp_news", "bexp_stats", "bexp_exp"];
+        nww_main.prototype.isection_toggle(id, sections);
+        if (id === "bexp_inf") {
+            window.history.replaceState(null, document.title, "/info")
+        }
+        else if (id === "bexp_news") {
+            window.history.replaceState(null, document.title, "/news")
+        }
+        else if (id === "bexp_stats") {
+            window.history.replaceState(null, document.title, "/stats")
+        }
+        else if (id === "bexp_exp") {
+            window.history.replaceState(null, document.title, "/explorer")
+        };
+        if (cs) {
+            check_state();
+        };
+
+    };
+
+    nww_main.prototype.exp_section_toggle = function (id, cs = true) {
+        let sections = ["exp_rb", "exp_rt"];
+        nww_main.prototype.isection_toggle(id, sections);
+        if (id === "exp_rb") {
+            window.history.replaceState(null, document.title, "/explorer/recent-blocks")
+        }
+        else if (id === "exp_rt") {
+            window.history.replaceState(null, document.title, "/explorer/recent-transactions")
+        };
+        if (cs) {
+            check_state();
         };
     };
 
@@ -119,13 +270,13 @@ var nww_main = new (function () {
     };
 
     nww_main.prototype.update_recentblocks = function (e) {
-        
+
         let _uibexp_rb = document.getElementById('uibexp_rb');
         // console.log(_uibexp_rb.childNodes[3].childElementCount)
-        for (let i = 0; i <= _uibexp_rb.childNodes[3].childElementCount; i++){
+        for (let i = 0; i <= _uibexp_rb.childNodes[3].childElementCount; i++) {
             _uibexp_rb.childNodes[3].childNodes[0].remove();
         }
-        
+
 
         // console.log(_uibexp_rb.childNodes[3].childElementCount)
         // let _pl = {};
@@ -145,12 +296,12 @@ var nww_main = new (function () {
         _supply.innerText = e['coin_supply'];
         _fees.innerText = e['fees_payed'];
         _uibs_genreward.innerText = e['genisis_reward']
-        nww_main.prototype.get_address('VMw8Xj3FvJVDhyBfaomtq84fkFWg4xFCGc')
-        nww_main.prototype.update_recentblocks(e['block_height'])
-        nww_main.prototype.get_block(220550)
-        nww_main.prototype.get_info()
-        nww_main.prototype.get_transaction('6b71f4be495a06d1e03b3deaa090b8ff9763c2ce01416e1a8f6b6fd92d4dbae1')
-        
+        // nww_main.prototype.get_address('VMw8Xj3FvJVDhyBfaomtq84fkFWg4xFCGc')
+        // nww_main.prototype.update_recentblocks(e['block_height'])
+        // nww_main.prototype.get_block(220550)
+        // nww_main.prototype.get_info()
+        // nww_main.prototype.get_transaction('6b71f4be495a06d1e03b3deaa090b8ff9763c2ce01416e1a8f6b6fd92d4dbae1')
+
     };
 
     nww_main.prototype.ui_update_block = function (e) {
@@ -169,7 +320,7 @@ var nww_main = new (function () {
 
         _height.innerText = 0;
         _hash.innerText = e['blockhash'];
-        
+
         // let f = JSON.parse(e['header']);
         // console.log('f', f)
         _version.innerText = e['header']['version'];
@@ -203,7 +354,7 @@ var nww_main = new (function () {
         let _vin = document.getElementById('uibexp_tin');
         let _vout = document.getElementById('uibexp_tout');
         let _wit = document.getElementById('uibexp_twit');
-        
+
         _id.innerText = e['txid'];
         _hash.innerText = e['hash'];
         _locktime.innerText = e['locktime'];
@@ -240,7 +391,7 @@ var nww_main = new (function () {
 
         // "page": 1,
         // "pages": 1,
-        
+
         for (result in e[1]['page_results']) {
             // console.log('result', result)
             let r = e[1]['page_results'][result]
@@ -282,7 +433,7 @@ var nww_main = new (function () {
     nww_main.prototype.search = function () {
         // get_block
         let _search = document.getElementById('uibssrc');
-        
+
         let _sv = Number(_search.value)
         if (_sv > 0 & _search.value.length <= 16) {
             let _height = document.getElementById('uibs_height');
@@ -291,7 +442,7 @@ var nww_main = new (function () {
             }
 
             if (_search.value.length > parseInt(_search.value[0]) + 1) {
-                if (parseInt(_height.innerText) > _search.value.slice(1,parseInt(_search.value[0])+1)) {
+                if (parseInt(_height.innerText) > _search.value.slice(1, parseInt(_search.value[0]) + 1)) {
                     console.log(typeof _sv, _sv, '_sv might be shortcode')
                 }
             }
@@ -302,7 +453,7 @@ var nww_main = new (function () {
         else if (_search.value.length === 34) {
             console.log(typeof _sv, _sv, '_sv might be address / namespace')
         }
-        console.log(typeof _sv, _sv, _search.value.length, _search.value.slice(1,parseInt(_search.value[0])+1))
+        console.log(typeof _sv, _sv, _search.value.length, _search.value.slice(1, parseInt(_search.value[0]) + 1))
     };
 
     nww_main.prototype.action_modal = function (action_type, tx) {
@@ -318,7 +469,7 @@ var nww_main = new (function () {
             _pl['endPoint'] = _ref[0];
             console.log('_ref[0]', _ref[0]);
             console.log('_data.value', _data.value);
-            _pl['data'] = {'date': Date.now(), 'data': _data.value, 'tx': _ref[1]};
+            _pl['data'] = { 'date': Date.now(), 'data': _data.value, 'tx': _ref[1] };
             Q.postMessage(_pl);
         };
     };
@@ -358,13 +509,13 @@ var nww_main = new (function () {
                 i1.classList.add('fa-comment-dollar');
                 d1.appendChild(i1);
                 _data.appendChild(d1);
-                d1.setAttribute('onclick', 'nww_main.action_modal(\'bid\', \''+_id+'\');');
+                d1.setAttribute('onclick', 'nww_main.action_modal(\'bid\', \'' + _id + '\');');
             };
         };
     };
 
     function _clear_modal(section) {
-        while (section.hasChildNodes()) {  
+        while (section.hasChildNodes()) {
             section.removeChild(section.firstChild);
         };
     };
@@ -377,7 +528,7 @@ var nww_main = new (function () {
 
     function build_modal(action_type, tx) {
         let modal_header_text = document.getElementById('modal-header-content');
-        let title_key = document.getElementById('rs-title-'+tx)
+        let title_key = document.getElementById('rs-title-' + tx)
         let d1 = ce('div');
         let d2 = ce('div');
         let d3 = ce('div');
@@ -390,7 +541,7 @@ var nww_main = new (function () {
         let inp1 = undefined
         let inp2 = ce('input');
         inp2.type = 'hidden';
-        inp2.value = action_type+':'+tx;
+        inp2.value = action_type + ':' + tx;
 
         s1.innerText = title_key.innerText;
 
