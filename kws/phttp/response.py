@@ -74,7 +74,7 @@ class ResponseBuilder():
     def body_from_file(self, **args):
         _content = b'no data'
         print('args[file]', args['file'])
-        _content_path = os.path.join('/home/nut/.repos/k1bcfs_site', args['file'])
+        _content_path = os.path.join('/home/nut/.repos/k1bcfs_explorer', args['file'])
 
         try:
             with open(_content_path, mode='rb') as _content_file:

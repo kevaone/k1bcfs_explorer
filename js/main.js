@@ -147,7 +147,7 @@ var nww_main = new (function () {
         _uibs_genreward.innerText = e['genisis_reward']
         nww_main.prototype.get_address('VMw8Xj3FvJVDhyBfaomtq84fkFWg4xFCGc')
         nww_main.prototype.update_recentblocks(e['block_height'])
-        nww_main.prototype.get_block(0)
+        nww_main.prototype.get_block(220550)
         nww_main.prototype.get_info()
         nww_main.prototype.get_transaction('6b71f4be495a06d1e03b3deaa090b8ff9763c2ce01416e1a8f6b6fd92d4dbae1')
         
@@ -164,6 +164,8 @@ var nww_main = new (function () {
         let _nonce = document.getElementById('uibexp_bnonce');
         let _extra = document.getElementById('uibexp_bextra');
         let _bt = document.getElementById('uibexp_bt');
+        let _uibexp_betxc = document.getElementById('uibexp_betxc');
+        uibexp_betxc
 
         _height.innerText = 0;
         _hash.innerText = e['blockhash'];
@@ -177,11 +179,17 @@ var nww_main = new (function () {
         _bits.innerText = e['header']['bits'];
         _nonce.innerText = e['header']['nonce'];
         _extra.innerText = e['header']['extra'];
+        _uibexp_betxc.innerText = e['transactions'].length
 
         for (result in e['transactions']) {
             let r = e['transactions'][result]
+            let sats = 0;
             // console.log('result', result)
-            add_row(_bt, [r['txid'], '']);
+            for (res in r['vout']) {
+                sats += r['vout'][res]['value']
+                console.log('sats', sats)
+            }
+            add_row(_bt, [r['txid'], r['vin'].length, r['vout'].length, sats]);
         }
     };
 
@@ -275,8 +283,8 @@ var nww_main = new (function () {
         // get_block
         let _search = document.getElementById('uibssrc');
         
-        let _sv = parseInt(_search.value)
-        if (_sv != NaN & _search.value.length <= 16) {
+        let _sv = Number(_search.value)
+        if (_sv > 0 & _search.value.length <= 16) {
             let _height = document.getElementById('uibs_height');
             if (_sv <= parseInt(_height.innerText) & _sv >= 0) {
                 console.log(typeof _sv, _sv, '_sv might be block')

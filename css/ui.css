@@ -1,0 +1,14 @@
+.k1-text-wrap {
+    word-wrap: break-word;
+}
+.k1-overflow-scroll {
+    overflow-x: scroll;
+}
+td, th {
+    /* font-size: 0.875em; */
+    font-size: 14px;
+}
+tr > td:nth-child(1) {
+    overflow-x: hidden;
+    word-wrap: break-word;
+}
