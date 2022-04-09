@@ -16,8 +16,12 @@ var nww_main = new (function () {
     let bc_info_vis = false;
     let bc_news_vis = false;
     let bc_stats_vis = false;
+    let bc_explorer_vis = false;
     let bc_explorer_recent_blocks_vis = false;
     let bc_explorer_recent_transactions_vis = false;
+    let bc_explorer_block_vis = false;
+    let bc_explorer_transaction_vis = false;
+    let bc_explorer_address_vis = false;
 
     function nww_main() {
         //console.log('main');
@@ -55,6 +59,9 @@ var nww_main = new (function () {
             else if (e['data'][0]['call'] === 'get_block') {
                 nww_main.prototype.ui_update_block(e['data'][1])
             }
+            else if (e['data'][0]['call'] === 'get_block_hash') {
+                nww_main.prototype.ui_update_block(e['data'][1])
+            }
             else if (e['data'][0]['call'] === 'get_transaction') {
                 nww_main.prototype.ui_update_transaction(e['data'][1])
             }
@@ -66,15 +73,8 @@ var nww_main = new (function () {
                 nww_main.prototype.ui_update_info(e['data'][1])
             }
         };
-    };
-
-    function check_refresh(id, delay) {
-        let _d = new Date()
-        if (id < _d.getTime() - delay) {
-            id = _d;
-            return true;
-        }
-        return false;
+        nww_main.prototype.get_supply();
+        window.setInterval(nww_main.prototype.get_supply, 30000);
     };
 
     function check_state() {
@@ -89,45 +89,92 @@ var nww_main = new (function () {
             if (!bc_info_vis) {
                 nww_main.prototype.section_toggle("bexp_inf", false);
                 bc_info_vis = true;
+                bc_news_vis = false;
+                bc_stats_vis = false;
+                bc_explorer_vis = false;
             }
         }
         else if (_path.startsWith("/news")) {
             if (!bc_news_vis) {
                 nww_main.prototype.section_toggle("bexp_news", false);
+                bc_info_vis = false;
                 bc_news_vis = true;
+                bc_stats_vis = false;
+                bc_explorer_vis = false;
             };
         }
         else if (_path.startsWith("/stats")) {
             if (!bc_stats_vis) {
                 nww_main.prototype.section_toggle("bexp_stats", false);
+                bc_info_vis = false;
+                bc_news_vis = false;
                 bc_stats_vis = true;
+                bc_explorer_vis = false;
             };
         }
         else if (_path.startsWith("/explorer")) {
-            if (!bc_stats_vis) {
+            if (!bc_explorer_vis) {
                 nww_main.prototype.section_toggle("bexp_exp", false);
+                bc_info_vis = false;
+                bc_news_vis = false;
+                bc_stats_vis = false;
                 bc_explorer_vis = true;
             };
             if (_path === "/explorer/recent-blocks") {
-                if (!bc_info_vis) {
+                if (!bc_explorer_recent_blocks_vis) {
                     nww_main.prototype.exp_section_toggle("exp_rb", false);
                     bc_explorer_recent_blocks_vis = true;
+                    bc_explorer_recent_transactions_vis = false;
+                    bc_explorer_block_vis = false;
+                    bc_explorer_transaction_vis = false;
+                    bc_explorer_address_vis = false;
                 };
             }
             else if (_path === "/explorer/recent-transactions") {
-                if (!bc_info_vis) {
+                if (!bc_explorer_recent_transactions_vis) {
                     nww_main.prototype.exp_section_toggle("exp_rt", false);
+                    bc_explorer_recent_blocks_vis = false;
                     bc_explorer_recent_transactions_vis = true;
+                    bc_explorer_block_vis = false;
+                    bc_explorer_transaction_vis = false;
+                    bc_explorer_address_vis = false;
                 };
             }
             else if (_path.startsWith("/explorer/block/")) {
-
+                let _p = _path.split("/")
+                nww_main.prototype.get_block(_p[_p.length-1])
+                if (!bc_explorer_block_vis) {
+                    nww_main.prototype.exp_section_toggle("exp_b", false);
+                    bc_explorer_recent_blocks_vis = false;
+                    bc_explorer_recent_transactions_vis = false;
+                    bc_explorer_block_vis = true;
+                    bc_explorer_transaction_vis = false;
+                    bc_explorer_address_vis = false;
+                };
             }
             else if (_path.startsWith("/explorer/transaction/")) {
-
+                let _p = _path.split("/")
+                nww_main.prototype.get_transaction(_p[_p.length-1])
+                if (!bc_explorer_transaction_vis) {
+                    nww_main.prototype.exp_section_toggle("exp_t", false);
+                    bc_explorer_recent_blocks_vis = false;
+                    bc_explorer_recent_transactions_vis = false;
+                    bc_explorer_block_vis = false;
+                    bc_explorer_transaction_vis = true;
+                    bc_explorer_address_vis = false;
+                };
             }
             else if (_path.startsWith("/explorer/address/")) {
-
+                let _p = _path.split("/")
+                nww_main.prototype.get_address(_p[_p.length-1])
+                if (!bc_explorer_address_vis) {
+                    nww_main.prototype.exp_section_toggle("exp_a", false);
+                    bc_explorer_recent_blocks_vis = false;
+                    bc_explorer_recent_transactions_vis = false;
+                    bc_explorer_block_vis = false;
+                    bc_explorer_transaction_vis = false;
+                    bc_explorer_address_vis = true;
+                };
             }
             else if (_path.startsWith("/explorer/search")) {
 
@@ -184,7 +231,13 @@ var nww_main = new (function () {
             window.history.replaceState(null, document.title, "/stats")
         }
         else if (id === "bexp_exp") {
-            window.history.replaceState(null, document.title, "/explorer")
+            let _path = window.location.pathname;
+            if (!_path.startsWith("/explorer/block/") &
+                !_path.startsWith("/explorer/transaction/") &
+                !_path.startsWith("/explorer/address/")) {
+
+                    window.history.replaceState(null, document.title, "/explorer");
+            };
         };
         if (cs) {
             check_state();
@@ -193,7 +246,7 @@ var nww_main = new (function () {
     };
 
     nww_main.prototype.exp_section_toggle = function (id, cs = true) {
-        let sections = ["exp_rb", "exp_rt"];
+        let sections = ["exp_rb", "exp_rt", "exp_b", "exp_t", "exp_a"];
         nww_main.prototype.isection_toggle(id, sections);
         if (id === "exp_rb") {
             window.history.replaceState(null, document.title, "/explorer/recent-blocks")
@@ -206,7 +259,7 @@ var nww_main = new (function () {
         };
     };
 
-    nww_main.prototype.get_supply = function (e) {
+    nww_main.prototype.get_supply = function () {
         let _pl = {};
         _pl['endPoint'] = ep;
         _pl['call'] = 'get_supply';
@@ -217,8 +270,15 @@ var nww_main = new (function () {
     nww_main.prototype.get_block = function (e) {
         let _pl = {};
         _pl['endPoint'] = ep;
-        _pl['call'] = 'get_block';
-        _pl['call_data'] = parseInt(e);
+        console.log('e.length', e.length)
+        if (e.length === 64) {
+            _pl['call'] = 'get_block_hash';
+            _pl['call_data'] = e;
+        } else {
+            _pl['call'] = 'get_block';
+            _pl['call_data'] = parseInt(e);
+        }
+
         _pl['type'] = 'GET';
         Q.postMessage(_pl);
     };
@@ -316,7 +376,7 @@ var nww_main = new (function () {
         let _extra = document.getElementById('uibexp_bextra');
         let _bt = document.getElementById('uibexp_bt');
         let _uibexp_betxc = document.getElementById('uibexp_betxc');
-        uibexp_betxc
+        // uibexp_betxc
 
         _height.innerText = 0;
         _hash.innerText = e['blockhash'];
@@ -324,7 +384,8 @@ var nww_main = new (function () {
         // let f = JSON.parse(e['header']);
         // console.log('f', f)
         _version.innerText = e['header']['version'];
-        _phash.innerText = e['header']['prev-hash'];
+        _phash.href = '/explorer/block/' + e['header']['prev_hash'];
+        _phash.innerText = e['header']['prev_hash'];
         _merkle.innerText = e['header']['merkle'];
         _time.innerText = e['header']['timestamp'];
         _bits.innerText = e['header']['bits'];
@@ -340,7 +401,10 @@ var nww_main = new (function () {
                 sats += r['vout'][res]['value']
                 console.log('sats', sats)
             }
-            add_row(_bt, [r['txid'], r['vin'].length, r['vout'].length, sats]);
+            let _tx_lnk = ce('a');
+            _tx_lnk.href = '/explorer/transaction/' + r['txid'];
+            _tx_lnk.innerText = r['txid'];
+            add_row(_bt, [_tx_lnk, r['vin'].length, r['vout'].length, sats]);
         }
     };
 
@@ -364,6 +428,10 @@ var nww_main = new (function () {
 
         for (result in e['vin']) {
             // console.log('result', result)
+            let _tx_lnk = ce('a');
+            _tx_lnk.href = '/explorer/transaction/' + e['vin'][result]['txid'];
+            _tx_lnk.innerText = e['vin'][result]['txid'];
+            e['vin'][result]['txid'] = _tx_lnk;
             add_row(_vin, e['vin'][result]);
         }
 
@@ -433,18 +501,25 @@ var nww_main = new (function () {
     nww_main.prototype.search = function () {
         // get_block
         let _search = document.getElementById('uibssrc');
-
+        let sc = false;
         let _sv = Number(_search.value)
-        if (_sv > 0 & _search.value.length <= 16) {
+        if (_sv >= 0 & _search.value.length <= 16) {
             let _height = document.getElementById('uibs_height');
+            
             if (_sv <= parseInt(_height.innerText) & _sv >= 0) {
                 console.log(typeof _sv, _sv, '_sv might be block')
-            }
+            };
 
             if (_search.value.length > parseInt(_search.value[0]) + 1) {
                 if (parseInt(_height.innerText) > _search.value.slice(1, parseInt(_search.value[0]) + 1)) {
                     console.log(typeof _sv, _sv, '_sv might be shortcode')
-                }
+                    // sc = true;
+                };
+            };
+            if (!sc) {
+                nww_main.prototype.get_block(_sv);
+                window.history.replaceState(null, document.title, "/explorer/block/" + _sv)
+                nww_main.prototype.exp_section_toggle("exp_b", false);
             }
         }
         else if (_search.value.length === 64) {
@@ -452,6 +527,11 @@ var nww_main = new (function () {
         }
         else if (_search.value.length === 34) {
             console.log(typeof _sv, _sv, '_sv might be address / namespace')
+            if (!sc) {
+                nww_main.prototype.get_address(_search.value);
+                window.history.replaceState(null, document.title, "/explorer/address/" + _search.value)
+                nww_main.prototype.exp_section_toggle("exp_a", false);
+            }
         }
         console.log(typeof _sv, _sv, _search.value.length, _search.value.slice(1, parseInt(_search.value[0]) + 1))
     };
@@ -482,7 +562,13 @@ var nww_main = new (function () {
         let _row = ce('tr');
         function add_cell(_row, e) {
             let _cell = ce('td');
-            _cell.innerText = e;
+            if (typeof e === 'object'){
+                if (e.nodeName === 'A') {
+                    _cell.appendChild(e);
+                }
+            } else {
+                _cell.innerText = e;
+            }
             _row.appendChild(_cell);
         }
         for (result in e) {
