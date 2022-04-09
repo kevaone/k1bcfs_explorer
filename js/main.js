@@ -19,6 +19,7 @@ var nww_main = new (function () {
     let bc_explorer_vis = false;
     let bc_explorer_recent_blocks_vis = false;
     let bc_explorer_recent_transactions_vis = false;
+    let bc_explorer_mempool_vis = false;
     let bc_explorer_block_vis = false;
     let bc_explorer_transaction_vis = false;
     let bc_explorer_address_vis = false;
@@ -125,6 +126,7 @@ var nww_main = new (function () {
                     nww_main.prototype.exp_section_toggle("exp_rb", false);
                     bc_explorer_recent_blocks_vis = true;
                     bc_explorer_recent_transactions_vis = false;
+                    bc_explorer_mempool_vis = false;
                     bc_explorer_block_vis = false;
                     bc_explorer_transaction_vis = false;
                     bc_explorer_address_vis = false;
@@ -135,6 +137,18 @@ var nww_main = new (function () {
                     nww_main.prototype.exp_section_toggle("exp_rt", false);
                     bc_explorer_recent_blocks_vis = false;
                     bc_explorer_recent_transactions_vis = true;
+                    bc_explorer_mempool_vis = false;
+                    bc_explorer_block_vis = false;
+                    bc_explorer_transaction_vis = false;
+                    bc_explorer_address_vis = false;
+                };
+            }
+            else if (_path === "/explorer/mempool") {
+                if (!bc_explorer_mempool_vis) {
+                    nww_main.prototype.exp_section_toggle("exp_mp", false);
+                    bc_explorer_recent_blocks_vis = false;
+                    bc_explorer_recent_transactions_vis = false;
+                    bc_explorer_mempool_vis = true;
                     bc_explorer_block_vis = false;
                     bc_explorer_transaction_vis = false;
                     bc_explorer_address_vis = false;
@@ -147,6 +161,7 @@ var nww_main = new (function () {
                     nww_main.prototype.exp_section_toggle("exp_b", false);
                     bc_explorer_recent_blocks_vis = false;
                     bc_explorer_recent_transactions_vis = false;
+                    bc_explorer_mempool_vis = false;
                     bc_explorer_block_vis = true;
                     bc_explorer_transaction_vis = false;
                     bc_explorer_address_vis = false;
@@ -159,6 +174,7 @@ var nww_main = new (function () {
                     nww_main.prototype.exp_section_toggle("exp_t", false);
                     bc_explorer_recent_blocks_vis = false;
                     bc_explorer_recent_transactions_vis = false;
+                    bc_explorer_mempool_vis = false;
                     bc_explorer_block_vis = false;
                     bc_explorer_transaction_vis = true;
                     bc_explorer_address_vis = false;
@@ -171,6 +187,7 @@ var nww_main = new (function () {
                     nww_main.prototype.exp_section_toggle("exp_a", false);
                     bc_explorer_recent_blocks_vis = false;
                     bc_explorer_recent_transactions_vis = false;
+                    bc_explorer_mempool_vis = false;
                     bc_explorer_block_vis = false;
                     bc_explorer_transaction_vis = false;
                     bc_explorer_address_vis = true;
@@ -246,13 +263,16 @@ var nww_main = new (function () {
     };
 
     nww_main.prototype.exp_section_toggle = function (id, cs = true) {
-        let sections = ["exp_rb", "exp_rt", "exp_b", "exp_t", "exp_a"];
+        let sections = ["exp_rb", "exp_rt", "exp_mp", "exp_b", "exp_t", "exp_a"];
         nww_main.prototype.isection_toggle(id, sections);
         if (id === "exp_rb") {
             window.history.replaceState(null, document.title, "/explorer/recent-blocks")
         }
         else if (id === "exp_rt") {
             window.history.replaceState(null, document.title, "/explorer/recent-transactions")
+        }
+        else if (id === "exp_mp") {
+            window.history.replaceState(null, document.title, "/explorer/mempool")
         };
         if (cs) {
             check_state();
@@ -332,10 +352,7 @@ var nww_main = new (function () {
     nww_main.prototype.update_recentblocks = function (e) {
 
         let _uibexp_rb = document.getElementById('uibexp_rb');
-        // console.log(_uibexp_rb.childNodes[3].childElementCount)
-        for (let i = 0; i <= _uibexp_rb.childNodes[3].childElementCount; i++) {
-            _uibexp_rb.childNodes[3].childNodes[0].remove();
-        }
+        clear_table(_uibexp_rb)
 
 
         // console.log(_uibexp_rb.childNodes[3].childElementCount)
@@ -376,7 +393,8 @@ var nww_main = new (function () {
         let _extra = document.getElementById('uibexp_bextra');
         let _bt = document.getElementById('uibexp_bt');
         let _uibexp_betxc = document.getElementById('uibexp_betxc');
-        // uibexp_betxc
+
+        clear_table(_bt);
 
         _height.innerText = 0;
         _hash.innerText = e['blockhash'];
@@ -384,8 +402,11 @@ var nww_main = new (function () {
         // let f = JSON.parse(e['header']);
         // console.log('f', f)
         _version.innerText = e['header']['version'];
-        _phash.href = '/explorer/block/' + e['header']['prev_hash'];
+        // _phash.href = '/explorer/block/' + e['header']['prev_hash'];
         _phash.innerText = e['header']['prev_hash'];
+        _phash.onclick = function() {
+            nww_main.prototype.section_link('block', e['header']['prev_hash']);
+        };
         _merkle.innerText = e['header']['merkle'];
         _time.innerText = e['header']['timestamp'];
         _bits.innerText = e['header']['bits'];
@@ -401,9 +422,12 @@ var nww_main = new (function () {
                 sats += r['vout'][res]['value']
                 console.log('sats', sats)
             }
-            let _tx_lnk = ce('a');
-            _tx_lnk.href = '/explorer/transaction/' + r['txid'];
+            let _tx_lnk = ce('span');
+            // _tx_lnk.href = '/explorer/transaction/' + r['txid'];
             _tx_lnk.innerText = r['txid'];
+            _tx_lnk.onclick = function() {
+                nww_main.prototype.section_link('transaction', r['txid']);
+            };
             add_row(_bt, [_tx_lnk, r['vin'].length, r['vout'].length, sats]);
         }
     };
@@ -418,6 +442,9 @@ var nww_main = new (function () {
         let _vin = document.getElementById('uibexp_tin');
         let _vout = document.getElementById('uibexp_tout');
         let _wit = document.getElementById('uibexp_twit');
+        clear_table(_vin);
+        clear_table(_vout);
+        clear_table(_wit);
 
         _id.innerText = e['txid'];
         _hash.innerText = e['hash'];
@@ -428,9 +455,13 @@ var nww_main = new (function () {
 
         for (result in e['vin']) {
             // console.log('result', result)
-            let _tx_lnk = ce('a');
-            _tx_lnk.href = '/explorer/transaction/' + e['vin'][result]['txid'];
+            let _tx_lnk = ce('span');
+            let _tx = e['vin'][result]['txid'];
+            // _tx_lnk.href = '/explorer/transaction/' + e['vin'][result]['txid'];
             _tx_lnk.innerText = e['vin'][result]['txid'];
+            _tx_lnk.onclick = function() {
+                nww_main.prototype.section_link('transaction', _tx);
+            };
             e['vin'][result]['txid'] = _tx_lnk;
             add_row(_vin, e['vin'][result]);
         }
@@ -451,6 +482,7 @@ var nww_main = new (function () {
         let _balance = document.getElementById('uibexp_ab');
         let _total_results = document.getElementById('uibexp_att');
         let _recent_tx = document.getElementById('uibexp_art');
+        clear_table(_recent_tx)
 
         _received.innerText = e[0]['received'];
         _sent.innerText = e[0]['sent'];
@@ -496,6 +528,24 @@ var nww_main = new (function () {
 
         _received.innerText = e;
 
+    };
+
+    nww_main.prototype.section_link = function (section, value) {
+        if (section === 'block') {
+            nww_main.prototype.get_block(value);
+            window.history.replaceState(null, document.title, "/explorer/block/" + value)
+            nww_main.prototype.exp_section_toggle("exp_b", false);
+        }
+        else if (section === 'transaction') {
+            nww_main.prototype.get_transaction(value);
+            window.history.replaceState(null, document.title, "/explorer/transaction/" + value)
+            nww_main.prototype.exp_section_toggle("exp_t", false);
+        }
+        else if (section === 'address') {
+            nww_main.prototype.get_address(value);
+            window.history.replaceState(null, document.title, "/explorer/address/" + value)
+            nww_main.prototype.exp_section_toggle("exp_a", false);
+        };
     };
 
     nww_main.prototype.search = function () {
@@ -563,7 +613,7 @@ var nww_main = new (function () {
         function add_cell(_row, e) {
             let _cell = ce('td');
             if (typeof e === 'object'){
-                if (e.nodeName === 'A') {
+                if (e.nodeName === 'SPAN') {
                     _cell.appendChild(e);
                 }
             } else {
@@ -580,6 +630,14 @@ var nww_main = new (function () {
         // add_cell(_row, e['value']);
         // add_cell(_row, e['direction']);
         t.appendChild(_row);
+    };
+
+    function clear_table(table) {
+        let tableHeaderRowCount = 1;
+        let rowCount = table.rows.length;
+        for (let i = tableHeaderRowCount; i < rowCount; i++) {
+            table.deleteRow(tableHeaderRowCount);
+        };
     };
 
     function check_for_auction() {

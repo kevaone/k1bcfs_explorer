@@ -167,7 +167,7 @@
                 <br>
 
                 <!-- Interests -->
-                <div class="w3-card w3-round w3-white w3-hide-small">
+                <!-- <div class="w3-card w3-round w3-white w3-hide-small">
                     <div class="w3-container">
                         <p>Interests</p>
                         <p>
@@ -185,10 +185,10 @@
                         </p>
                     </div>
                 </div>
-                <br>
+                <br> -->
 
                 <!-- Alert Box -->
-                <div
+                <!-- <div
                     class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">
                     <span onclick="this.parentElement.style.display='none'"
                         class="w3-button w3-theme-l3 w3-display-topright">
@@ -196,7 +196,7 @@
                     </span>
                     <p><strong>Hey!</strong></p>
                     <p>People are looking at your profile. Find out who.</p>
-                </div>
+                </div> -->
 
                 <!-- End Left Column -->
             </div>
@@ -314,6 +314,9 @@
                             <button type="button" class="w3-button w3-theme"
                                 onclick="nww_main.exp_section_toggle('exp_rt')"><i class="fa fa-pencil"></i>
                                 Recent Transactions</button>
+                            <button type="button" class="w3-button w3-theme"
+                                onclick="nww_main.exp_section_toggle('exp_mp')"><i class="fa fa-pencil"></i>
+                                Mempool</button>
                             <div class="w3-right">
                                 <input id="uibssrc" class="w3-border w3-padding" />
                                 <button type="button" class="w3-button w3-theme" onclick="nww_main.search()"><i
@@ -375,6 +378,32 @@
                         </div>
                     </div>
 
+                    <div id="exp_mp" class="w3-hide w3-container w3-card w3-white w3-round w3-margin">
+                        <div class="w3-margin-top" style="padding-right: 16px; padding-bottom: 16px;">
+                            <img src="/images/keva_one_logo.png" alt="Avatar" class="w3-left w3-circle w3-margin-right"
+                                style="width:60px">
+                            <div>
+                                <div>Mempool</div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="w3-container k1-overflow-scroll">
+                            <table id="uibexp_rb" class="w3-table">
+                                <thead>
+                                    <tr class="w3-light-grey">
+                                        <th>Time</th>
+                                        <th>Height</th>
+                                        <th>TX Hash</th>
+                                        <th>In Count</th>
+                                        <th>Out Count</th>
+                                        <th>Value</th>
+                                        <th>Fee</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+
                     <div id="exp_b" class="w3-hide w3-container w3-card w3-white w3-round w3-margin">
                         <div class="w3-margin-top">
                             <img src="/images/keva_one_logo.png" alt="Avatar"
@@ -401,7 +430,7 @@
                             </div>
                         </div>
                         <div class="w3-container">
-                            <div>previous hash: <a id="uibexp_bphash">0</a></div>
+                            <div>previous hash: <span id="uibexp_bphash">0</span></div>
                             <div>merkle: <span id="uibexp_bmerkle">0</span></div>
                         </div>
 
