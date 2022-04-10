@@ -23,6 +23,7 @@ var nww_main = new (function () {
     let bc_explorer_block_vis = false;
     let bc_explorer_transaction_vis = false;
     let bc_explorer_address_vis = false;
+    let bc_explorer_mempool_entry_vis = false;
 
     function nww_main() {
         //console.log('main');
@@ -60,14 +61,23 @@ var nww_main = new (function () {
             else if (e['data'][0]['call'] === 'get_block') {
                 nww_main.prototype.ui_update_block(e['data'][1])
             }
-            else if (e['data'][0]['call'] === 'get_block_hash') {
-                nww_main.prototype.ui_update_block(e['data'][1])
+            else if (e['data'][0]['call'] === 'get_recent_blocks') {
+                nww_main.prototype.ui_update_recent_blocks(e['data'][1])
+            }
+            else if (e['data'][0]['call'] === 'get_recent_transactions') {
+                nww_main.prototype.ui_update_recent_transactions(e['data'][1])
+            }
+            else if (e['data'][0]['call'] === 'rpc_get_raw_mempool') {
+                nww_main.prototype.ui_update_mempool(e['data'][1])
             }
             else if (e['data'][0]['call'] === 'get_transaction') {
                 nww_main.prototype.ui_update_transaction(e['data'][1])
             }
             else if (e['data'][0]['call'] === 'get_address') {
                 nww_main.prototype.ui_update_address(e['data'][1])
+            }
+            else if (e['data'][0]['call'] === 'rpc_get_mempool_entry') {
+                nww_main.prototype.ui_update_mempool_entry(e['data'][1])
             }
             // else if (e['data'][0]['call'] === 'get_info') {
             else if (e['data'][0]['call'] === 'README.md') {
@@ -122,6 +132,7 @@ var nww_main = new (function () {
                 bc_explorer_vis = true;
             };
             if (_path === "/explorer/recent-blocks") {
+                nww_main.prototype.get_recent_blocks();
                 if (!bc_explorer_recent_blocks_vis) {
                     nww_main.prototype.exp_section_toggle("exp_rb", false);
                     bc_explorer_recent_blocks_vis = true;
@@ -130,9 +141,11 @@ var nww_main = new (function () {
                     bc_explorer_block_vis = false;
                     bc_explorer_transaction_vis = false;
                     bc_explorer_address_vis = false;
+                    bc_explorer_mempool_entry_vis = false;
                 };
             }
             else if (_path === "/explorer/recent-transactions") {
+                nww_main.prototype.get_recent_transactions();
                 if (!bc_explorer_recent_transactions_vis) {
                     nww_main.prototype.exp_section_toggle("exp_rt", false);
                     bc_explorer_recent_blocks_vis = false;
@@ -141,9 +154,11 @@ var nww_main = new (function () {
                     bc_explorer_block_vis = false;
                     bc_explorer_transaction_vis = false;
                     bc_explorer_address_vis = false;
+                    bc_explorer_mempool_entry_vis = false;
                 };
             }
             else if (_path === "/explorer/mempool") {
+                nww_main.prototype.get_raw_mempool();
                 if (!bc_explorer_mempool_vis) {
                     nww_main.prototype.exp_section_toggle("exp_mp", false);
                     bc_explorer_recent_blocks_vis = false;
@@ -152,11 +167,12 @@ var nww_main = new (function () {
                     bc_explorer_block_vis = false;
                     bc_explorer_transaction_vis = false;
                     bc_explorer_address_vis = false;
+                    bc_explorer_mempool_entry_vis = false;
                 };
             }
             else if (_path.startsWith("/explorer/block/")) {
                 let _p = _path.split("/")
-                nww_main.prototype.get_block(_p[_p.length-1])
+                nww_main.prototype.get_block(_p[_p.length - 1])
                 if (!bc_explorer_block_vis) {
                     nww_main.prototype.exp_section_toggle("exp_b", false);
                     bc_explorer_recent_blocks_vis = false;
@@ -165,11 +181,12 @@ var nww_main = new (function () {
                     bc_explorer_block_vis = true;
                     bc_explorer_transaction_vis = false;
                     bc_explorer_address_vis = false;
+                    bc_explorer_mempool_entry_vis = false;
                 };
             }
             else if (_path.startsWith("/explorer/transaction/")) {
                 let _p = _path.split("/")
-                nww_main.prototype.get_transaction(_p[_p.length-1])
+                nww_main.prototype.get_transaction(_p[_p.length - 1])
                 if (!bc_explorer_transaction_vis) {
                     nww_main.prototype.exp_section_toggle("exp_t", false);
                     bc_explorer_recent_blocks_vis = false;
@@ -178,11 +195,12 @@ var nww_main = new (function () {
                     bc_explorer_block_vis = false;
                     bc_explorer_transaction_vis = true;
                     bc_explorer_address_vis = false;
+                    bc_explorer_mempool_entry_vis = false;
                 };
             }
             else if (_path.startsWith("/explorer/address/")) {
                 let _p = _path.split("/")
-                nww_main.prototype.get_address(_p[_p.length-1])
+                nww_main.prototype.get_address(_p[_p.length - 1])
                 if (!bc_explorer_address_vis) {
                     nww_main.prototype.exp_section_toggle("exp_a", false);
                     bc_explorer_recent_blocks_vis = false;
@@ -191,6 +209,21 @@ var nww_main = new (function () {
                     bc_explorer_block_vis = false;
                     bc_explorer_transaction_vis = false;
                     bc_explorer_address_vis = true;
+                    bc_explorer_mempool_entry_vis = false;
+                };
+            }
+            else if (_path.startsWith("/explorer/mempool/entry")) {
+                let _p = _path.split("/")
+                nww_main.prototype.get_mempool_entry(_p[_p.length - 1])
+                if (!bc_explorer_address_vis) {
+                    nww_main.prototype.exp_section_toggle("exp_m", false);
+                    bc_explorer_recent_blocks_vis = false;
+                    bc_explorer_recent_transactions_vis = false;
+                    bc_explorer_mempool_vis = false;
+                    bc_explorer_block_vis = false;
+                    bc_explorer_transaction_vis = false;
+                    bc_explorer_address_vis = false;
+                    bc_explorer_mempool_entry_vis = true;
                 };
             }
             else if (_path.startsWith("/explorer/search")) {
@@ -251,9 +284,10 @@ var nww_main = new (function () {
             let _path = window.location.pathname;
             if (!_path.startsWith("/explorer/block/") &
                 !_path.startsWith("/explorer/transaction/") &
-                !_path.startsWith("/explorer/address/")) {
+                !_path.startsWith("/explorer/address/") &
+                !_path.startsWith("/explorer/mempool/entry/")) {
 
-                    window.history.replaceState(null, document.title, "/explorer");
+                window.history.replaceState(null, document.title, "/explorer");
             };
         };
         if (cs) {
@@ -263,7 +297,7 @@ var nww_main = new (function () {
     };
 
     nww_main.prototype.exp_section_toggle = function (id, cs = true) {
-        let sections = ["exp_rb", "exp_rt", "exp_mp", "exp_b", "exp_t", "exp_a"];
+        let sections = ["exp_rb", "exp_rt", "exp_mp", "exp_b", "exp_t", "exp_a", "exp_m"];
         nww_main.prototype.isection_toggle(id, sections);
         if (id === "exp_rb") {
             window.history.replaceState(null, document.title, "/explorer/recent-blocks")
@@ -292,7 +326,7 @@ var nww_main = new (function () {
         _pl['endPoint'] = ep;
         console.log('e.length', e.length)
         if (e.length === 64) {
-            _pl['call'] = 'get_block_hash';
+            _pl['call'] = 'get_block';
             _pl['call_data'] = e;
         } else {
             _pl['call'] = 'get_block';
@@ -349,18 +383,109 @@ var nww_main = new (function () {
         Q.postMessage(_pl);
     };
 
-    nww_main.prototype.update_recentblocks = function (e) {
+    nww_main.prototype.get_recent_blocks = function (e) {
+        let _pl = {};
+        _pl['endPoint'] = ep;
+        _pl['call'] = 'get_recent_blocks';
+        _pl['call_data'] = '?page_size=15';
+        _pl['type'] = 'GET';
+        Q.postMessage(_pl);
+    };
 
+    nww_main.prototype.get_recent_transactions = function (e) {
+        let _pl = {};
+        _pl['endPoint'] = ep;
+        _pl['call'] = 'get_recent_transactions';
+        _pl['call_data'] = '?page_size=15';
+        _pl['type'] = 'GET';
+        Q.postMessage(_pl);
+    };
+
+    nww_main.prototype.get_raw_mempool = function (e) {
+        let _pl = {};
+        _pl['endPoint'] = ep;
+        _pl['call'] = 'rpc_get_raw_mempool';
+        _pl['type'] = 'GET';
+        Q.postMessage(_pl);
+    };
+
+    nww_main.prototype.get_mempool_entry = function (e) {
+        let _pl = {};
+        _pl['endPoint'] = ep;
+        _pl['call'] = 'rpc_get_mempool_entry';
+        _pl['call_data'] = e;
+        _pl['type'] = 'GET';
+        Q.postMessage(_pl);
+    };
+
+    nww_main.prototype.ui_update_recent_blocks = function (e) {
         let _uibexp_rb = document.getElementById('uibexp_rb');
         clear_table(_uibexp_rb)
 
+        for (result in e[1]['page_results']) {
+            let _bh_lnk = ce('span');
+            _bh_lnk.innerText = e[1]['page_results'][result][0];
+            _bh_lnk.onclick = function () {
+                nww_main.prototype.section_link('block', _bh_lnk.innerText);
+            };
+            let _b_lnk = ce('span');
+            _b_lnk.innerText = e[1]['page_results'][result][1];
+            _b_lnk.onclick = function () {
+                nww_main.prototype.section_link('block', _b_lnk.innerText);
+            };
+            let _r = ['', _b_lnk, _bh_lnk]
+            add_row(_uibexp_rb, _r);
+        }
+    };
 
-        // console.log(_uibexp_rb.childNodes[3].childElementCount)
-        // let _pl = {};
-        // _pl['endPoint'] = ep;
-        // _pl['call'] = 'get_supply';
-        // _pl['type'] = 'GET';
-        // Q.postMessage(_pl);
+    nww_main.prototype.ui_update_recent_transactions = function (e) {
+        let _uibexp_rt = document.getElementById('uibexp_rt');
+        clear_table(_uibexp_rt)
+
+        for (result in e[1]['page_results']) {
+            let _tx_lnk = ce('span');
+            _tx_lnk.innerText = e[1]['page_results'][result];
+            _tx_lnk.onclick = function () {
+                nww_main.prototype.section_link('transaction', _tx_lnk.innerText);
+            };
+            // let _b_lnk = ce('span');
+            // _b_lnk.innerText = e[1]['page_results'][result][1];
+            // _b_lnk.onclick = function() {
+            //     nww_main.prototype.section_link('block', _b_lnk.innerText);
+            // };
+            let _r = ['', '', _tx_lnk]
+            add_row(_uibexp_rt, _r);
+        }
+    };
+
+    nww_main.prototype.ui_update_mempool = function (e) {
+        let _uibexp_rm = document.getElementById('uibexp_rm');
+        clear_table(_uibexp_rm)
+        if (typeof e == 'object') {
+            for (result in e) {
+                let _tx_lnk = ce('span');
+                _tx_lnk.innerText = e[result];
+                _tx_lnk.onclick = function () {
+                    nww_main.prototype.section_link('mempool', _tx_lnk.innerText);
+                };
+                // let _b_lnk = ce('span');
+                // _b_lnk.innerText = e[1]['page_results'][result][1];
+                // _b_lnk.onclick = function() {
+                //     nww_main.prototype.section_link('block', _b_lnk.innerText);
+                // };
+                let _r = ['', _tx_lnk]
+                add_row(_uibexp_rm, _r);
+            }
+        }
+        else {
+            let _tx_lnk = ce('span');
+            _tx_lnk.innerText = e;
+            _tx_lnk.onclick = function () {
+                nww_main.prototype.section_link('mempool', _tx_lnk.innerText);
+            };
+            let _r = ['', _tx_lnk]
+            add_row(_uibexp_rm, _r);
+        }
     };
 
     nww_main.prototype.ui_update_supply = function (e) {
@@ -368,16 +493,15 @@ var nww_main = new (function () {
         let _supply = document.getElementById('uibs_supply');
         let _fees = document.getElementById('uibs_fees');
         let _uibs_genreward = document.getElementById('uibs_genreward');
+        let _uibs_diff = document.getElementById('uibs_diff');
+        let _uibs_nethash = document.getElementById('uibs_nethash');
 
         _height.innerText = e['block_height'];
         _supply.innerText = e['coin_supply'];
         _fees.innerText = e['fees_payed'];
         _uibs_genreward.innerText = e['genisis_reward']
-        // nww_main.prototype.get_address('VMw8Xj3FvJVDhyBfaomtq84fkFWg4xFCGc')
-        // nww_main.prototype.update_recentblocks(e['block_height'])
-        // nww_main.prototype.get_block(220550)
-        // nww_main.prototype.get_info()
-        // nww_main.prototype.get_transaction('6b71f4be495a06d1e03b3deaa090b8ff9763c2ce01416e1a8f6b6fd92d4dbae1')
+        _uibs_diff.innerText = rounder(e['difficulty'], '3')
+        _uibs_nethash.innerText = rounder(e['networkhashps'], '3')
 
     };
 
@@ -404,7 +528,7 @@ var nww_main = new (function () {
         _version.innerText = e['header']['version'];
         // _phash.href = '/explorer/block/' + e['header']['prev_hash'];
         _phash.innerText = e['header']['prev_hash'];
-        _phash.onclick = function() {
+        _phash.onclick = function () {
             nww_main.prototype.section_link('block', e['header']['prev_hash']);
         };
         _merkle.innerText = e['header']['merkle'];
@@ -425,7 +549,7 @@ var nww_main = new (function () {
             let _tx_lnk = ce('span');
             // _tx_lnk.href = '/explorer/transaction/' + r['txid'];
             _tx_lnk.innerText = r['txid'];
-            _tx_lnk.onclick = function() {
+            _tx_lnk.onclick = function () {
                 nww_main.prototype.section_link('transaction', r['txid']);
             };
             add_row(_bt, [_tx_lnk, r['vin'].length, r['vout'].length, sats]);
@@ -459,7 +583,7 @@ var nww_main = new (function () {
             let _tx = e['vin'][result]['txid'];
             // _tx_lnk.href = '/explorer/transaction/' + e['vin'][result]['txid'];
             _tx_lnk.innerText = e['vin'][result]['txid'];
-            _tx_lnk.onclick = function() {
+            _tx_lnk.onclick = function () {
                 nww_main.prototype.section_link('transaction', _tx);
             };
             e['vin'][result]['txid'] = _tx_lnk;
@@ -523,6 +647,47 @@ var nww_main = new (function () {
         // ]
     };
 
+    nww_main.prototype.ui_update_mempool_entry = function (e) {
+        console.log(e)
+
+        let _mat = document.getElementById('uibexp_mat');
+        let _mdt = document.getElementById('uibexp_mdt');
+        clear_table(_mat)
+        clear_table(_mdt)
+        let _m = document.getElementById('uibexp_mti');
+        let ancestorcount = document.getElementById('uibexp_mac');
+        let ancestorfees = document.getElementById('uibexp_maf');
+        let ancestorsize = document.getElementById('uibexp_mas');
+        let depends = document.getElementById('uibexp_md');
+        let descendantcount = document.getElementById('uibexp_mdc');
+        let descendantfees = document.getElementById('uibexp_mdf');
+        let descendantsize = document.getElementById('uibexp_mds');
+        let fee = document.getElementById('uibexp_mfee');
+        let height = document.getElementById('uibexp_mh');
+        let modifiedfee = document.getElementById('uibexp_mf');
+        let size = document.getElementById('uibexp_ms');
+        let time = document.getElementById('uibexp_mtime');
+        let wtxid = document.getElementById('uibexp_mwtx');
+        let _path = window.location.pathname;
+        let _p = _path.split("/")
+        _m.innerText = _p[_p.length - 1]
+
+        ancestorcount.innerText = e['ancestorcount'];
+        ancestorfees.innerText = e['ancestorfees'];
+        ancestorsize.innerText = e['ancestorsize'];
+        depends.innerText = e['depends'];
+        descendantcount.innerText = e['descendantcount'];
+        descendantfees.innerText = e['descendantfees'];
+        descendantsize.innerText = e['descendantsize'];
+        fee.innerText = e['fee'];
+        height.innerText = e['height'];
+        modifiedfee.innerText = e['modifiedfee'];
+        size.innerText = e['size'];
+        time.innerText = e['time'];
+        wtxid.innerText = e['wtxid'];
+
+    };
+
     nww_main.prototype.ui_update_info = function (e) {
         let _received = document.getElementById('bexp_inftext');
 
@@ -545,6 +710,11 @@ var nww_main = new (function () {
             nww_main.prototype.get_address(value);
             window.history.replaceState(null, document.title, "/explorer/address/" + value)
             nww_main.prototype.exp_section_toggle("exp_a", false);
+        }
+        else if (section === 'mempool') {
+            nww_main.prototype.get_mempool_entry(value);
+            window.history.replaceState(null, document.title, "/explorer/mempool/entry/" + value)
+            nww_main.prototype.exp_section_toggle("exp_m", false);
         };
     };
 
@@ -555,7 +725,7 @@ var nww_main = new (function () {
         let _sv = Number(_search.value)
         if (_sv >= 0 & _search.value.length <= 16) {
             let _height = document.getElementById('uibs_height');
-            
+
             if (_sv <= parseInt(_height.innerText) & _sv >= 0) {
                 console.log(typeof _sv, _sv, '_sv might be block')
             };
@@ -612,7 +782,7 @@ var nww_main = new (function () {
         let _row = ce('tr');
         function add_cell(_row, e) {
             let _cell = ce('td');
-            if (typeof e === 'object'){
+            if (typeof e === 'object') {
                 if (e.nodeName === 'SPAN') {
                     _cell.appendChild(e);
                 }
@@ -638,6 +808,10 @@ var nww_main = new (function () {
         for (let i = tableHeaderRowCount; i < rowCount; i++) {
             table.deleteRow(tableHeaderRowCount);
         };
+    };
+
+    function rounder(number, places) {
+        return +(Math.round(number + 'e+'.concat(places)) + 'e-'.concat(places));
     };
 
     function check_for_auction() {

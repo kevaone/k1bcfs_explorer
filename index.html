@@ -362,7 +362,7 @@
                         </div>
                         <br />
                         <div class="w3-container k1-overflow-scroll">
-                            <table id="uibexp_rb" class="w3-table">
+                            <table id="uibexp_rt" class="w3-table">
                                 <thead>
                                     <tr class="w3-light-grey">
                                         <th>Time</th>
@@ -388,11 +388,10 @@
                         </div>
                         <br />
                         <div class="w3-container k1-overflow-scroll">
-                            <table id="uibexp_rb" class="w3-table">
+                            <table id="uibexp_rm" class="w3-table">
                                 <thead>
                                     <tr class="w3-light-grey">
                                         <th>Time</th>
-                                        <th>Height</th>
                                         <th>TX Hash</th>
                                         <th>In Count</th>
                                         <th>Out Count</th>
@@ -586,6 +585,85 @@
                                 </div>
                             </div>
                             <table id="uibexp_art" class="w3-table">
+                                <thead>
+                                    <tr class="w3-light-grey">
+                                        <th>Time</th>
+                                        <th>Height</th>
+                                        <th>TX Hash</th>
+                                        <th>Value</th>
+                                        <th>Direction</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="exp_m" class="w3-hide w3-container w3-card w3-white w3-round w3-margin">
+                        <!-- <img src="images/keva_one_logo.png" alt="Avatar" class="w3-left w3-circle w3-margin-right"
+                            style="width:60px">
+                        <span class="w3-right w3-opacity">32 min</span>
+                        <h4>Address</h4> -->
+                        <div class="w3-margin-top">
+                            <img src="/images/keva_one_logo.png" alt="Avatar"
+                                class="w3-left w3-circle w3-margin-right w3-margin-bottom" style="width:60px">
+                            <div>
+                                <div>Mempool Entry</div>
+                                <div><span id="uibexp_mti">0</span></div>
+                            </div>
+                        </div>
+
+                        <div class="w3-container">
+                            <div class="w3-half">
+                                <div>fee: <span id="uibexp_mfee">0</span></div>
+                                <div>height: <span id="uibexp_mh">0</span></div>
+                                <div>modifiedfee: <span id="uibexp_mf">0</span></div>
+                                <div>size: <span id="uibexp_ms">0</span></div>
+                                <div>time: <span id="uibexp_mtime">0</span></div>
+                            </div>
+                            <div class="w3-half">
+                                <div>ancestorcount: <span id="uibexp_mac">0</span></div>
+                                <div>ancestorfees: <span id="uibexp_maf">0</span></div>
+                                <div>ancestorsize: <span id="uibexp_mas">0</span></div>
+                                <div>depends: <span id="uibexp_md">0</span></div>
+                                <div>descendantcount: <span id="uibexp_mdc">0</span></div>
+                                <div>descendantfees: <span id="uibexp_mdf">0</span></div>
+                                <div>descendantsize: <span id="uibexp_mds">0</span></div>
+                            </div>
+                        </div>
+                        <div class="w3-container w3-margin-bottom">
+                            <div>
+                                <div>wtxid: <span id="uibexp_mwtx">0</span></div>
+                            </div>
+                        </div>
+                        <div class="w3-container w3-card w3-white w3-round w3-margin-bottom k1-overflow-scroll">
+                            <div class="w3-margin-top">
+                                <img src="/images/keva_one_logo.png" alt="Avatar"
+                                    class="w3-left w3-circle w3-margin-right w3-margin-bottom" style="width:60px">
+                                <div>
+                                    <div>Ancestors</div>
+                                </div>
+                            </div>
+                            <table id="uibexp_mat" class="w3-table">
+                                <thead>
+                                    <tr class="w3-light-grey">
+                                        <th>Time</th>
+                                        <th>Height</th>
+                                        <th>TX Hash</th>
+                                        <th>Value</th>
+                                        <th>Direction</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div class="w3-container w3-card w3-white w3-round w3-margin-bottom k1-overflow-scroll">
+                            <div class="w3-margin-top">
+                                <img src="/images/keva_one_logo.png" alt="Avatar"
+                                    class="w3-left w3-circle w3-margin-right w3-margin-bottom" style="width:60px">
+                                <div>
+                                    <div>Descendants</div>
+                                </div>
+                            </div>
+                            <table id="uibexp_mdt" class="w3-table">
                                 <thead>
                                     <tr class="w3-light-grey">
                                         <th>Time</th>
