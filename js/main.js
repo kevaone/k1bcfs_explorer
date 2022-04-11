@@ -846,7 +846,18 @@ var nww_main = new (function () {
             rc.id = 'nsv_rc' + e['data'][result]['timestamp']
             k.innerText = e['data'][result]['key']
             t.innerText = e['data'][result]['time']
-            v.innerText = e['data'][result]['value']
+            
+            if (e['data'][result]['key'] === 'html') {
+                v.innerText = '';
+                let ifra = ce('iframe');
+                ifra.srcdoc = e['data'][result]['value'];
+                ifra.style.cssText = 'width: 200%; height: 200vh; -webkit-transform: scale(.5); transform: scale(.5); -webkit-transform-origin: 0 0; transform-origin: 0 0;'
+                v.appendChild(ifra);
+            }
+            else {
+                v.innerText = e['data'][result]['value']
+            }
+            
             let kb = e['data'][result]['key_shortcode']
             b.onclick = function () {
                 nww_main.prototype.section_link('block', kb);
