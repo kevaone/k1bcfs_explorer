@@ -13,6 +13,7 @@ var nww_main = new (function () {
     let bc_recent_blocks_update = 0;
     let bc_recent_transactions_update = 0;
     let bc_general_vis = true;
+    let bpro_vis = false;
     let bc_info_vis = false;
     let bc_news_vis = false;
     let bc_stats_vis = false;
@@ -24,6 +25,8 @@ var nww_main = new (function () {
     let bc_explorer_transaction_vis = false;
     let bc_explorer_address_vis = false;
     let bc_explorer_mempool_entry_vis = false;
+
+    let nspro_vis = false;
 
     function nww_main() {
         //console.log('main');
@@ -79,6 +82,12 @@ var nww_main = new (function () {
             else if (e['data'][0]['call'] === 'rpc_get_mempool_entry') {
                 nww_main.prototype.ui_update_mempool_entry(e['data'][1])
             }
+            else if (e['data'][0]['call'] === 'get_shortcode') {
+                nww_main.prototype.ui_update_namespace_view(e['data'][1])
+            }
+            else if (e['data'][0]['call'] === 'get_namespace') {
+                nww_main.prototype.ui_update_namespace_view(e['data'][1])
+            }
             // else if (e['data'][0]['call'] === 'get_info') {
             else if (e['data'][0]['call'] === 'README.md') {
                 nww_main.prototype.ui_update_info(e['data'][1])
@@ -97,6 +106,12 @@ var nww_main = new (function () {
                 nww_main.prototype.get_info()
                 bc_info_update = _d
             };
+            if (!bpro_vis) {
+                nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
+                nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
+                bpro_vis = true;
+                nspro_vis = false;
+            };
             if (!bc_info_vis) {
                 nww_main.prototype.section_toggle("bexp_inf", false);
                 bc_info_vis = true;
@@ -106,6 +121,12 @@ var nww_main = new (function () {
             }
         }
         else if (_path.startsWith("/news")) {
+            if (!bpro_vis) {
+                nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
+                nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
+                bpro_vis = true;
+                nspro_vis = false;
+            };
             if (!bc_news_vis) {
                 nww_main.prototype.section_toggle("bexp_news", false);
                 bc_info_vis = false;
@@ -115,6 +136,12 @@ var nww_main = new (function () {
             };
         }
         else if (_path.startsWith("/stats")) {
+            if (!bpro_vis) {
+                nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
+                nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
+                bpro_vis = true;
+                nspro_vis = false;
+            };
             if (!bc_stats_vis) {
                 nww_main.prototype.section_toggle("bexp_stats", false);
                 bc_info_vis = false;
@@ -124,6 +151,12 @@ var nww_main = new (function () {
             };
         }
         else if (_path.startsWith("/explorer")) {
+            if (!bpro_vis) {
+                nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
+                nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
+                bpro_vis = true;
+                nspro_vis = false;
+            };
             if (!bc_explorer_vis) {
                 nww_main.prototype.section_toggle("bexp_exp", false);
                 bc_info_vis = false;
@@ -133,6 +166,12 @@ var nww_main = new (function () {
             };
             if (_path === "/explorer/recent-blocks") {
                 nww_main.prototype.get_recent_blocks();
+                if (!bpro_vis) {
+                    nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
+                    nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
+                    bpro_vis = true;
+                    nspro_vis = false;
+                };
                 if (!bc_explorer_recent_blocks_vis) {
                     nww_main.prototype.exp_section_toggle("exp_rb", false);
                     bc_explorer_recent_blocks_vis = true;
@@ -146,6 +185,12 @@ var nww_main = new (function () {
             }
             else if (_path === "/explorer/recent-transactions") {
                 nww_main.prototype.get_recent_transactions();
+                if (!bpro_vis) {
+                    nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
+                    nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
+                    bpro_vis = true;
+                    nspro_vis = false;
+                };
                 if (!bc_explorer_recent_transactions_vis) {
                     nww_main.prototype.exp_section_toggle("exp_rt", false);
                     bc_explorer_recent_blocks_vis = false;
@@ -159,6 +204,12 @@ var nww_main = new (function () {
             }
             else if (_path === "/explorer/mempool") {
                 nww_main.prototype.get_raw_mempool();
+                if (!bpro_vis) {
+                    nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
+                    nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
+                    bpro_vis = true;
+                    nspro_vis = false;
+                };
                 if (!bc_explorer_mempool_vis) {
                     nww_main.prototype.exp_section_toggle("exp_mp", false);
                     bc_explorer_recent_blocks_vis = false;
@@ -173,6 +224,12 @@ var nww_main = new (function () {
             else if (_path.startsWith("/explorer/block/")) {
                 let _p = _path.split("/")
                 nww_main.prototype.get_block(_p[_p.length - 1])
+                if (!bpro_vis) {
+                    nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
+                    nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
+                    bpro_vis = true;
+                    nspro_vis = false;
+                };
                 if (!bc_explorer_block_vis) {
                     nww_main.prototype.exp_section_toggle("exp_b", false);
                     bc_explorer_recent_blocks_vis = false;
@@ -187,6 +244,12 @@ var nww_main = new (function () {
             else if (_path.startsWith("/explorer/transaction/")) {
                 let _p = _path.split("/")
                 nww_main.prototype.get_transaction(_p[_p.length - 1])
+                if (!bpro_vis) {
+                    nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
+                    nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
+                    bpro_vis = true;
+                    nspro_vis = false;
+                };
                 if (!bc_explorer_transaction_vis) {
                     nww_main.prototype.exp_section_toggle("exp_t", false);
                     bc_explorer_recent_blocks_vis = false;
@@ -201,6 +264,12 @@ var nww_main = new (function () {
             else if (_path.startsWith("/explorer/address/")) {
                 let _p = _path.split("/")
                 nww_main.prototype.get_address(_p[_p.length - 1])
+                if (!bpro_vis) {
+                    nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
+                    nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
+                    bpro_vis = true;
+                    nspro_vis = false;
+                };
                 if (!bc_explorer_address_vis) {
                     nww_main.prototype.exp_section_toggle("exp_a", false);
                     bc_explorer_recent_blocks_vis = false;
@@ -215,6 +284,12 @@ var nww_main = new (function () {
             else if (_path.startsWith("/explorer/mempool/entry")) {
                 let _p = _path.split("/")
                 nww_main.prototype.get_mempool_entry(_p[_p.length - 1])
+                if (!bpro_vis) {
+                    nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
+                    nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
+                    bpro_vis = true;
+                    nspro_vis = false;
+                };
                 if (!bc_explorer_address_vis) {
                     nww_main.prototype.exp_section_toggle("exp_m", false);
                     bc_explorer_recent_blocks_vis = false;
@@ -227,7 +302,12 @@ var nww_main = new (function () {
                 };
             }
             else if (_path.startsWith("/explorer/search")) {
-
+                if (!bpro_vis) {
+                    nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
+                    nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
+                    bpro_vis = true;
+                    nspro_vis = false;
+                };
             };
 
             //     nww_main.prototype.get_address('VMw8Xj3FvJVDhyBfaomtq84fkFWg4xFCGc')
@@ -235,7 +315,30 @@ var nww_main = new (function () {
             // nww_main.prototype.get_block(220550)
             // nww_main.prototype.get_info()
             // nww_main.prototype.get_transaction('6b71f4be495a06d1e03b3deaa090b8ff9763c2ce01416e1a8f6b6fd92d4dbae1')
+        }
+        else {
+            let _p = _path.split("/");
+
+            if (_p[_p.length - 1].length > parseInt(_p[_p.length - 1][0]) + 1) {
+                nww_main.prototype.get_shortcode(_p[_p.length - 1]);
+                if (!nspro_vis) {
+                    nww_main.prototype.isection_toggle("nspro", ["bpro", "nspro"]);
+                    nww_main.prototype.isection_toggle("bexp_nsv", ["bexp_bvv", "bexp_nsv"]);
+                    bpro_vis = false;
+                    nspro_vis = true;
+                };
+            }
+            else if (_p[_p.length - 1].startsWith('N') & _p[_p.length - 1].length === 34) {
+                nww_main.prototype.get_namespace(_p[_p.length - 1]);
+                if (!nspro_vis) {
+                    nww_main.prototype.isection_toggle("nspro", ["bpro", "nspro"]);
+                    nww_main.prototype.isection_toggle("bexp_nsv", ["bexp_bvv", "bexp_nsv"]);
+                    bpro_vis = false;
+                    nspro_vis = true;
+                };
+            };
         };
+        
 
         // window.history.replaceState(null, document.title, "/info")
     };
@@ -695,26 +798,225 @@ var nww_main = new (function () {
 
     };
 
+    nww_main.prototype.ui_update_namespace_view = function (e) {
+        let _bexp_nsv = document.getElementById('bexp_nsv');
+        let _nsv_c = document.getElementById('nsv_c');
+        let nspro_name = document.getElementById('nspro_name');
+        let nspro_sc = document.getElementById('nspro_sc');
+        let nspro_nsid = document.getElementById('nspro_nsid');
+        let nspro_keys = document.getElementById('nspro_keys');
+        let nspro_owner = document.getElementById('nspro_owner');
+        let name_set = false;
+        
+        while (_bexp_nsv.firstChild) {
+            _bexp_nsv.removeChild(_bexp_nsv.firstChild);
+        };
+        let spacer = ce('div')
+        spacer.style.marginTop = '-16px'
+        _bexp_nsv.appendChild(spacer);
+        // <div style="margin-top: -16px;"></div>
+        e['data'].reverse()
+
+        nspro_nsid.innerText = e['nsid']
+        nspro_sc.innerText = e['root_shortcode']
+        nspro_keys.innerText = e['data'].length
+        nspro_owner.innerText = e['data'][0]['addr']
+
+        for (result in e['data']) {
+            let x = _nsv_c.cloneNode(true);
+            // let _nsv_rp = x.querySelector('#nsv_reply'); //document.getElementById('nsv_reply');
+            let k = x.querySelector('#nsv_key');
+            let t = x.querySelector('#nsv_time');
+            let v = x.querySelector('#nsv_value');
+            let b = x.querySelector('#nsv_block');
+            let txid = x.querySelector('#nsv_txid');
+            let a = x.querySelector('#nsv_addr');
+            let o = x.querySelector('#nsv_op');
+            let rc = x.querySelector('#nsv_rc');
+            let replies = x.querySelector('#nsv_replies');
+            x.id = 'nsv_k' + e['data'][result]['timestamp']
+            
+            k.id = 'nsv_key' + e['data'][result]['timestamp']
+            t.id = 'nsv_time' + e['data'][result]['timestamp']
+            v.id = 'nsv_value' + e['data'][result]['timestamp']
+            b.id = 'nsv_block' + e['data'][result]['timestamp']
+            txid.id = 'nsv_txid' + e['data'][result]['timestamp']
+            a.id = 'nsv_addr' + e['data'][result]['timestamp']
+            o.id = 'nsv_op' + e['data'][result]['timestamp']
+            rc.id = 'nsv_rc' + e['data'][result]['timestamp']
+            k.innerText = e['data'][result]['key']
+            t.innerText = e['data'][result]['time']
+            v.innerText = e['data'][result]['value']
+            let kb = e['data'][result]['key_shortcode']
+            b.onclick = function () {
+                nww_main.prototype.section_link('block', kb);
+            };
+            b.innerText = e['data'][result]['key_shortcode']
+            let ktxid = e['data'][result]['txid']
+            txid.onclick = function () {
+                nww_main.prototype.section_link('transaction', ktxid);
+            };
+            // txid.innerText = e['data'][result]['txid']
+            a.innerText = e['data'][result]['addr']
+            o.innerText = e['data'][result]['op']
+            rc.innerText = e['data'][result]['replies'].length
+            if (e['data'][result]['replies'].length >= 1) {
+                replies.className += " w3-show";
+            }
+            if (!name_set) {
+                if (e['data'][result]['key'].endsWith('_KEVA_NS_')) {
+                    try {
+                    let nn = JSON.parse(e['data'][result]['value']);
+                    nspro_name.innerText = nn['displayName'];
+                    name_set = true;
+                    }
+                    catch {
+                        nspro_name.innerText = e['data'][result]['value'];
+                    name_set = true;
+                    };
+                };
+            };
+            for (rresult in e['data'][result]['replies']) {
+                let _nsv_rp = document.getElementById('nsv_reply');
+                let rx = _nsv_rp.cloneNode(true);
+                let rsc = rx.querySelector('#nsv_rsc');
+                let rt = rx.querySelector('#nsv_rtime');
+                let rv = rx.querySelector('#nsv_rvalue');
+                let rb = rx.querySelector('#nsv_rblock');
+                let rtxid = rx.querySelector('#nsv_rtxid');
+                let ra = rx.querySelector('#nsv_raddr');
+                let ro = rx.querySelector('#nsv_rop');
+                // let rrc = rx.querySelector('#nsv_rrc');
+                // console.log(rresult)
+                rx.id = 'nsv_rk' + e['data'][result]['replies'][rresult]['timestamp']
+                
+                // k.id = 'nsv_rkey' + e['data'][result]['timestamp']
+                rt.id = 'nsv_rtime' + e['data'][result]['replies'][rresult]['timestamp']
+                rv.id = 'nsv_rvalue' + e['data'][result]['replies'][rresult]['timestamp']
+                rb.id = 'nsv_rblock' + e['data'][result]['replies'][rresult]['timestamp']
+                rtxid.id = 'nsv_rtxid' + e['data'][result]['replies'][rresult]['timestamp']
+                ra.id = 'nsv_raddr' + e['data'][result]['replies'][rresult]['timestamp']
+                ro.id = 'nsv_rop' + e['data'][result]['replies'][rresult]['timestamp']
+                // rrc.id = 'nsv_rrc' + e['data'][result]['replies'][rresult]['timestamp']
+                // k.innerText = e['data'][result]['key']
+                rt.innerText = e['data'][result]['replies'][rresult]['time']
+                let rtype = e['data'][result]['replies'][rresult]['type']
+                let rtm = ''
+
+                rv.innerText = e['data'][result]['replies'][rresult]['value'] + rtm
+                if (rtype === 'reward') {
+                    rtm = ' love'
+                    rv.innerText = rv.innerText + rtm
+                }
+                else if (rtype === 'repost') {
+                    rv.innerText = 'Reposted'
+                }
+                
+                
+                rb.innerText = e['data'][result]['replies'][rresult]['key_shortcode']
+                let rtsc = e['data'][result]['replies'][rresult]['root_shortcode']
+                rsc.innerText = rtsc
+                rsc.onclick = function () {
+                    nww_main.prototype.section_link('shortcode', rsc.innerText);
+                };
+                let rrtxid = e['data'][result]['replies'][rresult]['txid']
+                rtxid.onclick = function () {
+                    nww_main.prototype.section_link('transaction', rrtxid);
+                };
+                ra.innerText = e['data'][result]['replies'][rresult]['addr']
+                ro.innerText = e['data'][result]['replies'][rresult]['op']
+                
+                replies.appendChild(rx);
+            };
+            _bexp_nsv.appendChild(x);
+        };
+        // bexp_nsv.innerText = e;
+
+    };
+
     nww_main.prototype.section_link = function (section, value) {
         if (section === 'block') {
+            if (!bc_explorer_vis) {
+                nww_main.prototype.section_toggle("bexp_exp", false);
+                bc_info_vis = false;
+                bc_news_vis = false;
+                bc_stats_vis = false;
+                bc_explorer_vis = true;
+            };
+            if (!bpro_vis) {
+                nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
+                nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
+                bpro_vis = true;
+                nspro_vis = false;
+            };
             nww_main.prototype.get_block(value);
             window.history.replaceState(null, document.title, "/explorer/block/" + value)
             nww_main.prototype.exp_section_toggle("exp_b", false);
         }
         else if (section === 'transaction') {
+            if (!bc_explorer_vis) {
+                nww_main.prototype.section_toggle("bexp_exp", false);
+                bc_info_vis = false;
+                bc_news_vis = false;
+                bc_stats_vis = false;
+                bc_explorer_vis = true;
+            };
+            if (!bpro_vis) {
+                nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
+                nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
+                bpro_vis = true;
+                nspro_vis = false;
+            };
             nww_main.prototype.get_transaction(value);
             window.history.replaceState(null, document.title, "/explorer/transaction/" + value)
             nww_main.prototype.exp_section_toggle("exp_t", false);
         }
         else if (section === 'address') {
+            if (!bc_explorer_vis) {
+                nww_main.prototype.section_toggle("bexp_exp", false);
+                bc_info_vis = false;
+                bc_news_vis = false;
+                bc_stats_vis = false;
+                bc_explorer_vis = true;
+            };
+            if (!bpro_vis) {
+                nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
+                nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
+                bpro_vis = true;
+                nspro_vis = false;
+            };
             nww_main.prototype.get_address(value);
             window.history.replaceState(null, document.title, "/explorer/address/" + value)
             nww_main.prototype.exp_section_toggle("exp_a", false);
         }
         else if (section === 'mempool') {
+            if (!bc_explorer_vis) {
+                nww_main.prototype.section_toggle("bexp_exp", false);
+                bc_info_vis = false;
+                bc_news_vis = false;
+                bc_stats_vis = false;
+                bc_explorer_vis = true;
+            };
+            if (!bpro_vis) {
+                nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
+                nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
+                bpro_vis = true;
+                nspro_vis = false;
+            };
             nww_main.prototype.get_mempool_entry(value);
             window.history.replaceState(null, document.title, "/explorer/mempool/entry/" + value)
             nww_main.prototype.exp_section_toggle("exp_m", false);
+        }
+        else if (section === 'shortcode') {
+            if (!nspro_vis) {
+                nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
+                nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
+                bpro_vis = false;
+                nspro_vis = true;
+            };
+            nww_main.prototype.get_shortcode(value);
+            window.history.replaceState(null, document.title, "/" + value)
+            // nww_main.prototype.exp_section_toggle("exp_m", false);
         };
     };
 

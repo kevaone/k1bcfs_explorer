@@ -98,7 +98,25 @@
             <div class="w3-col m3">
                 <!-- Profile -->
                 <div class="w3-card w3-round w3-white">
-                    <div class="w3-container">
+                </div>
+                <div class="w3-card w3-round w3-white">
+                    <div id='nspro' class="w3-hide w3-container">
+                        <h4 id="nspro_name" class="w3-center">Kevacoin</h4>
+                        <p class="w3-center"><img src="/images/kevacoin-logo.png" class="w3-circle"
+                                style="height:156px;width:156px" alt="Logo"></p>
+                        <hr>
+                        <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>Shortcode <span
+                                id="nspro_sc">0</span>
+                        </p>
+                        <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>NS Id <span
+                                id="nspro_nsid">0</span></p>
+                        <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>NS Keys <span
+                                id="nspro_keys">0</span></p>
+                        <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>Owner <span
+                                id="nspro_owner">0</span></p>
+
+                    </div>
+                    <div id='bpro' class="w3-hide w3-container">
                         <h4 class="w3-center">Kevacoin</h4>
                         <p class="w3-center"><img src="/images/kevacoin-logo.png" class="w3-circle"
                                 style="height:156px;width:156px" alt="Logo"></p>
@@ -202,8 +220,88 @@
             </div>
 
             <!-- Middle Column -->
-            <div class="w3-col m9">
+            <div class="w3-hide">
+                <div id="nsv_c">
+                    <div class="w3-container w3-card w3-white w3-round w3-margin">
+                        <div class="w3-margin-top">
+                            <img src="/images/keva_one_logo.png" alt="Avatar"
+                                class="w3-left w3-circle w3-margin-right w3-margin-bottom" style="width:60px">
+                            <span id="nsv_key">News</span>
+                            <div class="w3-right">
+                                <div>
+                                    <div class="w3-right"><span id="nsv_txid"><i class="fa fa-file-text"></i></span>
+                                    </div>
+                                    <div class="w3-right"><i class="fa fa-clock-o"></i>&nbsp;<span
+                                            id="nsv_time">0</span>&nbsp;</div>
+                                    <div class="w3-right"><i class="fa fa-cube"></i>&nbsp;<span
+                                            id="nsv_block">0</span>&nbsp;</div>
 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w3-hide w3-container">
+                            <div class="w3-half">
+                                <div>op: <span id="nsv_op">0</span></div>
+                                <div>replies: <span id="nsv_rc">0</span></div>
+                            </div>
+                            <div class="w3-half">
+                                <div>addr: <span id="nsv_addr">0</span></div>
+                            </div>
+                        </div>
+                        <div class="w3-container">
+                            <div>
+                                <div><span id="nsv_value">0</span></div>
+                            </div>
+                        </div>
+                        <div id="nsv_replies" class="w3-hide w3-container w3-margin-bottom">
+
+                        </div>
+                        <div class="w3-container w3-margin-bottom"></div>
+                    </div>
+                </div>
+                <div id="nsv_reply">
+                    <div class="w3-container w3-card w3-white w3-round w3-margin-top">
+                        <div class="w3-margin-top">
+
+                            <img src="/images/keva_one_logo.png" alt="Avatar"
+                                class="w3-left w3-circle w3-margin-right w3-margin-bottom" style="width:30px">
+                            <div>
+                                <div>
+                                    <i class="fa fa-at"></i><span id="nsv_rsc">Shortcode</span></i>
+                                    <div class="w3-right"><span id="nsv_rtxid"><i class="fa fa-file-text"></i></span>
+                                    </div>
+
+                                    <div class="w3-right"><i class="fa fa-clock-o"></i>&nbsp;<span
+                                            id="nsv_rtime">0</span>&nbsp;</div>
+                                    <div class="w3-right"><i class="fa fa-cube"></i>&nbsp;<span
+                                            id="nsv_rblock">0</span>&nbsp;</div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w3-hide w3-container">
+                            <div class="w3-half">
+                                <div>op: <span id="nsv_rop">0</span></div>
+                                <div>replies: <span id="nsv_rrc">0</span></div>
+                            </div>
+                            <div class="w3-half">
+                                <div>addr: <span id="nsv_raddr">0</span></div>
+                            </div>
+                        </div>
+                        <div class="w3-container w3-margin-bottom">
+                            <div>
+                                <div><span id="nsv_rvalue">0</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="bexp_nsv" class="w3-hide w3-col m9 w3-show">
+                <div style="margin-top: -16px;"></div>
+
+            </div>
+            <div id="bexp_bvv" class="w3-hide w3-col m9">
                 <div class="w3-row-padding">
                     <div class="w3-col m12">
                         <div class="w3-card w3-round w3-white">
