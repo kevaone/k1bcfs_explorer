@@ -49,8 +49,8 @@
                     class="fa fa-home w3-margin-left"></i></a>
             <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="News"><i
                     class="fa fa-globe"></i></a>
-            <div class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Block Explorer">
-                <i class="fa fa-cubes" onclick="nww_main.section_toggle('bexp_inf')"></i>
+            <div class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Block Explorer" onclick="nww_main.section_toggle('bexp_inf')">
+                <i class="fa fa-cubes"></i>
             </div>
             <div class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Marketplace">
                 <i class="fa fa-cart-plus" onclick="nww_main.section_toggle('bexp_inf')"></i>
@@ -122,51 +122,6 @@
                                 id="uibs_diff">0</span></p>
                         <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>Network Hashrate <span
                                 id="uibs_nethash">0</span></p>
-                    </div>
-                </div>
-                <br>
-
-                <!-- Accordion -->
-                <div class="w3-card w3-round">
-                    <div class="w3-white">
-                        <button onclick="nww_main.myFunction('social_groups')"
-                            class="w3-button w3-block w3-theme-l1 w3-left-align"><i
-                                class="fa fa-circle-o-notch fa-fw w3-margin-right"></i>Groups</button>
-                        <div id="social_groups" class="w3-hide w3-container w3-show">
-                            <p>Some text..</p>
-                        </div>
-                        <button onclick="nww_main.myFunction('Demo2')"
-                            class="w3-button w3-block w3-theme-l1 w3-left-align"><i
-                                class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> My Events</button>
-                        <div id="Demo2" class="w3-hide w3-container">
-                            <p>Some other text..</p>
-                        </div>
-                        <button onclick="nww_main.myFunction('Demo3')"
-                            class="w3-button w3-block w3-theme-l1 w3-left-align"><i
-                                class="fa fa-users fa-fw w3-margin-right"></i> My Photos</button>
-                        <div id="Demo3" class="w3-hide w3-container">
-                            <div class="w3-row-padding">
-                                <br>
-                                <div class="w3-half">
-                                    <img src="/images/keva_one_logo.png" style="width:100%" class="w3-margin-bottom">
-                                </div>
-                                <div class="w3-half">
-                                    <img src="/images/keva_one_logo.png" style="width:100%" class="w3-margin-bottom">
-                                </div>
-                                <div class="w3-half">
-                                    <img src="/images/keva_one_logo.png" style="width:100%" class="w3-margin-bottom">
-                                </div>
-                                <div class="w3-half">
-                                    <img src="/images/keva_one_logo.png" style="width:100%" class="w3-margin-bottom">
-                                </div>
-                                <div class="w3-half">
-                                    <img src="/images/keva_one_logo.png" style="width:100%" class="w3-margin-bottom">
-                                </div>
-                                <div class="w3-half">
-                                    <img src="/images/keva_one_logo.png" style="width:100%" class="w3-margin-bottom">
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <br>
@@ -335,7 +290,7 @@
             </div>
             <!-- End Main -->
             <!-- Begin Search -->
-            <div id="search_section" class="w3-hide w3-col m9 w3-show">
+            <div id="search_section" class="w3-hide w3-col m9">
                 <div style="margin-top: -16px;"></div>
             <div>
                 <form method="POST" action="https://keva.one/search">
@@ -346,7 +301,7 @@
             </div>
             <!-- End Search -->
             <!-- Begin About -->
-            <div id="about_section" class="w3-hide w3-col m9 w3-show">
+            <div id="about_section" class="w3-hide w3-col m9">
                 <div style="margin-top: -16px;"></div>
                 <div class="about">
                     <div class="row bpe tac">
@@ -438,9 +393,9 @@
                                 <button type="button" class="w3-button w3-theme"
                                     onclick="nww_main.section_toggle('bexp_inf')"><i class="fa fa-pencil"></i>
                                     Info</button>
-                                <button type="button" class="w3-button w3-theme"
+                                <!-- <button type="button" class="w3-button w3-theme"
                                     onclick="nww_main.section_toggle('bexp_news')"><i class="fa fa-pencil"></i>
-                                    News</button>
+                                    News</button> -->
                                 <button type="button" class="w3-button w3-theme"
                                     onclick="nww_main.section_toggle('bexp_stats')"><i class="fa fa-pencil"></i>
                                     Stats</button>
@@ -479,30 +434,6 @@
                         <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i
                                 class="fa fa-comment"></i>
                              Comment</button> -->
-                        </div>
-                    </div>
-                </div>
-                <div id="bexp_news" class="w3-hide">
-                    <div class="w3-container w3-card w3-white w3-round w3-margin">
-                        <div class="w3-margin-top">
-                            <img src="/images/keva_one_logo.png" alt="Avatar"
-                                class="w3-left w3-circle w3-margin-right w3-margin-bottom" style="width:60px">
-                            <div>
-                                <div>News</div>
-                            </div>
-                        </div>
-                        <div class="w3-container w3-margin-bottom">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut
-                                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                ullamco
-                                laboris nisi ut aliquip ex ea commodo consequat.</p>
-                            <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i
-                                    class="fa fa-thumbs-up"></i>
-                                 Like</button>
-                            <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i
-                                    class="fa fa-comment"></i>
-                                 Comment</button>
                         </div>
                     </div>
                 </div>
@@ -570,8 +501,6 @@
                                         <th>Height</th>
                                         <th>Block Hash</th>
                                         <th>TX Count</th>
-                                        <th>Value</th>
-                                        <th>Fee</th>
                                     </tr>
                                 </thead>
                                 <tr></tr>
@@ -597,8 +526,8 @@
                                         <th>TX Hash</th>
                                         <th>In Count</th>
                                         <th>Out Count</th>
-                                        <th>Value</th>
-                                        <th>Fee</th>
+                                        <!-- <th>Value</th>
+                                        <th>Fee</th> -->
                                     </tr>
                                 </thead>
                             </table>
