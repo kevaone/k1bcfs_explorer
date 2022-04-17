@@ -388,7 +388,7 @@ var nww_main = new (function () {
 
     nww_main.prototype.section_toggle = function (id, cs = true) {
         // let sections = ["bexp_inf", "bexp_news", "bexp_stats", "bexp_exp"];
-        let sections = ["bexp_inf", "bexp_stats", "bexp_exp"];
+        let sections = ["bexp_inf", "bexp_stats", "bexp_exp", "bmarket"];
         nww_main.prototype.isection_toggle(id, sections);
         if (id === "bexp_inf") {
             window.history.replaceState(null, document.title, "/info")
@@ -408,6 +408,9 @@ var nww_main = new (function () {
 
                 window.history.replaceState(null, document.title, "/explorer");
             };
+        }
+        else if (id === "bmarket") {
+            window.history.replaceState(null, document.title, "/market")
         };
         if (cs) {
             check_state();
@@ -602,7 +605,7 @@ var nww_main = new (function () {
                 // _b_lnk.onclick = function() {
                 //     nww_main.prototype.section_link('block', _b_lnk.innerText);
                 // };
-                let _r = ['', _tx_lnk]
+                let _r = [_tx_lnk]
                 add_row(_uibexp_rm, _r);
             }
         }
@@ -612,7 +615,7 @@ var nww_main = new (function () {
             _tx_lnk.onclick = function () {
                 nww_main.prototype.section_link('mempool', _tx_lnk.innerText);
             };
-            let _r = ['', _tx_lnk]
+            let _r = [_tx_lnk]
             add_row(_uibexp_rm, _r);
         }
     };
@@ -999,7 +1002,7 @@ var nww_main = new (function () {
         e['data'].reverse()
 
         // nspro_nsid.innerText = e['nsid']
-        // nspro_sc.innerText = e['root_shortcode']
+        nspro_sc.innerText = e['len']
         // nspro_keys.innerText = e['data'].length
         // nspro_owner.innerText = e['data'][0]['addr']
 
@@ -1047,10 +1050,14 @@ var nww_main = new (function () {
             // txid.innerText = e['data'][result]['txid']
             a.innerText = e['data'][result]['owner_addr']
             // o.innerText = e['data'][result]['op']
-            rc.innerText = e['data'][result]['bids'].length
-            if (e['data'][result]['bids'].length >= 1) {
-                replies.className += " w3-show";
-            }
+
+
+            // rc.innerText = e['data'][result]['bids'].length
+            // if (e['data'][result]['bids'].length >= 1) {
+            //     replies.className += " w3-show";
+            // }
+
+
             // if (!name_set) {
             //     if (e['data'][result]['key'].endsWith('_KEVA_NS_')) {
             //         try {
@@ -1064,60 +1071,62 @@ var nww_main = new (function () {
             //         };
             //     };
             // };
-            krc.innerText = e['data'][result]['bids'].length;
-            _high_bid = 0;
-            for (rresult in e['data'][result]['bids']) {
-                let _nsv_rp = document.getElementById('mnsv_reply');
-                let rx = _nsv_rp.cloneNode(true);
-                let rsc = rx.querySelector('#mnsv_rsc');
-                let rt = rx.querySelector('#mnsv_rtime');
-                let rv = rx.querySelector('#mnsv_rvalue');
-                let rb = rx.querySelector('#mnsv_rblock');
-                let rtxid = rx.querySelector('#mnsv_rtxid');
-                let ra = rx.querySelector('#mnsv_raddr');
-                let ro = rx.querySelector('#mnsv_rop');
-                // let rrc = rx.querySelector('#nsv_rrc');
-                // console.log(rresult)
-                rx.id = 'mnsv_rk' + e['data'][result]['bids'][rresult]['timestamp']
-                
-                // k.id = 'nsv_rkey' + e['data'][result]['timestamp']
-                rt.id = 'mnsv_rtime' + e['data'][result]['bids'][rresult]['timestamp']
-                rv.id = 'mnsv_rvalue' + e['data'][result]['bids'][rresult]['timestamp']
-                rb.id = 'mnsv_rblock' + e['data'][result]['bids'][rresult]['timestamp']
-                rtxid.id = 'mnsv_rtxid' + e['data'][result]['bids'][rresult]['timestamp']
-                ra.id = 'mnsv_raddr' + e['data'][result]['bids'][rresult]['timestamp']
-                ro.id = 'mnsv_rop' + e['data'][result]['bids'][rresult]['timestamp']
-                // rrc.id = 'nsv_rrc' + e['data'][result]['replies'][rresult]['timestamp']
-                // k.innerText = e['data'][result]['key']
-                rt.innerText = e['data'][result]['bids'][rresult]['time']
-                let rtype = e['data'][result]['bids'][rresult]['type']
-                let rtm = ''
 
-                rv.innerText = e['data'][result]['bids'][rresult]['value'] + rtm
-                if (rtype === 'reward') {
-                    rtm = ' love'
-                    rv.innerText = rv.innerText + rtm
-                }
-                else if (rtype === 'repost') {
-                    rv.innerText = 'Reposted'
-                }
+
+            // krc.innerText = e['data'][result]['bids'].length;
+            _high_bid = 0;
+            // for (rresult in e['data'][result]['bids']) {
+            //     let _nsv_rp = document.getElementById('mnsv_reply');
+            //     let rx = _nsv_rp.cloneNode(true);
+            //     let rsc = rx.querySelector('#mnsv_rsc');
+            //     let rt = rx.querySelector('#mnsv_rtime');
+            //     let rv = rx.querySelector('#mnsv_rvalue');
+            //     let rb = rx.querySelector('#mnsv_rblock');
+            //     let rtxid = rx.querySelector('#mnsv_rtxid');
+            //     let ra = rx.querySelector('#mnsv_raddr');
+            //     let ro = rx.querySelector('#mnsv_rop');
+            //     // let rrc = rx.querySelector('#nsv_rrc');
+            //     // console.log(rresult)
+            //     rx.id = 'mnsv_rk' + e['data'][result]['bids'][rresult]['timestamp']
+                
+            //     // k.id = 'nsv_rkey' + e['data'][result]['timestamp']
+            //     rt.id = 'mnsv_rtime' + e['data'][result]['bids'][rresult]['timestamp']
+            //     rv.id = 'mnsv_rvalue' + e['data'][result]['bids'][rresult]['timestamp']
+            //     rb.id = 'mnsv_rblock' + e['data'][result]['bids'][rresult]['timestamp']
+            //     rtxid.id = 'mnsv_rtxid' + e['data'][result]['bids'][rresult]['timestamp']
+            //     ra.id = 'mnsv_raddr' + e['data'][result]['bids'][rresult]['timestamp']
+            //     ro.id = 'mnsv_rop' + e['data'][result]['bids'][rresult]['timestamp']
+            //     // rrc.id = 'nsv_rrc' + e['data'][result]['replies'][rresult]['timestamp']
+            //     // k.innerText = e['data'][result]['key']
+            //     rt.innerText = e['data'][result]['bids'][rresult]['time']
+            //     let rtype = e['data'][result]['bids'][rresult]['type']
+            //     let rtm = ''
+
+            //     rv.innerText = e['data'][result]['bids'][rresult]['value'] + rtm
+            //     if (rtype === 'reward') {
+            //         rtm = ' love'
+            //         rv.innerText = rv.innerText + rtm
+            //     }
+            //     else if (rtype === 'repost') {
+            //         rv.innerText = 'Reposted'
+            //     }
                 
                 
-                rb.innerText = e['data'][result]['bids'][rresult]['key_shortcode']
-                let rtsc = e['data'][result]['bids'][rresult]['root_shortcode']
-                rsc.innerText = rtsc
-                rsc.onclick = function () {
-                    nww_main.prototype.section_link('shortcode', rsc.innerText);
-                };
-                let rrtxid = e['data'][result]['bids'][rresult]['txid']
-                rtxid.onclick = function () {
-                    nww_main.prototype.section_link('transaction', rrtxid);
-                };
-                ra.innerText = e['data'][result]['bids'][rresult]['addr']
-                ro.innerText = e['data'][result]['bids'][rresult]['op']
+            //     rb.innerText = e['data'][result]['bids'][rresult]['key_shortcode']
+            //     let rtsc = e['data'][result]['bids'][rresult]['root_shortcode']
+            //     rsc.innerText = rtsc
+            //     rsc.onclick = function () {
+            //         nww_main.prototype.section_link('shortcode', rsc.innerText);
+            //     };
+            //     let rrtxid = e['data'][result]['bids'][rresult]['txid']
+            //     rtxid.onclick = function () {
+            //         nww_main.prototype.section_link('transaction', rrtxid);
+            //     };
+            //     ra.innerText = e['data'][result]['bids'][rresult]['addr']
+            //     ro.innerText = e['data'][result]['bids'][rresult]['op']
                 
-                replies.appendChild(rx);
-            };
+            //     replies.appendChild(rx);
+            // };
             krh.innerText = _high_bid
             _bexp_nsv.appendChild(x);
         };
@@ -1139,6 +1148,7 @@ var nww_main = new (function () {
                 nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
                 bpro_vis = true;
                 nspro_vis = false;
+                bmarket_vis = false;
             };
             nww_main.prototype.get_block(value);
             window.history.replaceState(null, document.title, "/explorer/block/" + value)
@@ -1157,6 +1167,7 @@ var nww_main = new (function () {
                 nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
                 bpro_vis = true;
                 nspro_vis = false;
+                bmarket_vis = false;
             };
             nww_main.prototype.get_transaction(value);
             window.history.replaceState(null, document.title, "/explorer/transaction/" + value)
@@ -1175,6 +1186,7 @@ var nww_main = new (function () {
                 nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
                 bpro_vis = true;
                 nspro_vis = false;
+                bmarket_vis = false;
             };
             nww_main.prototype.get_address(value);
             window.history.replaceState(null, document.title, "/explorer/address/" + value)
@@ -1193,6 +1205,7 @@ var nww_main = new (function () {
                 nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
                 bpro_vis = true;
                 nspro_vis = false;
+                bmarket_vis = false;
             };
             nww_main.prototype.get_mempool_entry(value);
             window.history.replaceState(null, document.title, "/explorer/mempool/entry/" + value)
@@ -1204,10 +1217,22 @@ var nww_main = new (function () {
                 nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
                 bpro_vis = false;
                 nspro_vis = true;
+                bmarket_vis = false;
             };
             nww_main.prototype.get_shortcode(value);
             window.history.replaceState(null, document.title, "/" + value)
             // nww_main.prototype.exp_section_toggle("exp_m", false);
+        }
+        else if (section == '/market') {
+            nww_main.prototype.get_nft_auctions();
+            window.history.replaceState(null, document.title, '/market')
+            if (!bmarket_vis) {
+                nww_main.prototype.isection_toggle("mnspro", ["mnspro", "bpro", "nspro"]);
+                nww_main.prototype.isection_toggle("bmarket", ["bmarket", "bexp_bvv", "bexp_nsv"]);
+                bpro_vis = false;
+                nspro_vis = false;
+                bmarket_vis = true;
+            };
         };
     };
 

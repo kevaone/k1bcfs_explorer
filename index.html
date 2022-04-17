@@ -52,8 +52,9 @@
                 onclick="nww_main.section_toggle('bexp_inf')">
                 <i class="fa fa-cubes"></i>
             </div>
-            <div class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Marketplace">
-                <i class="fa fa-cart-plus" onclick="nww_main.section_toggle('bmarket')"></i>
+            <div class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Marketplace"
+                onclick="nww_main.section_toggle('bmarket')">
+                <i class="fa fa-cart-plus"></i>
             </div>
 
             <div class="w3-hide w3-bar-item w3-dropdown-hover w3-hide-small">
@@ -80,14 +81,176 @@
 
     <!-- Page Container -->
     <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+        <!-- Begin Main -->
+        <div id="main_section" class="w3-row w3-hide">
+            <div class="w3-col m12">
+                <!-- <div style="margin-top: -16px;"></div> -->
+                <div class="w3-container w3-card w3-white w3-round">
+                    <!-- <div class="w3-margin-top">
+                        <img src="/images/keva_one_logo.png" alt="Avatar"
+                            class="w3-left w3-circle w3-margin-right w3-margin-bottom" style="width:60px">
+                    </div> -->
+                    <div class="w3-center w3-margin-top">
+                        <img src="/images/keva_one_logo.png" alt="Avatar" class="w3-circle" style="width:160px">
+                    </div>
+                    <div class="w3-container">
+                        <h4 class="w3-center">
+                            Welcome to KevaOne!
+                        </h4>
+                    </div>
+                    <div class="w3-container">
+                        <div class="w3-center">
+                            Built using the Kevacoin blockchain
+                        </div>
+                    </div>
+                    <div class="w3-container">
+                        <div class="w3-center">
+                            <img src="https://keva.one/images/keva-logo.png" width="100px">
+                        </div>
+                    </div>
+                    <div class="w3-container w3-margin-top">
+                        <div class="w3-center">
+                            Helping you focus on content rather than how to share it.
+                        </div>
+                    </div>
+                    <div class="w3-container w3-margin-top w3-margin-bottom">
+                        <div class="w3-center">
+
+                            <form method="POST" action="https://keva.one/_kv/grd" autocomplete="off">
+                                Search&nbsp;<input name="namespaceid" id="namespaceid" type="text"
+                                    placeholder="Example: 32101" pattern="[0-9]{4,}" title="Please enter valid number.">
+                                <input type="submit" class="submit" value="View">
+                            </form>
+                        </div>
+                    </div>
+                    <!-- <div class="w3-container w3-margin-top">
+                        <div class="w3-center">
+                            <a href="https://keva.one/explorer">
+                                <img src="https://keva.one/images/keva-logo.png" width="100px" />
+                            </a>
+                            <a href="https://keva.one/marketplace">
+                                <img src="https://keva.one/images/keva-logo.png" width="100px" />
+                            </a>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        <!-- End Main -->
+        <!-- Begin Search -->
+        <div id="search_section" class="w3-row w3-hide">
+            <div class="w3-col m12">
+                <div class="w3-container w3-card w3-white w3-round">
+                    <div class="w3-center w3-margin-top">
+                        <img src="/images/keva_one_logo.png" alt="Avatar" class="w3-circle" style="width:160px">
+                    </div>
+                    <div class="w3-container w3-margin-top w3-margin-bottom w3-center">
+                        <div>
+                            <input name="search" id="search" type="text"
+                                placeholder="Explore KevaOne or lookup a namespace">
+                            <input type="submit" class="submit" value="Search">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Search -->
+        <!-- Begin About -->
+        <div id="about_section" class="w3-row w3-hide">
+            <div class="w3-col m12">
+                <div class="w3-container w3-card w3-white w3-round">
+                    <div class="w3-container w3-margin-top w3-center">
+                        <h3>
+                            <!-- <img src="/images/keva_one_logo.png" alt="Avatar" class="w3-circle" style="width:60px"> -->
+                            KevaOne aims to provide simple services that allows users of the Kevacoin blockchain
+                            to
+                            bring their content to life.
+                        </h3>
+                    </div>
+                    <div class="w3-container w3-center">
+                        <h4>Built with <i class="fas fa-heart fa-3x"></i> using:</h4>
+                        <div><i class="fab fa-python fa-lg"></i>Python</div>
+                        <div><img src="https://keva.one/images/logo.png" style="width:60px">Kevacoin
+                        </div>
+                        <!-- <div><i class="fab fa-font-awesome fa-lg"></i>Font Awesome</div> -->
+                    </div>
+                    <div class="w3-container w3-margin-top w3-center">
+                        <h4>
+                            <i class="fas fa-donate"></i>
+                            Enjoy using KevaOne or like whats being built? Aside from registering a name you can
+                            help
+                            support the platform by donating to:
+                        </h4>
+                    </div>
+                    <div class="w3-container w3-margin-top">
+                        <div class="w3-half w3-center">
+                            <div>Kevacoin</div>
+                            <div>
+                                <img style="width:75%"
+                                    src="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAAHCAQAAAABUY/ToAAADtUlEQVR4nO2cUWrjQAyGf60NeRxDD5CjjG+wRyo9Um/gOUoOULAfA2O0D9LYE2fLQqi3dfj1YOLEH86A0Ej6ZYviMUu/HgQBkiRJkiRJkiTJn0eKW2ufkDrATvvJT4GpXNV/878l+bNIqKoqoqqqjo0iarbvdECjOgRVAI39Wl08HGudJPcnJ48v+tY1iiQtpLdfZtGhXC0i7dfdk+RzkO32izjOLeL4AgCzKKYWEsdO7noAx1onyf9HSg/AEqA4NraNIZ3znvck+RxkULUtK8lJEUf/Wl5HQAc0FoZUNW/Jx+9J8qnIJCIiHbC6z2ryemkhPWYry77qniSfhLR8qEp20jlDgQwAc/EXzAKE25ToWOskuTdp9VayomsW6d1pFAgZdkjWGprZHyJ5a16XxfcXIKpFJJXUfUCBuQWmDgAaFQDQJP7paOskuR+59BiXXDn4qQ4hWxKtAwDrNkb2GEluzfOh1I0KYG5L9HlRiZeT1fYSxw4SL21G6j5KR+lY6yS5Nyn9tOZDjeoQrgKEDOmrxBpYO9bHXCfJHcmoGdWGtois5TLvD8Fj05fck+RTkfrWzVIJ9WuTKEkLpPNVPiEfvyfJZyEXvcwjjdRtoCZLfO+gmE4ueKTf16KcHWudJPcjvS6zLAiA9YKi1sXZOhlSnbIuI7khLYlWLRnPLMBUBkBSV8RYTMyHSG7N+0MjTKgvQ2eA6ugiqyutIVdNIsYhkov5XrZIGu5NcJdapxcBgD1Gkp+TUwsdplPJjEwqu4r04Soi3Wy1GvtDJD8l47pbAQCmUq/ZNNrlpHc9o0Ouk+R+pLWoJ/GYk85X0TdpyzhRuFocEjkrc2qSG6tyahtmDFpsxE0ChMbyJn/q41jrJLkfidpfRq/GivSxCPUlu7YZa+bUJGtb+9RZEHILBIWk7gMwBd8PosAsWk3nH2udJPcjzYfEJxUblfj+ktecWn0aLbcCNDdPdxxrnST3I8teVlqJ665WHxbVA9Q6SN5ZpZeZIoZmcamSCpn7ACVlog+RvCNXNUNeNS8C2SxrWW/ZNYKq9N/8b0n+LHKJQwAW8d6nqCv9o5RkoF5G8s7KTL5W1Xtdx48lSsVFV6MPkfwbWb33YzaVDNUzijZtLeLp0bf/W5I/mwzq2ljq/J0N0q86LPUykv8ipQe8/Br+FozOzKlJbqz0qYMCmADE9+IzPtFYfli8ifPUJG9tU5f5U/arvrpUYz6mxrqM5Ma27/3Qm4M7UnUKxiGSJEmSJEmS5JORfwA/wJt5oXcPpgAAAABJRU5ErkJggg==">
+                            </div>
+                            <div>
+                                <label><a
+                                        href="kevacoin:VRzcoXn39zekwaNLr8DXGFNvSa5nV6B3HR?label=KevaOne%20Donation&amp;message=KevaOne%20Donation">VRzcoXn39zekwaNLr8DXGFNvSa5nV6B3HR</a></label><i
+                                    class="fas fa-copy"></i>
+                            </div>
+                        </div>
+                        <div class="w3-half w3-center">
+                            <div><i class="fab fa-bitcoin"></i>Bitcoin</div>
+                            <div>
+                                <img style="width:75%"
+                                    src="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAAHCAQAAAABUY/ToAAADd0lEQVR4nO2cUYrjMAyGf20M8+jAHqBHcW62zM2So+wN7MeCg/ZBtmOnsywMU9rO/noIbZOPOiCk35JtUXzOth+fBAGSJEmSJEmSJMnnI6WYA5AcZEmu/LYkEVmSA5DqU8uDR0vyuUioqiqCqqrGSRHipLoCAHz9DT5DNU7aPby+1nuSvD+ZSnzR1WfIL81AiIDIDCD8dpAFQAlVX/SfJL8H6U7fBZgyNgF0myMUaRbd5i/9T5Lfm9TVZ8tvJooWn4EQp9sy0jOMluQzkDUOeQWQAIHfHcK6O8BH6CaTYlsgigT0nvRa70nyfmTR1MWKpv7LpT5FTU2yN4tDR3zRbW4xJwG6Xa6iQIaOUejV3pPk/cg+DlmkqQJIV69tql8n+E0tMQ6RbHb4UP1U/AUhFokNeFUrF60oRSL6EMmRVNUMIIkUp0kOMG8yjbSLlZB+6ZV1apKjDfUhnx2A3SnSDMBfRZFcVmBSKxwBTRa91nuSvB9Zex0RMNkTNAMloRU99BHBXEZyJPV9BkwFAa3QGHfR98tVTAWtR/vswaMl+VxkVdJNMJcLrAxkF5uSDTcYh0g2K5nJa7VYJbalsfEG5/Ykb+1YznG+0ZJXiT4Rxa8Yh0gO1ueyVhU6akZrXTrUJTTGIZKDHbnMvpqXRLRufYlDJZcB1EMkT9YtTWwR6UhZ9kwYJBN9iORo2lks4ab2xpoeqpN+M/oQycG6XHbM45sespJjiOy5kvw3uYt1yUKcVJYkYjr7Xd4U27wLwu+26+PxoyX5RGQ/t7c2hx+KRPBNAFkIysxlJE9WtVCuUghFAB1OUyf9dZrGXEZysBqHBqc52mKtGVv9SulDJE9WfCiiLTqr1UZbedb18lGL1fQhkp219UNTxnZRSIiAhAgFktgttUuaodultURe6z1J3o/sclm3h6NbBTI+zX4ZyVvT0Uq/7NgR1ORRqFVs6iGSH5D9uR+YVBZ/FWyXsqLRNt2X6tHO9dQkRyt6KKwAkH5CkXZRWwubXNZNplzu+rZI9mGjJfmM5Dgv67cFddXGtT3NeRnJGzuf+wEkZ3taxeZlPjsJujvdFgCcl5H8N2nBKImUcJPetHTJLCxRD5E82fncD9h++7rTDMAuCmQ7C6TuNHvUaEk+I3lz7ke/QUjbaR910z31EMkbE55xTpIkSZIkSZL8z8k/kxNaHQMNRUEAAAAASUVORK5CYII=">
+                            </div>
+                            <div>
+                                <label><a
+                                        href="bitcoin:bc1qy7eqt35t3s4yhq3rr7zt3vhzv68vdn8lx3td7x?label=KevaOne%20Donation&amp;message=KevaOne%20Donation">bc1qy7eqt35t3s4yhq3rr7zt3vhzv68vdn8lx3td7x</a></label><i
+                                    class="fas fa-copy"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w3-container w3-margin-top">
+                        <div class="w3-half w3-center">
+                            <div>Dogecoin</div>
+                            <div>
+                                <img style="width:75%"
+                                    src="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAAHCAQAAAABUY/ToAAADlklEQVR4nO2cS4rrOBSG/79lyNCGWkCWIu/gLincJd0dWEupBTRIw4DN3wM9LId0D4oKlaTPGRj8+JANh/O2KHxNwl9fBAEjjTTSSCONNNLI5yNZZACQBgDYyDkdr6X61PzDb2vkU5JekhQBctpvOklxI2ds5AwnSdKR/PqaRr4Zmap98VrLpTBt5Dyu0FKfLmbpm9Y08j1J/Z6qqvjopCWdxPmxaxr52uRwc05gyIZIYXIAxivzKdJ3rWnke5KjlF2WjwAwruAlbkTgSbsvk5qne9HvNPJhZCDZhdP+8yQATrxEgDOcOGPLadl3rWnkm5DZlx0aHhsFXKkwgQjnK+u1Y1vktb7TyEeT5LQRSKSWcQXJk3jRCi1w2SKV1C2ZHTLyVnLJx0cneEnAuJZy0TKqqs8o7SWkcve1vtPIx5FFhzCukKLrdAi+2qEi0dWw23TIyF6qHUKnOUWRIpBNUKlYu3LXdMjIg3RGJtshAMWNjSs6N7agujvTISPvkGHaSJ7XrtehJfXtVgAb9XvaLKY28iilTu21DQozoUAASMNKHz9WIE0ERoEY/x4InMSfe1sjn5Gs8dAe56D5sixOWsZioLSL+TIjqxSNOJyWlKzlal2GFmExtZE3UmNqICf4e1HRR6fcIGs9tL2OZDpkZJPODvkIFEuTa0EuFxpLSma5vZF3JcfUBACFs0C/COyf2Ab5+IFshwKdxdRGHqX2XNMEIA0rAt2a262+htX0f8ojCr/iT76tkU9P5nioVoDCBPASnRDOtdoI67kaeZ8kz01Bcolagv8kEdp/HYEkL/EJ3tbI5yL7vn3WnNpaLU3WsXVkVQ4WUxt5lNu8bGnDHqVf1oZfa33IaoxGHqUvPY97316lOo1aLip2KMLskJH3SM5pyAeU8mINp72ulLT2d3/6bY18LrL5st3StOHX/XCIh8yXGXmUHFP3Q2dru1bD6b0Fa3VqI/+F7HOwPH8/tBAbKKeSECbzZUbeSNfrAODWUqz+teY/gegjRB8nAuljBVLrg7zWdxr5OLINe0h1ILY0Xvcsvw6A9P9/mC8zskmtMaJ06/MUSJv9WADsg9ZFpUyHjPwP8jBUXXYdIs9XlnA6PmBNI9+LlD7bViC1Tq0lnYTAk8qeRN+8ppGvTd7GQ9UENa/WKtZ7Wm++zMg7ZLfvR07rN3IeJS2JrD8IDdCSbD9GI2+Etse5kUYaaaSRRhr5Pyf/AZ9KCSKUHuA/AAAAAElFTkSuQmCC">
+                            </div>
+                            <div>
+                                <label><a
+                                        href="dogecoin:DAuLahX3GRiQTUPjph2LRt2EkFPkA8AA9r?label=KevaOne%20Donation&amp;message=KevaOne%20Donation">DAuLahX3GRiQTUPjph2LRt2EkFPkA8AA9r</a></label><i
+                                    class="fas fa-copy"></i>
+                            </div>
+                        </div>
+                        <div class="w3-half w3-center">
+                            <div><i class="fab fa-monero"></i>Monero</div>
+                            <div>
+                                <img style="width:75%"
+                                    src="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAhIAAAISAQAAAACxRhsSAAAEx0lEQVR4nO2dXWrkOhCFT10b8ihDFpCluHdwlxSypNmBvZQsIGA/BmTOPKj0002SCUxH9DRHD6b90x8yFCVVnZJsxN+29b+/RgBiiCGGGGKIIYYYYohRGeZthJ32Ef4Lh9kJhwG75QMAO+35+dOV+yGGGJ80kiRmkuQ2kNwALsFPMW8AEEgAA4EQ4c+Vvy238i5i3D9jL94RgD2/mplNAF8mv8YFh9X/mdn4E/0QQ4xvMgZinQZyAYCZEZg3wE75fv31s/0QQ4zPGetTzNbJd3O3uY95tH8dv8G4Rj/EEKNp2ewCAewAgGPkOr2NBAbavAC2TjAgxOa5Vh64lXcR434ZHkd5G4h5+8YhP684Sow+jORPW+8YIrBOMKzTUE6Hcvswd6rX7YcYYnzZ3J+GCMzbQE9JkR5HAUg3AAwldaW8lBh9GSV/GkEy+sWZbAZ6LqgHAI3Fyk7F6MIAS8O8AVwwJLMFsnXWUyAURxui5qdi9GKk+anNvyYAIY6G8GbE/kgDDiMAMJlobjbzGIH9gXa9foghxpctx/vncfzmnvVsptpOA1xplT8VowujjaMQWAT9mET+NNBzQ8rz10caY5WdivHjjGKnufAEgAf4MyO4FAMutpvjLcVRYnRjNP6US+NFi4kmc4zIhVSxpKlyDCY7FePHGWd5qQ3ZWPFBSqpMA8rEVeO+GJ0Y2SfW8TxXmOaqUy9HbUKoOkmQnYrRh1Hs1Mv3qvaUwqVijtVsFUeJ0Z3h9VLz6wggxJHrUwQ8iTpEQ3g3YH+MAI6R2CdgfXKD5fX6IYYYX7Y2LwVkp8o8SU0teIq10fxThkr+VIwujLM8fxZPG6F0ZjXRkrVinq4q3hejDyPr+6W4NLXAs4JTsklE+XPS98XoxziLo0q4NOfyvXytTazKn4rRnZHttJyXhXvkdnGtLUbR/FSMnoyz9fs5k+rp/FAubvnhqlYlzV92KkYXRlt/elkRtQE1jmpTAqxKv+xUjB6MRo9qwqUi4+ea6GKTRTIFoDhKjF6My/VRKDXRtZS/UVW9RNUNWP5UjL4M16PezVOnIcKe+W5wsz0M2EdgnQZi3g6z57KY6tbeRYy7ZfBlGpgs0Q8P5LKPZVepgVifcv7KbXegna7cDzHE+KTVeL/RntqVzx8V+nu8r/mpGJ0YjR5VRSky6fulXqqs32+i/BA1PxWjF6PYaS2RBrLsVE5TG87E05pxvZV3EeN+Gefr9/OQv6R7ZckJI5pte2vCSuO+GF0Zq5kB4T3tztss4VvtgWb2QDvlfXrT3r2NjHpj7yLGHTLyPhNp64hHYv1/A9bTQMyvBvjGZ1vzF4NbrKlOWoxOjGbcb8XTHFvVmtQUVlXdqhw07ovx8wz3p342xFoSZfMvIC05WSfAEN5GT06lZShadyJGb8acg36sk3+Ihy/TYbX6hEtVAUJE/UzPzb2LGHfIKCX6QK3T92C+Ke/Pif3zoimN+2J0YnzwWYiBNm+TbyoNDNFq6hT7A7GeAK7Tm8Z9MXoxLv1p3WIiK6Ol3KSGUBvgPlb+VIwujMvv8cH1faDdy6fW+oW6Mwo07ovRi/Hh906yvt+aYxZKc52qdFMxOjKMf37mD229lXcRQwwxxBBDDDHEEOPfZ/wGoAgFg7IHtC0AAAAASUVORK5CYII=">
+                            </div>
+                            <div>
+                                <label><a
+                                        href="monero:45ZJQVmpJDwiLLFp5pJd2VQBiqUb1g4zjciwkgAnNebuLXaejAap4P2Fm3KmokjbkT9d9WPTcR4sHJi2APZf4whv7mhWawb?label=KevaOne%20Donation&amp;message=KevaOne%20Donation">45ZJQVmpJDwiLLFp5pJd2VQBiqUb1g4zjciwkgAnNebuLXaejAap4P2Fm3KmokjbkT9d9WPTcR4sHJi2APZf4whv7mhWawb</a></label><i
+                                    class="fas fa-copy"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w3-container w3-margin-top w3-margin-bottom w3-center">
+                        <div>
+                            Have something else in mind to support KevaOne? Send us a <a
+                                href="https://keva.one/contact.html">message</a>.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End About -->
+
         <!-- The Grid -->
-        <div class="w3-row">
+        <div class="w3-row w3-show">
             <!-- Left Column -->
             <div class="w3-col m3">
-                <!-- Profile -->
                 <div class="w3-card w3-round w3-white">
-                </div>
-                <div class="w3-card w3-round w3-white">
+                    <!-- Profile -->
                     <div id='nspro' class="w3-hide w3-container">
                         <h4 id="nspro_name" class="w3-center">Kevacoin</h4>
                         <p class="w3-center"><img src="/images/kevacoin-logo.png" class="w3-circle"
@@ -103,6 +266,7 @@
                         <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>Owner <span
                                 id="nspro_owner">0</span></p>
                     </div>
+                    <!-- Market -->
                     <div id='mnspro' class="w3-hide w3-container">
                         <h4 id="mnspro_name" class="w3-center">Kevacoin</h4>
                         <p class="w3-center"><img src="/images/kevacoin-logo.png" class="w3-circle"
@@ -118,6 +282,7 @@
                         <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>Owner <span
                                 id="mnspro_owner">0</span></p> -->
                     </div>
+                    <!-- Block Explorer -->
                     <div id='bpro' class="w3-hide w3-container">
                         <h4 class="w3-center">Kevacoin</h4>
                         <p class="w3-center"><img src="/images/kevacoin-logo.png" class="w3-circle"
@@ -139,10 +304,8 @@
                                 id="uibs_nethash">0</span></p>
                     </div>
                 </div>
-                <br>
-
-                <!-- End Left Column -->
             </div>
+            <!-- End Left Column -->
 
             <!-- Middle Column -->
             <!-- Begin Namespace -->
@@ -245,7 +408,8 @@
                                 </div>
                             </div>
                             <div>asking price: <span id="mnsv_keyp">0</span></div>
-                            <div>bids: <span id="mnsv_keyrc">0</span>&nbsp;high bid: <span id="mnsv_keyrh">0</span></div>
+                            <div>bids: <span id="mnsv_keyrc">0</span>&nbsp;high bid: <span id="mnsv_keyrh">0</span>
+                            </div>
                         </div>
                         <div class="w3-hide w3-container">
                             <div class="w3-half">
@@ -303,197 +467,7 @@
                 </div>
             </div>
             <!-- End Market -->
-            <!-- Begin Main -->
-            <div id="main_section" class="w3-hide w3-col m9">
-                <div style="margin-top: -16px;"></div>
-                <div class="col-9">
-                    <div class="row bpe">
-                        <div class="col-9">
-                            <div>
-                                Built using the Kevacoin blockchain
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row bpe">
-                        <div class="col-9">
-                            <img src="https://keva.one/images/keva-logo.png" width="100px">
-                        </div>
-                    </div>
-                    <div class="row bpe">
-                        <div class="col-9">
-                            <div>
-                                Helping you focus on content rather than how to share it.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row bpe">
-                        <div class="col-9">
-                            <div>
-                                Already have your Kevacoin wallet?
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row bpe">
-                        <!-- <div class="col-9 bpe">
-                            <a href="https://keva.one/request.html">
-                                <div>
-                                    Get your KevaOne name today!
-                                </div>
-                            </a>
-                        </div> -->
-                    </div>
-                    <div class="row bpe">
-                        <div class="col-9">
-                            <div>
-                                View by Namespace Id
-                                <form method="POST" action="https://keva.one/_kv/grd" autocomplete="off">
-                                    <input name="namespaceid" id="namespaceid" type="text" placeholder="Example: 32101"
-                                        pattern="[0-9]{4,}" title="Please enter valid number.">
-                                    <input type="submit" class="submit" value="View">
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row bpe">
-                        <div class="col-9">
-                            <div>
-                                No wallet?
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row bpe">
-                        <div class="col-9">
-                            <div>
-                                Visit <a href="https://kevacoin.org">
-                                    <div>https://kevacoin.org</div>
-                                </a> to get your very own wallet and join the Kevacoin community.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row bpe">
-                        <div class="col-9">
-                            <div>
-                                <a href="https://keva.one/search">
-                                    <div>Search / Explore</div>
-                                </a>
-                            </div>
-                            <div>
-                                <a href="https://keva.one/marketplace">
-                                    <div>NFT Marketplace</div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Main -->
-            <!-- Begin Search -->
-            <div id="search_section" class="w3-hide w3-col m9">
-                <div style="margin-top: -16px;"></div>
-                <div>
-                    <form method="POST" action="https://keva.one/search">
-                        <div><input name="search" id="search" type="text"
-                                placeholder="Explore KevaOne or lookup a namespace"></div>
-                        <div><input type="submit" class="submit" value="Search"></div>
-                    </form>
-                </div>
-            </div>
-            <!-- End Search -->
-            <!-- Begin About -->
-            <div id="about_section" class="w3-hide w3-col m9">
-                <div style="margin-top: -16px;"></div>
-                <div class="about">
-                    <div class="row bpe tac">
-                        <div class="col-12">
-                            <div>
-                                KevaOne aims to provide simple services that allows users of the Kevacoin blockchain to
-                                bring their content to life.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row bpe tac">
-                        <div class="col-12">
-                            <div>
-                                <div class="bpe">Built with <i class="fas fa-heart fa-3x"></i> using:</div>
-                                <div><i class="fab fa-python fa-lg"></i>Python</div>
-                                <div><img class="brand_logo" src="https://keva.one/images/logo.png">Kevacoin</div>
-                                <!-- <div><i class="fab fa-font-awesome fa-lg"></i>Font Awesome</div> -->
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row bpe tac">
-                        <div class="col-12">
-                            <div>
-                                <i class="fas fa-donate"></i>
-                                Enjoy using KevaOne or like whats being built? Aside from registering a name you can
-                                help
-                                support the platform by donating to:
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row tac donate">
-                        <div class="col-6">
-                            <div>Kevacoin</div>
-                            <div>
-                                <img
-                                    src="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAAHCAQAAAABUY/ToAAADtUlEQVR4nO2cUWrjQAyGf60NeRxDD5CjjG+wRyo9Um/gOUoOULAfA2O0D9LYE2fLQqi3dfj1YOLEH86A0Ej6ZYviMUu/HgQBkiRJkiRJkiTJn0eKW2ufkDrATvvJT4GpXNV/878l+bNIqKoqoqqqjo0iarbvdECjOgRVAI39Wl08HGudJPcnJ48v+tY1iiQtpLdfZtGhXC0i7dfdk+RzkO32izjOLeL4AgCzKKYWEsdO7noAx1onyf9HSg/AEqA4NraNIZ3znvck+RxkULUtK8lJEUf/Wl5HQAc0FoZUNW/Jx+9J8qnIJCIiHbC6z2ryemkhPWYry77qniSfhLR8qEp20jlDgQwAc/EXzAKE25ToWOskuTdp9VayomsW6d1pFAgZdkjWGprZHyJ5a16XxfcXIKpFJJXUfUCBuQWmDgAaFQDQJP7paOskuR+59BiXXDn4qQ4hWxKtAwDrNkb2GEluzfOh1I0KYG5L9HlRiZeT1fYSxw4SL21G6j5KR+lY6yS5Nyn9tOZDjeoQrgKEDOmrxBpYO9bHXCfJHcmoGdWGtois5TLvD8Fj05fck+RTkfrWzVIJ9WuTKEkLpPNVPiEfvyfJZyEXvcwjjdRtoCZLfO+gmE4ueKTf16KcHWudJPcjvS6zLAiA9YKi1sXZOhlSnbIuI7khLYlWLRnPLMBUBkBSV8RYTMyHSG7N+0MjTKgvQ2eA6ugiqyutIVdNIsYhkov5XrZIGu5NcJdapxcBgD1Gkp+TUwsdplPJjEwqu4r04Soi3Wy1GvtDJD8l47pbAQCmUq/ZNNrlpHc9o0Ouk+R+pLWoJ/GYk85X0TdpyzhRuFocEjkrc2qSG6tyahtmDFpsxE0ChMbyJn/q41jrJLkfidpfRq/GivSxCPUlu7YZa+bUJGtb+9RZEHILBIWk7gMwBd8PosAsWk3nH2udJPcjzYfEJxUblfj+ktecWn0aLbcCNDdPdxxrnST3I8teVlqJ665WHxbVA9Q6SN5ZpZeZIoZmcamSCpn7ACVlog+RvCNXNUNeNS8C2SxrWW/ZNYKq9N/8b0n+LHKJQwAW8d6nqCv9o5RkoF5G8s7KTL5W1Xtdx48lSsVFV6MPkfwbWb33YzaVDNUzijZtLeLp0bf/W5I/mwzq2ljq/J0N0q86LPUykv8ipQe8/Br+FozOzKlJbqz0qYMCmADE9+IzPtFYfli8ifPUJG9tU5f5U/arvrpUYz6mxrqM5Ma27/3Qm4M7UnUKxiGSJEmSJEmS5JORfwA/wJt5oXcPpgAAAABJRU5ErkJggg==">
-                            </div>
-                            <div>
-                                <label><a
-                                        href="kevacoin:VRzcoXn39zekwaNLr8DXGFNvSa5nV6B3HR?label=KevaOne%20Donation&amp;message=KevaOne%20Donation">VRzcoXn39zekwaNLr8DXGFNvSa5nV6B3HR</a></label><i
-                                    class="fas fa-copy"></i>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div><i class="fab fa-bitcoin"></i>Bitcoin</div>
-                            <div>
-                                <img
-                                    src="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAAHCAQAAAABUY/ToAAADd0lEQVR4nO2cUYrjMAyGf20M8+jAHqBHcW62zM2So+wN7MeCg/ZBtmOnsywMU9rO/noIbZOPOiCk35JtUXzOth+fBAGSJEmSJEmSJMnnI6WYA5AcZEmu/LYkEVmSA5DqU8uDR0vyuUioqiqCqqrGSRHipLoCAHz9DT5DNU7aPby+1nuSvD+ZSnzR1WfIL81AiIDIDCD8dpAFQAlVX/SfJL8H6U7fBZgyNgF0myMUaRbd5i/9T5Lfm9TVZ8tvJooWn4EQp9sy0jOMluQzkDUOeQWQAIHfHcK6O8BH6CaTYlsgigT0nvRa70nyfmTR1MWKpv7LpT5FTU2yN4tDR3zRbW4xJwG6Xa6iQIaOUejV3pPk/cg+DlmkqQJIV69tql8n+E0tMQ6RbHb4UP1U/AUhFokNeFUrF60oRSL6EMmRVNUMIIkUp0kOMG8yjbSLlZB+6ZV1apKjDfUhnx2A3SnSDMBfRZFcVmBSKxwBTRa91nuSvB9Zex0RMNkTNAMloRU99BHBXEZyJPV9BkwFAa3QGHfR98tVTAWtR/vswaMl+VxkVdJNMJcLrAxkF5uSDTcYh0g2K5nJa7VYJbalsfEG5/Ykb+1YznG+0ZJXiT4Rxa8Yh0gO1ueyVhU6akZrXTrUJTTGIZKDHbnMvpqXRLRufYlDJZcB1EMkT9YtTWwR6UhZ9kwYJBN9iORo2lks4ab2xpoeqpN+M/oQycG6XHbM45sespJjiOy5kvw3uYt1yUKcVJYkYjr7Xd4U27wLwu+26+PxoyX5RGQ/t7c2hx+KRPBNAFkIysxlJE9WtVCuUghFAB1OUyf9dZrGXEZysBqHBqc52mKtGVv9SulDJE9WfCiiLTqr1UZbedb18lGL1fQhkp219UNTxnZRSIiAhAgFktgttUuaodultURe6z1J3o/sclm3h6NbBTI+zX4ZyVvT0Uq/7NgR1ORRqFVs6iGSH5D9uR+YVBZ/FWyXsqLRNt2X6tHO9dQkRyt6KKwAkH5CkXZRWwubXNZNplzu+rZI9mGjJfmM5Dgv67cFddXGtT3NeRnJGzuf+wEkZ3taxeZlPjsJujvdFgCcl5H8N2nBKImUcJPetHTJLCxRD5E82fncD9h++7rTDMAuCmQ7C6TuNHvUaEk+I3lz7ke/QUjbaR910z31EMkbE55xTpIkSZIkSZL8z8k/kxNaHQMNRUEAAAAASUVORK5CYII=">
-                            </div>
-                            <div>
-                                <label><a
-                                        href="bitcoin:bc1qy7eqt35t3s4yhq3rr7zt3vhzv68vdn8lx3td7x?label=KevaOne%20Donation&amp;message=KevaOne%20Donation">bc1qy7eqt35t3s4yhq3rr7zt3vhzv68vdn8lx3td7x</a></label><i
-                                    class="fas fa-copy"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row tac donate">
-                        <div class="col-6">
-                            <div>Dogecoin</div>
-                            <div>
-                                <img
-                                    src="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAAHCAQAAAABUY/ToAAADlklEQVR4nO2cS4rrOBSG/79lyNCGWkCWIu/gLincJd0dWEupBTRIw4DN3wM9LId0D4oKlaTPGRj8+JANh/O2KHxNwl9fBAEjjTTSSCONNNLI5yNZZACQBgDYyDkdr6X61PzDb2vkU5JekhQBctpvOklxI2ds5AwnSdKR/PqaRr4Zmap98VrLpTBt5Dyu0FKfLmbpm9Y08j1J/Z6qqvjopCWdxPmxaxr52uRwc05gyIZIYXIAxivzKdJ3rWnke5KjlF2WjwAwruAlbkTgSbsvk5qne9HvNPJhZCDZhdP+8yQATrxEgDOcOGPLadl3rWnkm5DZlx0aHhsFXKkwgQjnK+u1Y1vktb7TyEeT5LQRSKSWcQXJk3jRCi1w2SKV1C2ZHTLyVnLJx0cneEnAuJZy0TKqqs8o7SWkcve1vtPIx5FFhzCukKLrdAi+2qEi0dWw23TIyF6qHUKnOUWRIpBNUKlYu3LXdMjIg3RGJtshAMWNjSs6N7agujvTISPvkGHaSJ7XrtehJfXtVgAb9XvaLKY28iilTu21DQozoUAASMNKHz9WIE0ERoEY/x4InMSfe1sjn5Gs8dAe56D5sixOWsZioLSL+TIjqxSNOJyWlKzlal2GFmExtZE3UmNqICf4e1HRR6fcIGs9tL2OZDpkZJPODvkIFEuTa0EuFxpLSma5vZF3JcfUBACFs0C/COyf2Ab5+IFshwKdxdRGHqX2XNMEIA0rAt2a262+htX0f8ojCr/iT76tkU9P5nioVoDCBPASnRDOtdoI67kaeZ8kz01Bcolagv8kEdp/HYEkL/EJ3tbI5yL7vn3WnNpaLU3WsXVkVQ4WUxt5lNu8bGnDHqVf1oZfa33IaoxGHqUvPY97316lOo1aLip2KMLskJH3SM5pyAeU8mINp72ulLT2d3/6bY18LrL5st3StOHX/XCIh8yXGXmUHFP3Q2dru1bD6b0Fa3VqI/+F7HOwPH8/tBAbKKeSECbzZUbeSNfrAODWUqz+teY/gegjRB8nAuljBVLrg7zWdxr5OLINe0h1ILY0Xvcsvw6A9P9/mC8zskmtMaJ06/MUSJv9WADsg9ZFpUyHjPwP8jBUXXYdIs9XlnA6PmBNI9+LlD7bViC1Tq0lnYTAk8qeRN+8ppGvTd7GQ9UENa/WKtZ7Wm++zMg7ZLfvR07rN3IeJS2JrD8IDdCSbD9GI2+Etse5kUYaaaSRRhr5Pyf/AZ9KCSKUHuA/AAAAAElFTkSuQmCC">
-                            </div>
-                            <div>
-                                <label><a
-                                        href="dogecoin:DAuLahX3GRiQTUPjph2LRt2EkFPkA8AA9r?label=KevaOne%20Donation&amp;message=KevaOne%20Donation">DAuLahX3GRiQTUPjph2LRt2EkFPkA8AA9r</a></label><i
-                                    class="fas fa-copy"></i>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div><i class="fab fa-monero"></i>Monero</div>
-                            <div>
-                                <img
-                                    src="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAhIAAAISAQAAAACxRhsSAAAEx0lEQVR4nO2dXWrkOhCFT10b8ihDFpCluHdwlxSypNmBvZQsIGA/BmTOPKj0002SCUxH9DRHD6b90x8yFCVVnZJsxN+29b+/RgBiiCGGGGKIIYYYYohRGeZthJ32Ef4Lh9kJhwG75QMAO+35+dOV+yGGGJ80kiRmkuQ2kNwALsFPMW8AEEgAA4EQ4c+Vvy238i5i3D9jL94RgD2/mplNAF8mv8YFh9X/mdn4E/0QQ4xvMgZinQZyAYCZEZg3wE75fv31s/0QQ4zPGetTzNbJd3O3uY95tH8dv8G4Rj/EEKNp2ewCAewAgGPkOr2NBAbavAC2TjAgxOa5Vh64lXcR434ZHkd5G4h5+8YhP684Sow+jORPW+8YIrBOMKzTUE6Hcvswd6rX7YcYYnzZ3J+GCMzbQE9JkR5HAUg3AAwldaW8lBh9GSV/GkEy+sWZbAZ6LqgHAI3Fyk7F6MIAS8O8AVwwJLMFsnXWUyAURxui5qdi9GKk+anNvyYAIY6G8GbE/kgDDiMAMJlobjbzGIH9gXa9foghxpctx/vncfzmnvVsptpOA1xplT8VowujjaMQWAT9mET+NNBzQ8rz10caY5WdivHjjGKnufAEgAf4MyO4FAMutpvjLcVRYnRjNP6US+NFi4kmc4zIhVSxpKlyDCY7FePHGWd5qQ3ZWPFBSqpMA8rEVeO+GJ0Y2SfW8TxXmOaqUy9HbUKoOkmQnYrRh1Hs1Mv3qvaUwqVijtVsFUeJ0Z3h9VLz6wggxJHrUwQ8iTpEQ3g3YH+MAI6R2CdgfXKD5fX6IYYYX7Y2LwVkp8o8SU0teIq10fxThkr+VIwujLM8fxZPG6F0ZjXRkrVinq4q3hejDyPr+6W4NLXAs4JTsklE+XPS98XoxziLo0q4NOfyvXytTazKn4rRnZHttJyXhXvkdnGtLUbR/FSMnoyz9fs5k+rp/FAubvnhqlYlzV92KkYXRlt/elkRtQE1jmpTAqxKv+xUjB6MRo9qwqUi4+ea6GKTRTIFoDhKjF6My/VRKDXRtZS/UVW9RNUNWP5UjL4M16PezVOnIcKe+W5wsz0M2EdgnQZi3g6z57KY6tbeRYy7ZfBlGpgs0Q8P5LKPZVepgVifcv7KbXegna7cDzHE+KTVeL/RntqVzx8V+nu8r/mpGJ0YjR5VRSky6fulXqqs32+i/BA1PxWjF6PYaS2RBrLsVE5TG87E05pxvZV3EeN+Gefr9/OQv6R7ZckJI5pte2vCSuO+GF0Zq5kB4T3tztss4VvtgWb2QDvlfXrT3r2NjHpj7yLGHTLyPhNp64hHYv1/A9bTQMyvBvjGZ1vzF4NbrKlOWoxOjGbcb8XTHFvVmtQUVlXdqhw07ovx8wz3p342xFoSZfMvIC05WSfAEN5GT06lZShadyJGb8acg36sk3+Ihy/TYbX6hEtVAUJE/UzPzb2LGHfIKCX6QK3T92C+Ke/Pif3zoimN+2J0YnzwWYiBNm+TbyoNDNFq6hT7A7GeAK7Tm8Z9MXoxLv1p3WIiK6Ol3KSGUBvgPlb+VIwujMvv8cH1faDdy6fW+oW6Mwo07ovRi/Hh906yvt+aYxZKc52qdFMxOjKMf37mD229lXcRQwwxxBBDDDHEEOPfZ/wGoAgFg7IHtC0AAAAASUVORK5CYII=">
-                            </div>
-                            <div>
-                                <label><a
-                                        href="monero:45ZJQVmpJDwiLLFp5pJd2VQBiqUb1g4zjciwkgAnNebuLXaejAap4P2Fm3KmokjbkT9d9WPTcR4sHJi2APZf4whv7mhWawb?label=KevaOne%20Donation&amp;message=KevaOne%20Donation">45ZJQVmpJDwiLLFp5pJd2VQBiqUb1g4zjciwkgAnNebuLXaejAap4P2Fm3KmokjbkT9d9WPTcR4sHJi2APZf4whv7mhWawb</a></label><i
-                                    class="fas fa-copy"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row tac">
-                        <div class="col-12">
-                            <div>
-                                Have something else in mind to support KevaOne? Send us a <a
-                                    href="https://keva.one/contact.html">message</a>.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End About -->
+
             <!-- Begin Namespace View -->
             <div id="bexp_nsv" class="w3-hide w3-col m9 w3-show">
                 <div style="margin-top: -16px;"></div>
@@ -504,6 +478,7 @@
                 <div style="margin-top: -16px;"></div>
             </div>
             <!-- End Market View -->
+            <!-- Begin Block Explorer View -->
             <div id="bexp_bvv" class="w3-hide w3-col m9">
                 <div class="w3-row-padding">
                     <div class="w3-col m12">
@@ -619,7 +594,7 @@
                                         <th>Time</th>
                                         <th>Height</th>
                                         <th>Block Hash</th>
-                                        <th>TX Count</th>
+                                        <th>TX</th>
                                     </tr>
                                 </thead>
                                 <tr></tr>
@@ -643,8 +618,8 @@
                                         <th>Time</th>
                                         <th>Height</th>
                                         <th>TX Hash</th>
-                                        <th>In Count</th>
-                                        <th>Out Count</th>
+                                        <th>In</th>
+                                        <th>Out</th>
                                         <!-- <th>Value</th>
                                         <th>Fee</th> -->
                                     </tr>
@@ -666,12 +641,12 @@
                             <table id="uibexp_rm" class="w3-table">
                                 <thead>
                                     <tr class="w3-light-grey">
-                                        <th>Time</th>
+                                        <!-- <th>Time</th> -->
                                         <th>TX Hash</th>
-                                        <th>In Count</th>
+                                        <!-- <th>In Count</th>
                                         <th>Out Count</th>
                                         <th>Value</th>
-                                        <th>Fee</th>
+                                        <th>Fee</th> -->
                                     </tr>
                                 </thead>
                             </table>
@@ -692,11 +667,11 @@
                         </div>
 
                         <div class="w3-container">
-                            <div class="w3-half">
+                            <!-- <div class="w3-half">
                                 <div>confirmations: <span id="uibexp_bconfirmations">0</span></div>
                                 <div>difficutly: <span id="uibexp_bdifficulty">0</span></div>
                                 <div>network hash rate: <span id="uibexp_bnethash">0</span></div>
-                            </div>
+                            </div> -->
                             <div class="w3-half">
                                 <div>version: <span id="uibexp_bversion">0</span></div>
                                 <div>bits: <span id="uibexp_bbits">0</span></div>
@@ -954,56 +929,11 @@
                 </div>
                 <!-- End Middle Column -->
             </div>
-
-            <!-- Right Column -->
-            <!-- <div class="w3-col m2">
-                <div class="w3-card w3-round w3-white w3-center">
-                    <div class="w3-container">
-                        <p>Upcoming Events:</p>
-                        <img src="images/keva_one_logo.png" alt="Forest" style="width:100%;">
-                        <p><strong>Holiday</strong></p>
-                        <p>Friday 15:00</p>
-                        <p><button class="w3-button w3-block w3-theme-l4">Info</button></p>
-                    </div>
-                </div>
-                <br>
-
-                <div class="w3-card w3-round w3-white w3-center">
-                    <div class="w3-container">
-                        <p>Friend Request</p>
-                        <img src="images/keva_one_logo.png" alt="Avatar" style="width:50%"><br>
-                        <span>Jane Doe</span>
-                        <div class="w3-row w3-opacity">
-                            <div class="w3-half">
-                                <button class="w3-button w3-block w3-green w3-section" title="Accept"><i
-                                        class="fa fa-check"></i></button>
-                            </div>
-                            <div class="w3-half">
-                                <button class="w3-button w3-block w3-red w3-section" title="Decline"><i
-                                        class="fa fa-remove"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br>
-
-                <div class="w3-card w3-round w3-white w3-padding-16 w3-center">
-                    <p>ADS</p>
-                </div>
-                <br>
-
-                <div class="w3-card w3-round w3-white w3-padding-32 w3-center">
-                    <p><i class="fa fa-bug w3-xxlarge"></i></p>
-                </div>
-
-                !-- End Right Column --
-            </div> -->
-
-            <!-- End Grid -->
+            <!-- End Block Explorer View -->
         </div>
-
-        <!-- End Page Container -->
+        <!-- End Grid -->
     </div>
+    <!-- End Page Container -->
     <br>
 
     <!-- Footer -->
