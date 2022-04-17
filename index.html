@@ -230,9 +230,8 @@
             </div>
         </div>
         <!-- End About -->
-
-        <!-- The Grid -->
-        <div class="w3-row w3-show">
+        <!-- Start Namespace -->
+        <div id="bexp_nsv" class="w3-row w3-hide">
             <!-- Left Column -->
             <div class="w3-col m3">
                 <div class="w3-card w3-round w3-white">
@@ -252,49 +251,10 @@
                         <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>Owner <span
                                 id="nspro_owner">0</span></p>
                     </div>
-                    <!-- Market -->
-                    <div id='mnspro' class="w3-hide w3-container">
-                        <h4 id="mnspro_name" class="w3-center">Kevacoin</h4>
-                        <p class="w3-center"><img src="/images/kevacoin-logo.png" class="w3-circle"
-                                style="height:156px;width:156px" alt="Logo"></p>
-                        <hr>
-                        <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>Total Auctions: <span
-                                id="mnspro_sc">0</span>
-                        </p>
-                        <!-- <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>NS Id <span
-                                id="mnspro_nsid">0</span></p>
-                        <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>NS Keys <span
-                                id="mnspro_keys">0</span></p>
-                        <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>Owner <span
-                                id="mnspro_owner">0</span></p> -->
-                    </div>
-                    <!-- Block Explorer -->
-                    <div id='bpro' class="w3-hide w3-container">
-                        <h4 class="w3-center">Kevacoin</h4>
-                        <p class="w3-center"><img src="/images/kevacoin-logo.png" class="w3-circle"
-                                style="height:156px;width:156px" alt="Logo"></p>
-                        <hr>
-                        <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>Symbol <span id="">KVA</span>
-                        </p>
-                        <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>Height <span
-                                id="uibs_height">0</span></p>
-                        <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>Genisis Reward <span
-                                id="uibs_genreward">0</span></p>
-                        <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>Supply <span
-                                id="uibs_supply">0</span></p>
-                        <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>Fees Paid <span
-                                id="uibs_fees">0</span></p>
-                        <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>Difficulty <span
-                                id="uibs_diff">0</span></p>
-                        <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>Network Hashrate <span
-                                id="uibs_nethash">0</span></p>
-                    </div>
                 </div>
             </div>
             <!-- End Left Column -->
-
-            <!-- Middle Column -->
-            <!-- Begin Namespace -->
+            <!-- Begin Namespace Spacers-->
             <div class="w3-hide">
                 <div id="nsv_c">
                     <div class="w3-container w3-card w3-white w3-round w3-margin">
@@ -371,101 +331,45 @@
                     </div>
                 </div>
             </div>
-            <!-- End Namespace -->
-            <!-- Begin Market -->
-            <div class="w3-hide">
-                <div id="mnsv_c">
-                    <div class="w3-container w3-card w3-white w3-round w3-margin">
-                        <div class="w3-margin-top">
-                            <img src="/images/keva_one_logo.png" alt="Avatar"
-                                class="w3-left w3-circle w3-margin-right w3-margin-bottom" style="width:60px">
-                            <div>
-                                <span id="mnsv_key">News</span>
-                                <div class="w3-right">
-                                    <div>
-                                        <div class="w3-right"><span id="mnsv_txid"><i
-                                                    class="fa fa-file-text"></i></span>
-                                        </div>
-                                        <div class="w3-right"><i class="fa fa-clock-o"></i>&nbsp;<span
-                                                id="mnsv_time">0</span>&nbsp;</div>
-                                        <div class="w3-right"><i class="fa fa-cube"></i>&nbsp;<span
-                                                id="mnsv_block">0</span>&nbsp;</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>asking price: <span id="mnsv_keyp">0</span></div>
-                            <div>bids: <span id="mnsv_keyrc">0</span>&nbsp;high bid: <span id="mnsv_keyrh">0</span>
-                            </div>
-                        </div>
-                        <div class="w3-hide w3-container">
-                            <div class="w3-half">
-                                <div>op: <span id="mnsv_op">0</span></div>
-                                <div>replies: <span id="mnsv_rc">0</span></div>
-                            </div>
-                            <div class="w3-half">
-                                <div>addr: <span id="mnsv_addr">0</span></div>
-                            </div>
-                        </div>
-                        <div class="w3-container">
-                            <div>
-                                <div><span id="mnsv_value">0</span></div>
-                            </div>
-                        </div>
-                        <div id="mnsv_replies" class="w3-hide w3-container w3-margin-bottom">
-
-                        </div>
-                        <div class="w3-container w3-margin-bottom"></div>
-                    </div>
-                </div>
-                <div id="mnsv_reply">
-                    <div class="w3-container w3-card w3-white w3-round w3-margin-top">
-                        <div class="w3-margin-top">
-                            <img src="/images/keva_one_logo.png" alt="Avatar"
-                                class="w3-left w3-circle w3-margin-right w3-margin-bottom" style="width:30px">
-                            <div>
-                                <div>
-                                    <i class="fa fa-at"></i><span id="mnsv_rsc">Shortcode</span></i>
-                                    <div class="w3-right"><span id="mnsv_rtxid"><i class="fa fa-file-text"></i></span>
-                                    </div>
-
-                                    <div class="w3-right"><i class="fa fa-clock-o"></i>&nbsp;<span
-                                            id="mnsv_rtime">0</span>&nbsp;</div>
-                                    <div class="w3-right"><i class="fa fa-cube"></i>&nbsp;<span
-                                            id="mnsv_rblock">0</span>&nbsp;</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w3-hide w3-container">
-                            <div class="w3-half">
-                                <div>op: <span id="mnsv_rop">0</span></div>
-                                <div>replies: <span id="mnsv_rrc">0</span></div>
-                            </div>
-                            <div class="w3-half">
-                                <div>addr: <span id="mnsv_raddr">0</span></div>
-                            </div>
-                        </div>
-                        <div class="w3-container w3-margin-bottom">
-                            <div>
-                                <div><span id="mnsv_rvalue">0</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Market -->
-
+            <!-- End Namespace Spacers -->
             <!-- Begin Namespace View -->
-            <div id="bexp_nsv" class="w3-hide w3-col m9 w3-show">
+            <div id="xbexp_nsv" class="w3-col m9">
                 <div style="margin-top: -16px;"></div>
             </div>
             <!-- End Namespace View -->
-            <!-- Begin Market View -->
-            <div id="bmarket" class="w3-hide w3-col m9 w3-show">
-                <div style="margin-top: -16px;"></div>
+        </div>
+        <!-- End Namespace -->
+        <!-- Begin Block Explorer -->
+        <div id="bexp_bvv" class="w3-row w3-hide">
+            <!-- Left Column -->
+            <div class="w3-col m3">
+                <div class="w3-card w3-round w3-white">
+                    <!-- Block Explorer -->
+                    <div id='bpro' class="w3-hide w3-container">
+                        <h4 class="w3-center">Kevacoin</h4>
+                        <p class="w3-center"><img src="/images/kevacoin-logo.png" class="w3-circle"
+                                style="height:156px;width:156px" alt="Logo"></p>
+                        <hr>
+                        <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>Symbol <span id="">KVA</span>
+                        </p>
+                        <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>Height <span
+                                id="uibs_height">0</span></p>
+                        <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>Genisis Reward <span
+                                id="uibs_genreward">0</span></p>
+                        <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>Supply <span
+                                id="uibs_supply">0</span></p>
+                        <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>Fees Paid <span
+                                id="uibs_fees">0</span></p>
+                        <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>Difficulty <span
+                                id="uibs_diff">0</span></p>
+                        <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>Network Hashrate <span
+                                id="uibs_nethash">0</span></p>
+                    </div>
+                </div>
             </div>
-            <!-- End Market View -->
+            <!-- End Left Column -->
             <!-- Begin Block Explorer View -->
-            <div id="bexp_bvv" class="w3-hide w3-col m9">
+            <div class="w3-col m9">
                 <div class="w3-row-padding">
                     <div class="w3-col m12">
                         <div class="w3-card w3-round w3-white">
@@ -913,11 +817,122 @@
                         </div>
                     </div>
                 </div>
-                <!-- End Middle Column -->
             </div>
             <!-- End Block Explorer View -->
         </div>
-        <!-- End Grid -->
+        <!-- End Block Explorer -->
+        <!-- Start Market -->
+        <div id="bmarket" class="w3-row w3-hide">
+            <!-- Left Column -->
+            <div class="w3-col m3">
+                <div class="w3-card w3-round w3-white">
+                    <!-- Market -->
+                    <div id='mnspro' class="w3-hide w3-container">
+                        <h4 id="mnspro_name" class="w3-center">Kevacoin</h4>
+                        <p class="w3-center"><img src="/images/kevacoin-logo.png" class="w3-circle"
+                                style="height:156px;width:156px" alt="Logo"></p>
+                        <hr>
+                        <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>Total Auctions: <span
+                                id="mnspro_sc">0</span>
+                        </p>
+                        <!-- <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>NS Id <span
+                                id="mnspro_nsid">0</span></p>
+                        <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>NS Keys <span
+                                id="mnspro_keys">0</span></p>
+                        <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>Owner <span
+                                id="mnspro_owner">0</span></p> -->
+                    </div>
+                </div>
+            </div>
+            <!-- End Left Column -->
+            <!-- Begin Market Spacers -->
+            <div class="w3-hide">
+                <div id="mnsv_c">
+                    <div class="w3-container w3-card w3-white w3-round w3-margin">
+                        <div class="w3-margin-top">
+                            <img src="/images/keva_one_logo.png" alt="Avatar"
+                                class="w3-left w3-circle w3-margin-right w3-margin-bottom" style="width:60px">
+                            <div>
+                                <span id="mnsv_key">News</span>
+                                <div class="w3-right">
+                                    <div>
+                                        <div class="w3-right"><span id="mnsv_txid"><i
+                                                    class="fa fa-file-text"></i></span>
+                                        </div>
+                                        <div class="w3-right"><i class="fa fa-clock-o"></i>&nbsp;<span
+                                                id="mnsv_time">0</span>&nbsp;</div>
+                                        <div class="w3-right"><i class="fa fa-cube"></i>&nbsp;<span
+                                                id="mnsv_block">0</span>&nbsp;</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>asking price: <span id="mnsv_keyp">0</span></div>
+                            <div>bids: <span id="mnsv_keyrc">0</span>&nbsp;high bid: <span id="mnsv_keyrh">0</span>
+                            </div>
+                        </div>
+                        <div class="w3-hide w3-container">
+                            <div class="w3-half">
+                                <div>op: <span id="mnsv_op">0</span></div>
+                                <div>replies: <span id="mnsv_rc">0</span></div>
+                            </div>
+                            <div class="w3-half">
+                                <div>addr: <span id="mnsv_addr">0</span></div>
+                            </div>
+                        </div>
+                        <div class="w3-container">
+                            <div>
+                                <div><span id="mnsv_value">0</span></div>
+                            </div>
+                        </div>
+                        <div id="mnsv_replies" class="w3-hide w3-container w3-margin-bottom">
+
+                        </div>
+                        <div class="w3-container w3-margin-bottom"></div>
+                    </div>
+                </div>
+                <div id="mnsv_reply">
+                    <div class="w3-container w3-card w3-white w3-round w3-margin-top">
+                        <div class="w3-margin-top">
+                            <img src="/images/keva_one_logo.png" alt="Avatar"
+                                class="w3-left w3-circle w3-margin-right w3-margin-bottom" style="width:30px">
+                            <div>
+                                <div>
+                                    <i class="fa fa-at"></i><span id="mnsv_rsc">Shortcode</span></i>
+                                    <div class="w3-right"><span id="mnsv_rtxid"><i class="fa fa-file-text"></i></span>
+                                    </div>
+
+                                    <div class="w3-right"><i class="fa fa-clock-o"></i>&nbsp;<span
+                                            id="mnsv_rtime">0</span>&nbsp;</div>
+                                    <div class="w3-right"><i class="fa fa-cube"></i>&nbsp;<span
+                                            id="mnsv_rblock">0</span>&nbsp;</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w3-hide w3-container">
+                            <div class="w3-half">
+                                <div>op: <span id="mnsv_rop">0</span></div>
+                                <div>replies: <span id="mnsv_rrc">0</span></div>
+                            </div>
+                            <div class="w3-half">
+                                <div>addr: <span id="mnsv_raddr">0</span></div>
+                            </div>
+                        </div>
+                        <div class="w3-container w3-margin-bottom">
+                            <div>
+                                <div><span id="mnsv_rvalue">0</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Market Spacers -->
+            <!-- Begin Market View -->
+            <div id="xbmarket" class="w3-col m9">
+                <div style="margin-top: -16px;"></div>
+            </div>
+            <!-- End Market View -->
+        </div>
+        <!-- End Market -->
     </div>
     <!-- End Page Container -->
     <br>

@@ -611,7 +611,7 @@ var nww_main = new (function () {
     };
 
     nww_main.prototype.ui_update_namespace_view = function (e) {
-        let _bexp_nsv = document.getElementById('bexp_nsv');
+        let _bexp_nsv = document.getElementById('xbexp_nsv');
         let _nsv_c = document.getElementById('nsv_c');
         let nspro_name = document.getElementById('nspro_name');
         let nspro_sc = document.getElementById('nspro_sc');
@@ -758,7 +758,7 @@ var nww_main = new (function () {
     };
 
     nww_main.prototype.ui_update_market_view = function (e) {
-        let _bexp_nsv = document.getElementById('bmarket');
+        let _bexp_nsv = document.getElementById('xbmarket');
         let _nsv_c = document.getElementById('mnsv_c');
         let nspro_name = document.getElementById('mnspro_name');
         let nspro_sc = document.getElementById('mnspro_sc');
