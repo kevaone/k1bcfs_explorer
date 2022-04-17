@@ -1,10 +1,5 @@
 var nww_main = new (function () {
     let Q = new Worker('/js/worker.js');
-    let modal = document.getElementById('modal-main');
-    let modal_body = document.getElementById('modal-body');
-    let modal_close = document.getElementById('modal-close');
-    let modal_cancel = document.getElementById('modal-cancel');
-    let modal_submit = document.getElementById('modal-submit');
     // let ep = 'https://kva.keva.one/'
     let ep = 'http://127.0.0.1:9999/'
 
@@ -13,50 +8,10 @@ var nww_main = new (function () {
     let bc_news_update = 0;
     let bc_recent_blocks_update = 0;
     let bc_recent_transactions_update = 0;
-    let bc_general_vis = true;
-    let bmarket_vis = false;
-    let bpro_vis = false;
-    let bc_info_vis = false;
-    let bc_news_vis = false;
-    let bc_stats_vis = false;
-    let bc_explorer_vis = false;
-    let bc_explorer_recent_blocks_vis = false;
-    let bc_explorer_recent_transactions_vis = false;
-    let bc_explorer_mempool_vis = false;
-    let bc_explorer_block_vis = false;
-    let bc_explorer_transaction_vis = false;
-    let bc_explorer_address_vis = false;
-    let bc_explorer_mempool_entry_vis = false;
-
-    let nspro_vis = false;
 
     function nww_main() {
         //console.log('main');
         check_state();
-        check_for_auction();
-
-        modal_close.onclick = function () {
-            modal.style.display = 'none';
-            clear_modal();
-        };
-
-        modal_cancel.onclick = function () {
-            modal.style.display = 'none';
-            clear_modal();
-        };
-
-        modal_submit.onclick = function () {
-            nww_main.prototype.action();
-            modal.style.display = 'none';
-            clear_modal();
-        };
-
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = 'none';
-                clear_modal();
-            };
-        };
 
         Q.onmessage = function (e) {
             console.log('Message received from worker', e['data']);
@@ -111,249 +66,96 @@ var nww_main = new (function () {
                 nww_main.prototype.get_info()
                 bc_info_update = _d
             };
-            if (!bpro_vis) {
-                nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
-                nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
-                bpro_vis = true;
-                nspro_vis = false;
-            };
-            if (!bc_info_vis) {
-                nww_main.prototype.section_toggle("bexp_inf", false);
-                bc_info_vis = true;
-                bc_news_vis = false;
-                bc_stats_vis = false;
-                bc_explorer_vis = false;
-            }
+
+            nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
+            nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
+            nww_main.prototype.section_toggle("bexp_inf", false);
         }
         // else if (_path.startsWith("/news")) {
-        //     if (!bpro_vis) {
         //         nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
         //         nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
-        //         bpro_vis = true;
-        //         nspro_vis = false;
-        //     };
-        //     if (!bc_news_vis) {
         //         nww_main.prototype.section_toggle("bexp_news", false);
-        //         bc_info_vis = false;
-        //         bc_news_vis = true;
-        //         bc_stats_vis = false;
-        //         bc_explorer_vis = false;
-        //     };
         // }
         else if (_path.startsWith("/stats")) {
-            if (!bpro_vis) {
-                nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
-                nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
-                bpro_vis = true;
-                nspro_vis = false;
-            };
-            if (!bc_stats_vis) {
-                nww_main.prototype.section_toggle("bexp_stats", false);
-                bc_info_vis = false;
-                bc_news_vis = false;
-                bc_stats_vis = true;
-                bc_explorer_vis = false;
-            };
+            nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
+            nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
+            nww_main.prototype.section_toggle("bexp_stats", false);
         }
         else if (_path.startsWith("/explorer")) {
-            if (!bpro_vis) {
-                nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
-                nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
-                bpro_vis = true;
-                nspro_vis = false;
-            };
-            if (!bc_explorer_vis) {
-                nww_main.prototype.section_toggle("bexp_exp", false);
-                bc_info_vis = false;
-                bc_news_vis = false;
-                bc_stats_vis = false;
-                bc_explorer_vis = true;
-            };
+            nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
+            nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
+            nww_main.prototype.section_toggle("bexp_exp", false);
             if (_path === "/explorer/recent-blocks") {
                 nww_main.prototype.get_recent_blocks();
-                if (!bpro_vis) {
-                    nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
-                    nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
-                    bpro_vis = true;
-                    nspro_vis = false;
-                };
-                if (!bc_explorer_recent_blocks_vis) {
-                    nww_main.prototype.exp_section_toggle("exp_rb", false);
-                    bc_explorer_recent_blocks_vis = true;
-                    bc_explorer_recent_transactions_vis = false;
-                    bc_explorer_mempool_vis = false;
-                    bc_explorer_block_vis = false;
-                    bc_explorer_transaction_vis = false;
-                    bc_explorer_address_vis = false;
-                    bc_explorer_mempool_entry_vis = false;
-                };
+                nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
+                nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
+                nww_main.prototype.exp_section_toggle("exp_rb", false);
             }
             else if (_path === "/explorer/recent-transactions") {
                 nww_main.prototype.get_recent_transactions();
-                if (!bpro_vis) {
-                    nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
-                    nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
-                    bpro_vis = true;
-                    nspro_vis = false;
-                };
-                if (!bc_explorer_recent_transactions_vis) {
-                    nww_main.prototype.exp_section_toggle("exp_rt", false);
-                    bc_explorer_recent_blocks_vis = false;
-                    bc_explorer_recent_transactions_vis = true;
-                    bc_explorer_mempool_vis = false;
-                    bc_explorer_block_vis = false;
-                    bc_explorer_transaction_vis = false;
-                    bc_explorer_address_vis = false;
-                    bc_explorer_mempool_entry_vis = false;
-                };
+                nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
+                nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
+                nww_main.prototype.exp_section_toggle("exp_rt", false);
             }
             else if (_path === "/explorer/mempool") {
                 nww_main.prototype.get_raw_mempool();
-                if (!bpro_vis) {
-                    nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
-                    nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
-                    bpro_vis = true;
-                    nspro_vis = false;
-                };
-                if (!bc_explorer_mempool_vis) {
-                    nww_main.prototype.exp_section_toggle("exp_mp", false);
-                    bc_explorer_recent_blocks_vis = false;
-                    bc_explorer_recent_transactions_vis = false;
-                    bc_explorer_mempool_vis = true;
-                    bc_explorer_block_vis = false;
-                    bc_explorer_transaction_vis = false;
-                    bc_explorer_address_vis = false;
-                    bc_explorer_mempool_entry_vis = false;
-                };
+                nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
+                nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
+                nww_main.prototype.exp_section_toggle("exp_mp", false);
             }
             else if (_path.startsWith("/explorer/block/")) {
                 let _p = _path.split("/")
                 nww_main.prototype.get_block(_p[_p.length - 1])
-                if (!bpro_vis) {
-                    nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
-                    nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
-                    bpro_vis = true;
-                    nspro_vis = false;
-                };
-                if (!bc_explorer_block_vis) {
-                    nww_main.prototype.exp_section_toggle("exp_b", false);
-                    bc_explorer_recent_blocks_vis = false;
-                    bc_explorer_recent_transactions_vis = false;
-                    bc_explorer_mempool_vis = false;
-                    bc_explorer_block_vis = true;
-                    bc_explorer_transaction_vis = false;
-                    bc_explorer_address_vis = false;
-                    bc_explorer_mempool_entry_vis = false;
-                };
+                nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
+                nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
+                nww_main.prototype.exp_section_toggle("exp_b", false);
             }
             else if (_path.startsWith("/explorer/transaction/")) {
                 let _p = _path.split("/")
                 nww_main.prototype.get_transaction(_p[_p.length - 1])
-                if (!bpro_vis) {
-                    nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
-                    nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
-                    bpro_vis = true;
-                    nspro_vis = false;
-                };
-                if (!bc_explorer_transaction_vis) {
-                    nww_main.prototype.exp_section_toggle("exp_t", false);
-                    bc_explorer_recent_blocks_vis = false;
-                    bc_explorer_recent_transactions_vis = false;
-                    bc_explorer_mempool_vis = false;
-                    bc_explorer_block_vis = false;
-                    bc_explorer_transaction_vis = true;
-                    bc_explorer_address_vis = false;
-                    bc_explorer_mempool_entry_vis = false;
-                };
+                nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
+                nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
+                nww_main.prototype.exp_section_toggle("exp_t", false);
             }
             else if (_path.startsWith("/explorer/address/")) {
                 let _p = _path.split("/")
                 nww_main.prototype.get_address(_p[_p.length - 1])
-                if (!bpro_vis) {
-                    nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
-                    nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
-                    bpro_vis = true;
-                    nspro_vis = false;
-                };
-                if (!bc_explorer_address_vis) {
-                    nww_main.prototype.exp_section_toggle("exp_a", false);
-                    bc_explorer_recent_blocks_vis = false;
-                    bc_explorer_recent_transactions_vis = false;
-                    bc_explorer_mempool_vis = false;
-                    bc_explorer_block_vis = false;
-                    bc_explorer_transaction_vis = false;
-                    bc_explorer_address_vis = true;
-                    bc_explorer_mempool_entry_vis = false;
-                };
+                nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
+                nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
+                nww_main.prototype.exp_section_toggle("exp_a", false);
             }
             else if (_path.startsWith("/explorer/mempool/entry")) {
                 let _p = _path.split("/")
                 nww_main.prototype.get_mempool_entry(_p[_p.length - 1])
-                if (!bpro_vis) {
-                    nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
-                    nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
-                    bpro_vis = true;
-                    nspro_vis = false;
-                };
-                if (!bc_explorer_address_vis) {
-                    nww_main.prototype.exp_section_toggle("exp_m", false);
-                    bc_explorer_recent_blocks_vis = false;
-                    bc_explorer_recent_transactions_vis = false;
-                    bc_explorer_mempool_vis = false;
-                    bc_explorer_block_vis = false;
-                    bc_explorer_transaction_vis = false;
-                    bc_explorer_address_vis = false;
-                    bc_explorer_mempool_entry_vis = true;
-                };
+                nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
+                nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
+                nww_main.prototype.exp_section_toggle("exp_m", false);
             }
             else if (_path.startsWith("/explorer/search")) {
-                if (!bpro_vis) {
-                    nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
-                    nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
-                    bpro_vis = true;
-                    nspro_vis = false;
-                };
+                nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
+                nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
             };
-
-            //     nww_main.prototype.get_address('VMw8Xj3FvJVDhyBfaomtq84fkFWg4xFCGc')
-            // nww_main.prototype.update_recentblocks(e['block_height'])
-            // nww_main.prototype.get_block(220550)
-            // nww_main.prototype.get_info()
-            // nww_main.prototype.get_transaction('6b71f4be495a06d1e03b3deaa090b8ff9763c2ce01416e1a8f6b6fd92d4dbae1')
         }
         else if (_path.startsWith("/market")) {
             nww_main.prototype.get_nft_auctions();
-            if (!bmarket_vis) {
-                nww_main.prototype.isection_toggle("mnspro", ["mnspro", "bpro", "nspro"]);
-                nww_main.prototype.isection_toggle("bmarket", ["bmarket", "bexp_bvv", "bexp_nsv"]);
-                bpro_vis = false;
-                nspro_vis = false;
-                bmarket_vis = true;
-            };
+            nww_main.prototype.isection_toggle("mnspro", ["mnspro", "bpro", "nspro"]);
+            nww_main.prototype.isection_toggle("bmarket", ["bmarket", "bexp_bvv", "bexp_nsv"]);
         }
         else {
             let _p = _path.split("/");
 
             if (_p[_p.length - 1].length > parseInt(_p[_p.length - 1][0]) + 1) {
                 nww_main.prototype.get_shortcode(_p[_p.length - 1]);
-                if (!nspro_vis) {
-                    nww_main.prototype.isection_toggle("nspro", ["mnspro", "bpro", "nspro"]);
-                    nww_main.prototype.isection_toggle("bexp_nsv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
-                    bpro_vis = false;
-                    nspro_vis = true;
-                };
+                nww_main.prototype.isection_toggle("nspro", ["mnspro", "bpro", "nspro"]);
+                nww_main.prototype.isection_toggle("bexp_nsv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
             }
             else if (_p[_p.length - 1].startsWith('N') & _p[_p.length - 1].length === 34) {
                 nww_main.prototype.get_namespace(_p[_p.length - 1]);
-                if (!nspro_vis) {
-                    nww_main.prototype.isection_toggle("nspro", ["mnspro", "bpro", "nspro"]);
-                    nww_main.prototype.isection_toggle("bexp_nsv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
-                    bpro_vis = false;
-                    nspro_vis = true;
-                };
+                nww_main.prototype.isection_toggle("nspro", ["mnspro", "bpro", "nspro"]);
+                nww_main.prototype.isection_toggle("bexp_nsv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
             };
         };
-        
+
 
         // window.history.replaceState(null, document.title, "/info")
     };
@@ -446,14 +248,14 @@ var nww_main = new (function () {
     nww_main.prototype.get_block = function (e) {
         let _pl = {};
         _pl['endPoint'] = ep;
-        console.log('e.length', e.length)
+
         if (e.length === 64) {
             _pl['call'] = 'get_block';
             _pl['call_data'] = e;
         } else {
             _pl['call'] = 'get_block';
             _pl['call_data'] = parseInt(e);
-        }
+        };
 
         _pl['type'] = 'GET';
         Q.postMessage(_pl);
@@ -582,7 +384,7 @@ var nww_main = new (function () {
             };
             let _b_lnk = ce('span');
             _b_lnk.innerText = tx[0];
-            _b_lnk.onclick = function() {
+            _b_lnk.onclick = function () {
                 nww_main.prototype.section_link('block', _b_lnk.innerText);
             };
             let _r = [tx[2], _b_lnk, _tx_lnk, tx[3], tx[4], '', '']
@@ -753,38 +555,11 @@ var nww_main = new (function () {
         _balance.innerText = e[0]['balance'];
         _total_results.innerText = e[1]['total_results'];
 
-        // "page": 1,
-        // "pages": 1,
-
         for (result in e[1]['page_results']) {
             // console.log('result', result)
             let r = e[1]['page_results'][result]
-            // block": 455557,
-            //     "txid": "6b71f4be495a06d1e03b3deaa090b8ff9763c2ce01416e1a8f6b6fd92d4dbae1:0",
-            //     "value": 0.01,
-            //     "spent_block": 461365,
-            //     "spent_txid": "a3f87087e417545f76294c13478309015077244fcc1d1fc989981da7e73749bd:0",
-            //     "direction":
             add_row(_recent_tx, ['', r['block'], r['txid'], r['value'], r['direction']]);
         }
-        // "page_results": [
-        //     {
-        //         "block": 455557,
-        //         "txid": "6b71f4be495a06d1e03b3deaa090b8ff9763c2ce01416e1a8f6b6fd92d4dbae1:0",
-        //         "value": 0.01,
-        //         "spent_block": 461365,
-        //         "spent_txid": "a3f87087e417545f76294c13478309015077244fcc1d1fc989981da7e73749bd:0",
-        //         "direction": "Receive"
-        //     },
-        //     {
-        //         "block": 461365,
-        //         "txid": "a3f87087e417545f76294c13478309015077244fcc1d1fc989981da7e73749bd:0",
-        //         "value": 0.01,
-        //         "received_block": 455557,
-        //         "recevied_txid": "6b71f4be495a06d1e03b3deaa090b8ff9763c2ce01416e1a8f6b6fd92d4dbae1:0",
-        //         "direction": "Send"
-        //     }
-        // ]
     };
 
     nww_main.prototype.ui_update_mempool_entry = function (e) {
@@ -844,7 +619,7 @@ var nww_main = new (function () {
         let nspro_keys = document.getElementById('nspro_keys');
         let nspro_owner = document.getElementById('nspro_owner');
         let name_set = false;
-        
+
         while (_bexp_nsv.firstChild) {
             _bexp_nsv.removeChild(_bexp_nsv.firstChild);
         };
@@ -872,7 +647,7 @@ var nww_main = new (function () {
             let rc = x.querySelector('#nsv_rc');
             let replies = x.querySelector('#nsv_replies');
             x.id = 'nsv_k' + e['data'][result]['timestamp']
-            
+
             k.id = 'nsv_key' + e['data'][result]['timestamp']
             t.id = 'nsv_time' + e['data'][result]['timestamp']
             v.id = 'nsv_value' + e['data'][result]['timestamp']
@@ -883,7 +658,7 @@ var nww_main = new (function () {
             rc.id = 'nsv_rc' + e['data'][result]['timestamp']
             k.innerText = e['data'][result]['key']
             t.innerText = e['data'][result]['time']
-            
+
             if (e['data'][result]['key'] === 'html') {
                 v.innerText = '';
                 let ifra = ce('iframe');
@@ -894,7 +669,7 @@ var nww_main = new (function () {
             else {
                 v.innerText = e['data'][result]['value']
             }
-            
+
             let kb = e['data'][result]['key_shortcode']
             b.onclick = function () {
                 nww_main.prototype.section_link('block', kb);
@@ -914,13 +689,13 @@ var nww_main = new (function () {
             if (!name_set) {
                 if (e['data'][result]['key'].endsWith('_KEVA_NS_')) {
                     try {
-                    let nn = JSON.parse(e['data'][result]['value']);
-                    nspro_name.innerText = nn['displayName'];
-                    name_set = true;
+                        let nn = JSON.parse(e['data'][result]['value']);
+                        nspro_name.innerText = nn['displayName'];
+                        name_set = true;
                     }
                     catch {
                         nspro_name.innerText = e['data'][result]['value'];
-                    name_set = true;
+                        name_set = true;
                     };
                 };
             };
@@ -937,7 +712,7 @@ var nww_main = new (function () {
                 // let rrc = rx.querySelector('#nsv_rrc');
                 // console.log(rresult)
                 rx.id = 'nsv_rk' + e['data'][result]['replies'][rresult]['timestamp']
-                
+
                 // k.id = 'nsv_rkey' + e['data'][result]['timestamp']
                 rt.id = 'nsv_rtime' + e['data'][result]['replies'][rresult]['timestamp']
                 rv.id = 'nsv_rvalue' + e['data'][result]['replies'][rresult]['timestamp']
@@ -959,8 +734,8 @@ var nww_main = new (function () {
                 else if (rtype === 'repost') {
                     rv.innerText = 'Reposted'
                 }
-                
-                
+
+
                 rb.innerText = e['data'][result]['replies'][rresult]['key_shortcode']
                 let rtsc = e['data'][result]['replies'][rresult]['root_shortcode']
                 rsc.innerText = rtsc
@@ -973,7 +748,7 @@ var nww_main = new (function () {
                 };
                 ra.innerText = e['data'][result]['replies'][rresult]['addr']
                 ro.innerText = e['data'][result]['replies'][rresult]['op']
-                
+
                 replies.appendChild(rx);
             };
             _bexp_nsv.appendChild(x);
@@ -991,7 +766,7 @@ var nww_main = new (function () {
         let nspro_keys = document.getElementById('mnspro_keys');
         let nspro_owner = document.getElementById('mnspro_owner');
         let name_set = false;
-        
+
         while (_bexp_nsv.firstChild) {
             _bexp_nsv.removeChild(_bexp_nsv.firstChild);
         };
@@ -1034,10 +809,10 @@ var nww_main = new (function () {
             k.innerText = e['data'][result]['displayName']
             kp.innerText = e['data'][result]['price']
             t.innerText = e['data'][result]['time']
-            
+
             v.innerText = e['data'][result]['desc']
-            
-            
+
+
             // let kb = e['data'][result]['key_shortcode']
             // b.onclick = function () {
             //     nww_main.prototype.section_link('block', kb);
@@ -1088,7 +863,7 @@ var nww_main = new (function () {
             //     // let rrc = rx.querySelector('#nsv_rrc');
             //     // console.log(rresult)
             //     rx.id = 'mnsv_rk' + e['data'][result]['bids'][rresult]['timestamp']
-                
+
             //     // k.id = 'nsv_rkey' + e['data'][result]['timestamp']
             //     rt.id = 'mnsv_rtime' + e['data'][result]['bids'][rresult]['timestamp']
             //     rv.id = 'mnsv_rvalue' + e['data'][result]['bids'][rresult]['timestamp']
@@ -1110,8 +885,8 @@ var nww_main = new (function () {
             //     else if (rtype === 'repost') {
             //         rv.innerText = 'Reposted'
             //     }
-                
-                
+
+
             //     rb.innerText = e['data'][result]['bids'][rresult]['key_shortcode']
             //     let rtsc = e['data'][result]['bids'][rresult]['root_shortcode']
             //     rsc.innerText = rtsc
@@ -1124,7 +899,7 @@ var nww_main = new (function () {
             //     };
             //     ra.innerText = e['data'][result]['bids'][rresult]['addr']
             //     ro.innerText = e['data'][result]['bids'][rresult]['op']
-                
+
             //     replies.appendChild(rx);
             // };
             krh.innerText = _high_bid
@@ -1136,89 +911,40 @@ var nww_main = new (function () {
 
     nww_main.prototype.section_link = function (section, value) {
         if (section === 'block') {
-            if (!bc_explorer_vis) {
-                nww_main.prototype.section_toggle("bexp_exp", false);
-                bc_info_vis = false;
-                bc_news_vis = false;
-                bc_stats_vis = false;
-                bc_explorer_vis = true;
-            };
-            if (!bpro_vis) {
-                nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
-                nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
-                bpro_vis = true;
-                nspro_vis = false;
-                bmarket_vis = false;
-            };
+            nww_main.prototype.section_toggle("bexp_exp", false);
+            nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
+            nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
             nww_main.prototype.get_block(value);
             window.history.replaceState(null, document.title, "/explorer/block/" + value)
             nww_main.prototype.exp_section_toggle("exp_b", false);
         }
         else if (section === 'transaction') {
-            if (!bc_explorer_vis) {
-                nww_main.prototype.section_toggle("bexp_exp", false);
-                bc_info_vis = false;
-                bc_news_vis = false;
-                bc_stats_vis = false;
-                bc_explorer_vis = true;
-            };
-            if (!bpro_vis) {
-                nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
-                nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
-                bpro_vis = true;
-                nspro_vis = false;
-                bmarket_vis = false;
-            };
+            nww_main.prototype.section_toggle("bexp_exp", false);
+            nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
+            nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
             nww_main.prototype.get_transaction(value);
             window.history.replaceState(null, document.title, "/explorer/transaction/" + value)
             nww_main.prototype.exp_section_toggle("exp_t", false);
         }
         else if (section === 'address') {
-            if (!bc_explorer_vis) {
-                nww_main.prototype.section_toggle("bexp_exp", false);
-                bc_info_vis = false;
-                bc_news_vis = false;
-                bc_stats_vis = false;
-                bc_explorer_vis = true;
-            };
-            if (!bpro_vis) {
-                nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
-                nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
-                bpro_vis = true;
-                nspro_vis = false;
-                bmarket_vis = false;
-            };
+            nww_main.prototype.section_toggle("bexp_exp", false);
+            nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
+            nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
             nww_main.prototype.get_address(value);
             window.history.replaceState(null, document.title, "/explorer/address/" + value)
             nww_main.prototype.exp_section_toggle("exp_a", false);
         }
         else if (section === 'mempool') {
-            if (!bc_explorer_vis) {
-                nww_main.prototype.section_toggle("bexp_exp", false);
-                bc_info_vis = false;
-                bc_news_vis = false;
-                bc_stats_vis = false;
-                bc_explorer_vis = true;
-            };
-            if (!bpro_vis) {
-                nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
-                nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
-                bpro_vis = true;
-                nspro_vis = false;
-                bmarket_vis = false;
-            };
+            nww_main.prototype.section_toggle("bexp_exp", false);
+            nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
+            nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
             nww_main.prototype.get_mempool_entry(value);
             window.history.replaceState(null, document.title, "/explorer/mempool/entry/" + value)
             nww_main.prototype.exp_section_toggle("exp_m", false);
         }
         else if (section === 'shortcode') {
-            if (!nspro_vis) {
-                nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
-                nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
-                bpro_vis = false;
-                nspro_vis = true;
-                bmarket_vis = false;
-            };
+            nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
+            nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
             nww_main.prototype.get_shortcode(value);
             window.history.replaceState(null, document.title, "/" + value)
             // nww_main.prototype.exp_section_toggle("exp_m", false);
@@ -1226,13 +952,8 @@ var nww_main = new (function () {
         else if (section == '/market') {
             nww_main.prototype.get_nft_auctions();
             window.history.replaceState(null, document.title, '/market')
-            if (!bmarket_vis) {
-                nww_main.prototype.isection_toggle("mnspro", ["mnspro", "bpro", "nspro"]);
-                nww_main.prototype.isection_toggle("bmarket", ["bmarket", "bexp_bvv", "bexp_nsv"]);
-                bpro_vis = false;
-                nspro_vis = false;
-                bmarket_vis = true;
-            };
+            nww_main.prototype.isection_toggle("mnspro", ["mnspro", "bpro", "nspro"]);
+            nww_main.prototype.isection_toggle("bmarket", ["bmarket", "bexp_bvv", "bexp_nsv"]);
         };
     };
 
@@ -1274,28 +995,11 @@ var nww_main = new (function () {
         console.log(typeof _sv, _sv, _search.value.length, _search.value.slice(1, parseInt(_search.value[0]) + 1))
     };
 
-    nww_main.prototype.action_modal = function (action_type, tx) {
-        build_modal(action_type, tx);
-        modal.style.display = 'block';
-    };
-
-    nww_main.prototype.action = function () {
-        let _data = document.getElementById('modal-action-data');
-        let _ref = document.getElementById('modal-action-ref').value.split(':');
-        if (_ref[0] != 'share') {
-            let _pl = {};
-            _pl['endPoint'] = _ref[0];
-            console.log('_ref[0]', _ref[0]);
-            console.log('_data.value', _data.value);
-            _pl['data'] = { 'date': Date.now(), 'data': _data.value, 'tx': _ref[1] };
-            Q.postMessage(_pl);
-        };
-    };
-
     ce = function (e) {
         let r_e = document.createElement(e);
         return r_e;
     };
+
     add_row = function (t, e) {
         let _row = ce('tr');
         function add_cell(_row, e) {
@@ -1312,11 +1016,7 @@ var nww_main = new (function () {
         for (result in e) {
             add_cell(_row, e[result]);
         }
-        // add_cell(_row, '');
-        // add_cell(_row, e['block']);
-        // add_cell(_row, e['txid']);
-        // add_cell(_row, e['value']);
-        // add_cell(_row, e['direction']);
+
         t.appendChild(_row);
     };
 
@@ -1330,112 +1030,6 @@ var nww_main = new (function () {
 
     function rounder(number, places) {
         return +(Math.round(number + 'e+'.concat(places)) + 'e-'.concat(places));
-    };
-
-    function check_for_auction() {
-        let _keys = document.querySelectorAll('[id^="rs-title-"]');
-        if (_keys.length > 0) {
-            if (_keys[0].innerHTML === 'NFT Auction') {
-                let _data = document.getElementById('rs-actions');
-                let d1 = ce('div');
-                let i1 = ce('i');
-                let _id = _keys[0].id.split('-')[2]
-                d1.classList.add('vd');
-                i1.classList.add('fas');
-                i1.classList.add('fa-comment-dollar');
-                d1.appendChild(i1);
-                _data.appendChild(d1);
-                d1.setAttribute('onclick', 'nww_main.action_modal(\'bid\', \'' + _id + '\');');
-            };
-        };
-    };
-
-    function _clear_modal(section) {
-        while (section.hasChildNodes()) {
-            section.removeChild(section.firstChild);
-        };
-    };
-
-    function clear_modal() {
-        let modal_header_content = document.getElementById('modal-header-content');
-        _clear_modal(modal_header_content);
-        _clear_modal(modal_body);
-    };
-
-    function build_modal(action_type, tx) {
-        let modal_header_text = document.getElementById('modal-header-content');
-        let title_key = document.getElementById('rs-title-' + tx)
-        let d1 = ce('div');
-        let d2 = ce('div');
-        let d3 = ce('div');
-        let d4 = ce('div');
-        let h = ce('h2')
-        let hi = ce('i')
-        hi.classList.add('fas')
-        let s1 = ce('h3');
-        let s2 = ce('span');
-        let inp1 = undefined
-        let inp2 = ce('input');
-        inp2.type = 'hidden';
-        inp2.value = action_type + ':' + tx;
-
-        s1.innerText = title_key.innerText;
-
-        if (action_type === 'reward') {
-            inp1 = ce('input');
-            inp1.type = 'text';
-            h.innerText = 'Reward';
-            hi.classList.add('fa-heart')
-            s2.innerText = 'Reward Amount:';
-            inp1.placeholder = '0';
-        }
-        else if (action_type === 'comment') {
-            inp1 = ce('textarea');
-            inp1.rows = 8
-            inp1.cols = 35
-            h.innerText = 'Comment';
-            hi.classList.add('fa-comment-dots')
-            s2.innerText = 'Comment:';
-            inp1.placeholder = 'Comment';
-        }
-        else if (action_type === 'repost') {
-            inp1 = ce('textarea');
-            inp1.rows = 8
-            inp1.cols = 35
-            h.innerText = 'Repost';
-            hi.classList.add('fa-retweet')
-            s2.innerText = 'Repost:';
-            inp1.placeholder = 'Repost';
-        }
-        else if (action_type === 'share') {
-            inp1 = ce('textarea');
-            h.innerText = 'Share';
-            hi.classList.add('fa-external-link-alt')
-            s2.innerText = 'Share:';
-        }
-        else if (action_type === 'bid') {
-            inp1 = ce('input');
-            inp1.type = 'text';
-            inp1.placeholder = '0';
-            h.innerText = 'Bid';
-            hi.classList.add('fa-comment-dollar')
-            s2.innerText = 'Bid Amount:';
-        };
-
-        inp1.id = 'modal-action-data';
-        inp2.id = 'modal-action-ref';
-
-        d1.appendChild(s1);
-        d4.appendChild(hi);
-        d4.appendChild(h);
-        modal_header_text.appendChild(d4);
-        modal_header_text.appendChild(d1);
-        d2.appendChild(s2);
-        d3.appendChild(inp1);
-        d3.appendChild(inp2);
-
-        modal_body.appendChild(d2);
-        modal_body.appendChild(d3);
     };
 
     return new nww_main();
