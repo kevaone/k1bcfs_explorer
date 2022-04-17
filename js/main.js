@@ -6,7 +6,7 @@ var nww_main = new (function () {
     let modal_cancel = document.getElementById('modal-cancel');
     let modal_submit = document.getElementById('modal-submit');
     // let ep = 'https://kva.keva.one/'
-    let ep = 'http://127.0.0.1:9989/'
+    let ep = 'http://127.0.0.1:9999/'
 
     let bc_general_update = 0;
     let bc_info_update = 0;
@@ -14,6 +14,7 @@ var nww_main = new (function () {
     let bc_recent_blocks_update = 0;
     let bc_recent_transactions_update = 0;
     let bc_general_vis = true;
+    let bmarket_vis = false;
     let bpro_vis = false;
     let bc_info_vis = false;
     let bc_news_vis = false;
@@ -89,6 +90,9 @@ var nww_main = new (function () {
             else if (e['data'][0]['call'] === 'get_namespace') {
                 nww_main.prototype.ui_update_namespace_view(e['data'][1])
             }
+            else if (e['data'][0]['call'] === 'get_nft_auctions') {
+                nww_main.prototype.ui_update_market_view(e['data'][1])
+            }
             // else if (e['data'][0]['call'] === 'get_info') {
             else if (e['data'][0]['call'] === 'README.md') {
                 nww_main.prototype.ui_update_info(e['data'][1])
@@ -108,8 +112,8 @@ var nww_main = new (function () {
                 bc_info_update = _d
             };
             if (!bpro_vis) {
-                nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
-                nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
+                nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
+                nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
                 bpro_vis = true;
                 nspro_vis = false;
             };
@@ -138,8 +142,8 @@ var nww_main = new (function () {
         // }
         else if (_path.startsWith("/stats")) {
             if (!bpro_vis) {
-                nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
-                nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
+                nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
+                nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
                 bpro_vis = true;
                 nspro_vis = false;
             };
@@ -153,8 +157,8 @@ var nww_main = new (function () {
         }
         else if (_path.startsWith("/explorer")) {
             if (!bpro_vis) {
-                nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
-                nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
+                nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
+                nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
                 bpro_vis = true;
                 nspro_vis = false;
             };
@@ -168,8 +172,8 @@ var nww_main = new (function () {
             if (_path === "/explorer/recent-blocks") {
                 nww_main.prototype.get_recent_blocks();
                 if (!bpro_vis) {
-                    nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
-                    nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
+                    nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
+                    nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
                     bpro_vis = true;
                     nspro_vis = false;
                 };
@@ -187,8 +191,8 @@ var nww_main = new (function () {
             else if (_path === "/explorer/recent-transactions") {
                 nww_main.prototype.get_recent_transactions();
                 if (!bpro_vis) {
-                    nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
-                    nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
+                    nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
+                    nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
                     bpro_vis = true;
                     nspro_vis = false;
                 };
@@ -206,8 +210,8 @@ var nww_main = new (function () {
             else if (_path === "/explorer/mempool") {
                 nww_main.prototype.get_raw_mempool();
                 if (!bpro_vis) {
-                    nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
-                    nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
+                    nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
+                    nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
                     bpro_vis = true;
                     nspro_vis = false;
                 };
@@ -226,8 +230,8 @@ var nww_main = new (function () {
                 let _p = _path.split("/")
                 nww_main.prototype.get_block(_p[_p.length - 1])
                 if (!bpro_vis) {
-                    nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
-                    nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
+                    nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
+                    nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
                     bpro_vis = true;
                     nspro_vis = false;
                 };
@@ -246,8 +250,8 @@ var nww_main = new (function () {
                 let _p = _path.split("/")
                 nww_main.prototype.get_transaction(_p[_p.length - 1])
                 if (!bpro_vis) {
-                    nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
-                    nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
+                    nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
+                    nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
                     bpro_vis = true;
                     nspro_vis = false;
                 };
@@ -266,8 +270,8 @@ var nww_main = new (function () {
                 let _p = _path.split("/")
                 nww_main.prototype.get_address(_p[_p.length - 1])
                 if (!bpro_vis) {
-                    nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
-                    nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
+                    nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
+                    nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
                     bpro_vis = true;
                     nspro_vis = false;
                 };
@@ -286,8 +290,8 @@ var nww_main = new (function () {
                 let _p = _path.split("/")
                 nww_main.prototype.get_mempool_entry(_p[_p.length - 1])
                 if (!bpro_vis) {
-                    nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
-                    nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
+                    nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
+                    nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
                     bpro_vis = true;
                     nspro_vis = false;
                 };
@@ -304,8 +308,8 @@ var nww_main = new (function () {
             }
             else if (_path.startsWith("/explorer/search")) {
                 if (!bpro_vis) {
-                    nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
-                    nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
+                    nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
+                    nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
                     bpro_vis = true;
                     nspro_vis = false;
                 };
@@ -317,14 +321,24 @@ var nww_main = new (function () {
             // nww_main.prototype.get_info()
             // nww_main.prototype.get_transaction('6b71f4be495a06d1e03b3deaa090b8ff9763c2ce01416e1a8f6b6fd92d4dbae1')
         }
+        else if (_path.startsWith("/market")) {
+            nww_main.prototype.get_nft_auctions();
+            if (!bmarket_vis) {
+                nww_main.prototype.isection_toggle("mnspro", ["mnspro", "bpro", "nspro"]);
+                nww_main.prototype.isection_toggle("bmarket", ["bmarket", "bexp_bvv", "bexp_nsv"]);
+                bpro_vis = false;
+                nspro_vis = false;
+                bmarket_vis = true;
+            };
+        }
         else {
             let _p = _path.split("/");
 
             if (_p[_p.length - 1].length > parseInt(_p[_p.length - 1][0]) + 1) {
                 nww_main.prototype.get_shortcode(_p[_p.length - 1]);
                 if (!nspro_vis) {
-                    nww_main.prototype.isection_toggle("nspro", ["bpro", "nspro"]);
-                    nww_main.prototype.isection_toggle("bexp_nsv", ["bexp_bvv", "bexp_nsv"]);
+                    nww_main.prototype.isection_toggle("nspro", ["mnspro", "bpro", "nspro"]);
+                    nww_main.prototype.isection_toggle("bexp_nsv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
                     bpro_vis = false;
                     nspro_vis = true;
                 };
@@ -332,8 +346,8 @@ var nww_main = new (function () {
             else if (_p[_p.length - 1].startsWith('N') & _p[_p.length - 1].length === 34) {
                 nww_main.prototype.get_namespace(_p[_p.length - 1]);
                 if (!nspro_vis) {
-                    nww_main.prototype.isection_toggle("nspro", ["bpro", "nspro"]);
-                    nww_main.prototype.isection_toggle("bexp_nsv", ["bexp_bvv", "bexp_nsv"]);
+                    nww_main.prototype.isection_toggle("nspro", ["mnspro", "bpro", "nspro"]);
+                    nww_main.prototype.isection_toggle("bexp_nsv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
                     bpro_vis = false;
                     nspro_vis = true;
                 };
@@ -474,6 +488,15 @@ var nww_main = new (function () {
         _pl['endPoint'] = ep;
         _pl['call'] = 'get_shortcode';
         _pl['call_data'] = parseInt(e);
+        _pl['type'] = 'GET';
+        Q.postMessage(_pl);
+    };
+
+    nww_main.prototype.get_nft_auctions = function (e) {
+        let _pl = {};
+        _pl['endPoint'] = ep;
+        _pl['call'] = 'get_nft_auctions';
+        // _pl['call_data'] = e;
         _pl['type'] = 'GET';
         Q.postMessage(_pl);
     };
@@ -950,6 +973,152 @@ var nww_main = new (function () {
                 
                 replies.appendChild(rx);
             };
+            _bexp_nsv.appendChild(x);
+        };
+        // bexp_nsv.innerText = e;
+
+    };
+
+    nww_main.prototype.ui_update_market_view = function (e) {
+        let _bexp_nsv = document.getElementById('bmarket');
+        let _nsv_c = document.getElementById('mnsv_c');
+        let nspro_name = document.getElementById('mnspro_name');
+        let nspro_sc = document.getElementById('mnspro_sc');
+        let nspro_nsid = document.getElementById('mnspro_nsid');
+        let nspro_keys = document.getElementById('mnspro_keys');
+        let nspro_owner = document.getElementById('mnspro_owner');
+        let name_set = false;
+        
+        while (_bexp_nsv.firstChild) {
+            _bexp_nsv.removeChild(_bexp_nsv.firstChild);
+        };
+        let spacer = ce('div')
+        spacer.style.marginTop = '-16px'
+        _bexp_nsv.appendChild(spacer);
+        // <div style="margin-top: -16px;"></div>
+        e['data'].reverse()
+
+        // nspro_nsid.innerText = e['nsid']
+        // nspro_sc.innerText = e['root_shortcode']
+        // nspro_keys.innerText = e['data'].length
+        // nspro_owner.innerText = e['data'][0]['addr']
+
+        for (result in e['data']) {
+            let x = _nsv_c.cloneNode(true);
+            // let _nsv_rp = x.querySelector('#nsv_reply'); //document.getElementById('nsv_reply');
+            let k = x.querySelector('#mnsv_key');
+            let kp = x.querySelector('#mnsv_keyp');
+            let krc = x.querySelector('#mnsv_keyrc');
+            let krh = x.querySelector('#mnsv_keyrh');
+            let t = x.querySelector('#mnsv_time');
+            let v = x.querySelector('#mnsv_value');
+            let b = x.querySelector('#mnsv_block');
+            let txid = x.querySelector('#mnsv_txid');
+            let a = x.querySelector('#mnsv_addr');
+            let o = x.querySelector('#mnsv_op');
+            let rc = x.querySelector('#mnsv_rc');
+            let replies = x.querySelector('#mnsv_replies');
+            x.id = 'mnsv_k' + e['data'][result]['timestamp']
+            k.id = 'mnsv_key' + e['data'][result]['timestamp']
+            t.id = 'mnsv_time' + e['data'][result]['timestamp']
+            v.id = 'mnsv_value' + e['data'][result]['timestamp']
+            b.id = 'mnsv_block' + e['data'][result]['timestamp']
+            txid.id = 'mnsv_txid' + e['data'][result]['timestamp']
+            a.id = 'mnsv_addr' + e['data'][result]['timestamp']
+            o.id = 'mnsv_op' + e['data'][result]['timestamp']
+            rc.id = 'mnsv_rc' + e['data'][result]['timestamp']
+            // let _auc = JSON.parse(e['data'][result]['value'])
+            k.innerText = e['data'][result]['displayName']
+            kp.innerText = e['data'][result]['price']
+            t.innerText = e['data'][result]['time']
+            
+            v.innerText = e['data'][result]['desc']
+            
+            
+            // let kb = e['data'][result]['key_shortcode']
+            // b.onclick = function () {
+            //     nww_main.prototype.section_link('block', kb);
+            // };
+            // b.innerText = e['data'][result]['key_shortcode']
+            let ktxid = e['data'][result]['txid']
+            txid.onclick = function () {
+                nww_main.prototype.section_link('transaction', ktxid);
+            };
+            // txid.innerText = e['data'][result]['txid']
+            a.innerText = e['data'][result]['owner_addr']
+            // o.innerText = e['data'][result]['op']
+            rc.innerText = e['data'][result]['bids'].length
+            if (e['data'][result]['bids'].length >= 1) {
+                replies.className += " w3-show";
+            }
+            // if (!name_set) {
+            //     if (e['data'][result]['key'].endsWith('_KEVA_NS_')) {
+            //         try {
+            //             let nn = JSON.parse(e['data'][result]['value']);
+            //             nspro_name.innerText = nn['displayName'];
+            //             name_set = true;
+            //         }
+            //         catch {
+            //             nspro_name.innerText = e['data'][result]['value'];
+            //         name_set = true;
+            //         };
+            //     };
+            // };
+            krc.innerText = e['data'][result]['bids'].length;
+            _high_bid = 0;
+            for (rresult in e['data'][result]['bids']) {
+                let _nsv_rp = document.getElementById('mnsv_reply');
+                let rx = _nsv_rp.cloneNode(true);
+                let rsc = rx.querySelector('#mnsv_rsc');
+                let rt = rx.querySelector('#mnsv_rtime');
+                let rv = rx.querySelector('#mnsv_rvalue');
+                let rb = rx.querySelector('#mnsv_rblock');
+                let rtxid = rx.querySelector('#mnsv_rtxid');
+                let ra = rx.querySelector('#mnsv_raddr');
+                let ro = rx.querySelector('#mnsv_rop');
+                // let rrc = rx.querySelector('#nsv_rrc');
+                // console.log(rresult)
+                rx.id = 'mnsv_rk' + e['data'][result]['bids'][rresult]['timestamp']
+                
+                // k.id = 'nsv_rkey' + e['data'][result]['timestamp']
+                rt.id = 'mnsv_rtime' + e['data'][result]['bids'][rresult]['timestamp']
+                rv.id = 'mnsv_rvalue' + e['data'][result]['bids'][rresult]['timestamp']
+                rb.id = 'mnsv_rblock' + e['data'][result]['bids'][rresult]['timestamp']
+                rtxid.id = 'mnsv_rtxid' + e['data'][result]['bids'][rresult]['timestamp']
+                ra.id = 'mnsv_raddr' + e['data'][result]['bids'][rresult]['timestamp']
+                ro.id = 'mnsv_rop' + e['data'][result]['bids'][rresult]['timestamp']
+                // rrc.id = 'nsv_rrc' + e['data'][result]['replies'][rresult]['timestamp']
+                // k.innerText = e['data'][result]['key']
+                rt.innerText = e['data'][result]['bids'][rresult]['time']
+                let rtype = e['data'][result]['bids'][rresult]['type']
+                let rtm = ''
+
+                rv.innerText = e['data'][result]['bids'][rresult]['value'] + rtm
+                if (rtype === 'reward') {
+                    rtm = ' love'
+                    rv.innerText = rv.innerText + rtm
+                }
+                else if (rtype === 'repost') {
+                    rv.innerText = 'Reposted'
+                }
+                
+                
+                rb.innerText = e['data'][result]['bids'][rresult]['key_shortcode']
+                let rtsc = e['data'][result]['bids'][rresult]['root_shortcode']
+                rsc.innerText = rtsc
+                rsc.onclick = function () {
+                    nww_main.prototype.section_link('shortcode', rsc.innerText);
+                };
+                let rrtxid = e['data'][result]['bids'][rresult]['txid']
+                rtxid.onclick = function () {
+                    nww_main.prototype.section_link('transaction', rrtxid);
+                };
+                ra.innerText = e['data'][result]['bids'][rresult]['addr']
+                ro.innerText = e['data'][result]['bids'][rresult]['op']
+                
+                replies.appendChild(rx);
+            };
+            krh.innerText = _high_bid
             _bexp_nsv.appendChild(x);
         };
         // bexp_nsv.innerText = e;
