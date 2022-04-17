@@ -128,6 +128,15 @@ var nww_main = new (function () {
             nww_main.prototype.get_nft_auctions();
             nww_main.prototype.isection_toggle("bmarket", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
         }
+        else if (_path.startsWith("/search")) {
+            nww_main.prototype.isection_toggle("search_section", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
+        }
+        else if (_path.startsWith("/about")) {
+            nww_main.prototype.isection_toggle("about_section", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
+        }
+        else if (_path === "/") {
+            nww_main.prototype.isection_toggle("main_section", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
+        }
         else {
             let _p = _path.split("/");
 
@@ -196,7 +205,17 @@ var nww_main = new (function () {
         }
         else if (id === "bmarket") {
             window.history.replaceState(null, document.title, "/market")
+        }
+        else if (id === "main_section") {
+            window.history.replaceState(null, document.title, "/")
+        }
+        else if (id === "about_section") {
+            window.history.replaceState(null, document.title, "/about")
+        }
+        else if (id === "search_section") {
+            window.history.replaceState(null, document.title, "/search")
         };
+
         if (cs) {
             check_state();
         };
@@ -930,6 +949,18 @@ var nww_main = new (function () {
             nww_main.prototype.get_nft_auctions();
             window.history.replaceState(null, document.title, '/market')
             nww_main.prototype.isection_toggle("bmarket", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
+        }
+        else if (section == 'about') {
+            window.history.replaceState(null, document.title, '/about')
+            nww_main.prototype.isection_toggle("about_section", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
+        }
+        else if (section == 'search') {
+            window.history.replaceState(null, document.title, '/search')
+            nww_main.prototype.isection_toggle("search_section", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
+        }
+        else if (section == 'home') {
+            window.history.replaceState(null, document.title, '/')
+            nww_main.prototype.isection_toggle("main_section", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
         };
     };
 

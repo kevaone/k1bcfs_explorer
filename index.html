@@ -30,15 +30,24 @@
         <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
             <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2"
                 href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
-            <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><img src="/images/keva_one_logo.png"
-                    style="height:36px;width:36px" alt="Logo"><i class="fa fa-home w3-margin-left"></i></a>
-            <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="News"><i
-                    class="fa fa-globe"></i></a>
-            <div class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Block Explorer"
+            <div class="w3-bar-item w3-button w3-hover-white" title="Home"
+                onclick="nww_main.section_toggle('main_section')">
+                <img src="/images/keva_one_logo.png" style="height:36px;width:36px" alt="Logo">
+                <!-- <i class="fa fa-home w3-margin-left"></i> -->
+            </div>
+            <div class="w3-bar-item w3-button w3-padding-large w3-hover-white" title="Search"
+                onclick="nww_main.section_toggle('main_section')">
+                <i class="fa fa-home"></i>
+            </div>
+            <div class="w3-bar-item w3-button w3-padding-large w3-hover-white" title="Search"
+                onclick="nww_main.section_toggle('search_section')">
+                <i class="fa fa-globe"></i>
+            </div>
+            <div class="w3-bar-item w3-button w3-padding-large w3-hover-white" title="Block Explorer"
                 onclick="nww_main.section_toggle('bexp_inf')">
                 <i class="fa fa-cubes"></i>
             </div>
-            <div class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Marketplace"
+            <div class="w3-bar-item w3-button w3-padding-large w3-hover-white" title="Marketplace"
                 onclick="nww_main.section_toggle('bmarket')">
                 <i class="fa fa-cart-plus"></i>
             </div>
@@ -50,7 +59,7 @@
                     <i class="fa fa-bell" onclick="nww_main.section_toggle('')"></i>
                 </div>
             </div>
-            <div class="w3-bar-item w3-right">
+            <div class="w3-bar-item w3-hide-small w3-right">
                 <span contenteditable="true" class="w3-border w3-padding">Status: Feeling Great</span>
                 <button type="button" class="w3-button w3-theme"><i class="fa fa-pencil"></i> Search</button>
             </div>
@@ -252,6 +261,7 @@
                                 id="nspro_owner">0</span></p>
                     </div>
                 </div>
+                <br />
             </div>
             <!-- End Left Column -->
             <!-- Begin Namespace Spacers-->
@@ -366,6 +376,7 @@
                                 id="uibs_nethash">0</span></p>
                     </div>
                 </div>
+                <br />
             </div>
             <!-- End Left Column -->
             <!-- Begin Block Explorer View -->
@@ -455,7 +466,7 @@
                                 Recent Blocks</button>
                             <button type="button" class="w3-button w3-theme"
                                 onclick="nww_main.exp_section_toggle('exp_rt')"><i class="fa fa-pencil"></i>
-                                Recent Transactions</button>
+                                Recent TX</button>
                             <button type="button" class="w3-button w3-theme"
                                 onclick="nww_main.exp_section_toggle('exp_mp')"><i class="fa fa-pencil"></i>
                                 Mempool</button>
@@ -824,7 +835,7 @@
         <!-- Start Market -->
         <div id="bmarket" class="w3-row w3-hide">
             <!-- Left Column -->
-            <div class="w3-col m3">
+            <div class="w3-col m3 w3-margin-bottom">
                 <div class="w3-card w3-round w3-white">
                     <!-- Market -->
                     <div class="w3-container">
