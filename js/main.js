@@ -67,92 +67,77 @@ var nww_main = new (function () {
                 bc_info_update = _d
             };
 
-            nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
-            nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
+            nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
             nww_main.prototype.section_toggle("bexp_inf", false);
         }
         // else if (_path.startsWith("/news")) {
-        //         nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
         //         nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
         //         nww_main.prototype.section_toggle("bexp_news", false);
         // }
         else if (_path.startsWith("/stats")) {
-            nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
-            nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
+            nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
             nww_main.prototype.section_toggle("bexp_stats", false);
         }
         else if (_path.startsWith("/explorer")) {
-            nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
-            nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
+            nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
             nww_main.prototype.section_toggle("bexp_exp", false);
             if (_path === "/explorer/recent-blocks") {
                 nww_main.prototype.get_recent_blocks();
-                nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
-                nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
+                nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
                 nww_main.prototype.exp_section_toggle("exp_rb", false);
             }
             else if (_path === "/explorer/recent-transactions") {
                 nww_main.prototype.get_recent_transactions();
-                nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
-                nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
+                nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
                 nww_main.prototype.exp_section_toggle("exp_rt", false);
             }
             else if (_path === "/explorer/mempool") {
                 nww_main.prototype.get_raw_mempool();
-                nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
-                nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
+                nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
                 nww_main.prototype.exp_section_toggle("exp_mp", false);
             }
             else if (_path.startsWith("/explorer/block/")) {
                 let _p = _path.split("/")
                 nww_main.prototype.get_block(_p[_p.length - 1])
-                nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
-                nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
+                nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
                 nww_main.prototype.exp_section_toggle("exp_b", false);
             }
             else if (_path.startsWith("/explorer/transaction/")) {
                 let _p = _path.split("/")
                 nww_main.prototype.get_transaction(_p[_p.length - 1])
-                nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
-                nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
+                nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
                 nww_main.prototype.exp_section_toggle("exp_t", false);
             }
             else if (_path.startsWith("/explorer/address/")) {
                 let _p = _path.split("/")
                 nww_main.prototype.get_address(_p[_p.length - 1])
-                nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
-                nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
+                nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
                 nww_main.prototype.exp_section_toggle("exp_a", false);
             }
             else if (_path.startsWith("/explorer/mempool/entry")) {
                 let _p = _path.split("/")
                 nww_main.prototype.get_mempool_entry(_p[_p.length - 1])
-                nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
-                nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
+                nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
                 nww_main.prototype.exp_section_toggle("exp_m", false);
             }
             else if (_path.startsWith("/explorer/search")) {
-                nww_main.prototype.isection_toggle("bpro", ["mnspro", "bpro", "nspro"]);
-                nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
+                nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
             };
         }
         else if (_path.startsWith("/market")) {
             nww_main.prototype.get_nft_auctions();
-            nww_main.prototype.isection_toggle("mnspro", ["mnspro", "bpro", "nspro"]);
-            nww_main.prototype.isection_toggle("bmarket", ["bmarket", "bexp_bvv", "bexp_nsv"]);
+            nww_main.prototype.isection_toggle("bmarket", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
         }
         else {
             let _p = _path.split("/");
 
             if (_p[_p.length - 1].length > parseInt(_p[_p.length - 1][0]) + 1) {
                 nww_main.prototype.get_shortcode(_p[_p.length - 1]);
-                nww_main.prototype.isection_toggle("nspro", ["mnspro", "bpro", "nspro"]);
-                nww_main.prototype.isection_toggle("bexp_nsv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
+                nww_main.prototype.isection_toggle("bexp_nsv", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
             }
             else if (_p[_p.length - 1].startsWith('N') & _p[_p.length - 1].length === 34) {
                 nww_main.prototype.get_namespace(_p[_p.length - 1]);
-                nww_main.prototype.isection_toggle("nspro", ["mnspro", "bpro", "nspro"]);
-                nww_main.prototype.isection_toggle("bexp_nsv", ["bmarket", "bexp_bvv", "bexp_nsv"]);
+                nww_main.prototype.isection_toggle("bexp_nsv", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
             };
         };
 
@@ -173,7 +158,6 @@ var nww_main = new (function () {
     }
 
     nww_main.prototype.isection_toggle = function (id, sections) {
-        // let sections = ["bexp_inf", "bexp_news", "bexp_stats", "bexp_exp"];
         for (let i = 0; i < sections.length; i++) {
             let section = document.getElementById(sections[i]);
             if (sections[i] == id) {
@@ -189,8 +173,7 @@ var nww_main = new (function () {
     };
 
     nww_main.prototype.section_toggle = function (id, cs = true) {
-        // let sections = ["bexp_inf", "bexp_news", "bexp_stats", "bexp_exp"];
-        let sections = ["bexp_inf", "bexp_stats", "bexp_exp", "bmarket"];
+        let sections = ["bexp_inf", "bexp_stats", "bexp_exp", "bmarket", "main_section", "search_section", "about_section"];
         nww_main.prototype.isection_toggle(id, sections);
         if (id === "bexp_inf") {
             window.history.replaceState(null, document.title, "/info")
@@ -912,48 +895,41 @@ var nww_main = new (function () {
     nww_main.prototype.section_link = function (section, value) {
         if (section === 'block') {
             nww_main.prototype.section_toggle("bexp_exp", false);
-            nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
-            nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
+            nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
             nww_main.prototype.get_block(value);
             window.history.replaceState(null, document.title, "/explorer/block/" + value)
             nww_main.prototype.exp_section_toggle("exp_b", false);
         }
         else if (section === 'transaction') {
             nww_main.prototype.section_toggle("bexp_exp", false);
-            nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
-            nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
+            nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
             nww_main.prototype.get_transaction(value);
             window.history.replaceState(null, document.title, "/explorer/transaction/" + value)
             nww_main.prototype.exp_section_toggle("exp_t", false);
         }
         else if (section === 'address') {
             nww_main.prototype.section_toggle("bexp_exp", false);
-            nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
-            nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
+            nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
             nww_main.prototype.get_address(value);
             window.history.replaceState(null, document.title, "/explorer/address/" + value)
             nww_main.prototype.exp_section_toggle("exp_a", false);
         }
         else if (section === 'mempool') {
             nww_main.prototype.section_toggle("bexp_exp", false);
-            nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
-            nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
+            nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
             nww_main.prototype.get_mempool_entry(value);
             window.history.replaceState(null, document.title, "/explorer/mempool/entry/" + value)
             nww_main.prototype.exp_section_toggle("exp_m", false);
         }
         else if (section === 'shortcode') {
-            nww_main.prototype.isection_toggle("bpro", ["bpro", "nspro"]);
-            nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
+            nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
             nww_main.prototype.get_shortcode(value);
             window.history.replaceState(null, document.title, "/" + value)
-            // nww_main.prototype.exp_section_toggle("exp_m", false);
         }
         else if (section == '/market') {
             nww_main.prototype.get_nft_auctions();
             window.history.replaceState(null, document.title, '/market')
-            nww_main.prototype.isection_toggle("mnspro", ["mnspro", "bpro", "nspro"]);
-            nww_main.prototype.isection_toggle("bmarket", ["bmarket", "bexp_bvv", "bexp_nsv"]);
+            nww_main.prototype.isection_toggle("bmarket", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
         };
     };
 
