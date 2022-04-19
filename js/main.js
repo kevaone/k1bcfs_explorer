@@ -456,7 +456,7 @@ var nww_main = new (function () {
 
         clear_table(_bt);
 
-        _height.innerText = 0;
+        _height.innerText = e['height'];
         _hash.innerText = e['blockhash'];
 
         // let f = JSON.parse(e['header']);
@@ -468,7 +468,7 @@ var nww_main = new (function () {
             nww_main.prototype.section_link('block', e['header']['prev_hash']);
         };
         _merkle.innerText = e['header']['merkle'];
-        _time.innerText = e['header']['timestamp'];
+        _time.innerText = e['header']['time'];
         _bits.innerText = e['header']['bits'];
         _nonce.innerText = e['header']['nonce'];
         _extra.innerText = e['header']['extra'];
@@ -494,6 +494,7 @@ var nww_main = new (function () {
 
     nww_main.prototype.ui_update_transaction = function (e) {
         let _id = document.getElementById('uibexp_ti');
+        let _uibexp_time = document.getElementById('uibexp_time');
         let _hash = document.getElementById('uibexp_th');
         let _locktime = document.getElementById('uibexp_tl');
         let _version = document.getElementById('uibexp_tv');
@@ -502,17 +503,21 @@ var nww_main = new (function () {
         let _vin = document.getElementById('uibexp_tin');
         let _vout = document.getElementById('uibexp_tout');
         let _wit = document.getElementById('uibexp_twit');
+        let _uibexp_txinputs = document.getElementById('uibexp_txinputs');
+        let _uibexp_txoutputs = document.getElementById('uibexp_txoutputs');
+        let _uibexp_txwit = document.getElementById('uibexp_txwit');
         clear_table(_vin);
         clear_table(_vout);
         clear_table(_wit);
 
         _id.innerText = e['txid'];
+        uibexp_time.innerText = e['time'];
         _hash.innerText = e['hash'];
         _locktime.innerText = e['locktime'];
         _version.innerText = e['version'];
         _size.innerText = 0;
         _vsize.innerText = 0;
-
+        _uibexp_txinputs.innerText = e['vin'].length
         for (result in e['vin']) {
             // console.log('result', result)
             let _tx_lnk = ce('span');
@@ -525,7 +530,7 @@ var nww_main = new (function () {
             e['vin'][result]['txid'] = _tx_lnk;
             add_row(_vin, e['vin'][result]);
         }
-
+        _uibexp_txoutputs.innerText = e['vout'].length
         for (result in e['vout']) {
             // console.log('result', result)
             let _addr_lnk = ce('span');
@@ -538,6 +543,7 @@ var nww_main = new (function () {
             // console.log(e['vout'][result])
             add_row(_vout, e['vout'][result]);
         }
+        _uibexp_txwit.innerText = e['witness'].length
         for (result in e['witness']) {
             // console.log('result', result)
             add_row(_wit, e['witness'][result]);
@@ -560,7 +566,12 @@ var nww_main = new (function () {
         for (result in e[1]['page_results']) {
             // console.log('result', result)
             let r = e[1]['page_results'][result]
-            add_row(_recent_tx, ['', r['block'], r['txid'], r['value'], r['direction']]);
+            let _tx_lnk = ce('span');
+            _tx_lnk.innerText = r['txid'].split(':')[0];
+            _tx_lnk.onclick = function () {
+                nww_main.prototype.section_link('transaction', _tx_lnk.innerText);
+            };
+            add_row(_recent_tx, ['', r['block'], _tx_lnk, r['value'], r['direction']]);
         }
     };
 
@@ -669,14 +680,15 @@ var nww_main = new (function () {
                 v.appendChild(ifra);
             }
             else {
-                v.innerText = e['data'][result]['value']
+                v.innerHTML = e['data'][result]['value']
             }
 
-            let kb = e['data'][result]['key_shortcode']
+            // let kb = e['data'][result]['key_shortcode']
+            let kb = e['data'][result]['key_shortcode'].slice(1, parseInt(e['data'][result]['key_shortcode'][0])+1)
             b.onclick = function () {
                 nww_main.prototype.section_link('block', kb);
             };
-            b.innerText = e['data'][result]['key_shortcode']
+            b.innerText = kb
             let ktxid = e['data'][result]['txid']
             txid.onclick = function () {
                 nww_main.prototype.section_link('transaction', ktxid);
@@ -797,7 +809,7 @@ var nww_main = new (function () {
             let a = x.querySelector('#mnsv_addr');
             let o = x.querySelector('#mnsv_op');
             let rc = x.querySelector('#mnsv_rc');
-            // let aucsc = x.querySelector('#mnsv_aucsc');
+            let mpreview = x.querySelector('#mpreview');
             let replies = x.querySelector('#mnsv_replies');
             x.id = 'mnsv_k' + e['data'][result]['timestamp']
             k.id = 'mnsv_key' + e['data'][result]['timestamp']
@@ -808,10 +820,12 @@ var nww_main = new (function () {
             a.id = 'mnsv_addr' + e['data'][result]['timestamp']
             o.id = 'mnsv_op' + e['data'][result]['timestamp']
             rc.id = 'mnsv_rc' + e['data'][result]['timestamp']
-            // aucsc.id = 'mnsvaucsc' + e['data'][result]['root_shortcode']
+            mpreview.id = 'mpreview' + e['data'][result]['timestamp']
             // let _auc = JSON.parse(e['data'][result]['value'])
-            
-            kp.innerText = e['data'][result]['price']
+            if ('media' in e['data'][result]) {
+                mpreview.src = e['data'][result]['media']
+            }
+            kp.innerText = e['data'][result]['price'] + ' KVA';
             t.innerText = e['data'][result]['time']
 
             v.innerText = e['data'][result]['desc']
@@ -821,11 +835,11 @@ var nww_main = new (function () {
             k.onclick = function () {
                 nww_main.prototype.section_link('shortcode', rsc);
             };
-            // let kb = e['data'][result]['key_shortcode']
-            // b.onclick = function () {
-            //     nww_main.prototype.section_link('block', kb);
-            // };
-            // b.innerText = e['data'][result]['key_shortcode']
+            let kb = e['data'][result]['key_shortcode'].slice(1, parseInt(e['data'][result]['key_shortcode'][0])+1)
+            b.onclick = function () {
+                nww_main.prototype.section_link('block', kb);
+            };
+            b.innerText = kb
             let ktxid = e['data'][result]['txid']
             txid.onclick = function () {
                 nww_main.prototype.section_link('transaction', ktxid);
