@@ -797,7 +797,7 @@ var nww_main = new (function () {
             let a = x.querySelector('#mnsv_addr');
             let o = x.querySelector('#mnsv_op');
             let rc = x.querySelector('#mnsv_rc');
-            let aucsc = x.querySelector('#mnsv_aucsc');
+            // let aucsc = x.querySelector('#mnsv_aucsc');
             let replies = x.querySelector('#mnsv_replies');
             x.id = 'mnsv_k' + e['data'][result]['timestamp']
             k.id = 'mnsv_key' + e['data'][result]['timestamp']
@@ -808,16 +808,17 @@ var nww_main = new (function () {
             a.id = 'mnsv_addr' + e['data'][result]['timestamp']
             o.id = 'mnsv_op' + e['data'][result]['timestamp']
             rc.id = 'mnsv_rc' + e['data'][result]['timestamp']
-            aucsc.id = 'mnsvaucsc' + e['data'][result]['root_shortcode']
+            // aucsc.id = 'mnsvaucsc' + e['data'][result]['root_shortcode']
             // let _auc = JSON.parse(e['data'][result]['value'])
-            k.innerText = e['data'][result]['displayName']
+            
             kp.innerText = e['data'][result]['price']
             t.innerText = e['data'][result]['time']
 
             v.innerText = e['data'][result]['desc']
             let rsc = e['data'][result]['root_shortcode']
-            aucsc.innerText = '@' + rsc
-            aucsc.onclick = function () {
+            k.innerText = '@' + rsc + ' - ' + e['data'][result]['displayName'];
+            // aucsc.innerText = '@' + rsc
+            k.onclick = function () {
                 nww_main.prototype.section_link('shortcode', rsc);
             };
             // let kb = e['data'][result]['key_shortcode']
@@ -947,7 +948,8 @@ var nww_main = new (function () {
             nww_main.prototype.exp_section_toggle("exp_m", false);
         }
         else if (section === 'shortcode') {
-            nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
+            nww_main.prototype.section_toggle("bexp_nsv", false);
+            nww_main.prototype.isection_toggle("bexp_nsv", ["bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
             nww_main.prototype.get_shortcode(value);
             window.history.replaceState(null, document.title, "/" + value)
         }
