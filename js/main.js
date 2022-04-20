@@ -8,6 +8,9 @@ var nww_main = new (function () {
     let bc_news_update = 0;
     let bc_recent_blocks_update = 0;
     let bc_recent_transactions_update = 0;
+    
+    let _isections = ["address_section", "explorer_info", "explorer_stats", "explorer_browser", "market_section", "explorer_section", "namespace_section", "main_section", "search_section", "error_section", "about_section"];
+    let _ibsections = ["explorer_info", "explorer_stats", "market_section", "explorer_section", "namespace_section", "main_section", "search_section", "about_section"];
 
     function nww_main() {
         //console.log('main');
@@ -67,86 +70,94 @@ var nww_main = new (function () {
                 bc_info_update = _d
             };
 
-            nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
-            nww_main.prototype.section_toggle("bexp_inf", false);
+            nww_main.prototype.isection_toggle("explorer_section", _isections);
+            nww_main.prototype.section_toggle("explorer_info", false);
         }
         // else if (_path.startsWith("/news")) {
-        //         nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv"]);
+        //         nww_main.prototype.isection_toggle("explorer_section", ["explorer_section", "namespace_section"]);
         //         nww_main.prototype.section_toggle("bexp_news", false);
         // }
         else if (_path.startsWith("/stats")) {
-            nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
-            nww_main.prototype.section_toggle("bexp_stats", false);
+            nww_main.prototype.isection_toggle("explorer_section", _isections);
+            nww_main.prototype.section_toggle("explorer_stats", false);
         }
         else if (_path.startsWith("/explorer")) {
-            nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
-            nww_main.prototype.section_toggle("bexp_exp", false);
+            nww_main.prototype.isection_toggle("explorer_section", _isections);
+            nww_main.prototype.section_toggle("explorer_browser", false);
             if (_path === "/explorer/recent-blocks") {
                 nww_main.prototype.get_recent_blocks();
-                nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
-                nww_main.prototype.exp_section_toggle("exp_rb", false);
+                // nww_main.prototype.isection_toggle("explorer_section", _ibsections);
+                nww_main.prototype.exp_section_toggle("explorer_recent_blocks", false);
             }
             else if (_path === "/explorer/recent-transactions") {
                 nww_main.prototype.get_recent_transactions();
-                nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
-                nww_main.prototype.exp_section_toggle("exp_rt", false);
+                // nww_main.prototype.isection_toggle("explorer_section", _isections);
+                nww_main.prototype.exp_section_toggle("explorer_recent_transactions", false);
             }
             else if (_path === "/explorer/mempool") {
                 nww_main.prototype.get_raw_mempool();
-                nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
-                nww_main.prototype.exp_section_toggle("exp_mp", false);
+                // nww_main.prototype.isection_toggle("explorer_section", _isections);
+                nww_main.prototype.exp_section_toggle("explorer_mempool", false);
             }
             else if (_path.startsWith("/explorer/block/")) {
                 let _p = _path.split("/")
                 nww_main.prototype.get_block(_p[_p.length - 1])
-                nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
-                nww_main.prototype.exp_section_toggle("exp_b", false);
+                // nww_main.prototype.isection_toggle("explorer_section", _isections);
+                nww_main.prototype.exp_section_toggle("explorer_block", false);
             }
             else if (_path.startsWith("/explorer/transaction/")) {
                 let _p = _path.split("/")
                 nww_main.prototype.get_transaction(_p[_p.length - 1])
-                nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
-                nww_main.prototype.exp_section_toggle("exp_t", false);
+                // nww_main.prototype.isection_toggle("explorer_section", _isections);
+                nww_main.prototype.exp_section_toggle("explorer_transaction", false);
             }
             else if (_path.startsWith("/explorer/address/")) {
                 let _p = _path.split("/")
                 nww_main.prototype.get_address(_p[_p.length - 1])
-                nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
-                nww_main.prototype.exp_section_toggle("exp_a", false);
+                nww_main.prototype.isection_toggle("address_section", _isections);
+                // nww_main.prototype.exp_section_toggle("explorer_address", false);
             }
             else if (_path.startsWith("/explorer/mempool/entry")) {
                 let _p = _path.split("/")
                 nww_main.prototype.get_mempool_entry(_p[_p.length - 1])
-                nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
-                nww_main.prototype.exp_section_toggle("exp_m", false);
+                // nww_main.prototype.isection_toggle("explorer_section", _isections);
+                nww_main.prototype.exp_section_toggle("explorer_mempool_entry", false);
             }
             else if (_path.startsWith("/explorer/search")) {
-                nww_main.prototype.isection_toggle("bexp_bvv", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
+                nww_main.prototype.isection_toggle("explorer_section", _isections);
             };
         }
         else if (_path.startsWith("/market")) {
             nww_main.prototype.get_nft_auctions();
-            nww_main.prototype.isection_toggle("bmarket", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
+            nww_main.prototype.isection_toggle("market_section", _isections);
         }
         else if (_path.startsWith("/search")) {
-            nww_main.prototype.isection_toggle("search_section", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
+            nww_main.prototype.isection_toggle("search_section", _isections);
+        }
+        else if (_path.startsWith("/error")) {
+            nww_main.prototype.isection_toggle("error_section", _isections);
         }
         else if (_path.startsWith("/about")) {
-            nww_main.prototype.isection_toggle("about_section", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
+            nww_main.prototype.isection_toggle("about_section", _isections);
         }
         else if (_path === "/") {
-            nww_main.prototype.isection_toggle("main_section", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
+            nww_main.prototype.isection_toggle("main_section", _isections);
         }
         else {
             let _p = _path.split("/");
 
             if (_p[_p.length - 1].length > parseInt(_p[_p.length - 1][0]) + 1) {
                 nww_main.prototype.get_shortcode(_p[_p.length - 1]);
-                nww_main.prototype.isection_toggle("bexp_nsv", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
+                nww_main.prototype.isection_toggle("namespace_section", _isections);
             }
             else if (_p[_p.length - 1].startsWith('N') & _p[_p.length - 1].length === 34) {
                 nww_main.prototype.get_namespace(_p[_p.length - 1]);
-                nww_main.prototype.isection_toggle("bexp_nsv", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
+                nww_main.prototype.isection_toggle("namespace_section", _isections);
+            }
+            else {
+                let _error_msg = document.getElementById('error_msg');
+                _error_msg.innerText = 'Nothing there!';
+                nww_main.prototype.section_toggle('error_section', false);
             };
         };
 
@@ -182,20 +193,22 @@ var nww_main = new (function () {
     };
 
     nww_main.prototype.section_toggle = function (id, cs = true) {
-        let sections = ["bexp_inf", "bexp_stats", "bexp_exp", "bmarket", "main_section", "search_section", "about_section"];
+        let sections = ["explorer_info", "explorer_stats", "explorer_browser", "market_section", "main_section", "search_section", "error_section", "about_section"];
         nww_main.prototype.isection_toggle(id, sections);
-        if (id === "bexp_inf") {
+        if (id === "explorer_info") {
             window.history.replaceState(null, document.title, "/info")
         }
         // else if (id === "bexp_news") {
         //     window.history.replaceState(null, document.title, "/news")
         // }
-        else if (id === "bexp_stats") {
+        else if (id === "explorer_stats") {
             window.history.replaceState(null, document.title, "/stats")
         }
-        else if (id === "bexp_exp") {
+        else if (id === "explorer_browser") {
             let _path = window.location.pathname;
             if (!_path.startsWith("/explorer/block/") &
+                !_path.startsWith("/explorer/recent-blocks/") &
+                !_path.startsWith("/explorer/recent-transactions/") &
                 !_path.startsWith("/explorer/transaction/") &
                 !_path.startsWith("/explorer/address/") &
                 !_path.startsWith("/explorer/mempool/entry/")) {
@@ -203,7 +216,7 @@ var nww_main = new (function () {
                 window.history.replaceState(null, document.title, "/explorer");
             };
         }
-        else if (id === "bmarket") {
+        else if (id === "market_section") {
             window.history.replaceState(null, document.title, "/market")
         }
         else if (id === "main_section") {
@@ -214,6 +227,9 @@ var nww_main = new (function () {
         }
         else if (id === "search_section") {
             window.history.replaceState(null, document.title, "/search")
+        }
+        else if (id === "error_section") {
+            window.history.replaceState(null, document.title, "/error")
         };
 
         if (cs) {
@@ -223,15 +239,15 @@ var nww_main = new (function () {
     };
 
     nww_main.prototype.exp_section_toggle = function (id, cs = true) {
-        let sections = ["exp_rb", "exp_rt", "exp_mp", "exp_b", "exp_t", "exp_a", "exp_m"];
+        let sections = ["explorer_recent_blocks", "explorer_recent_transactions", "explorer_mempool", "explorer_block", "explorer_transaction", "explorer_mempool_entry"];
         nww_main.prototype.isection_toggle(id, sections);
-        if (id === "exp_rb") {
+        if (id === "explorer_recent_blocks") {
             window.history.replaceState(null, document.title, "/explorer/recent-blocks")
         }
-        else if (id === "exp_rt") {
+        else if (id === "explorer_recent_transactions") {
             window.history.replaceState(null, document.title, "/explorer/recent-transactions")
         }
-        else if (id === "exp_mp") {
+        else if (id === "explorer_mempool") {
             window.history.replaceState(null, document.title, "/explorer/mempool")
         };
         if (cs) {
@@ -556,8 +572,9 @@ var nww_main = new (function () {
         let _balance = document.getElementById('uibexp_ab');
         let _total_results = document.getElementById('uibexp_att');
         let _recent_tx = document.getElementById('uibexp_art');
+        let _uibexp_ai = document.getElementById('uibexp_ai');
         clear_table(_recent_tx)
-
+        _uibexp_ai.innerText = e[0]['address'];
         _received.innerText = e[0]['received'];
         _sent.innerText = e[0]['sent'];
         _balance.innerText = e[0]['balance'];
@@ -624,6 +641,12 @@ var nww_main = new (function () {
     };
 
     nww_main.prototype.ui_update_namespace_view = function (e) {
+        if (e === 'Invaild Shortcode/Namespace') {
+            let _error_msg = document.getElementById('error_msg');
+            _error_msg.innerText = e;
+            nww_main.prototype.section_toggle('error_section', false);
+            return;
+        }
         let _bexp_nsv = document.getElementById('xbexp_nsv');
         let _nsv_c = document.getElementById('nsv_c');
         let nspro_name = document.getElementById('nspro_name');
@@ -643,9 +666,18 @@ var nww_main = new (function () {
         e['data'].reverse()
 
         nspro_nsid.innerText = e['nsid']
+        nspro_nsid.onclick = function () {
+            nww_main.prototype.section_link('shortcode', nspro_nsid.innerText);
+        };
         nspro_sc.innerText = e['root_shortcode']
+        nspro_sc.onclick = function () {
+            nww_main.prototype.section_link('shortcode', nspro_sc.innerText);
+        };
         nspro_keys.innerText = e['data'].length
         nspro_owner.innerText = e['data'][0]['addr']
+        nspro_owner.onclick = function () {
+            nww_main.prototype.section_link('address', nspro_owner.innerText);
+        };
 
         for (result in e['data']) {
             let x = _nsv_c.cloneNode(true);
@@ -934,55 +966,60 @@ var nww_main = new (function () {
 
     nww_main.prototype.section_link = function (section, value) {
         if (section === 'block') {
-            nww_main.prototype.section_toggle("bexp_exp", false);
-            nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
-            nww_main.prototype.get_block(value);
             window.history.replaceState(null, document.title, "/explorer/block/" + value)
-            nww_main.prototype.exp_section_toggle("exp_b", false);
+            nww_main.prototype.section_toggle("explorer_browser", true);
+            // nww_main.prototype.isection_toggle("explorer_section", ["explorer_section", "namespace_section", "main_section", "search_section", "about_section"]);
+            // nww_main.prototype.get_block(value);
+            
+            // nww_main.prototype.exp_section_toggle("explorer_block", false);
         }
         else if (section === 'transaction') {
-            nww_main.prototype.section_toggle("bexp_exp", false);
-            nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
-            nww_main.prototype.get_transaction(value);
             window.history.replaceState(null, document.title, "/explorer/transaction/" + value)
-            nww_main.prototype.exp_section_toggle("exp_t", false);
+            nww_main.prototype.section_toggle("explorer_browser", true);
+            // nww_main.prototype.isection_toggle("explorer_section", ["explorer_section", "namespace_section", "main_section", "search_section", "about_section"]);
+            // nww_main.prototype.get_transaction(value);
+            
+            // nww_main.prototype.exp_section_toggle("explorer_transaction", false);
         }
         else if (section === 'address') {
-            nww_main.prototype.section_toggle("bexp_exp", false);
-            nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
-            nww_main.prototype.get_address(value);
             window.history.replaceState(null, document.title, "/explorer/address/" + value)
-            nww_main.prototype.exp_section_toggle("exp_a", false);
+            nww_main.prototype.section_toggle("address_section", true);
+            // nww_main.prototype.isection_toggle("explorer_section", ["explorer_section", "namespace_section", "main_section", "search_section", "about_section"]);
+            // nww_main.prototype.get_address(value);
+            
+            // nww_main.prototype.exp_section_toggle("explorer_address", false);
         }
         else if (section === 'mempool') {
-            nww_main.prototype.section_toggle("bexp_exp", false);
-            nww_main.prototype.isection_toggle("bexp_bvv", ["bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
-            nww_main.prototype.get_mempool_entry(value);
             window.history.replaceState(null, document.title, "/explorer/mempool/entry/" + value)
-            nww_main.prototype.exp_section_toggle("exp_m", false);
+            nww_main.prototype.section_toggle("explorer_browser", true);
+            // nww_main.prototype.isection_toggle("explorer_section", ["explorer_section", "namespace_section", "main_section", "search_section", "about_section"]);
+            // nww_main.prototype.get_mempool_entry(value);
+            
+            // nww_main.prototype.exp_section_toggle("explorer_mempool_entry", false);
         }
         else if (section === 'shortcode') {
-            nww_main.prototype.section_toggle("bexp_nsv", false);
-            nww_main.prototype.isection_toggle("bexp_nsv", ["bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
-            nww_main.prototype.get_shortcode(value);
             window.history.replaceState(null, document.title, "/" + value)
+            nww_main.prototype.section_toggle("namespace_section", true);
+            // nww_main.prototype.isection_toggle("namespace_section", _isections);
+            // nww_main.prototype.get_shortcode(value);
+            
         }
-        else if (section == '/market') {
-            nww_main.prototype.get_nft_auctions();
+        else if (section == 'market') {
+            // nww_main.prototype.get_nft_auctions();
             window.history.replaceState(null, document.title, '/market')
-            nww_main.prototype.isection_toggle("bmarket", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
+            nww_main.prototype.section_toggle("market_section", true);
         }
         else if (section == 'about') {
             window.history.replaceState(null, document.title, '/about')
-            nww_main.prototype.isection_toggle("about_section", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
+            nww_main.prototype.section_toggle("about_section", true);
         }
         else if (section == 'search') {
             window.history.replaceState(null, document.title, '/search')
-            nww_main.prototype.isection_toggle("search_section", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
+            nww_main.prototype.section_toggle("search_section", true);
         }
         else if (section == 'home') {
             window.history.replaceState(null, document.title, '/')
-            nww_main.prototype.isection_toggle("main_section", ["bmarket", "bexp_bvv", "bexp_nsv", "main_section", "search_section", "about_section"]);
+            nww_main.prototype.section_toggle("main_section", true);
         };
     };
 
@@ -1007,7 +1044,7 @@ var nww_main = new (function () {
             if (!sc) {
                 nww_main.prototype.get_block(_sv);
                 window.history.replaceState(null, document.title, "/explorer/block/" + _sv)
-                nww_main.prototype.exp_section_toggle("exp_b", false);
+                nww_main.prototype.exp_section_toggle("explorer_block", false);
             }
         }
         else if (_search.value.length === 64) {
@@ -1018,7 +1055,7 @@ var nww_main = new (function () {
             if (!sc) {
                 nww_main.prototype.get_address(_search.value);
                 window.history.replaceState(null, document.title, "/explorer/address/" + _search.value)
-                nww_main.prototype.exp_section_toggle("exp_a", false);
+                nww_main.prototype.exp_section_toggle("explorer_address", false);
             }
         }
         console.log(typeof _sv, _sv, _search.value.length, _search.value.slice(1, parseInt(_search.value[0]) + 1))

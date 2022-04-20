@@ -45,7 +45,7 @@
             <div class="w3-bar-item w3-dropdown-hover w3-padding-large w3-hide-small" title="Block Explorers">
                 <i class="fa fa-cubes"></i>
                 <div class="w3-dropdown-content w3-padding-large w3-card w3-bar-block" title="Kevacoin Explorer"
-                    onclick="nww_main.section_toggle('bexp_inf')" style="cursor: pointer;">
+                    onclick="nww_main.section_toggle('explorer_info')" style="cursor: pointer;">
                     <i class="fa fa-cubes">&nbsp;Kevacoin Explorer</i>
                 </div>
             </div>
@@ -53,7 +53,7 @@
                 href="javascript:void(0);" onclick="open_nav_small()"><i class="fa fa-cubes"></i></a>
 
             <div class="w3-bar-item w3-button w3-padding-large w3-hover-white" title="Marketplace"
-                onclick="nww_main.section_toggle('bmarket')">
+                onclick="nww_main.section_toggle('market_section')">
                 <i class="fa fa-cart-plus"></i>
             </div>
             <!-- <div class="w3-hide w3-bar-item w3-dropdown-hover w3-hide-small">
@@ -74,14 +74,14 @@
     <div id="nav_small" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
         <div class="w3-bar-item w3-button w3-margin-bottom w3-padding-large">&nbsp;</div>
         <i class="fa fa-cubes w3-bar-item w3-button w3-padding-large"
-            onclick="nww_main.section_toggle('bexp_inf')">&nbsp;Kevacoin Explorer</i>
+            onclick="nww_main.section_toggle('explorer_info')">&nbsp;Kevacoin Explorer</i>
     </div>
     <!-- Navbar on small screens -->
     <!-- <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
         <div class="w3-bar-item w3-button w3-margin-bottom w3-padding-large">&nbsp;</div>
-        <i class="fa fa-cubes w3-bar-item w3-button w3-padding-large" onclick="nww_main.section_toggle('bexp_inf')"></i>
+        <i class="fa fa-cubes w3-bar-item w3-button w3-padding-large" onclick="nww_main.section_toggle('explorer_info')"></i>
         <i class="fa fa-cart-plus w3-bar-item w3-button w3-padding-large"
-            onclick="nww_main.section_toggle('bexp_inf')"></i>
+            onclick="nww_main.section_toggle('explorer_info')"></i>
     </div> -->
 
     <!-- Page Container -->
@@ -147,7 +147,8 @@
             <div class="w3-col m12">
                 <div class="w3-container w3-card w3-white w3-round">
                     <div class="w3-center w3-margin-top">
-                        <img src="/images/keva_one_logo.png" alt="Avatar" class="w3-circle" style="width:160px">
+                        <img id="error_logo" src="/images/keva_one_logo.png" alt="Avatar" class="w3-circle"
+                            style="width:160px">
                     </div>
                     <div class="w3-container w3-margin-top w3-margin-bottom w3-center">
                         <div>
@@ -160,6 +161,25 @@
             </div>
         </div>
         <!-- End Search -->
+        <!-- Begin Error -->
+        <div id="error_section" class="w3-hide w3-row">
+            <div class="w3-col m12">
+                <div class="w3-container w3-card w3-white w3-round">
+                    <div class="w3-center w3-margin-top">
+                        <img id="error_logo" src="/images/keva_one_logo.png" alt="Avatar" class="w3-circle"
+                            style="width:160px">
+                    </div>
+                    <div class="w3-container w3-margin-top w3-margin-bottom w3-center">
+                        <div>
+                            <h4 id="error_msg" class="w3-center">
+                                Error!
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Error -->
         <!-- Begin About -->
         <div id="about_section" class="w3-row w3-hide">
             <div class="w3-col m12">
@@ -178,7 +198,8 @@
                             <a href="https://python.org"><i class="fab fa-python fa-lg"></i>Python</a>
                         </div>
                         <div>
-                            <a href="https://kevacoin.org"><img src="/images/kevacoin-logo.png" style="width:60px">Kevacoin</a>
+                            <a href="https://kevacoin.org"><img src="/images/kevacoin-logo.png"
+                                    style="width:60px">Kevacoin</a>
                         </div>
                         <div>
                             <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a>
@@ -255,8 +276,86 @@
             </div>
         </div>
         <!-- End About -->
+        <!-- Start Address -->
+        <div id="address_section" class="w3-hide">
+            <!-- Left Column -->
+            <!-- <div style="margin-top: -16px;"></div> -->
+            <div class="w3-row">
+                <div class="w3-col m12 w3-card w3-round w3-white w3-margin-bottom">
+                    <div>
+                        <div class="w3-margin w3-center">
+                            <!-- <img src="/images/keva_one_logo.png" alt="Avatar"
+                                class="w3-left w3-circle w3-margin-right w3-margin-bottom" style="width:60px"> -->
+                            <p>Address</p>
+                            <p id="uibexp_ai">0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="w3-row">
+                <div class="w3-col m3">
+                    <div class="w3-card w3-round w3-white">
+                        <!-- Address Summary -->
+                        <div class="w3-container">
+                            <!-- <span class="w3-center">Kevacoin</span> -->
+                            <p class="w3-center"><img src="/images/kevacoin-logo.png" class="w3-circle"
+                                    style="height:156px;width:156px" alt="Logo"></p>
+                            <hr>
+                            <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>Received <span
+                                    id="uibexp_ar">0</span>
+                            </p>
+                            <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>Sent <span
+                                    id="uibexp_as">0</span>
+                            </p>
+                            <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>Balance <span
+                                    id="uibexp_ab">0</span></p>
+                            <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>Total transactions
+                                <span id="uibexp_att">0</span>
+                            </p>
+                        </div>
+                    </div>
+                    <br />
+                </div>
+                <!-- End Left Column -->
+                <!-- Begin Address View-->
+                <div class="w3-col m9">
+                    <!-- <div style="margin-top: -16px;"></div> -->
+                    <div>
+                        <!-- <div style="margin-top: -16px;"></div> -->
+                        <!-- <div id="explorer_address" class="w3-container w3-card w3-white w3-round w3-margin"> -->
+                        <div class="w3-container w3-card w3-white w3-round w3-margin-left w3-margin-bottom k1-overflow-scroll">
+                            <!-- <img src="images/keva_one_logo.png" alt="Avatar" class="w3-left w3-circle w3-margin-right w3-margin-bottom"
+                            style="width:36px">
+                        <span class="w3-right w3-opacity">32 min</span>
+                        <h4>Recent Activity</h4> -->
+                            <div class="w3-margin-top">
+                                <img src="/images/keva_one_logo.png" alt="Avatar"
+                                    class="w3-left w3-circle w3-margin-right w3-margin-bottom" style="width:60px">
+                                <div>
+                                    <div>Recent Activity</div>
+                                </div>
+                            </div>
+                            <table id="uibexp_art" class="w3-table">
+                                <thead>
+                                    <tr class="w3-light-grey">
+                                        <th>Time</th>
+                                        <th>Height</th>
+                                        <th>TX Hash</th>
+                                        <th>Value</th>
+                                        <th>Direction</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Address View-->
+
+        <!-- End Address -->
         <!-- Start Namespace -->
-        <div id="bexp_nsv" class="w3-row w3-hide">
+        <div id="namespace_section" class="w3-row w3-hide">
             <!-- Left Column -->
             <div class="w3-col m3">
                 <div class="w3-card w3-round w3-white">
@@ -366,7 +465,7 @@
         </div>
         <!-- End Namespace -->
         <!-- Begin Block Explorer -->
-        <div id="bexp_bvv" class="w3-row w3-hide">
+        <div id="explorer_section" class="w3-row w3-hide">
             <!-- Left Column -->
             <div class="w3-col m3">
                 <div class="w3-card w3-round w3-white">
@@ -402,23 +501,20 @@
                         <div class="w3-card w3-round w3-white">
                             <div class="w3-container w3-padding">
                                 <button type="button" class="w3-button w3-theme"
-                                    onclick="nww_main.section_toggle('bexp_inf')"><i class="fa fa-pencil"></i>
+                                    onclick="nww_main.section_toggle('explorer_info')"><i class="fa fa-pencil"></i>
                                     Info</button>
                                 <!-- <button type="button" class="w3-button w3-theme"
-                                    onclick="nww_main.section_toggle('bexp_news')"><i class="fa fa-pencil"></i>
-                                    News</button> -->
+                                    onclick="nww_main.section_toggle('explorer_stats')"><i class="fa fa-pencil"></i>
+                                    Stats</button> -->
                                 <button type="button" class="w3-button w3-theme"
-                                    onclick="nww_main.section_toggle('bexp_stats')"><i class="fa fa-pencil"></i>
-                                    Stats</button>
-                                <button type="button" class="w3-button w3-theme"
-                                    onclick="nww_main.section_toggle('bexp_exp')"><i class="fa fa-pencil"></i>
+                                    onclick="nww_main.section_toggle('explorer_browser')"><i class="fa fa-pencil"></i>
                                     Explore</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div id="bexp_inf" class="w3-hide w3-show">
+                <div id="explorer_info" class="w3-hide w3-show">
                     <div class="w3-container w3-card w3-white w3-round w3-margin">
                         <div class="w3-margin-top">
                             <img src="/images/keva_one_logo.png" alt="Avatar"
@@ -448,7 +544,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="bexp_stats" class="w3-hide">
+                <div id="explorer_stats" class="w3-hide">
                     <div class="w3-container w3-card w3-white w3-round w3-margin">
                         <div class="w3-margin-top">
                             <img src="/images/keva_one_logo.png" alt="Avatar"
@@ -458,33 +554,24 @@
                             </div>
                         </div>
                         <div class="w3-container w3-margin-bottom">
-                            <p>Have you seen this?</p>
+                            <p>Coming Soon!</p>
                             <img src="/images/keva_one_logo.png" style="width:100%" class="w3-margin-bottom">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut
-                                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                ullamco
-                                laboris nisi ut aliquip ex ea commodo consequat.</p>
-                            <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i
-                                    class="fa fa-thumbs-up"></i>
-                                 Like</button>
-                            <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i
-                                    class="fa fa-comment"></i>
-                                 Comment</button>
                         </div>
                     </div>
                 </div>
-                <div id="bexp_exp" class="w3-hide">
+                <div id="explorer_browser" class="w3-hide">
                     <div class="w3-container w3-card w3-white w3-round w3-margin">
                         <div class="w3-container w3-padding">
                             <button type="button" class="w3-button w3-theme"
-                                onclick="nww_main.exp_section_toggle('exp_rb')"><i class="fa fa-pencil"></i>
+                                onclick="nww_main.exp_section_toggle('explorer_recent_blocks')"><i
+                                    class="fa fa-pencil"></i>
                                 Recent Blocks</button>
                             <button type="button" class="w3-button w3-theme"
-                                onclick="nww_main.exp_section_toggle('exp_rt')"><i class="fa fa-pencil"></i>
+                                onclick="nww_main.exp_section_toggle('explorer_recent_transactions')"><i
+                                    class="fa fa-pencil"></i>
                                 Recent TX</button>
                             <button type="button" class="w3-button w3-theme"
-                                onclick="nww_main.exp_section_toggle('exp_mp')"><i class="fa fa-pencil"></i>
+                                onclick="nww_main.exp_section_toggle('explorer_mempool')"><i class="fa fa-pencil"></i>
                                 Mempool</button>
                             <div class="w3-right">
                                 <input id="uibssrc" class="w3-border w3-padding" />
@@ -495,8 +582,9 @@
                         </div>
                     </div>
 
-                    <div id="exp_rb" class="w3-hide w3-container w3-card w3-white w3-round w3-margin w3-show">
-                        <div class="w3-margin-top" style="padding-right: 16px; padding-bottom: 16px;">
+                    <div id="explorer_recent_blocks"
+                        class="w3-hide w3-container w3-card w3-white w3-round w3-margin w3-show">
+                        <div class="w3-margin-top w3-margin-bottom">
                             <img src="/images/keva_one_logo.png" alt="Avatar" class="w3-left w3-circle w3-margin-right"
                                 style="width:60px">
                             <div>
@@ -504,7 +592,7 @@
                             </div>
                         </div>
                         <br />
-                        <div class="w3-container k1-overflow-scroll">
+                        <div class="w3-container w3-margin-top w3-margin-bottom k1-overflow-scroll">
                             <table id="uibexp_rb" class="w3-table">
                                 <thead>
                                     <tr class="w3-light-grey">
@@ -519,8 +607,9 @@
                         </div>
                     </div>
 
-                    <div id="exp_rt" class="w3-hide w3-container w3-card w3-white w3-round w3-margin">
-                        <div class="w3-margin-top" style="padding-right: 16px; padding-bottom: 16px;">
+                    <div id="explorer_recent_transactions"
+                        class="w3-hide w3-container w3-card w3-white w3-round w3-margin">
+                        <div class="w3-margin-top w3-margin-bottom">
                             <img src="/images/keva_one_logo.png" alt="Avatar" class="w3-left w3-circle w3-margin-right"
                                 style="width:60px">
                             <div>
@@ -528,7 +617,7 @@
                             </div>
                         </div>
                         <br />
-                        <div class="w3-container k1-overflow-scroll">
+                        <div class="w3-container w3-margin-top w3-margin-bottom k1-overflow-scroll">
                             <table id="uibexp_rt" class="w3-table">
                                 <thead>
                                     <tr class="w3-light-grey">
@@ -545,8 +634,8 @@
                         </div>
                     </div>
 
-                    <div id="exp_mp" class="w3-hide w3-container w3-card w3-white w3-round w3-margin">
-                        <div class="w3-margin-top" style="padding-right: 16px; padding-bottom: 16px;">
+                    <div id="explorer_mempool" class="w3-hide w3-container w3-card w3-white w3-round w3-margin">
+                        <div class="w3-margin-top w3-margin-bottom">
                             <img src="/images/keva_one_logo.png" alt="Avatar" class="w3-left w3-circle w3-margin-right"
                                 style="width:60px">
                             <div>
@@ -554,7 +643,7 @@
                             </div>
                         </div>
                         <br />
-                        <div class="w3-container k1-overflow-scroll">
+                        <div class="w3-container w3-margin-top w3-margin-bottom k1-overflow-scroll">
                             <table id="uibexp_rm" class="w3-table">
                                 <thead>
                                     <tr class="w3-light-grey">
@@ -570,7 +659,7 @@
                         </div>
                     </div>
 
-                    <div id="exp_b" class="w3-hide w3-container w3-card w3-white w3-round w3-margin">
+                    <div id="explorer_block" class="w3-hide w3-container w3-card w3-white w3-round w3-margin">
                         <div class="w3-margin-top">
                             <img src="/images/keva_one_logo.png" alt="Avatar"
                                 class="w3-left w3-circle w3-margin-right w3-margin-bottom" style="width:60px">
@@ -624,7 +713,7 @@
                             </table>
                         </div>
                     </div>
-                    <div id="exp_t" class="w3-hide w3-container w3-card w3-white w3-round w3-margin">
+                    <div id="explorer_transaction" class="w3-hide w3-container w3-card w3-white w3-round w3-margin">
                         <div class="w3-margin-top">
                             <img src="/images/keva_one_logo.png" alt="Avatar"
                                 class="w3-left w3-circle w3-margin-right w3-margin-bottom" style="width:60px">
@@ -713,59 +802,9 @@
 
                     </div>
 
-                    <div id="exp_a" class="w3-hide w3-container w3-card w3-white w3-round w3-margin">
-                        <!-- <img src="images/keva_one_logo.png" alt="Avatar" class="w3-left w3-circle w3-margin-right"
-                            style="width:60px">
-                        <span class="w3-right w3-opacity">32 min</span>
-                        <h4>Address</h4> -->
-                        <div class="w3-margin-top">
-                            <img src="/images/keva_one_logo.png" alt="Avatar"
-                                class="w3-left w3-circle w3-margin-right w3-margin-bottom" style="width:60px">
-                            <div>
-                                <div>Address</div>
-                                <div><span id="uibexp_ti">0</span></div>
-                            </div>
-                        </div>
 
-                        <div class="w3-container">
-                            <div class="w3-half">
-                                <div>Received <span id="uibexp_ar">0</span></div>
-                                <div>Sent <span id="uibexp_as">0</span></div>
-                                <div>Balance <span id="uibexp_ab">0</span></div>
-                                <div>Total transactions <span id="uibexp_att">0</span></div>
-                            </div>
-                            <div class="w3-half">
-                                <img src="/images/keva_one_logo.png" style="height:150px" alt="QR"
-                                    class="w3-margin-bottom">
-                            </div>
-                        </div>
-                        <div class="w3-container w3-card w3-white w3-round w3-margin-bottom k1-overflow-scroll">
-                            <!-- <img src="images/keva_one_logo.png" alt="Avatar" class="w3-left w3-circle w3-margin-right w3-margin-bottom"
-                                style="width:36px">
-                            <span class="w3-right w3-opacity">32 min</span>
-                            <h4>Recent Activity</h4> -->
-                            <div class="w3-margin-top">
-                                <img src="/images/keva_one_logo.png" alt="Avatar"
-                                    class="w3-left w3-circle w3-margin-right w3-margin-bottom" style="width:60px">
-                                <div>
-                                    <div>Recent Activity</div>
-                                </div>
-                            </div>
-                            <table id="uibexp_art" class="w3-table">
-                                <thead>
-                                    <tr class="w3-light-grey">
-                                        <th>Time</th>
-                                        <th>Height</th>
-                                        <th>TX Hash</th>
-                                        <th>Value</th>
-                                        <th>Direction</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
-                    </div>
 
-                    <div id="exp_m" class="w3-hide w3-container w3-card w3-white w3-round w3-margin">
+                    <div id="explorer_mempool_entry" class="w3-hide w3-container w3-card w3-white w3-round w3-margin">
                         <!-- <img src="images/keva_one_logo.png" alt="Avatar" class="w3-left w3-circle w3-margin-right"
                             style="width:60px">
                         <span class="w3-right w3-opacity">32 min</span>
@@ -849,7 +888,7 @@
         </div>
         <!-- End Block Explorer -->
         <!-- Start Market -->
-        <div id="bmarket" class="w3-row w3-hide">
+        <div id="market_section" class="w3-row w3-hide">
             <!-- Left Column -->
             <div class="w3-col m3 w3-margin-bottom">
                 <div class="w3-card w3-round w3-white">
