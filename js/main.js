@@ -648,7 +648,7 @@ var nww_main = new (function () {
     };
 
     nww_main.prototype.ui_update_namespace_view = function (e) {
-        if (e === 'Invaild Shortcode/Namespace') {
+        if (e === 'Invaild Shortcode') {
             let _error_msg = document.getElementById('error_msg');
             _error_msg.innerText = e;
             nww_main.prototype.section_toggle('error_section', false);
