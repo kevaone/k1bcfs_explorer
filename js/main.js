@@ -846,6 +846,11 @@ var nww_main = new (function () {
 
             if ('media' in e['data'][result]) {
                 mpreview.src = e['data'][result]['media'];
+            }
+            else {
+                if (mpreview.className.indexOf("w3-hide") == -1) {
+                    mpreview.className += " w3-hide";
+                }
             };
             kp.innerText = e['data'][result]['price'] + ' KVA';
             t.innerText = e['data'][result]['time'].slice(0, -12);
@@ -973,7 +978,7 @@ var nww_main = new (function () {
         t.appendChild(_row);
     };
 
-    function clear_table(table) {
+    clear_table = function (table) {
         let tableHeaderRowCount = 1;
         let rowCount = table.rows.length;
         for (let i = tableHeaderRowCount; i < rowCount; i++) {
@@ -981,7 +986,7 @@ var nww_main = new (function () {
         };
     };
 
-    function rounder(number, places) {
+    rounder = function (number, places) {
         return +(Math.round(number + 'e+'.concat(places)) + 'e-'.concat(places));
     };
 
