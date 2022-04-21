@@ -209,42 +209,85 @@ var nww_main = new (function () {
     nww_main.prototype.section_toggle = function (id, cs = true) {
         let sections = ["explorer_info", "explorer_stats", "explorer_browser", "market_section", "main_section", "search_section", "error_section", "about_section"];
         nww_main.prototype.isection_toggle(id, sections);
-        if (id === "explorer_info") {
-            window.history.pushState({}, '', '/info');
-        }
-        else if (id === "explorer_stats") {
-            window.history.pushState({}, '', '/stats');
-        }
-        else if (id === "explorer_browser") {
-            let _path = window.location.pathname;
-            if (!_path.startsWith("/explorer/block/") &
-                !_path.startsWith("/explorer/recent-blocks/") &
-                !_path.startsWith("/explorer/recent-transactions/") &
-                !_path.startsWith("/explorer/transaction/") &
-                !_path.startsWith("/explorer/address/") &
-                !_path.startsWith("/explorer/mempool/entry/")) {
-
-                window.history.replaceState(null, document.title, "/explorer");
-            };
-        }
-        else if (id === "market_section") {
-            window.history.pushState({}, '', '/market');
-        }
-        else if (id === "main_section") {
-            window.history.pushState({}, '', '/');
-        }
-        else if (id === "about_section") {
-            window.history.pushState({}, '', '/about');
-        }
-        else if (id === "search_section") {
-            window.history.pushState({}, '', '/search');
-        }
-        else if (id === "error_section") {
-            window.history.pushState({}, '', '/error');
-        };
-
         if (cs) {
+            if (id === "explorer_info") {
+                window.history.pushState({}, '', '/info');
+            }
+            else if (id === "explorer_stats") {
+                window.history.pushState({}, '', '/stats');
+            }
+            else if (id === "explorer_browser") {
+                let _path = window.location.pathname;
+                if (!_path.startsWith("/explorer/block/") &
+                    !_path.startsWith("/explorer/recent-blocks/") &
+                    !_path.startsWith("/explorer/recent-transactions/") &
+                    !_path.startsWith("/explorer/transaction/") &
+                    !_path.startsWith("/explorer/address/") &
+                    !_path.startsWith("/explorer/mempool/entry/")) {
+
+                    window.history.replaceState(null, document.title, "/explorer");
+                };
+            }
+            else if (id === "market_section") {
+                window.history.pushState({}, '', '/market');
+            }
+            else if (id === "main_section") {
+                window.history.pushState({}, '', '/');
+            }
+            else if (id === "about_section") {
+                window.history.pushState({}, '', '/about');
+            }
+            else if (id === "search_section") {
+                window.history.pushState({}, '', '/search');
+            }
+            else if (id === "error_section") {
+                window.history.pushState({}, '', '/error');
+            };
+
+
             check_state();
+        }
+        else {
+            if (id === "explorer_info") {
+                // window.history.pushState({}, '', '/info');
+                window.history.replaceState(null, document.title, "/info");
+            }
+            else if (id === "explorer_stats") {
+                // window.history.pushState({}, '', '/stats');
+                window.history.replaceState(null, document.title, "/stats");
+            }
+            else if (id === "explorer_browser") {
+                let _path = window.location.pathname;
+                if (!_path.startsWith("/explorer/block/") &
+                    !_path.startsWith("/explorer/recent-blocks/") &
+                    !_path.startsWith("/explorer/recent-transactions/") &
+                    !_path.startsWith("/explorer/transaction/") &
+                    !_path.startsWith("/explorer/address/") &
+                    !_path.startsWith("/explorer/mempool/entry/")) {
+
+                    window.history.replaceState(null, document.title, "/explorer");
+                };
+            }
+            else if (id === "market_section") {
+                // window.history.pushState({}, '', '/market');
+                window.history.replaceState(null, document.title, "/market");
+            }
+            else if (id === "main_section") {
+                // window.history.pushState({}, '', '/');
+                window.history.replaceState(null, document.title, "/");
+            }
+            else if (id === "about_section") {
+                // window.history.pushState({}, '', '/about');
+                window.history.replaceState(null, document.title, "/about");
+            }
+            else if (id === "search_section") {
+                // window.history.pushState({}, '', '/search');
+                window.history.replaceState(null, document.title, "/search");
+            }
+            else if (id === "error_section") {
+                // window.history.pushState({}, '', '/error');
+                window.history.replaceState(null, document.title, "/error");
+            };
         };
     };
 
@@ -710,11 +753,11 @@ var nww_main = new (function () {
             k.innerText = e['data'][result]['dkey'];
             t.innerText = e['data'][result]['time'].slice(0, -12);
             console.log(e['data'][result]['dtype'])
-            
+
             if (e['data'][result]['dtype'] === 'reply') {
                 _nst.className = _nst.className.replace('w3-white', 'w3-red');
             }
-            else if(e['data'][result]['dtype'] === 'ns_create') {
+            else if (e['data'][result]['dtype'] === 'ns_create') {
                 _nst.className = _nst.className.replace('w3-white', 'w3-green');
             };
 
