@@ -600,7 +600,7 @@ var nww_main = new (function () {
             _tx_lnk.onclick = function () {
                 nww_main.prototype.section_link('transaction', _tx_lnk.innerText);
             };
-            add_row(_recent_tx, ['', r['block'], _tx_lnk, r['value'], r['direction']]);
+            add_row(_recent_tx, [r['time'].slice(0, -12), r['block'], _tx_lnk, r['value'], r['direction']]);
         };
     };
 
@@ -663,6 +663,7 @@ var nww_main = new (function () {
         let nspro_owner = document.getElementById('nspro_owner');
         let name_set = false;
 
+
         while (_bexp_nsv.firstChild) {
             _bexp_nsv.removeChild(_bexp_nsv.firstChild);
         };
@@ -671,7 +672,7 @@ var nww_main = new (function () {
         _bexp_nsv.appendChild(spacer);
 
         e['data'].reverse();
-        nspro_nsid.innerText = e['nsid'];
+        nspro_nsid.innerText = e['dnsid'];
         nspro_nsid.onclick = function () {
             nww_main.prototype.section_link('shortcode', nspro_nsid.innerText);
         };
@@ -696,6 +697,7 @@ var nww_main = new (function () {
             let o = x.querySelector('#nsv_op');
             let rc = x.querySelector('#nsv_rc');
             let replies = x.querySelector('#nsv_replies');
+            let _nst = x.querySelector('#nst');
             x.id = 'nsv_k' + e['data'][result]['timestamp'];
             k.id = 'nsv_key' + e['data'][result]['timestamp'];
             t.id = 'nsv_time' + e['data'][result]['timestamp'];
@@ -705,18 +707,26 @@ var nww_main = new (function () {
             a.id = 'nsv_addr' + e['data'][result]['timestamp'];
             o.id = 'nsv_op' + e['data'][result]['timestamp'];
             rc.id = 'nsv_rc' + e['data'][result]['timestamp'];
-            k.innerText = e['data'][result]['key'];
+            k.innerText = e['data'][result]['dkey'];
             t.innerText = e['data'][result]['time'].slice(0, -12);
+            console.log(e['data'][result]['dtype'])
+            
+            if (e['data'][result]['dtype'] === 'reply') {
+                _nst.className = _nst.className.replace('w3-white', 'w3-red');
+            }
+            else if(e['data'][result]['dtype'] === 'ns_create') {
+                _nst.className = _nst.className.replace('w3-white', 'w3-green');
+            };
 
-            if (e['data'][result]['key'] === 'html') {
+            if (e['data'][result]['dkey'] === 'html') {
                 v.innerText = '';
                 let ifra = ce('iframe');
-                ifra.srcdoc = e['data'][result]['value'];
+                ifra.srcdoc = e['data'][result]['dvalue'];
                 ifra.style.cssText = 'width: 200%; height: 200vh; -webkit-transform: scale(.5); transform: scale(.5); -webkit-transform-origin: 0 0; transform-origin: 0 0;';
                 v.appendChild(ifra);
             }
             else {
-                v.innerHTML = e['data'][result]['value'];
+                v.innerHTML = e['data'][result]['dvalue'];
             };
 
             let kb = e['data'][result]['key_shortcode'].slice(1, parseInt(e['data'][result]['key_shortcode'][0]) + 1);
@@ -736,14 +746,14 @@ var nww_main = new (function () {
                 replies.className += " w3-show";
             };
             if (!name_set) {
-                if (e['data'][result]['key'].endsWith('_KEVA_NS_')) {
+                if (e['data'][result]['dkey'].endsWith('_KEVA_NS_')) {
                     try {
-                        let nn = JSON.parse(e['data'][result]['value']);
+                        let nn = JSON.parse(e['data'][result]['dvalue']);
                         nspro_name.innerText = nn['displayName'];
                         name_set = true;
                     }
                     catch {
-                        nspro_name.innerText = e['data'][result]['value'];
+                        nspro_name.innerText = e['data'][result]['dvalue'];
                         name_set = true;
                     };
                 };
@@ -767,10 +777,10 @@ var nww_main = new (function () {
                 ra.id = 'nsv_raddr' + e['data'][result]['replies'][rresult]['timestamp'];
                 ro.id = 'nsv_rop' + e['data'][result]['replies'][rresult]['timestamp'];
                 rt.innerText = e['data'][result]['replies'][rresult]['time'].slice(0, -12);
-                let rtype = e['data'][result]['replies'][rresult]['type'];
+                let rtype = e['data'][result]['replies'][rresult]['dtype'];
                 let rtm = '';
 
-                rv.innerText = e['data'][result]['replies'][rresult]['value'] + rtm;
+                rv.innerText = e['data'][result]['replies'][rresult]['dvalue'] + rtm;
                 if (rtype === 'reward') {
                     rtm = ' love';
                     rv.innerText = rv.innerText + rtm;
@@ -872,8 +882,8 @@ var nww_main = new (function () {
             };
 
             a.innerText = e['data'][result]['owner_addr'];
-            krc.innerText = e['data'][result]['bids'].length;
-            _high_bid = 0;
+            krc.innerText = e['data'][result]['bids'][0];
+            _high_bid = e['data'][result]['bids'][1];
             krh.innerText = _high_bid;
             _bexp_nsv.appendChild(x);
         };
