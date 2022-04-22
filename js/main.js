@@ -793,9 +793,9 @@ var nww_main = new (function () {
             };
         };
         for (result in e['data']) {
-            console.log('result', e['data'][result]['dtype'])
+            // console.log('result', e['data'][result]['dtype'])
             let _ns_section = get_ns_section(e['data'][result]['dtype']);
-            console.log('_ns_section', _ns_section)
+            // console.log('_ns_section', _ns_section)
             let x = _ns_section[1].cloneNode(true);
             let k = x.querySelector('#' + _ns_section[0] + '_key');
             let t = x.querySelector('#' + _ns_section[0] + '_time');
@@ -820,7 +820,7 @@ var nww_main = new (function () {
             // rc.id = 'nsv_rc' + e['data'][result]['timestamp'];
             k.innerText = e['data'][result]['dkey'];
             t.innerText = e['data'][result]['time'].slice(0, -12);
-            console.log(e['data'][result]['dtype'])
+            // console.log(e['data'][result]['dtype'])
 
 
             if (e['data'][result]['dkey'] === 'html') {
@@ -903,22 +903,13 @@ var nww_main = new (function () {
                 // rbi.id = 'nsv_rblocki' + e['data'][result]['replies'][rresult]['timestamp'];
                 rtxid.id = 'nsv_rtxid' + e['data'][result]['replies'][rresult]['timestamp'];
                 rt.innerText = e['data'][result]['replies'][rresult]['time'].slice(0, -12);
-                let rtype = e['data'][result]['replies'][rresult]['dtype'];
-                let rtm = '';
 
-                rv.innerText = e['data'][result]['replies'][rresult]['dvalue'] + rtm;
-                if (rtype === 'reward') {
-                    rtm = ' love';
-                    rv.innerText = rv.innerText + rtm;
-                }
-                else if (rtype === 'repost') {
-                    rv.innerText = 'Reposted';
-                };
+                rv.innerText = e['data'][result]['replies'][rresult]['dvalue'];
 
                 let rbit = e['data'][result]['replies'][rresult]['block'];
                 rb.style.cssText = 'cursor: pointer;';
                 rb.onclick = function () {
-                    nww_main.prototype.section_link('block', rb.innerText);
+                    nww_main.prototype.section_link('block', rbit);
                 };
                 // rbi.style.cssText = 'cursor: pointer;';
                 // rbi.onclick = function () {
