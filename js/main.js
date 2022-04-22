@@ -734,8 +734,8 @@ var nww_main = new (function () {
             nww_main.prototype.section_toggle('error_section', false);
             return;
         };
-        let _bexp_nsv = document.getElementById('xbexp_nsv');
-        let _nsv_c = document.getElementById('nsv_c');
+        let _bexp_nsv = document.getElementById('ns_view');
+
         let nspro_name = document.getElementById('nspro_name');
         let nspro_sc = document.getElementById('nspro_sc');
         let nspro_nsid = document.getElementById('nspro_nsid');
@@ -750,8 +750,8 @@ var nww_main = new (function () {
         let spacer = ce('div');
         spacer.style.marginTop = '-16px';
         _bexp_nsv.appendChild(spacer);
-
         e['data'].reverse();
+
         nspro_nsid.innerText = e['dnsid'];
         nspro_nsid.onclick = function () {
             nww_main.prototype.section_link('shortcode', nspro_nsid.innerText);
@@ -766,19 +766,48 @@ var nww_main = new (function () {
             nww_main.prototype.section_link('address', nspro_owner.innerText);
         };
 
+        function get_ns_section(dtype) {
+            if (dtype === 'ns_create') {
+                return ['ns_create_section', document.getElementById('ns_create_section')];
+            }
+            else if (dtype === 'name_update') {
+                return ['ns_rename_section', document.getElementById('ns_rename_section')];
+            }
+            else if (dtype === 'nft_auction') {
+                return ['ns_auction_section', document.getElementById('ns_auction_section')];
+            }
+            else if (dtype === '') {
+                return ['ns_regular_section', document.getElementById('ns_regular_section')];
+            }
+            else if (dtype === 'reply') {
+                return ['ns_reply_section', document.getElementById('ns_reply_section')];
+            }
+            else if (dtype === 'repost') {
+                return ['ns_repost_section', document.getElementById('ns_repost_section')];
+            }
+            else if (dtype === 'nft_bid') {
+                return ['ns_bid_section', document.getElementById('ns_bid_section')];
+            }
+            else if (dtype === 'reward') {
+                return ['ns_reward_section', document.getElementById('ns_reward_section')];
+            };
+        };
         for (result in e['data']) {
-            let x = _nsv_c.cloneNode(true);
-            let k = x.querySelector('#nsv_key');
-            let t = x.querySelector('#nsv_time');
-            let v = x.querySelector('#nsv_value');
-            let b = x.querySelector('#nsv_block');
-            let bi = x.querySelector('#nsv_blocki');
-            let txid = x.querySelector('#nsv_txid');
-            let a = x.querySelector('#nsv_addr');
-            let o = x.querySelector('#nsv_op');
-            let rc = x.querySelector('#nsv_rc');
-            let replies = x.querySelector('#nsv_replies');
-            let _nst = x.querySelector('#nst');
+            console.log('result', e['data'][result]['dtype'])
+            let _ns_section = get_ns_section(e['data'][result]['dtype']);
+            console.log('_ns_section', _ns_section)
+            let x = _ns_section[1].cloneNode(true);
+            let k = x.querySelector('#' + _ns_section[0] + '_key');
+            let t = x.querySelector('#' + _ns_section[0] + '_time');
+            let v = x.querySelector('#' + _ns_section[0] + '_value');
+            let b = x.querySelector('#' + _ns_section[0] + '_block');
+            let bi = x.querySelector('#' + _ns_section[0] + '_blocki');
+            let txid = x.querySelector('#' + _ns_section[0] + '_txid');
+            // let a = x.querySelector('#nsv_addr');
+            // let o = x.querySelector('#nsv_op');
+            // let rc = x.querySelector('#nsv_rc');
+            let replies = x.querySelector('#' + _ns_section[0] + '_replies');
+            // let _nst = x.querySelector('#nst');
             x.id = 'nsv_k' + e['data'][result]['timestamp'];
             k.id = 'nsv_key' + e['data'][result]['timestamp'];
             t.id = 'nsv_time' + e['data'][result]['timestamp'];
@@ -786,19 +815,13 @@ var nww_main = new (function () {
             b.id = 'nsv_block' + e['data'][result]['timestamp'];
             bi.id = 'nsv_blocki' + e['data'][result]['timestamp'];
             txid.id = 'nsv_txid' + e['data'][result]['timestamp'];
-            a.id = 'nsv_addr' + e['data'][result]['timestamp'];
-            o.id = 'nsv_op' + e['data'][result]['timestamp'];
-            rc.id = 'nsv_rc' + e['data'][result]['timestamp'];
+            // a.id = 'nsv_addr' + e['data'][result]['timestamp'];
+            // o.id = 'nsv_op' + e['data'][result]['timestamp'];
+            // rc.id = 'nsv_rc' + e['data'][result]['timestamp'];
             k.innerText = e['data'][result]['dkey'];
             t.innerText = e['data'][result]['time'].slice(0, -12);
             console.log(e['data'][result]['dtype'])
 
-            if (e['data'][result]['dtype'] === 'reply') {
-                _nst.className = _nst.className.replace('w3-white', 'w3-red');
-            }
-            else if (e['data'][result]['dtype'] === 'ns_create') {
-                _nst.className = _nst.className.replace('w3-white', 'w3-green');
-            };
 
             if (e['data'][result]['dkey'] === 'html') {
                 v.innerText = '';
@@ -827,9 +850,9 @@ var nww_main = new (function () {
                 nww_main.prototype.section_link('transaction', ktxid);
             };
 
-            a.innerText = e['data'][result]['addr'];
-            o.innerText = e['data'][result]['op'];
-            rc.innerText = e['data'][result]['replies'].length;
+            // a.innerText = e['data'][result]['addr'];
+            // o.innerText = e['data'][result]['op'];
+            // rc.innerText = e['data'][result]['replies'].length;
             if (e['data'][result]['replies'].length >= 1) {
                 replies.className += " w3-show";
             };
@@ -846,26 +869,39 @@ var nww_main = new (function () {
                     };
                 };
             };
+
+            function get_ns_reply_section(dtype) {
+                if (dtype === 'reply') {
+                    return ['ns_regular_reply', document.getElementById('ns_regular_reply')];
+                }
+                else if (dtype === 'repost') {
+                    return ['ns_repost_reply', document.getElementById('ns_repost_reply')];
+                }
+                else if (dtype === 'nft_bid') {
+                    return ['ns_bid_reply', document.getElementById('ns_bid_reply')];
+                }
+                else if (dtype === 'reward') {
+                    return ['ns_reward_reply', document.getElementById('ns_reward_reply')];
+                };
+            };
             for (rresult in e['data'][result]['replies']) {
-                let _nsv_rp = document.getElementById('nsv_reply');
-                let rx = _nsv_rp.cloneNode(true);
-                let rsc = rx.querySelector('#nsv_rsc');
-                let rt = rx.querySelector('#nsv_rtime');
-                let rv = rx.querySelector('#nsv_rvalue');
-                // let rb = rx.querySelector('#nsv_rblock');
-                let rbi = rx.querySelector('#nsv_rblocki');
-                let rtxid = rx.querySelector('#nsv_rtxid');
-                let ra = rx.querySelector('#nsv_raddr');
-                let ro = rx.querySelector('#nsv_rop');
+                // console.log(e['data'][result]['replies'][rresult]['dtype'])
+                let _ns_reply_section = get_ns_reply_section(e['data'][result]['replies'][rresult]['dtype']);
+                
+                let rx = _ns_reply_section[1].cloneNode(true);
+                let rsc = rx.querySelector('#' + _ns_reply_section[0] + '_shortcode');
+                let rt = rx.querySelector('#' + _ns_reply_section[0] + '_time');
+                let rv = rx.querySelector('#' + _ns_reply_section[0] + '_value');
+                let rb = rx.querySelector('#' + _ns_reply_section[0] + '_block');
+                // let rbi = rx.querySelector('#' + _ns_reply_section[0] + '_blocki');
+                let rtxid = rx.querySelector('#' + _ns_reply_section[0] + '_txid');
 
                 rx.id = 'nsv_rk' + e['data'][result]['replies'][rresult]['timestamp'];
                 rt.id = 'nsv_rtime' + e['data'][result]['replies'][rresult]['timestamp'];
                 rv.id = 'nsv_rvalue' + e['data'][result]['replies'][rresult]['timestamp'];
                 // rb.id = 'nsv_rblock' + e['data'][result]['replies'][rresult]['timestamp'];
-                rbi.id = 'nsv_rblocki' + e['data'][result]['replies'][rresult]['timestamp'];
+                // rbi.id = 'nsv_rblocki' + e['data'][result]['replies'][rresult]['timestamp'];
                 rtxid.id = 'nsv_rtxid' + e['data'][result]['replies'][rresult]['timestamp'];
-                ra.id = 'nsv_raddr' + e['data'][result]['replies'][rresult]['timestamp'];
-                ro.id = 'nsv_rop' + e['data'][result]['replies'][rresult]['timestamp'];
                 rt.innerText = e['data'][result]['replies'][rresult]['time'].slice(0, -12);
                 let rtype = e['data'][result]['replies'][rresult]['dtype'];
                 let rtm = '';
@@ -880,14 +916,14 @@ var nww_main = new (function () {
                 };
 
                 let rbit = e['data'][result]['replies'][rresult]['block'];
-                // rb.style.cssText = 'cursor: pointer; text-decoration: underline;';
-                // rb.onclick = function () {
-                //     nww_main.prototype.section_link('block', rb.innerText);
-                // };
-                rbi.style.cssText = 'cursor: pointer;';
-                rbi.onclick = function () {
-                    nww_main.prototype.section_link('block', rbit);
+                rb.style.cssText = 'cursor: pointer;';
+                rb.onclick = function () {
+                    nww_main.prototype.section_link('block', rb.innerText);
                 };
+                // rbi.style.cssText = 'cursor: pointer;';
+                // rbi.onclick = function () {
+                //     nww_main.prototype.section_link('block', rbit);
+                // };
                 let rtsc = e['data'][result]['replies'][rresult]['root_shortcode'];
                 rsc.innerText = rtsc;
                 rsc.style.cssText = 'cursor: pointer; text-decoration: underline;';
@@ -899,8 +935,6 @@ var nww_main = new (function () {
                 rtxid.onclick = function () {
                     nww_main.prototype.section_link('transaction', rrtxid);
                 };
-                ra.innerText = e['data'][result]['replies'][rresult]['addr'];
-                ro.innerText = e['data'][result]['replies'][rresult]['op'];
 
                 replies.appendChild(rx);
             };
