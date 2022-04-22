@@ -65,8 +65,10 @@
                 </div>
             </div> -->
             <div class="w3-bar-item w3-hide-small w3-right">
-                <span contenteditable="true" class="w3-border w3-padding">Status: Feeling Great</span>
-                <button type="button" class="w3-button w3-theme" onclick="nww_main.search();"><i class="fa fa-search"></i> Search</button>
+                <input id="search2" class="w3-border w3-padding" type="text"
+                    placeholder="Explore KevaOne or lookup a namespace">
+                <button type="button" class="w3-button w3-theme" onclick="nww_main.search(2);"><i
+                        class="fa fa-search"></i> Search</button>
             </div>
         </div>
     </div>
@@ -122,11 +124,12 @@
                     <div class="w3-container w3-margin-top w3-margin-bottom">
                         <div class="w3-center">
 
-                            
-                                Search&nbsp;<input name="namespaceid" id="namespaceid" type="text"
-                                    placeholder="Example: 32101" pattern="[0-9]{4,}" title="Please enter valid number.">
-                                <button type="button" class="w3-button w3-theme" onclick="nww_main.search();">Search</button>
-                            
+
+                            Search&nbsp;<input id="search1" class="w3-border w3-padding" type="text"
+                                placeholder="Explore KevaOne or lookup a namespace">
+                            <button type="button" class="w3-button w3-theme"
+                                onclick="nww_main.search(1);">Search</button>
+
                         </div>
                     </div>
                     <!-- <div class="w3-container w3-margin-top">
@@ -153,9 +156,10 @@
                     </div>
                     <div class="w3-container w3-margin-top w3-margin-bottom w3-center">
                         <div>
-                            <input name="search" id="search" type="text"
+                            <input id="search0" class="w3-border w3-padding" type="text"
                                 placeholder="Explore KevaOne or lookup a namespace">
-                            <button type="button" class="w3-button w3-theme" onclick="nww_main.search();">Search</button>
+                            <button type="button" class="w3-button w3-theme"
+                                onclick="nww_main.search(0);">Search</button>
                         </div>
                     </div>
                 </div>
@@ -325,8 +329,7 @@
                     <div>
                         <!-- <div style="margin-top: -16px;"></div> -->
                         <!-- <div id="explorer_address" class="w3-container w3-card w3-white w3-round w3-margin"> -->
-                        <div
-                            class="w3-container w3-card w3-white w3-round w3-margin-left w3-margin-bottom">
+                        <div class="w3-container w3-card w3-white w3-round w3-margin-left w3-margin-bottom">
                             <!-- <img src="images/keva_one_logo.png" alt="Avatar" class="w3-left w3-circle w3-margin-right w3-margin-bottom"
                             style="width:36px">
                         <span class="w3-right w3-opacity">32 min</span>
@@ -340,18 +343,18 @@
                                 </div>
                             </div>
                             <div class="w3-content k1-overflow-scroll w3-margin-bottom" style="max-height: 60vh;">
-                            <table id="uibexp_art" class="w3-table">
-                                <thead style="position: sticky; top:0px;">
-                                    <tr class="w3-light-grey">
-                                        <th>Time</th>
-                                        <th>Height</th>
-                                        <th>TX Hash</th>
-                                        <th>Value</th>
-                                        <th>Direction</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
+                                <table id="uibexp_art" class="w3-table">
+                                    <thead style="position: sticky; top:0px;">
+                                        <tr class="w3-light-grey">
+                                            <th>Time</th>
+                                            <th>Height</th>
+                                            <th>TX Hash</th>
+                                            <th>Value</th>
+                                            <th>Direction</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -401,12 +404,11 @@
                             <div class="w3-right">
                                 <div>
                                     <div class="w3-right">
-                                        <div class="w3-right"><span id="nsv_txid"><i
-                                                    class="fa fa-file-text w3-text-theme"></i></span>
-                                        </div>
                                         <div><i class="far fa-clock w3-text-theme"></i>&nbsp;<span
                                                 id="nsv_time">0</span>&nbsp;</div>
-                                        <div class="w3-right"><i class="fas fa-cube w3-text-theme"></i>&nbsp;<span
+                                        <div class="w3-right"><i id="nsv_txid"
+                                                class="fa fa-file-invoice-dollar w3-text-theme"></i>&nbsp;&nbsp;<i
+                                                id="nsv_blocki" class="fas fa-cube w3-text-theme"></i>&nbsp;<span
                                                 id="nsv_block">0</span>&nbsp;</div>
                                     </div>
                                 </div>
@@ -434,20 +436,29 @@
                 </div>
                 <div id="nsv_reply">
                     <div class="w3-container w3-card w3-white w3-round w3-margin-top">
-                        <div class="w3-margin-top">
-
-                            <img src="/images/keva_one_logo.png" alt="Avatar"
-                                class="w3-left w3-circle w3-margin-right w3-margin-bottom" style="width:30px">
+                        <div style="margin-top: 6px; margin-bottom: 6px; margin-left: -6px; margin-right: -6px;">
+                            <!-- <img src="/images/keva_one_logo.png" alt="Avatar"
+                                class="w3-left w3-circle w3-margin-right w3-margin-bottom" style="width:15px"> -->
                             <div>
                                 <div>
                                     <i class="fa fa-at"></i><span id="nsv_rsc">Shortcode</span></i>
-                                    <div class="w3-right"><span id="nsv_rtxid"><i class="fa fa-file-text"></i></span>
+                                    <div class="w3-right">
+                                        <div><i class="far fa-clock w3-text-theme"></i>&nbsp;<span
+                                                id="nsv_rtime">0</span>&nbsp;&nbsp;
+                                            <i id="nsv_rtxid"
+                                                class="fa fa-file-invoice-dollar w3-text-theme"></i>&nbsp;&nbsp;<i
+                                                id="nsv_rblocki" class="fas fa-cube w3-text-theme"></i>
+                                            <!-- &nbsp;<span
+                                                id="nsv_rblock">0</span>&nbsp; -->
+                                        </div>
+                                    </div>
+                                    <!-- <div class="w3-right"><span id="nsv_rtxid"><i class="fa fa-file-text"></i></span>
                                     </div>
 
                                     <div class="w3-right"><i class="fa fa-clock-o"></i>&nbsp;<span
                                             id="nsv_rtime">0</span>&nbsp;</div>
                                     <div class="w3-right"><i class="fa fa-cube"></i>&nbsp;<span
-                                            id="nsv_rblock">0</span>&nbsp;</div>
+                                            id="nsv_rblock">0</span>&nbsp;</div> -->
 
                                 </div>
                             </div>
@@ -461,7 +472,7 @@
                                 <div>addr: <span id="nsv_raddr">0</span></div>
                             </div>
                         </div>
-                        <div class="w3-container w3-margin-bottom">
+                        <div class="w3-container" style="margin-bottom: 6px;">
                             <div>
                                 <div><span id="nsv_rvalue">0</span></div>
                             </div>
@@ -590,8 +601,9 @@
                                     class="fa fa-fill-drip"></i>
                                 Mempool</button>
                             <div class="w3-right">
-                                <input id="uibssrc" class="w3-border w3-padding" />
-                                <button type="button" class="w3-button w3-theme" onclick="nww_main.search();"><i
+                                <input id="search3" class="w3-border w3-padding" type="text"
+                                    placeholder="Explore KevaOne or lookup a namespace">
+                                <button type="button" class="w3-button w3-theme" onclick="nww_main.search(3);"><i
                                         class="fa fa-search"></i>
                                     Search</button>
                             </div>
@@ -617,6 +629,7 @@
                                         <th>Height</th>
                                         <th>Block Hash</th>
                                         <th>TX</th>
+                                        <th>Value</th>
                                     </tr>
                                 </thead>
                                 <tr></tr>
@@ -644,8 +657,8 @@
                                         <th>TX Hash</th>
                                         <th>In</th>
                                         <th>Out</th>
-                                        <!-- <th>Value</th>
-                                        <th>Fee</th> -->
+                                        <th>Value</th>
+                                        <!-- <th>Fee</th> -->
                                     </tr>
                                 </thead>
                             </table>
@@ -706,7 +719,9 @@
                             </div>
                         </div>
                         <div class="w3-container">
-                            <div>previous hash: <span id="uibexp_bphash" style="word-wrap: break-word;">0</span></div>
+                            <div>previous hash: <span id="uibexp_bphash"
+                                    style="cursor: pointer; text-decoration: underline; word-wrap: break-word;">0</span>
+                            </div>
                             <div>merkle: <span id="uibexp_bmerkle" style="word-wrap: break-word;">0</span></div>
                         </div>
 
@@ -722,17 +737,17 @@
                                 <div>Transactions - <span id="uibexp_betxc">0</span></div>
                             </div>
                             <div class="w3-content w3-margin-bottom k1-overflow-scroll" style="max-height: 60vh;">
-                            <table id="uibexp_bt" class="w3-table">
-                                <thead style="position: sticky; top:0px;">
-                                    <tr class="w3-light-grey">
-                                        <th>TX Id</th>
-                                        <th>In</th>
-                                        <th>Out</th>
-                                        <th>Value</th>
-                                        <!-- <th>Fee</th> -->
-                                    </tr>
-                                </thead>
-                            </table>
+                                <table id="uibexp_bt" class="w3-table">
+                                    <thead style="position: sticky; top:0px;">
+                                        <tr class="w3-light-grey">
+                                            <th>TX Id</th>
+                                            <th>In</th>
+                                            <th>Out</th>
+                                            <th>Value</th>
+                                            <!-- <th>Fee</th> -->
+                                        </tr>
+                                    </thead>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -787,16 +802,16 @@
                                     <div>Inputs - <span id="uibexp_txinputs">0</span></div>
                                 </div>
                                 <div class="w3-content w3-margin-bottom k1-overflow-scroll" style="max-height: 60vh;">
-                                <table id="uibexp_tin" class="w3-table">
-                                    <thead style="position: sticky; top:0px;">
-                                        <tr class="w3-light-grey">
-                                            <th>TxId</th>
-                                            <th>vout</th>
-                                            <th>ScriptSig</th>
-                                            <th>Sequence</th>
-                                        </tr>
-                                    </thead>
-                                </table>
+                                    <table id="uibexp_tin" class="w3-table">
+                                        <thead style="position: sticky; top:0px;">
+                                            <tr class="w3-light-grey">
+                                                <th>TxId</th>
+                                                <th>vout</th>
+                                                <th>ScriptSig</th>
+                                                <th>Sequence</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
                                 </div>
                             </div>
 
@@ -812,14 +827,14 @@
                                     <div>Outputs - <span id="uibexp_txoutputs">0</span></div>
                                 </div>
                                 <div class="w3-content w3-margin-bottom k1-overflow-scroll" style="max-height: 60vh;">
-                                <table id="uibexp_tout" class="w3-table">
-                                    <thead style="position: sticky; top:0px;">
-                                        <tr class="w3-light-grey">
-                                            <th>Value</th>
-                                            <th>ScriptPubKey</th>
-                                        </tr>
-                                    </thead>
-                                </table>
+                                    <table id="uibexp_tout" class="w3-table">
+                                        <thead style="position: sticky; top:0px;">
+                                            <tr class="w3-light-grey">
+                                                <th>Value</th>
+                                                <th>ScriptPubKey</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
                                 </div>
                             </div>
 
@@ -835,13 +850,13 @@
                                     <div>Witnesses - <span id="uibexp_txwit">0</span></div>
                                 </div>
                                 <div class="w3-content w3-margin-bottom k1-overflow-scroll" style="max-height: 60vh;">
-                                <table id="uibexp_twit" class="w3-table">
-                                    <thead style="position: sticky; top:0px;">
-                                        <tr class="w3-light-grey">
-                                            <th>Value</th>
-                                        </tr>
-                                    </thead>
-                                </table>
+                                    <table id="uibexp_twit" class="w3-table">
+                                        <thead style="position: sticky; top:0px;">
+                                            <tr class="w3-light-grey">
+                                                <th>Value</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -897,17 +912,17 @@
                                 </div>
                             </div>
                             <div class="w3-content k1-overflow-scroll" style="max-height: 60vh;">
-                            <table id="uibexp_mat" class="w3-table">
-                                <thead style="position: sticky; top:0px;">
-                                    <tr class="w3-light-grey">
-                                        <th>Time</th>
-                                        <th>Height</th>
-                                        <th>TX Hash</th>
-                                        <th>Value</th>
-                                        <th>Direction</th>
-                                    </tr>
-                                </thead>
-                            </table>
+                                <table id="uibexp_mat" class="w3-table">
+                                    <thead style="position: sticky; top:0px;">
+                                        <tr class="w3-light-grey">
+                                            <th>Time</th>
+                                            <th>Height</th>
+                                            <th>TX Hash</th>
+                                            <th>Value</th>
+                                            <th>Direction</th>
+                                        </tr>
+                                    </thead>
+                                </table>
                             </div>
                         </div>
                         <div class="w3-container w3-card w3-white w3-round w3-margin-bottom">
@@ -920,17 +935,17 @@
                                 </div>
                             </div>
                             <div class="w3-content k1-overflow-scroll" style="max-height: 60vh;">
-                            <table id="uibexp_mdt" class="w3-table">
-                                <thead style="position: sticky; top:0px;">
-                                    <tr class="w3-light-grey">
-                                        <th>Time</th>
-                                        <th>Height</th>
-                                        <th>TX Hash</th>
-                                        <th>Value</th>
-                                        <th>Direction</th>
-                                    </tr>
-                                </thead>
-                            </table>
+                                <table id="uibexp_mdt" class="w3-table">
+                                    <thead style="position: sticky; top:0px;">
+                                        <tr class="w3-light-grey">
+                                            <th>Time</th>
+                                            <th>Height</th>
+                                            <th>TX Hash</th>
+                                            <th>Value</th>
+                                            <th>Direction</th>
+                                        </tr>
+                                    </thead>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -966,19 +981,20 @@
                                 <div>
                                     <div class="w3-right">
                                         <div>
-                                            <div class="w3-right"><span id="mnsv_txid"><i
-                                                        class="fa fa-file-text"></i></span>
-                                            </div>
                                             <div class="w3-right">
                                                 <div><i class="far fa-clock w3-text-theme"></i>&nbsp;<span
                                                         id="mnsv_time">0</span>&nbsp;</div>
-                                                <div class="w3-right"><i
+                                                <div class="w3-right"><i id="mnsv_blocki"
                                                         class="fas fa-cube w3-text-theme"></i>&nbsp;<span
                                                         id="mnsv_block">0</span>&nbsp;</div>
+                                                <div class="w3-right"><i id="mnsv_txid"
+                                                        class="fas fa-file-invoice-dollar w3-text-theme"></i>&nbsp;<span></span>&nbsp;
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <i class="fa fa-at w3-text-theme"></i>&nbsp;<span id="mnsv_key">News</span>
+                                    <i class="fa fa-at fa-2x w3-text-theme"></i>&nbsp;<span id="mnsv_key"
+                                        class="w3-xlarge">News</span>
                                 </div>
                                 <!-- <div>shortcode: <span id="mnsv_aucsc">0</span></div> -->
                                 <div><i class="fa fa-dollar-sign w3-text-theme"></i>&nbsp;asking price: <span

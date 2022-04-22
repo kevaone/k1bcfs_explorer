@@ -19,44 +19,44 @@ var nww_main = new (function () {
         Q.onmessage = function (e) {
             console.log('Message received from worker', e['data']);
             if (e['data'][0]['call'] === 'get_supply') {
-                nww_main.prototype.ui_update_supply(e['data'][1]);
+                return nww_main.prototype.ui_update_supply(e['data'][1]);
             }
             else if (e['data'][0]['call'] === 'get_block') {
-                nww_main.prototype.ui_update_block(e['data'][1]);
+                return nww_main.prototype.ui_update_block(e['data'][1]);
             }
             else if (e['data'][0]['call'] === 'get_recent_blocks') {
-                nww_main.prototype.ui_update_recent_blocks(e['data'][1]);
+                return nww_main.prototype.ui_update_recent_blocks(e['data'][1]);
             }
             else if (e['data'][0]['call'] === 'get_recent_transactions') {
-                nww_main.prototype.ui_update_recent_transactions(e['data'][1]);
+                return nww_main.prototype.ui_update_recent_transactions(e['data'][1]);
             }
             else if (e['data'][0]['call'] === 'rpc_get_raw_mempool') {
-                nww_main.prototype.ui_update_mempool(e['data'][1]);
+                return nww_main.prototype.ui_update_mempool(e['data'][1]);
             }
             else if (e['data'][0]['call'] === 'get_transaction') {
-                nww_main.prototype.ui_update_transaction(e['data'][1]);
+                return nww_main.prototype.ui_update_transaction(e['data'][1]);
             }
             else if (e['data'][0]['call'] === 'get_address') {
-                nww_main.prototype.ui_update_address(e['data'][1]);
+                return nww_main.prototype.ui_update_address(e['data'][1]);
             }
             else if (e['data'][0]['call'] === 'get_search') {
-                nww_main.prototype.ui_update_search(e['data'][1]);
+                return nww_main.prototype.ui_update_search(e['data'][1]);
             }
             else if (e['data'][0]['call'] === 'rpc_get_mempool_entry') {
-                nww_main.prototype.ui_update_mempool_entry(e['data'][1]);
+                return nww_main.prototype.ui_update_mempool_entry(e['data'][1]);
             }
             else if (e['data'][0]['call'] === 'get_shortcode') {
-                nww_main.prototype.ui_update_namespace_view(e['data'][1]);
+                return nww_main.prototype.ui_update_namespace_view(e['data'][1]);
             }
             else if (e['data'][0]['call'] === 'get_namespace') {
-                nww_main.prototype.ui_update_namespace_view(e['data'][1]);
+                return nww_main.prototype.ui_update_namespace_view(e['data'][1]);
             }
             else if (e['data'][0]['call'] === 'get_nft_auctions') {
-                nww_main.prototype.ui_update_market_view(e['data'][1]);
+                return nww_main.prototype.ui_update_market_view(e['data'][1]);
             }
             // else if (e['data'][0]['call'] === 'get_info') {
             else if (e['data'][0]['call'] === 'README.md') {
-                nww_main.prototype.ui_update_info(e['data'][1]);
+                return nww_main.prototype.ui_update_info(e['data'][1]);
             };
         };
         nww_main.prototype.get_supply();
@@ -456,15 +456,17 @@ var nww_main = new (function () {
         for (result in e[1]['page_results']) {
             let _bh_lnk = ce('span');
             _bh_lnk.innerText = e[1]['page_results'][result][0];
+            _bh_lnk.style.cssText = 'cursor: pointer; text-decoration: underline;';
             _bh_lnk.onclick = function () {
                 nww_main.prototype.section_link('block', _bh_lnk.innerText);
             };
             let _b_lnk = ce('span');
             _b_lnk.innerText = e[1]['page_results'][result][1];
+            _b_lnk.style.cssText = 'cursor: pointer; text-decoration: underline;';
             _b_lnk.onclick = function () {
                 nww_main.prototype.section_link('block', _b_lnk.innerText);
             };
-            let _r = [e[1]['page_results'][result][2].slice(0, -12), _bh_lnk, _b_lnk, e[1]['page_results'][result][3]];
+            let _r = [e[1]['page_results'][result][2].slice(0, -12), _bh_lnk, _b_lnk, e[1]['page_results'][result][3], e[1]['page_results'][result][4]];
             add_row(_uibexp_rb, _r);
         };
     };
@@ -477,15 +479,17 @@ var nww_main = new (function () {
             let _tx_lnk = ce('span');
             let tx = e[1]['page_results'][result];
             _tx_lnk.innerText = tx[1];
+            _tx_lnk.style.cssText = 'cursor: pointer; text-decoration: underline;';
             _tx_lnk.onclick = function () {
                 nww_main.prototype.section_link('transaction', _tx_lnk.innerText);
             };
             let _b_lnk = ce('span');
             _b_lnk.innerText = tx[0];
+            _b_lnk.style.cssText = 'cursor: pointer; text-decoration: underline;';
             _b_lnk.onclick = function () {
                 nww_main.prototype.section_link('block', _b_lnk.innerText);
             };
-            let _r = [tx[2].slice(0, -12), _b_lnk, _tx_lnk, tx[3], tx[4], '', ''];
+            let _r = [tx[2].slice(0, -12), _b_lnk, _tx_lnk, tx[3], tx[4], tx[5]];
             add_row(_uibexp_rt, _r);
         };
     };
@@ -497,6 +501,7 @@ var nww_main = new (function () {
             for (result in e) {
                 let _tx_lnk = ce('span');
                 _tx_lnk.innerText = e[result];
+                _tx_lnk.style.cssText = 'cursor: pointer; text-decoration: underline;';
                 _tx_lnk.onclick = function () {
                     nww_main.prototype.section_link('mempool', _tx_lnk.innerText);
                 };
@@ -512,6 +517,7 @@ var nww_main = new (function () {
         else {
             let _tx_lnk = ce('span');
             _tx_lnk.innerText = e;
+            _tx_lnk.style.cssText = 'cursor: pointer; text-decoration: underline;';
             _tx_lnk.onclick = function () {
                 nww_main.prototype.section_link('mempool', _tx_lnk.innerText);
             };
@@ -592,6 +598,7 @@ var nww_main = new (function () {
             };
             let _tx_lnk = ce('span');
             _tx_lnk.innerText = r['txid'];
+            
             _tx_lnk.onclick = function () {
                 nww_main.prototype.section_link('transaction', r['txid']);
             };
@@ -765,6 +772,7 @@ var nww_main = new (function () {
             let t = x.querySelector('#nsv_time');
             let v = x.querySelector('#nsv_value');
             let b = x.querySelector('#nsv_block');
+            let bi = x.querySelector('#nsv_blocki');
             let txid = x.querySelector('#nsv_txid');
             let a = x.querySelector('#nsv_addr');
             let o = x.querySelector('#nsv_op');
@@ -776,6 +784,7 @@ var nww_main = new (function () {
             t.id = 'nsv_time' + e['data'][result]['timestamp'];
             v.id = 'nsv_value' + e['data'][result]['timestamp'];
             b.id = 'nsv_block' + e['data'][result]['timestamp'];
+            bi.id = 'nsv_blocki' + e['data'][result]['timestamp'];
             txid.id = 'nsv_txid' + e['data'][result]['timestamp'];
             a.id = 'nsv_addr' + e['data'][result]['timestamp'];
             o.id = 'nsv_op' + e['data'][result]['timestamp'];
@@ -802,12 +811,18 @@ var nww_main = new (function () {
                 v.innerHTML = e['data'][result]['dvalue'];
             };
 
-            let kb = e['data'][result]['key_shortcode'].slice(1, parseInt(e['data'][result]['key_shortcode'][0]) + 1);
+            let kb = e['data'][result]['block'];
+            b.style.cssText = 'cursor: pointer; text-decoration: underline;';
             b.onclick = function () {
                 nww_main.prototype.section_link('block', kb);
             };
             b.innerText = kb;
+            bi.style.cssText = 'cursor: pointer;';
+            bi.onclick = function () {
+                nww_main.prototype.section_link('block', kb);
+            };
             let ktxid = e['data'][result]['txid'];
+            txid.style.cssText = 'cursor: pointer;';
             txid.onclick = function () {
                 nww_main.prototype.section_link('transaction', ktxid);
             };
@@ -837,7 +852,8 @@ var nww_main = new (function () {
                 let rsc = rx.querySelector('#nsv_rsc');
                 let rt = rx.querySelector('#nsv_rtime');
                 let rv = rx.querySelector('#nsv_rvalue');
-                let rb = rx.querySelector('#nsv_rblock');
+                // let rb = rx.querySelector('#nsv_rblock');
+                let rbi = rx.querySelector('#nsv_rblocki');
                 let rtxid = rx.querySelector('#nsv_rtxid');
                 let ra = rx.querySelector('#nsv_raddr');
                 let ro = rx.querySelector('#nsv_rop');
@@ -845,7 +861,8 @@ var nww_main = new (function () {
                 rx.id = 'nsv_rk' + e['data'][result]['replies'][rresult]['timestamp'];
                 rt.id = 'nsv_rtime' + e['data'][result]['replies'][rresult]['timestamp'];
                 rv.id = 'nsv_rvalue' + e['data'][result]['replies'][rresult]['timestamp'];
-                rb.id = 'nsv_rblock' + e['data'][result]['replies'][rresult]['timestamp'];
+                // rb.id = 'nsv_rblock' + e['data'][result]['replies'][rresult]['timestamp'];
+                rbi.id = 'nsv_rblocki' + e['data'][result]['replies'][rresult]['timestamp'];
                 rtxid.id = 'nsv_rtxid' + e['data'][result]['replies'][rresult]['timestamp'];
                 ra.id = 'nsv_raddr' + e['data'][result]['replies'][rresult]['timestamp'];
                 ro.id = 'nsv_rop' + e['data'][result]['replies'][rresult]['timestamp'];
@@ -862,13 +879,23 @@ var nww_main = new (function () {
                     rv.innerText = 'Reposted';
                 };
 
-                rb.innerText = e['data'][result]['replies'][rresult]['key_shortcode'];
+                let rbit = e['data'][result]['replies'][rresult]['block'];
+                // rb.style.cssText = 'cursor: pointer; text-decoration: underline;';
+                // rb.onclick = function () {
+                //     nww_main.prototype.section_link('block', rb.innerText);
+                // };
+                rbi.style.cssText = 'cursor: pointer;';
+                rbi.onclick = function () {
+                    nww_main.prototype.section_link('block', rbit);
+                };
                 let rtsc = e['data'][result]['replies'][rresult]['root_shortcode'];
                 rsc.innerText = rtsc;
+                rsc.style.cssText = 'cursor: pointer; text-decoration: underline;';
                 rsc.onclick = function () {
                     nww_main.prototype.section_link('shortcode', rsc.innerText);
                 };
                 let rrtxid = e['data'][result]['replies'][rresult]['txid'];
+                rtxid.style.cssText = 'cursor: pointer;';
                 rtxid.onclick = function () {
                     nww_main.prototype.section_link('transaction', rrtxid);
                 };
@@ -911,6 +938,7 @@ var nww_main = new (function () {
             let t = x.querySelector('#mnsv_time');
             let v = x.querySelector('#mnsv_value');
             let b = x.querySelector('#mnsv_block');
+            let bi = x.querySelector('#mnsv_blocki');
             let txid = x.querySelector('#mnsv_txid');
             let a = x.querySelector('#mnsv_addr');
             let o = x.querySelector('#mnsv_op');
@@ -940,16 +968,21 @@ var nww_main = new (function () {
             t.innerText = e['data'][result]['time'].slice(0, -12);
             v.innerText = e['data'][result]['desc'];
             let rsc = e['data'][result]['root_shortcode'];
-            k.innerText = '@' + rsc + ' - ' + e['data'][result]['displayName'];
-
+            k.innerText = rsc + ' - ' + e['data'][result]['displayName'];
+            k.style.cssText = 'cursor: pointer; text-decoration: underline;';
             k.onclick = function () {
                 nww_main.prototype.section_link('shortcode', rsc);
             };
-            let kb = e['data'][result]['key_shortcode'].slice(1, parseInt(e['data'][result]['key_shortcode'][0]) + 1);
+            // let kb = e['data'][result]['key_shortcode'].slice(1, parseInt(e['data'][result]['key_shortcode'][0]) + 1);
+            let kb = e['data'][result]['block'];
+            b.style.cssText = 'cursor: pointer; text-decoration: underline;';
             b.onclick = function () {
                 nww_main.prototype.section_link('block', kb);
             };
             b.innerText = kb;
+            bi.onclick = function () {
+                nww_main.prototype.section_link('block', kb);
+            };
             let ktxid = e['data'][result]['txid'];
             txid.onclick = function () {
                 nww_main.prototype.section_link('transaction', ktxid);
