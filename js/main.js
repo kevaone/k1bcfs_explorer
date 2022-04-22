@@ -39,6 +39,9 @@ var nww_main = new (function () {
             else if (e['data'][0]['call'] === 'get_address') {
                 nww_main.prototype.ui_update_address(e['data'][1]);
             }
+            else if (e['data'][0]['call'] === 'get_search') {
+                nww_main.prototype.ui_update_search(e['data'][1]);
+            }
             else if (e['data'][0]['call'] === 'rpc_get_mempool_entry') {
                 nww_main.prototype.ui_update_mempool_entry(e['data'][1]);
             }
@@ -436,6 +439,16 @@ var nww_main = new (function () {
         Q.postMessage(_pl);
     };
 
+    nww_main.prototype.get_search = function (e) {
+        let _pl = {};
+        _pl['endPoint'] = ep;
+        _pl['call'] = 'get_search';
+        _pl['call_data'] = e;
+
+        _pl['type'] = 'GET';
+        Q.postMessage(_pl);
+    };
+
     nww_main.prototype.ui_update_recent_blocks = function (e) {
         let _uibexp_rb = document.getElementById('uibexp_rb');
         clear_table(_uibexp_rb);
@@ -521,6 +534,23 @@ var nww_main = new (function () {
         _uibs_genreward.innerText = e['genisis_reward'];
         _uibs_diff.innerText = rounder(e['difficulty'], '3');
         _uibs_nethash.innerText = rounder(e['networkhashps'], '3');
+    };
+
+    nww_main.prototype.ui_update_search = function (e) {
+        console.log('e', e);
+        // let _height = document.getElementById('uibs_height');
+        // let _supply = document.getElementById('uibs_supply');
+        // let _fees = document.getElementById('uibs_fees');
+        // let _uibs_genreward = document.getElementById('uibs_genreward');
+        // let _uibs_diff = document.getElementById('uibs_diff');
+        // let _uibs_nethash = document.getElementById('uibs_nethash');
+
+        // _height.innerText = e['block_height'];
+        // _supply.innerText = e['coin_supply'];
+        // _fees.innerText = e['fees_payed'];
+        // _uibs_genreward.innerText = e['genisis_reward'];
+        // _uibs_diff.innerText = rounder(e['difficulty'], '3');
+        // _uibs_nethash.innerText = rounder(e['networkhashps'], '3');
     };
 
     nww_main.prototype.ui_update_block = function (e) {
@@ -862,6 +892,7 @@ var nww_main = new (function () {
         let name_set = false;
 
         while (_bexp_nsv.firstChild) {
+            // TODO null out all children before removal, memory leaking here
             _bexp_nsv.removeChild(_bexp_nsv.firstChild);
         };
         let spacer = ce('div');
@@ -972,38 +1003,49 @@ var nww_main = new (function () {
     };
 
     nww_main.prototype.search = function () {
-        let _search = document.getElementById('uibssrc');
-        let sc = false;
-        let _sv = Number(_search.value);
-        if (_sv >= 0 & _search.value.length <= 16) {
-            let _height = document.getElementById('uibs_height');
-            if (_sv <= parseInt(_height.innerText) & _sv >= 0) {
-                console.log(typeof _sv, _sv, '_sv might be block');
-            };
-            if (_search.value.length > parseInt(_search.value[0]) + 1) {
-                if (parseInt(_height.innerText) > _search.value.slice(1, parseInt(_search.value[0]) + 1)) {
-                    console.log(typeof _sv, _sv, '_sv might be shortcode');
-                    // sc = true;
-                };
-            };
-            if (!sc) {
-                nww_main.prototype.get_block(_sv);
-                window.history.replaceState(null, document.title, "/explorer/block/" + _sv);
-                nww_main.prototype.exp_section_toggle("explorer_block", false);
-            };
-        }
-        else if (_search.value.length === 64) {
-            console.log(typeof _sv, _sv, '_sv might be blockhash / txhash');
-        }
-        else if (_search.value.length === 34) {
-            console.log(typeof _sv, _sv, '_sv might be address / namespace');
-            if (!sc) {
-                nww_main.prototype.get_address(_search.value);
-                window.history.replaceState(null, document.title, "/explorer/address/" + _search.value);
-                nww_main.prototype.exp_section_toggle("explorer_address", false);
-            };
-        };
-        console.log(typeof _sv, _sv, _search.value.length, _search.value.slice(1, parseInt(_search.value[0]) + 1));
+        //block
+        nww_main.prototype.get_search('abcba0ef22626a399bffb087379815f650ac7551eb4cd1992d065760f0f43867');
+        //tx
+        nww_main.prototype.get_search('0ded5d9c76555f51049935a2b54d31e6e6479159f0c893ba7bcb8ecdb5758fce');
+
+        nww_main.prototype.get_search('*raven*');
+
+        nww_main.prototype.get_search('VNFYuykm2FGcU6ga5ti8Sg7P9okZQaJZW5');
+        nww_main.prototype.get_search('Nfw2WYkGoSKve74cCfEum67x8bFgpHygxg');
+        
+        nww_main.prototype.section_toggle("search_section", false);
+        // let _search = document.getElementById('uibssrc');
+        // let sc = false;
+        // let _sv = Number(_search.value);
+        // if (_sv >= 0 & _search.value.length <= 16) {
+        //     let _height = document.getElementById('uibs_height');
+        //     if (_sv <= parseInt(_height.innerText) & _sv >= 0) {
+        //         console.log(typeof _sv, _sv, '_sv might be block');
+        //     };
+        //     if (_search.value.length > parseInt(_search.value[0]) + 1) {
+        //         if (parseInt(_height.innerText) > _search.value.slice(1, parseInt(_search.value[0]) + 1)) {
+        //             console.log(typeof _sv, _sv, '_sv might be shortcode');
+        //             // sc = true;
+        //         };
+        //     };
+        //     if (!sc) {
+        //         nww_main.prototype.get_block(_sv);
+        //         window.history.replaceState(null, document.title, "/explorer/block/" + _sv);
+        //         nww_main.prototype.exp_section_toggle("explorer_block", false);
+        //     };
+        // }
+        // else if (_search.value.length === 64) {
+        //     console.log(typeof _sv, _sv, '_sv might be blockhash / txhash');
+        // }
+        // else if (_search.value.length === 34) {
+        //     console.log(typeof _sv, _sv, '_sv might be address / namespace');
+        //     if (!sc) {
+        //         nww_main.prototype.get_address(_search.value);
+        //         window.history.replaceState(null, document.title, "/explorer/address/" + _search.value);
+        //         nww_main.prototype.exp_section_toggle("explorer_address", false);
+        //     };
+        // };
+        // console.log(typeof _sv, _sv, _search.value.length, _search.value.slice(1, parseInt(_search.value[0]) + 1));
     };
 
     ce = function (e) {

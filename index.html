@@ -32,29 +32,29 @@
             <!-- <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2"
                 href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a> -->
             <div class="w3-bar-item w3-button w3-hover-white" title="Home"
-                onclick="nww_main.section_toggle('main_section')">
+                onclick="nww_main.section_toggle('main_section');">
                 <img src="/images/keva_one_logo.png" style="height:36px;width:36px" alt="Logo">
             </div>
             <div class="w3-bar-item w3-button w3-padding-large w3-hover-white" title="Home"
-                onclick="nww_main.section_toggle('main_section')">
+                onclick="nww_main.section_toggle('main_section');">
                 <i class="fa fa-home"></i>
             </div>
             <div class="w3-bar-item w3-button w3-padding-large w3-hover-white" title="Search"
-                onclick="nww_main.section_toggle('search_section')">
+                onclick="nww_main.section_toggle('search_section');">
                 <i class="fa fa-globe"></i>
             </div>
             <div class="w3-bar-item w3-dropdown-hover w3-padding-large w3-hide-small" title="Block Explorers">
                 <i class="fa fa-cubes"></i>
                 <div class="w3-dropdown-content w3-padding-large w3-card w3-bar-block" title="Kevacoin Explorer"
-                    onclick="nww_main.section_toggle('explorer_info')" style="cursor: pointer;">
+                    onclick="nww_main.section_toggle('explorer_info');" style="cursor: pointer;">
                     <i class="fa fa-cubes">&nbsp;Kevacoin Explorer</i>
                 </div>
             </div>
             <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-padding-large w3-hover-white w3-large w3-theme-d2"
-                href="javascript:void(0);" onclick="open_nav_small()"><i class="fa fa-cubes"></i></a>
+                href="javascript:void(0);" onclick="open_nav_small();"><i class="fa fa-cubes"></i></a>
 
             <div class="w3-bar-item w3-button w3-padding-large w3-hover-white" title="Marketplace"
-                onclick="nww_main.section_toggle('market_section')">
+                onclick="nww_main.section_toggle('market_section');">
                 <i class="fa fa-cart-plus"></i>
             </div>
             <!-- <div class="w3-hide w3-bar-item w3-dropdown-hover w3-hide-small">
@@ -66,7 +66,7 @@
             </div> -->
             <div class="w3-bar-item w3-hide-small w3-right">
                 <span contenteditable="true" class="w3-border w3-padding">Status: Feeling Great</span>
-                <button type="button" class="w3-button w3-theme"><i class="fa fa-search"></i> Search</button>
+                <button type="button" class="w3-button w3-theme" onclick="nww_main.search();"><i class="fa fa-search"></i> Search</button>
             </div>
         </div>
     </div>
@@ -122,11 +122,11 @@
                     <div class="w3-container w3-margin-top w3-margin-bottom">
                         <div class="w3-center">
 
-                            <form method="POST" action="https://keva.one/_kv/grd" autocomplete="off">
+                            
                                 Search&nbsp;<input name="namespaceid" id="namespaceid" type="text"
                                     placeholder="Example: 32101" pattern="[0-9]{4,}" title="Please enter valid number.">
-                                <input type="submit" class="submit" value="View">
-                            </form>
+                                <button type="button" class="w3-button w3-theme" onclick="nww_main.search();">Search</button>
+                            
                         </div>
                     </div>
                     <!-- <div class="w3-container w3-margin-top">
@@ -155,7 +155,7 @@
                         <div>
                             <input name="search" id="search" type="text"
                                 placeholder="Explore KevaOne or lookup a namespace">
-                            <input type="submit" class="submit" value="Search">
+                            <button type="button" class="w3-button w3-theme" onclick="nww_main.search();">Search</button>
                         </div>
                     </div>
                 </div>
@@ -578,20 +578,20 @@
                     <div class="w3-container w3-card w3-white w3-round w3-margin">
                         <div class="w3-container w3-padding">
                             <button type="button" class="w3-button w3-theme"
-                                onclick="nww_main.exp_section_toggle('explorer_recent_blocks')"><i
+                                onclick="nww_main.exp_section_toggle('explorer_recent_blocks');"><i
                                     class="fa fa-cubes"></i>
                                 Recent Blocks</button>
                             <button type="button" class="w3-button w3-theme"
-                                onclick="nww_main.exp_section_toggle('explorer_recent_transactions')"><i
+                                onclick="nww_main.exp_section_toggle('explorer_recent_transactions');"><i
                                     class="fa fa-file-invoice-dollar"></i>
                                 Recent TX</button>
                             <button type="button" class="w3-button w3-theme"
-                                onclick="nww_main.exp_section_toggle('explorer_mempool')"><i
+                                onclick="nww_main.exp_section_toggle('explorer_mempool');"><i
                                     class="fa fa-fill-drip"></i>
                                 Mempool</button>
                             <div class="w3-right">
                                 <input id="uibssrc" class="w3-border w3-padding" />
-                                <button type="button" class="w3-button w3-theme" onclick="nww_main.search()"><i
+                                <button type="button" class="w3-button w3-theme" onclick="nww_main.search();"><i
                                         class="fa fa-search"></i>
                                     Search</button>
                             </div>
