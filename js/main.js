@@ -10,10 +10,9 @@ var nww_main = new (function () {
     let bc_recent_transactions_update = 0;
 
     let _isections = ["address_section", "explorer_info", "explorer_stats", "explorer_browser", "market_section", "explorer_section", "namespace_section", "main_section", "search_section", "error_section", "about_section"];
-    let _ibsections = ["explorer_info", "explorer_stats", "market_section", "explorer_section", "namespace_section", "main_section", "search_section", "about_section"];
+    // let _ibsections = ["explorer_info", "explorer_stats", "market_section", "explorer_section", "namespace_section", "main_section", "search_section", "about_section"];
 
     function nww_main() {
-        //console.log('main');
         check_state();
 
         Q.onmessage = function (e) {
@@ -80,10 +79,6 @@ var nww_main = new (function () {
             nww_main.prototype.isection_toggle("explorer_section", _isections);
             nww_main.prototype.section_toggle("explorer_info", false);
         }
-        // else if (_path.startsWith("/news")) {
-        //         nww_main.prototype.isection_toggle("explorer_section", ["explorer_section", "namespace_section"]);
-        //         nww_main.prototype.section_toggle("bexp_news", false);
-        // }
         else if (_path.startsWith("/stats")) {
             document.title = "Keva.One - Kevacoin Stats";
             nww_main.prototype.ui_clear_stats();
@@ -458,20 +453,18 @@ var nww_main = new (function () {
         _pl['endPoint'] = ep;
         _pl['call'] = 'get_search';
         _pl['call_data'] = e;
-
         _pl['type'] = 'GET';
         Q.postMessage(_pl);
     };
 
     nww_main.prototype.ui_clear_recent_blocks = function () {
-        nww_main.prototype.isection_toggle('recent_blocks_loading', ['recent_blocks_loading', 'recent_blocks_main'])
+        nww_main.prototype.isection_toggle('recent_blocks_loading', ['recent_blocks_loading', 'recent_blocks_main']);
         let _uibexp_rb = document.getElementById('uibexp_rb');
         clear_table(_uibexp_rb);
     };
 
     nww_main.prototype.ui_update_recent_blocks = function (e) {
         let _uibexp_rb = document.getElementById('uibexp_rb');
-        // clear_table(_uibexp_rb);
 
         for (result in e[1]['page_results']) {
             let _bh_lnk = ce('span');
@@ -489,18 +482,17 @@ var nww_main = new (function () {
             let _r = [e[1]['page_results'][result][2].slice(0, -12), _bh_lnk, _b_lnk, e[1]['page_results'][result][3], e[1]['page_results'][result][4]];
             add_row(_uibexp_rb, _r);
         };
-        nww_main.prototype.isection_toggle('recent_blocks_main', ['recent_blocks_loading', 'recent_blocks_main'])
+        nww_main.prototype.isection_toggle('recent_blocks_main', ['recent_blocks_loading', 'recent_blocks_main']);
     };
 
     nww_main.prototype.ui_clear_recent_transactions = function () {
-        nww_main.prototype.isection_toggle('recent_transactions_loading', ['recent_transactions_loading', 'recent_transactions_main'])
+        nww_main.prototype.isection_toggle('recent_transactions_loading', ['recent_transactions_loading', 'recent_transactions_main']);
         let _uibexp_rt = document.getElementById('uibexp_rt');
         clear_table(_uibexp_rt);
     };
 
     nww_main.prototype.ui_update_recent_transactions = function (e) {
         let _uibexp_rt = document.getElementById('uibexp_rt');
-        // clear_table(_uibexp_rt);
 
         for (result in e[1]['page_results']) {
             let _tx_lnk = ce('span');
@@ -519,18 +511,17 @@ var nww_main = new (function () {
             let _r = [tx[2].slice(0, -12), _b_lnk, _tx_lnk, tx[3], tx[4], tx[5]];
             add_row(_uibexp_rt, _r);
         };
-        nww_main.prototype.isection_toggle('recent_transactions_main', ['recent_transactions_loading', 'recent_transactions_main'])
+        nww_main.prototype.isection_toggle('recent_transactions_main', ['recent_transactions_loading', 'recent_transactions_main']);
     };
 
     nww_main.prototype.ui_clear_mempool = function () {
-        nww_main.prototype.isection_toggle('mempool_loading', ['mempool_loading', 'mempool_main'])
+        nww_main.prototype.isection_toggle('mempool_loading', ['mempool_loading', 'mempool_main']);
         let _uibexp_rm = document.getElementById('uibexp_rm');
         clear_table(_uibexp_rm);
     };
 
     nww_main.prototype.ui_update_mempool = function (e) {
         let _uibexp_rm = document.getElementById('uibexp_rm');
-        // clear_table(_uibexp_rm);
         if (typeof e == 'object') {
             for (result in e) {
                 let _tx_lnk = ce('span');
@@ -539,11 +530,6 @@ var nww_main = new (function () {
                 _tx_lnk.onclick = function () {
                     nww_main.prototype.section_link('mempool', _tx_lnk.innerText);
                 };
-                // let _b_lnk = ce('span');
-                // _b_lnk.innerText = e[1]['page_results'][result][1];
-                // _b_lnk.onclick = function() {
-                //     nww_main.prototype.section_link('block', _b_lnk.innerText);
-                // };
                 let _r = [_tx_lnk];
                 add_row(_uibexp_rm, _r);
             };
@@ -558,7 +544,7 @@ var nww_main = new (function () {
             let _r = [_tx_lnk];
             add_row(_uibexp_rm, _r);
         };
-        nww_main.prototype.isection_toggle('mempool_main', ['mempool_loading', 'mempool_main'])
+        nww_main.prototype.isection_toggle('mempool_main', ['mempool_loading', 'mempool_main']);
     };
 
     nww_main.prototype.ui_update_supply = function (e) {
@@ -579,7 +565,6 @@ var nww_main = new (function () {
 
     nww_main.prototype.ui_clear_search = function () {
         let _search_results = document.getElementById('search_results');
-        // nww_main.prototype.isection_toggle('', ['search_loading'])
         while (_search_results.firstChild) {
             _search_results.removeChild(_search_results.firstChild);
         };
@@ -589,170 +574,167 @@ var nww_main = new (function () {
         let _search_results = document.getElementById('search_results');
         let _search_result_count = document.getElementById('search_result_count');
         let _count = 0;
-        
-        // console.log('e', e);
+
         if ('address' in e) {
             let _address_spacer = document.getElementById('result_address_spacer');
-            let _aspc = _address_spacer.cloneNode(true)
+            let _aspc = _address_spacer.cloneNode(true);
             let _aspc_name = _aspc.querySelector('#result_address_name');
             let _aspc_bal = _aspc.querySelector('#result_address_balance');
             _aspc_name.id = null;
             _aspc_bal.id = null;
             let _addr = e['address'][0];
-            _aspc_name.innerText = _addr
+            _aspc_name.innerText = _addr;
             _aspc_name.style.cssText = 'cursor: pointer; text-decoration: underline;';
             _aspc_name.onclick = function () {
                 nww_main.prototype.section_link('address', _addr);
             };
-            _aspc_bal.innerText = e['address'][1]
-            _search_results.appendChild(_aspc)
+            _aspc_bal.innerText = e['address'][1];
+            _search_results.appendChild(_aspc);
             _count += 1;
         };
-        
+
         if ('block' in e) {
             let _block_spacer = document.getElementById('result_block_spacer');
-            let _bspc = _block_spacer.cloneNode(true)
+            let _bspc = _block_spacer.cloneNode(true);
             let _bspc_time = _bspc.querySelector('#result_block_time');
             let _bspc_height = _bspc.querySelector('#result_block_height');
             let _bspc_hash = _bspc.querySelector('#result_block_hash');
             _bspc_time.id = null;
             _bspc_height.id = null;
             _bspc_hash.id = null;
-            _bspc_time.innerText = e['block'][1]
-            let _bb = e['block'][0]
-            _bspc_height.innerText = _bb
+            _bspc_time.innerText = e['block'][1];
+            let _bb = e['block'][0];
+            _bspc_height.innerText = _bb;
             _bspc_height.style.cssText = 'cursor: pointer; text-decoration: underline;';
             _bspc_height.onclick = function () {
                 nww_main.prototype.section_link('block', _bb);
             };
-            let _bhash = e['block'][2]
-            _bspc_hash.innerText = _bhash
+            let _bhash = e['block'][2];
+            _bspc_hash.innerText = _bhash;
             _bspc_hash.style.cssText = 'cursor: pointer; text-decoration: underline;';
             _bspc_hash.onclick = function () {
                 nww_main.prototype.section_link('block', _bhash);
             };
-            _search_results.appendChild(_bspc)
+            _search_results.appendChild(_bspc);
             _count += 1;
         };
 
         if ('tx' in e) {
             let _tx_spacer = document.getElementById('result_transaction_spacer');
-            let _tspc = _tx_spacer.cloneNode(true)
+            let _tspc = _tx_spacer.cloneNode(true);
             let _tspc_time = _tspc.querySelector('#result_transaction_time');
             let _tspc_height = _tspc.querySelector('#result_transaction_block');
             let _tspc_hash = _tspc.querySelector('#result_transaction_hash');
             _tspc_time.id = null;
             _tspc_height.id = null;
             _tspc_hash.id = null;
-            let _tb = e['tx'][0]
-            _tspc_time.innerText = e['tx'][1]
-            _tspc_height.innerText = _tb
+            let _tb = e['tx'][0];
+            _tspc_time.innerText = e['tx'][1];
+            _tspc_height.innerText = _tb;
             _tspc_height.style.cssText = 'cursor: pointer; text-decoration: underline;';
             _tspc_height.onclick = function () {
                 nww_main.prototype.section_link('block', _tb);
             };
             let _hash = e['tx'][2]
-            _tspc_hash.innerText = _hash
+            _tspc_hash.innerText = _hash;
             _tspc_hash.style.cssText = 'cursor: pointer; text-decoration: underline;';
             _tspc_hash.onclick = function () {
                 nww_main.prototype.section_link('transaction', _hash);
             };
-            _search_results.appendChild(_tspc)
+            _search_results.appendChild(_tspc);
             _count += 1;
         };
 
         if ('namespace' in e) {
             let _namespace_spacer = document.getElementById('result_namespace_spacer');
-            let _nspc = _namespace_spacer.cloneNode(true)
+            let _nspc = _namespace_spacer.cloneNode(true);
             let _nspc_nsid = _nspc.querySelector('#result_namespace_nsid');
             let _nspc_shortcode = _nspc.querySelector('#result_namespace_shortcode');
-            
+
             _nspc_nsid.id = null;
             _nspc_shortcode.id = null;
-            
-            _nspc_nsid.innerText = e['namespace'][0]
-            _nspc_shortcode.innerText = e['namespace'][1] + e['namespace'][2]
-            
-            _search_results.appendChild(_nspc)
+
+            _nspc_nsid.innerText = e['namespace'][0];
+            _nspc_shortcode.innerText = e['namespace'][1] + e['namespace'][2];
+
+            _search_results.appendChild(_nspc);
             _count += 1;
         };
 
         if ('shortcode' in e) {
             let _namespace_spacer = document.getElementById('result_namespace_spacer');
-            let _nspc = _namespace_spacer.cloneNode(true)
+            let _nspc = _namespace_spacer.cloneNode(true);
             let _nspc_nsid = _nspc.querySelector('#result_namespace_nsid');
             let _nspc_shortcode = _nspc.querySelector('#result_namespace_shortcode');
-            
+
             _nspc_nsid.id = null;
             _nspc_shortcode.id = null;
 
-            let _nsid = e['shortcode'][0]
-            _nspc_nsid.innerText = _nsid
+            let _nsid = e['shortcode'][0];
+            _nspc_nsid.innerText = _nsid;
             _nspc_nsid.style.cssText = 'cursor: pointer; text-decoration: underline;';
             _nspc_nsid.onclick = function () {
                 nww_main.prototype.section_link('shortcode', _nsid);
             };
-            let _sc = e['shortcode'][1]
-            _nspc_shortcode.innerText = _sc + ' ' + e['shortcode'][2]
+            let _sc = e['shortcode'][1];
+            _nspc_shortcode.innerText = _sc + ' ' + e['shortcode'][2];
             _nspc_shortcode.style.cssText = 'cursor: pointer; text-decoration: underline;';
             _nspc_shortcode.onclick = function () {
                 nww_main.prototype.section_link('shortcode', _sc);
             };
-            
-            _nspc_nsid.innerText = e['shortcode'][0]
-            _nspc_shortcode.innerText = e['shortcode'][1] + e['shortcode'][2]
-            
-            _search_results.appendChild(_nspc)
+
+            _nspc_nsid.innerText = e['shortcode'][0];
+            _nspc_shortcode.innerText = e['shortcode'][1] + e['shortcode'][2];
+
+            _search_results.appendChild(_nspc);
             _count += 1;
         };
 
         if ('content' in e) {
             let _content_section_spacer = document.getElementById('result_namespace_content_section');
-            let _content_section_spacer_cl//one = _content_section_spacer.cloneNode(true);
-            // let _address_spacer = document.getElementById('result_namespace_content_list');
             let _content_spacer = document.getElementById('result_namespace_content_spacer');
             let _content_spacer_clone = _content_spacer.cloneNode(true);
             let _content_list = _content_spacer_clone.querySelector('#result_namespace_content_list');
-            // _content_section_spacer_clone.id = null;
+
             _content_spacer_clone.id = null;
-            _content_list.id = null
+            _content_list.id = null;
             for (result in e['content']) {
-            let _ncspc = _content_section_spacer.cloneNode(true); //_content_section_spacer_clone.cloneNode(true)
-            let _ncspc_time = _ncspc.querySelector('#result_namespace_content_time');
-            let _ncspc_nsid = _ncspc.querySelector('#result_namespace_content_nsid');
-            let _ncspc_shortcode = _ncspc.querySelector('#result_namespace_content_shortcode');
-            let _ncspc_key = _ncspc.querySelector('#result_namespace_content_key');
-            let _ncspc_value = _ncspc.querySelector('#result_namespace_content_value');
-            
-            _ncspc.id = null;
-            _ncspc_time.id = null;
-            _ncspc_nsid.id = null;
-            _ncspc_shortcode.id = null;
-            _ncspc_key.id = null;
-            _ncspc_value.id = null;
-            _ncspc_time.innerText = e['content'][result][0]
-            let _ncsid = e['content'][result][2]
-            _ncspc_nsid.innerText = _ncsid
-            _ncspc_nsid.style.cssText = 'cursor: pointer; text-decoration: underline;';
-            _ncspc_nsid.onclick = function () {
-                nww_main.prototype.section_link('shortcode', _ncsid);
-            };
-            let _csc = e['content'][result][3]
-            _ncspc_shortcode.innerText = _csc + ' ' + e['content'][result][4]
-            _ncspc_shortcode.style.cssText = 'cursor: pointer; text-decoration: underline;';
-            _ncspc_shortcode.onclick = function () {
-                nww_main.prototype.section_link('shortcode', _csc);
-            };
-            _ncspc_key.innerText = e['content'][result][5]
-            _ncspc_value.innerText = e['content'][result][6]
-            
-            _content_list.appendChild(_ncspc);
-            _count += 1;
+                let _ncspc = _content_section_spacer.cloneNode(true);
+                let _ncspc_time = _ncspc.querySelector('#result_namespace_content_time');
+                let _ncspc_nsid = _ncspc.querySelector('#result_namespace_content_nsid');
+                let _ncspc_shortcode = _ncspc.querySelector('#result_namespace_content_shortcode');
+                let _ncspc_key = _ncspc.querySelector('#result_namespace_content_key');
+                let _ncspc_value = _ncspc.querySelector('#result_namespace_content_value');
+
+                _ncspc.id = null;
+                _ncspc_time.id = null;
+                _ncspc_nsid.id = null;
+                _ncspc_shortcode.id = null;
+                _ncspc_key.id = null;
+                _ncspc_value.id = null;
+                _ncspc_time.innerText = e['content'][result][0];
+                let _ncsid = e['content'][result][2];
+                _ncspc_nsid.innerText = _ncsid;
+                _ncspc_nsid.style.cssText = 'cursor: pointer; text-decoration: underline;';
+                _ncspc_nsid.onclick = function () {
+                    nww_main.prototype.section_link('shortcode', _ncsid);
+                };
+                let _csc = e['content'][result][3];
+                _ncspc_shortcode.innerText = _csc + ' ' + e['content'][result][4]
+                _ncspc_shortcode.style.cssText = 'cursor: pointer; text-decoration: underline;';
+                _ncspc_shortcode.onclick = function () {
+                    nww_main.prototype.section_link('shortcode', _csc);
+                };
+                _ncspc_key.innerText = e['content'][result][5];
+                _ncspc_value.innerText = e['content'][result][6];
+
+                _content_list.appendChild(_ncspc);
+                _count += 1;
             };
             _search_results.appendChild(_content_spacer_clone);
         };
-        _search_result_count.innerText = _count
-        nww_main.prototype.isection_toggle('search_results_info', ['search_loading', 'search_results_info'])
+        _search_result_count.innerText = _count;
+        nww_main.prototype.isection_toggle('search_results_info', ['search_loading', 'search_results_info']);
     };
 
     nww_main.prototype.ui_clear_block = function () {
@@ -817,7 +799,6 @@ var nww_main = new (function () {
 
             for (res in r['vout']) {
                 sats += r['vout'][res]['value'];
-                console.log('sats', sats);
             };
             let _tx_lnk = ce('span');
             _tx_lnk.innerText = r['txid'];
@@ -842,8 +823,6 @@ var nww_main = new (function () {
         let _bh = document.getElementById('uibexp_tbh');
         let _vin = document.getElementById('uibexp_tin');
         let _vout = document.getElementById('uibexp_tout');
-        // let _pvin = document.getElementById('tx_pretty_in');
-        // let _pvout = document.getElementById('tx_pretty_out');
         let _wit = document.getElementById('uibexp_twit');
         let _uibexp_txinputs = document.getElementById('uibexp_txinputs');
         let _uibexp_txoutputs = document.getElementById('uibexp_txoutputs');
@@ -863,7 +842,6 @@ var nww_main = new (function () {
         _bh.innerText = null;
         _bh.style.cssText = null;
         _bh.onclick = null;
-
         _uibexp_txinputs.innerText = null;
         _uibexp_txoutputs.innerText = null;
         _uibexp_txwit.innerText = null;
@@ -881,15 +859,10 @@ var nww_main = new (function () {
         let _bh = document.getElementById('uibexp_tbh');
         let _vin = document.getElementById('uibexp_tin');
         let _vout = document.getElementById('uibexp_tout');
-        // let _pvin = document.getElementById('tx_pretty_in');
-        // let _pvout = document.getElementById('tx_pretty_out');
         let _wit = document.getElementById('uibexp_twit');
         let _uibexp_txinputs = document.getElementById('uibexp_txinputs');
         let _uibexp_txoutputs = document.getElementById('uibexp_txoutputs');
         let _uibexp_txwit = document.getElementById('uibexp_txwit');
-        // clear_table(_vin);
-        // clear_table(_vout);
-        // clear_table(_wit);
 
         _id.innerText = e['txid'];
         _uibexp_time.innerText = e['time'].slice(0, -12);
@@ -907,7 +880,7 @@ var nww_main = new (function () {
 
         _uibexp_txinputs.innerText = e['vin'].length;
         for (result in e['vin']) {
-            let _piv = e['vin'][result]
+            let _piv = e['vin'][result];
             if (_piv['address'] !== 'coinbase') {
                 let _tx_lnk = ce('span');
                 let _tx = _piv['txid'];
@@ -927,7 +900,6 @@ var nww_main = new (function () {
                 _piv['txid'] = _tx_lnk;
             };
             add_row(_vin, [_piv['value'], _piv['address'], _piv['txid'], _piv['vout'], _piv['sequence']]);
-            // add_row(_pvin, [_piv['address'], _piv['value']]);
         };
         _uibexp_txoutputs.innerText = e['vout'].length;
         for (result in e['vout']) {
@@ -943,7 +915,6 @@ var nww_main = new (function () {
                 _pov['address'] = _addr_lnk;
             };
             add_row(_vout, [_pov['value'], _addr_lnk, _pov['script_pubkey']]);
-            // add_row(_pvout, [ _pov['value'], _addr_lnk]);
         };
         _uibexp_txwit.innerText = e['witness'].length;
         for (result in e['witness']) {
@@ -953,7 +924,7 @@ var nww_main = new (function () {
     };
 
     nww_main.prototype.ui_clear_address = function () {
-        nww_main.prototype.isection_toggle('address_loading', ['address_loading', 'address_main'])
+        nww_main.prototype.isection_toggle('address_loading', ['address_loading', 'address_main']);
         let _received = document.getElementById('uibexp_ar');
         let _sent = document.getElementById('uibexp_as');
         let _balance = document.getElementById('uibexp_ab');
@@ -975,7 +946,7 @@ var nww_main = new (function () {
         let _total_results = document.getElementById('uibexp_att');
         let _recent_tx = document.getElementById('uibexp_art');
         let _uibexp_ai = document.getElementById('uibexp_ai');
-        // clear_table(_recent_tx);
+
         _uibexp_ai.innerText = e[0]['address'];
         _received.innerText = e[0]['received'];
         _sent.innerText = e[0]['sent'];
@@ -998,7 +969,7 @@ var nww_main = new (function () {
             };
             add_row(_recent_tx, [r['time'].slice(0, -12), _b_lnk, _tx_lnk, r['value'], r['direction']]);
         };
-        nww_main.prototype.isection_toggle('address_main', ['address_loading', 'address_main'])
+        nww_main.prototype.isection_toggle('address_main', ['address_loading', 'address_main']);
     };
 
     nww_main.prototype.ui_clear_mempool_entry = function () {
@@ -1021,8 +992,6 @@ var nww_main = new (function () {
         let size = document.getElementById('uibexp_ms');
         let time = document.getElementById('uibexp_mtime');
         let wtxid = document.getElementById('uibexp_mwtx');
-        // let _path = window.location.pathname;
-        // let _p = _path.split("/");
 
         _m.innerText = null;
         ancestorcount.innerText = null;
@@ -1043,8 +1012,6 @@ var nww_main = new (function () {
     nww_main.prototype.ui_update_mempool_entry = function (e) {
         let _mat = document.getElementById('uibexp_mat');
         let _mdt = document.getElementById('uibexp_mdt');
-        clear_table(_mat);
-        clear_table(_mdt);
         let _m = document.getElementById('uibexp_mti');
         let ancestorcount = document.getElementById('uibexp_mac');
         let ancestorfees = document.getElementById('uibexp_maf');
@@ -1080,7 +1047,7 @@ var nww_main = new (function () {
     };
 
     nww_main.prototype.ui_clear_info = function () {
-        nww_main.prototype.isection_toggle('explorer_info_loading', ['explorer_info_loading', 'explorer_info_main'])
+        nww_main.prototype.isection_toggle('explorer_info_loading', ['explorer_info_loading', 'explorer_info_main']);
         let _received = document.getElementById('bexp_inftext');
         _received.innerText = null;
     };
@@ -1088,11 +1055,11 @@ var nww_main = new (function () {
     nww_main.prototype.ui_update_info = function (e) {
         let _received = document.getElementById('bexp_inftext');
         _received.innerText = e;
-        nww_main.prototype.isection_toggle('explorer_info_main', ['explorer_info_loading', 'explorer_info_main'])
+        nww_main.prototype.isection_toggle('explorer_info_main', ['explorer_info_loading', 'explorer_info_main']);
     };
 
     nww_main.prototype.ui_clear_namespace_view = function () {
-        nww_main.prototype.isection_toggle('namespace_loading', ['namespace_loading', 'ns_pro', 'ns_view'])
+        nww_main.prototype.isection_toggle('namespace_loading', ['namespace_loading', 'ns_pro', 'ns_view']);
         let _bexp_nsv = document.getElementById('ns_view');
         let nspro_name = document.getElementById('nspro_name');
         let nspro_sc = document.getElementById('nspro_sc');
@@ -1122,16 +1089,11 @@ var nww_main = new (function () {
             return;
         };
         let _bexp_nsv = document.getElementById('ns_view');
-
         let nspro_name = document.getElementById('nspro_name');
         let nspro_sc = document.getElementById('nspro_sc');
         let nspro_nsid = document.getElementById('nspro_nsid');
         let nspro_keys = document.getElementById('nspro_keys');
         let nspro_owner = document.getElementById('nspro_owner');
-
-        // while (_bexp_nsv.firstChild) {
-        //     _bexp_nsv.removeChild(_bexp_nsv.firstChild);
-        // };
         let spacer = ce('div');
         spacer.style.marginTop = '-16px';
         _bexp_nsv.appendChild(spacer);
@@ -1183,9 +1145,7 @@ var nww_main = new (function () {
         };
 
         for (result in e['data']) {
-            // console.log('result', e['data'][result]['dtype'])
             let _ns_section = get_ns_section(e['data'][result]['dtype']);
-            // console.log('_ns_section', _ns_section)
             let x = _ns_section[1].cloneNode(true);
             let k = x.querySelector('#' + _ns_section[0] + '_key');
             let t = x.querySelector('#' + _ns_section[0] + '_time');
@@ -1193,25 +1153,16 @@ var nww_main = new (function () {
             let b = x.querySelector('#' + _ns_section[0] + '_block');
             let bi = x.querySelector('#' + _ns_section[0] + '_blocki');
             let txid = x.querySelector('#' + _ns_section[0] + '_txid');
-            // let a = x.querySelector('#nsv_addr');
-            // let o = x.querySelector('#nsv_op');
-            // let rc = x.querySelector('#nsv_rc');
             let replies = x.querySelector('#' + _ns_section[0] + '_replies');
-            // let _nst = x.querySelector('#nst');
-            x.id = null; // 'nsv_k' + e['data'][result]['timestamp'];
-            k.id = null; // 'nsv_key' + e['data'][result]['timestamp'];
-            t.id = null; // 'nsv_time' + e['data'][result]['timestamp'];
-            v.id = null; // 'nsv_value' + e['data'][result]['timestamp'];
-            b.id = null; // 'nsv_block' + e['data'][result]['timestamp'];
-            bi.id = null; // 'nsv_blocki' + e['data'][result]['timestamp'];
-            txid.id = null; // 'nsv_txid' + e['data'][result]['timestamp'];
-            // a.id = 'nsv_addr' + e['data'][result]['timestamp'];
-            // o.id = 'nsv_op' + e['data'][result]['timestamp'];
-            // rc.id = 'nsv_rc' + e['data'][result]['timestamp'];
+            x.id = null;
+            k.id = null;
+            t.id = null;
+            v.id = null;
+            b.id = null;
+            bi.id = null;
+            txid.id = null;
             k.innerText = e['data'][result]['dkey'];
             t.innerText = e['data'][result]['time'].slice(0, -12);
-            // console.log(e['data'][result]['dtype'])
-
 
             if (e['data'][result]['dkey'] === 'html') {
                 v.innerText = '';
@@ -1229,13 +1180,13 @@ var nww_main = new (function () {
                     let auc_name = x.querySelector('#' + _ns_section[0] + '_value_name');
                     let auc_price = x.querySelector('#' + _ns_section[0] + '_value_price');
                     let auc_addr = x.querySelector('#' + _ns_section[0] + '_value_addr');
-                    auc_name.innerHTML = auc['displayName']
-                    auc_price.innerHTML = auc['price']
-                    auc_addr.innerHTML = auc['addr']
-                    v.innerHTML = auc['desc']
+                    auc_name.innerHTML = auc['displayName'];
+                    auc_price.innerHTML = auc['price'];
+                    auc_addr.innerHTML = auc['addr'];
+                    v.innerHTML = auc['desc'];
                 }
                 else {
-                  v.innerHTML = e['data'][result]['dvalue'];
+                    v.innerHTML = e['data'][result]['dvalue'];
                 };
             };
 
@@ -1247,7 +1198,7 @@ var nww_main = new (function () {
                 k.innerText = ks + ' - ' + e['data'][result]['target'][1];
                 k.style.cssText = 'cursor: pointer; text-decoration: underline;';
                 k.onclick = function () {
-                nww_main.prototype.section_link('shortcode', ks);
+                    nww_main.prototype.section_link('shortcode', ks);
                 };
             }
             else if (_ns_section[0] === 'ns_bid_section') {
@@ -1258,7 +1209,7 @@ var nww_main = new (function () {
                 k.innerText = ks + ' - ' + e['data'][result]['target'][1];
                 k.style.cssText = 'cursor: pointer; text-decoration: underline;';
                 k.onclick = function () {
-                nww_main.prototype.section_link('shortcode', ks);
+                    nww_main.prototype.section_link('shortcode', ks);
                 };
             };
 
@@ -1297,25 +1248,19 @@ var nww_main = new (function () {
                 };
             };
             for (rresult in e['data'][result]['replies']) {
-                // console.log(e['data'][result]['replies'][rresult]['dtype'])
                 let _ns_reply_section = get_ns_reply_section(e['data'][result]['replies'][rresult]['dtype']);
-                
                 let rx = _ns_reply_section[1].cloneNode(true);
                 let rsc = rx.querySelector('#' + _ns_reply_section[0] + '_shortcode');
                 let rt = rx.querySelector('#' + _ns_reply_section[0] + '_time');
                 let rv = rx.querySelector('#' + _ns_reply_section[0] + '_value');
                 let rb = rx.querySelector('#' + _ns_reply_section[0] + '_block');
-                // let rbi = rx.querySelector('#' + _ns_reply_section[0] + '_blocki');
                 let rtxid = rx.querySelector('#' + _ns_reply_section[0] + '_txid');
 
-                rx.id = null; // 'nsv_rk' + e['data'][result]['replies'][rresult]['timestamp'];
-                rt.id = null; // 'nsv_rtime' + e['data'][result]['replies'][rresult]['timestamp'];
-                rv.id = null; // 'nsv_rvalue' + e['data'][result]['replies'][rresult]['timestamp'];
-                // rb.id = 'nsv_rblock' + e['data'][result]['replies'][rresult]['timestamp'];
-                // rbi.id = 'nsv_rblocki' + e['data'][result]['replies'][rresult]['timestamp'];
-                rtxid.id = null; // 'nsv_rtxid' + e['data'][result]['replies'][rresult]['timestamp'];
+                rx.id = null;
+                rt.id = null;
+                rv.id = null;
+                rtxid.id = null;
                 rt.innerText = e['data'][result]['replies'][rresult]['time'].slice(0, -12);
-
                 rv.innerText = e['data'][result]['replies'][rresult]['dvalue'];
 
                 let rbit = e['data'][result]['replies'][rresult]['block'];
@@ -1323,10 +1268,7 @@ var nww_main = new (function () {
                 rb.onclick = function () {
                     nww_main.prototype.section_link('block', rbit);
                 };
-                // rbi.style.cssText = 'cursor: pointer;';
-                // rbi.onclick = function () {
-                //     nww_main.prototype.section_link('block', rbit);
-                // };
+
                 let rtsc = e['data'][result]['replies'][rresult]['root_shortcode'];
                 rsc.innerText = rtsc + ' - ' + e['data'][result]['replies'][rresult]['name'];
                 rsc.style.cssText = 'cursor: pointer; text-decoration: underline;';
@@ -1353,7 +1295,6 @@ var nww_main = new (function () {
         let nspro_sc = document.getElementById('mnspro_sc');
 
         while (_bexp_nsv.firstChild) {
-            // TODO null out all children before removal, memory leaking here
             _bexp_nsv.removeChild(_bexp_nsv.firstChild);
         };
 
@@ -1365,15 +1306,9 @@ var nww_main = new (function () {
         let _nsv_c = document.getElementById('mnsv_c');
         let nspro_sc = document.getElementById('mnspro_sc');
 
-        // while (_bexp_nsv.firstChild) {
-        //     // TODO null out all children before removal, memory leaking here
-        //     _bexp_nsv.removeChild(_bexp_nsv.firstChild);
-        // };
         let spacer = ce('div');
         spacer.style.marginTop = '-16px';
         _bexp_nsv.appendChild(spacer);
-
-        // e['data'].reverse();
         nspro_sc.innerText = e['len'];
 
         for (result in e['data']) {
@@ -1391,17 +1326,17 @@ var nww_main = new (function () {
             let o = x.querySelector('#mnsv_op');
             let rc = x.querySelector('#mnsv_rc');
             let mpreview = x.querySelector('#mpreview');
-            
-            x.id = null //'mnsv_k' + e['data'][result]['timestamp'];
-            k.id = null // 'mnsv_key' + e['data'][result]['timestamp'];
-            t.id = null // 'mnsv_time' + e['data'][result]['timestamp'];
-            v.id = null // 'mnsv_value' + e['data'][result]['timestamp'];
-            b.id = null // 'mnsv_block' + e['data'][result]['timestamp'];
-            txid.id = null // 'mnsv_txid' + e['data'][result]['timestamp'];
-            a.id = null // 'mnsv_addr' + e['data'][result]['timestamp'];
-            o.id = null // 'mnsv_op' + e['data'][result]['timestamp'];
-            rc.id = null // 'mnsv_rc' + e['data'][result]['timestamp'];
-            mpreview.id = null // 'mpreview' + e['data'][result]['timestamp'];
+
+            x.id = null;
+            k.id = null;
+            t.id = null;
+            v.id = null;
+            b.id = null;
+            txid.id = null;
+            a.id = null;
+            o.id = null;
+            rc.id = null;
+            mpreview.id = null;
 
             if ('media' in e['data'][result]) {
                 mpreview.src = e['data'][result]['media'];
@@ -1409,7 +1344,7 @@ var nww_main = new (function () {
             else {
                 if (mpreview.className.indexOf("w3-hide") == -1) {
                     mpreview.className += " w3-hide";
-                }
+                };
             };
             kp.innerText = e['data'][result]['price'] + ' KVA';
             t.innerText = e['data'][result]['time'].slice(0, -12);
@@ -1420,7 +1355,7 @@ var nww_main = new (function () {
             k.onclick = function () {
                 nww_main.prototype.section_link('shortcode', rsc);
             };
-            // let kb = e['data'][result]['key_shortcode'].slice(1, parseInt(e['data'][result]['key_shortcode'][0]) + 1);
+
             let kb = e['data'][result]['block'];
             b.style.cssText = 'cursor: pointer; text-decoration: underline;';
             b.onclick = function () {
@@ -1495,65 +1430,18 @@ var nww_main = new (function () {
     };
 
     nww_main.prototype.search = function (e) {
-        //block
         let _sq = null;
-        // if (e === 0) {
         let _si = document.getElementById('search' + e);
         _sq = _si.value;
         _si.value = null;
-        console.log(_si.value)
-        // }
-        nww_main.prototype.isection_toggle('search_loading', ['search_loading', 'search_results_info'])
+        nww_main.prototype.isection_toggle('search_loading', ['search_loading', 'search_results_info']);
         nww_main.prototype.ui_clear_search();
         nww_main.prototype.section_toggle("search_section", false);
         if (_sq) {
             let _search_q = document.getElementById('search_q');
-            _search_q.innerText = _sq
+            _search_q.innerText = _sq;
             nww_main.prototype.get_search(_sq);
         };
-        
-        // //tx
-        // nww_main.prototype.get_search('0ded5d9c76555f51049935a2b54d31e6e6479159f0c893ba7bcb8ecdb5758fce');
-
-        // // nww_main.prototype.get_search('*raven*');
-
-        // nww_main.prototype.get_search('VNFYuykm2FGcU6ga5ti8Sg7P9okZQaJZW5');
-        // nww_main.prototype.get_search('Nfw2WYkGoSKve74cCfEum67x8bFgpHygxg');
-        // nww_main.prototype.get_search(32101);
-        
-        
-        // let _search = document.getElementById('uibssrc');
-        // let sc = false;
-        // let _sv = Number(_search.value);
-        // if (_sv >= 0 & _search.value.length <= 16) {
-        //     let _height = document.getElementById('uibs_height');
-        //     if (_sv <= parseInt(_height.innerText) & _sv >= 0) {
-        //         console.log(typeof _sv, _sv, '_sv might be block');
-        //     };
-        //     if (_search.value.length > parseInt(_search.value[0]) + 1) {
-        //         if (parseInt(_height.innerText) > _search.value.slice(1, parseInt(_search.value[0]) + 1)) {
-        //             console.log(typeof _sv, _sv, '_sv might be shortcode');
-        //             // sc = true;
-        //         };
-        //     };
-        //     if (!sc) {
-        //         nww_main.prototype.get_block(_sv);
-        //         window.history.replaceState(null, document.title, "/explorer/block/" + _sv);
-        //         nww_main.prototype.exp_section_toggle("explorer_block", false);
-        //     };
-        // }
-        // else if (_search.value.length === 64) {
-        //     console.log(typeof _sv, _sv, '_sv might be blockhash / txhash');
-        // }
-        // else if (_search.value.length === 34) {
-        //     console.log(typeof _sv, _sv, '_sv might be address / namespace');
-        //     if (!sc) {
-        //         nww_main.prototype.get_address(_search.value);
-        //         window.history.replaceState(null, document.title, "/explorer/address/" + _search.value);
-        //         nww_main.prototype.exp_section_toggle("explorer_address", false);
-        //     };
-        // };
-        // console.log(typeof _sv, _sv, _search.value.length, _search.value.slice(1, parseInt(_search.value[0]) + 1));
     };
 
     ce = function (e) {
@@ -1571,12 +1459,12 @@ var nww_main = new (function () {
                 }
             } else {
                 _cell.innerText = e;
-            }
+            };
             _row.appendChild(_cell);
-        }
+        };
         for (result in e) {
             add_cell(_row, e[result]);
-        }
+        };
 
         t.appendChild(_row);
     };
