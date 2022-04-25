@@ -72,7 +72,7 @@ var nww_main = new (function () {
         if (_path.startsWith("/info")) {
             if (bc_info_update < _d - 3000) {
                 nww_main.prototype.ui_clear_info();
-                nww_main.prototype.get_info();
+                nww_main.prototype.get_info('');
                 bc_info_update = _d;
             };
             document.title = "Keva.One - Kevacoin Info";
@@ -81,7 +81,7 @@ var nww_main = new (function () {
         }
         else if (_path.startsWith("/stats")) {
             document.title = "Keva.One - Kevacoin Stats";
-            nww_main.prototype.ui_clear_stats();
+            // nww_main.prototype.ui_clear_stats();
             nww_main.prototype.isection_toggle("explorer_section", _isections);
             nww_main.prototype.section_toggle("explorer_stats", false);
         }
@@ -92,19 +92,19 @@ var nww_main = new (function () {
             if (_path === "/explorer/recent-blocks") {
                 document.title = "Keva.One - Kevacoin Recent Blocks";
                 nww_main.prototype.ui_clear_recent_blocks();
-                nww_main.prototype.get_recent_blocks();
+                nww_main.prototype.get_recent_blocks('');
                 nww_main.prototype.exp_section_toggle("explorer_recent_blocks", false);
             }
             else if (_path === "/explorer/recent-transactions") {
                 document.title = "Keva.One - Kevacoin Recent Transactions";
                 nww_main.prototype.ui_clear_recent_transactions();
-                nww_main.prototype.get_recent_transactions();
+                nww_main.prototype.get_recent_transactions('');
                 nww_main.prototype.exp_section_toggle("explorer_recent_transactions", false);
             }
             else if (_path === "/explorer/mempool") {
                 document.title = "Keva.One - Kevacoin Mempool";
                 nww_main.prototype.ui_clear_mempool();
-                nww_main.prototype.get_raw_mempool();
+                nww_main.prototype.get_raw_mempool('');
                 nww_main.prototype.exp_section_toggle("explorer_mempool", false);
             }
             else if (_path.startsWith("/explorer/block/")) {
@@ -148,7 +148,7 @@ var nww_main = new (function () {
         else if (_path.startsWith("/market")) {
             document.title = "Keva.One - Kevacoin Auctions";
             nww_main.prototype.ui_clear_market_view();
-            nww_main.prototype.get_nft_auctions();
+            nww_main.prototype.get_nft_auctions('');
             nww_main.prototype.isection_toggle("market_section", _isections);
         }
         else if (_path.startsWith("/search")) {
@@ -170,7 +170,7 @@ var nww_main = new (function () {
         else {
             let _p = _path.split("/");
 
-            if (_p[_p.length - 1].length > parseInt(_p[_p.length - 1][0]) + 1) {
+            if (_p[_p.length - 1].length > parseInt(_p[_p.length - 1][0], 10) + 1) {
                 document.title = "Keva.One - Kevacoin Shortcode " + _p[_p.length - 1];
                 nww_main.prototype.ui_clear_namespace_view();
                 nww_main.prototype.get_shortcode(_p[_p.length - 1]);
@@ -351,7 +351,7 @@ var nww_main = new (function () {
             _pl['call_data'] = e;
         } else {
             _pl['call'] = 'get_block';
-            _pl['call_data'] = parseInt(e);
+            _pl['call_data'] = parseInt(e, 10);
         };
 
         _pl['type'] = 'GET';
@@ -389,7 +389,7 @@ var nww_main = new (function () {
         let _pl = {};
         _pl['endPoint'] = ep;
         _pl['call'] = 'get_shortcode';
-        _pl['call_data'] = parseInt(e);
+        _pl['call_data'] = parseInt(e, 10);
         _pl['type'] = 'GET';
         Q.postMessage(_pl);
     };
@@ -840,7 +840,7 @@ var nww_main = new (function () {
         _size.innerText = null;
         _vsize.innerText = null;
         _bh.innerText = null;
-        _bh.style.cssText = null;
+        _bh.style.cssText = '';
         _bh.onclick = null;
         _uibexp_txinputs.innerText = null;
         _uibexp_txoutputs.innerText = null;
