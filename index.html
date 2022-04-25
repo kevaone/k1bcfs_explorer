@@ -32,41 +32,41 @@
             <!-- <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2"
                 href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a> -->
             <div class="w3-bar-item w3-button w3-hover-white" title="Home"
-                onclick="nww_main.section_toggle('main_section');">
+                onclick="section_toggle('main_section');">
                 <img src="/images/keva_one_logo.png" style="height:36px;width:36px" alt="Logo">
             </div>
             <div class="w3-bar-item w3-button w3-padding-large w3-hover-white" title="Home"
-                onclick="nww_main.section_toggle('main_section');">
+                onclick="section_toggle('main_section');">
                 <i class="fa fa-home"></i>
             </div>
             <div class="w3-bar-item w3-button w3-padding-large w3-hover-white" title="Search"
-                onclick="nww_main.section_toggle('search_section');">
+                onclick="section_toggle('search_section');">
                 <i class="fa fa-globe"></i>
             </div>
             <div class="w3-bar-item w3-dropdown-hover w3-padding-large w3-hide-small" title="Block Explorers">
                 <i class="fa fa-cubes"></i>
                 <div class="w3-dropdown-content w3-padding-large w3-card w3-bar-block" title="Kevacoin Explorer"
-                    onclick="nww_main.section_toggle('explorer_info');" style="cursor: pointer;">
+                    onclick="section_toggle('explorer_info');" style="cursor: pointer;">
                     <i class="fa fa-cubes">&nbsp;Kevacoin Explorer</i>
                 </div>
             </div>
             <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-padding-large w3-hover-white w3-large w3-theme-d2"
                 href="javascript:void(0);" onclick="open_nav_small();"><i class="fa fa-cubes"></i></a>
             <div class="w3-bar-item w3-button w3-padding-large w3-hover-white" title="Marketplace"
-                onclick="nww_main.section_toggle('market_section');">
+                onclick="section_toggle('market_section');">
                 <i class="fa fa-cart-plus"></i>
             </div>
             <!-- <div class="w3-hide w3-bar-item w3-dropdown-hover w3-hide-small">
                 <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span
                         class="w3-badge w3-right w3-small w3-green">3</span></button>
                 <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
-                    <i class="fa fa-bell" onclick="nww_main.section_toggle('')"></i>
+                    <i class="fa fa-bell" onclick="section_toggle('')"></i>
                 </div>
             </div> -->
             <div class="w3-bar-item w3-hide-small w3-right">
                 <input id="search2" class="w3-border w3-padding" type="text"
                     placeholder="Explore KevaOne or lookup a namespace">
-                <button type="button" class="w3-button w3-theme" onclick="nww_main.search(2);"><i
+                <button type="button" class="w3-button w3-theme" onclick="search(2);"><i
                         class="fa fa-search"></i> Search</button>
             </div>
         </div>
@@ -76,14 +76,14 @@
     <div id="nav_small" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
         <div class="w3-bar-item w3-button w3-margin-bottom w3-padding-large">&nbsp;</div>
         <i class="fa fa-cubes w3-bar-item w3-button w3-padding-large"
-            onclick="nww_main.section_toggle('explorer_info')">&nbsp;Kevacoin Explorer</i>
+            onclick="section_toggle('explorer_info')">&nbsp;Kevacoin Explorer</i>
     </div>
     <!-- Navbar on small screens -->
     <!-- <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
         <div class="w3-bar-item w3-button w3-margin-bottom w3-padding-large">&nbsp;</div>
-        <i class="fa fa-cubes w3-bar-item w3-button w3-padding-large" onclick="nww_main.section_toggle('explorer_info')"></i>
+        <i class="fa fa-cubes w3-bar-item w3-button w3-padding-large" onclick="section_toggle('explorer_info')"></i>
         <i class="fa fa-cart-plus w3-bar-item w3-button w3-padding-large"
-            onclick="nww_main.section_toggle('explorer_info')"></i>
+            onclick="section_toggle('explorer_info')"></i>
     </div> -->
 
     <!-- Page Container -->
@@ -125,7 +125,7 @@
                             Search&nbsp;<input id="search1" class="w3-border w3-padding" type="text"
                                 placeholder="Explore KevaOne or lookup a namespace">
                             <button type="button" class="w3-button w3-theme"
-                                onclick="nww_main.search(1);">Search</button>
+                                onclick="search(1);">Search</button>
                         </div>
                     </div>
                     <!-- <div class="w3-container w3-margin-top">
@@ -155,7 +155,7 @@
                             <input id="search0" class="w3-border w3-padding" type="text"
                                 placeholder="Explore KevaOne or lookup a namespace">
                             <button type="button" class="w3-button w3-theme"
-                                onclick="nww_main.search(0);">Search</button>
+                                onclick="search(0);">Search</button>
                         </div>
                     </div>
                 </div>
@@ -979,13 +979,13 @@
                         <div class="w3-card w3-round w3-white">
                             <div class="w3-container w3-padding">
                                 <button type="button" class="w3-button w3-theme"
-                                    onclick="nww_main.section_toggle('explorer_info')"><i class="fa fa-info-circle"></i>
+                                    onclick="section_toggle('explorer_info')"><i class="fa fa-info-circle"></i>
                                     Info</button>
                                 <!-- <button type="button" class="w3-button w3-theme"
-                                    onclick="nww_main.section_toggle('explorer_stats')"><i class="fa fa-chart-line"></i>
+                                    onclick="section_toggle('explorer_stats')"><i class="fa fa-chart-line"></i>
                                     Stats</button> -->
                                 <button type="button" class="w3-button w3-theme"
-                                    onclick="nww_main.section_toggle('explorer_browser')"><i class="fa fa-archive"></i>
+                                    onclick="section_toggle('explorer_browser')"><i class="fa fa-archive"></i>
                                     Explore</button>
                             </div>
                         </div>
@@ -1039,15 +1039,15 @@
                     <div class="w3-container w3-card w3-white w3-round w3-margin">
                         <div class="w3-container w3-padding">
                             <button type="button" class="w3-button w3-theme"
-                                onclick="nww_main.exp_section_toggle('explorer_recent_blocks');"><i
+                                onclick="exp_section_toggle('explorer_recent_blocks');"><i
                                     class="fa fa-cubes"></i>
                                 Recent Blocks</button>
                             <button type="button" class="w3-button w3-theme"
-                                onclick="nww_main.exp_section_toggle('explorer_recent_transactions');"><i
+                                onclick="exp_section_toggle('explorer_recent_transactions');"><i
                                     class="fa fa-funnel-dollar"></i>
                                 Recent TX</button>
                             <button type="button" class="w3-button w3-theme"
-                                onclick="nww_main.exp_section_toggle('explorer_mempool');"><i
+                                onclick="exp_section_toggle('explorer_mempool');"><i
                                     class="fa fa-fill-drip"></i>
                                 Mempool</button>
                         </div>
