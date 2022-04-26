@@ -578,7 +578,7 @@ var nww_main = new (function () {
         if ('address' in e) {
             let _address_spacer = gei('result_address_spacer');
             let _aspc = _address_spacer.cloneNode(true);
-            _aspc.id = null;
+            _aspc.removeAttribute('id');
             let _aspc_name = qsgei(_aspc, '#result_address_name');
             let _aspc_bal = qsgei(_aspc, '#result_address_balance');
 
@@ -596,7 +596,7 @@ var nww_main = new (function () {
         if ('block' in e) {
             let _block_spacer = gei('result_block_spacer');
             let _bspc = _block_spacer.cloneNode(true);
-            _bspc.id = null;
+            _bspc.removeAttribute('id');
             let _bspc_time = qsgei(_bspc, '#result_block_time');
             let _bspc_height = qsgei(_bspc, '#result_block_height');
             let _bspc_hash = qsgei(_bspc, '#result_block_hash');
@@ -621,7 +621,7 @@ var nww_main = new (function () {
         if ('tx' in e) {
             let _tx_spacer = gei('result_transaction_spacer');
             let _tspc = _tx_spacer.cloneNode(true);
-            _tspc.id = null;
+            _tspc.removeAttribute('id');
             let _tspc_time = qsgei(_tspc, '#result_transaction_time');
             let _tspc_height = qsgei(_tspc, '#result_transaction_block');
             let _tspc_hash = qsgei(_tspc, '#result_transaction_hash');
@@ -646,7 +646,7 @@ var nww_main = new (function () {
         if ('namespace' in e) {
             let _namespace_spacer = gei('result_namespace_spacer');
             let _nspc = _namespace_spacer.cloneNode(true);
-            _nspc.id = null;
+            _nspc.removeAttribute('id');
             let _nspc_nsid = qsgei(_nspc, '#result_namespace_nsid');
             let _nspc_shortcode = qsgei(_nspc, '#result_namespace_shortcode');
 
@@ -660,7 +660,7 @@ var nww_main = new (function () {
         if ('shortcode' in e) {
             let _namespace_spacer = gei('result_namespace_spacer');
             let _nspc = _namespace_spacer.cloneNode(true);
-            _nspc.id = null;
+            _nspc.removeAttribute('id');
             let _nspc_nsid = qsgei(_nspc, '#result_namespace_nsid');
             let _nspc_shortcode = qsgei(_nspc, '#result_namespace_shortcode');
 
@@ -689,13 +689,13 @@ var nww_main = new (function () {
             let _content_section_spacer = gei('result_namespace_content_section');
             let _content_spacer = gei('result_namespace_content_spacer');
             let _content_spacer_clone = _content_spacer.cloneNode(true);
-            _content_spacer_clone.id = null;
+            _content_spacer_clone.removeAttribute('id');
             let _content_list = qsgei(_content_spacer_clone, '#result_namespace_content_list');
 
-            // _content_list.id = null;
+            // _content_list.removeAttribute('id');
             for (result in e['content']) {
                 let _ncspc = _content_section_spacer.cloneNode(true);
-                _ncspc.id = null;
+                _ncspc.removeAttribute('id');
                 let _ncspc_time = qsgei(_ncspc, '#result_namespace_content_time');
                 let _ncspc_nsid = qsgei(_ncspc, '#result_namespace_content_nsid');
                 let _ncspc_shortcode = qsgei(_ncspc, '#result_namespace_content_shortcode');
@@ -1137,7 +1137,7 @@ var nww_main = new (function () {
         for (result in e['data']) {
             let _ns_section = get_ns_section(e['data'][result]['dtype']);
             let x = _ns_section[1].cloneNode(true);
-            x.id = null;
+            x.removeAttribute('id');
             let k = qsgei(x, '#' + _ns_section[0] + '_key');
             let t = qsgei(x, '#' + _ns_section[0] + '_time');
             let v = qsgei(x, '#' + _ns_section[0] + '_value');
@@ -1241,7 +1241,7 @@ var nww_main = new (function () {
             for (rresult in e['data'][result]['replies']) {
                 let _ns_reply_section = get_ns_reply_section(e['data'][result]['replies'][rresult]['dtype']);
                 let rx = _ns_reply_section[1].cloneNode(true);
-                rx.id = null;
+                rx.removeAttribute('id');
                 let rsc = qsgei(rx, '#' + _ns_reply_section[0] + '_shortcode');
                 let rt = qsgei(rx, '#' + _ns_reply_section[0] + '_time');
                 let rv = qsgei(rx, '#' + _ns_reply_section[0] + '_value');
@@ -1301,7 +1301,7 @@ var nww_main = new (function () {
 
         for (result in e['data']) {
             let x = _nsv_c.cloneNode(true);
-            x.id = null;
+            x.removeAttribute('id');
 
             let k = qsgei(x, '#mnsv_key');
             let kp = qsgei(x, '#mnsv_keyp');
@@ -1425,7 +1425,7 @@ var nww_main = new (function () {
 
     qsgei = function (e, i) {
         let r_e = e.querySelector(i);
-        r_e.id = null;
+        r_e.removeAttribute('id');
         return r_e;
     };
 

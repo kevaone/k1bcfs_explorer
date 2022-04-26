@@ -31,8 +31,7 @@
         <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
             <!-- <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2"
                 href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a> -->
-            <div class="w3-bar-item w3-button w3-hover-white" title="Home"
-                onclick="section_toggle('main_section');">
+            <div class="w3-bar-item w3-button w3-hover-white" title="Home" onclick="section_toggle('main_section');">
                 <img src="/images/keva_one_logo.png" style="height:36px;width:36px" alt="Logo">
             </div>
             <div class="w3-bar-item w3-button w3-padding-large w3-hover-white" title="Home"
@@ -66,8 +65,8 @@
             <div class="w3-bar-item w3-hide-small w3-right">
                 <input id="search2" class="w3-border w3-padding" type="text"
                     placeholder="Explore KevaOne or lookup a namespace">
-                <button type="button" class="w3-button w3-theme" onclick="search(2);"><i
-                        class="fa fa-search"></i> Search</button>
+                <button type="button" class="w3-button w3-theme" onclick="search(2);"><i class="fa fa-search"></i>
+                    Search</button>
             </div>
         </div>
     </div>
@@ -124,8 +123,7 @@
                         <div class="w3-center">
                             Search&nbsp;<input id="search1" class="w3-border w3-padding" type="text"
                                 placeholder="Explore KevaOne or lookup a namespace">
-                            <button type="button" class="w3-button w3-theme"
-                                onclick="search(1);">Search</button>
+                            <button type="button" class="w3-button w3-theme" onclick="search(1);">Search</button>
                         </div>
                     </div>
                     <!-- <div class="w3-container w3-margin-top">
@@ -154,8 +152,7 @@
                         <div>
                             <input id="search0" class="w3-border w3-padding" type="text"
                                 placeholder="Explore KevaOne or lookup a namespace">
-                            <button type="button" class="w3-button w3-theme"
-                                onclick="search(0);">Search</button>
+                            <button type="button" class="w3-button w3-theme" onclick="search(0);">Search</button>
                         </div>
                     </div>
                 </div>
@@ -1039,16 +1036,14 @@
                     <div class="w3-container w3-card w3-white w3-round w3-margin">
                         <div class="w3-container w3-padding">
                             <button type="button" class="w3-button w3-theme"
-                                onclick="exp_section_toggle('explorer_recent_blocks');"><i
-                                    class="fa fa-cubes"></i>
+                                onclick="exp_section_toggle('explorer_recent_blocks');"><i class="fa fa-cubes"></i>
                                 Recent Blocks</button>
                             <button type="button" class="w3-button w3-theme"
                                 onclick="exp_section_toggle('explorer_recent_transactions');"><i
                                     class="fa fa-funnel-dollar"></i>
                                 Recent TX</button>
                             <button type="button" class="w3-button w3-theme"
-                                onclick="exp_section_toggle('explorer_mempool');"><i
-                                    class="fa fa-fill-drip"></i>
+                                onclick="exp_section_toggle('explorer_mempool');"><i class="fa fa-fill-drip"></i>
                                 Mempool</button>
                         </div>
                     </div>
@@ -1559,8 +1554,44 @@
                 </div>
                 <!-- End Market Spacers -->
                 <!-- Begin Market View -->
-                <div id="xbmarket" class="w3-col m9">
-                    <div style="margin-top: -16px;"></div>
+                <div class="w3-col m9">
+                    <div class="w3-container w3-card w3-white w3-round w3-margin-left w3-margin-right w3-margin-bottom">
+                        <!-- <div style="margin-top: -16px;"></div> -->
+                        <div class="w3-bar">
+                            <div class="w3-bar-item w3-xlarge">
+                                <i class="fa fa-pallet w3-text-theme"></i>&nbsp;<span>All</span>
+                            </div>
+                            <div class="w3-bar-item w3-xlarge">
+                                <i class="fa fa-photo-video w3-text-theme"></i>&nbsp;<span>Media</span>
+                            </div>
+                            <div class="w3-bar-item w3-xlarge">
+                                <i class="fa fa-file-signature w3-text-theme"></i>&nbsp;<span>Content</span>
+                            </div>
+                            <div class="w3-bar-item w3-right">
+                                <select class="w3-select" name="auction sort">
+                                    <!-- <option value="" disabled selected>Sort by...</option> -->
+                                    <option value="1">Option 1</option>
+                                    <option value="2">Option 2</option>
+                                    <option value="3" selected>Option 3</option>
+                                  </select>
+                            </div>
+                            <!-- <div class="w3-bar-item">
+                                <div class="w3-dropdown-hover">
+                                    <button class="w3-button">Sort</button>
+                                    <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                                        <div class="w3-bar-item w3-button">Link 1</div>
+                                        <div class="w3-bar-item w3-button">Link 2</div>
+                                        <div class="w3-bar-item w3-button">Link 3</div>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+                        <!-- <div class="w3-container w3-margin-bottom"></div> -->
+                    </div>
+
+                    <div id="xbmarket" style="padding-top: 0.01em; padding-bottom: 0.01em;">
+                        <!-- <div style="margin-top: -16px;"></div> -->
+                    </div>
                 </div>
                 <!-- End Market View -->
             </div>
