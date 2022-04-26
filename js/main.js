@@ -1,7 +1,7 @@
 var nww_main = new (function () {
     let Q = new Worker('/js/worker.js');
-    // let ep = 'https://kva.keva.one/';
-    let ep = 'http://127.0.0.1:9999/';
+    let ep = 'https://kva.keva.one/';
+    // let ep = 'http://127.0.0.1:9999/';
 
     let bc_general_update = 0;
     let bc_info_update = 0;
@@ -184,7 +184,7 @@ var nww_main = new (function () {
             }
             else {
                 document.title = "Keva.One - Error";
-                let _error_msg = document.getElementById('error_msg');
+                let _error_msg = gei('error_msg');
                 _error_msg.innerText = 'Nothing there!';
                 section_toggle('error_section', false);
             };
@@ -192,7 +192,7 @@ var nww_main = new (function () {
     };
 
     myFunction = function (id) {
-        var x = document.getElementById(id);
+        var x = gei(id);
         if (x.className.indexOf("w3-show") == -1) {
             x.className += " w3-show";
             x.previousElementSibling.className += " w3-theme-d1";
@@ -205,7 +205,7 @@ var nww_main = new (function () {
 
     isection_toggle = function (id, sections) {
         for (let i = 0; i < sections.length; i++) {
-            let section = document.getElementById(sections[i]);
+            let section = gei(sections[i]);
             if (sections[i] == id) {
                 if (section.className.indexOf("w3-show") == -1) {
                     section.className += " w3-show";
@@ -459,12 +459,12 @@ var nww_main = new (function () {
 
     ui_clear_recent_blocks = function () {
         isection_toggle('recent_blocks_loading', ['recent_blocks_loading', 'recent_blocks_main']);
-        let _uibexp_rb = document.getElementById('uibexp_rb');
+        let _uibexp_rb = gei('uibexp_rb');
         clear_table(_uibexp_rb);
     };
 
     ui_update_recent_blocks = function (e) {
-        let _uibexp_rb = document.getElementById('uibexp_rb');
+        let _uibexp_rb = gei('uibexp_rb');
 
         for (result in e[1]['page_results']) {
             let _bh_lnk = ce('span');
@@ -487,12 +487,12 @@ var nww_main = new (function () {
 
     ui_clear_recent_transactions = function () {
         isection_toggle('recent_transactions_loading', ['recent_transactions_loading', 'recent_transactions_main']);
-        let _uibexp_rt = document.getElementById('uibexp_rt');
+        let _uibexp_rt = gei('uibexp_rt');
         clear_table(_uibexp_rt);
     };
 
     ui_update_recent_transactions = function (e) {
-        let _uibexp_rt = document.getElementById('uibexp_rt');
+        let _uibexp_rt = gei('uibexp_rt');
 
         for (result in e[1]['page_results']) {
             let _tx_lnk = ce('span');
@@ -516,12 +516,12 @@ var nww_main = new (function () {
 
     ui_clear_mempool = function () {
         isection_toggle('mempool_loading', ['mempool_loading', 'mempool_main']);
-        let _uibexp_rm = document.getElementById('uibexp_rm');
+        let _uibexp_rm = gei('uibexp_rm');
         clear_table(_uibexp_rm);
     };
 
     ui_update_mempool = function (e) {
-        let _uibexp_rm = document.getElementById('uibexp_rm');
+        let _uibexp_rm = gei('uibexp_rm');
         if (typeof e == 'object') {
             for (result in e) {
                 let _tx_lnk = ce('span');
@@ -548,12 +548,12 @@ var nww_main = new (function () {
     };
 
     ui_update_supply = function (e) {
-        let _height = document.getElementById('uibs_height');
-        let _supply = document.getElementById('uibs_supply');
-        let _fees = document.getElementById('uibs_fees');
-        let _uibs_genreward = document.getElementById('uibs_genreward');
-        let _uibs_diff = document.getElementById('uibs_diff');
-        let _uibs_nethash = document.getElementById('uibs_nethash');
+        let _height = gei('uibs_height');
+        let _supply = gei('uibs_supply');
+        let _fees = gei('uibs_fees');
+        let _uibs_genreward = gei('uibs_genreward');
+        let _uibs_diff = gei('uibs_diff');
+        let _uibs_nethash = gei('uibs_nethash');
 
         _height.innerText = e['block_height'];
         _supply.innerText = e['coin_supply'];
@@ -564,24 +564,24 @@ var nww_main = new (function () {
     };
 
     ui_clear_search = function () {
-        let _search_results = document.getElementById('search_results');
+        let _search_results = gei('search_results');
         while (_search_results.firstChild) {
             _search_results.removeChild(_search_results.firstChild);
         };
     };
 
     ui_update_search = function (e) {
-        let _search_results = document.getElementById('search_results');
-        let _search_result_count = document.getElementById('search_result_count');
+        let _search_results = gei('search_results');
+        let _search_result_count = gei('search_result_count');
         let _count = 0;
 
         if ('address' in e) {
-            let _address_spacer = document.getElementById('result_address_spacer');
+            let _address_spacer = gei('result_address_spacer');
             let _aspc = _address_spacer.cloneNode(true);
-            let _aspc_name = _aspc.querySelector('#result_address_name');
-            let _aspc_bal = _aspc.querySelector('#result_address_balance');
-            _aspc_name.id = null;
-            _aspc_bal.id = null;
+            _aspc.id = null;
+            let _aspc_name = qsgei(_aspc, '#result_address_name');
+            let _aspc_bal = qsgei(_aspc, '#result_address_balance');
+
             let _addr = e['address'][0];
             _aspc_name.innerText = _addr;
             _aspc_name.style.cssText = 'cursor: pointer; text-decoration: underline;';
@@ -594,14 +594,13 @@ var nww_main = new (function () {
         };
 
         if ('block' in e) {
-            let _block_spacer = document.getElementById('result_block_spacer');
+            let _block_spacer = gei('result_block_spacer');
             let _bspc = _block_spacer.cloneNode(true);
-            let _bspc_time = _bspc.querySelector('#result_block_time');
-            let _bspc_height = _bspc.querySelector('#result_block_height');
-            let _bspc_hash = _bspc.querySelector('#result_block_hash');
-            _bspc_time.id = null;
-            _bspc_height.id = null;
-            _bspc_hash.id = null;
+            _bspc.id = null;
+            let _bspc_time = qsgei(_bspc, '#result_block_time');
+            let _bspc_height = qsgei(_bspc, '#result_block_height');
+            let _bspc_hash = qsgei(_bspc, '#result_block_hash');
+
             _bspc_time.innerText = e['block'][1];
             let _bb = e['block'][0];
             _bspc_height.innerText = _bb;
@@ -620,14 +619,13 @@ var nww_main = new (function () {
         };
 
         if ('tx' in e) {
-            let _tx_spacer = document.getElementById('result_transaction_spacer');
+            let _tx_spacer = gei('result_transaction_spacer');
             let _tspc = _tx_spacer.cloneNode(true);
-            let _tspc_time = _tspc.querySelector('#result_transaction_time');
-            let _tspc_height = _tspc.querySelector('#result_transaction_block');
-            let _tspc_hash = _tspc.querySelector('#result_transaction_hash');
-            _tspc_time.id = null;
-            _tspc_height.id = null;
-            _tspc_hash.id = null;
+            _tspc.id = null;
+            let _tspc_time = qsgei(_tspc, '#result_transaction_time');
+            let _tspc_height = qsgei(_tspc, '#result_transaction_block');
+            let _tspc_hash = qsgei(_tspc, '#result_transaction_hash');
+
             let _tb = e['tx'][0];
             _tspc_time.innerText = e['tx'][1];
             _tspc_height.innerText = _tb;
@@ -646,13 +644,11 @@ var nww_main = new (function () {
         };
 
         if ('namespace' in e) {
-            let _namespace_spacer = document.getElementById('result_namespace_spacer');
+            let _namespace_spacer = gei('result_namespace_spacer');
             let _nspc = _namespace_spacer.cloneNode(true);
-            let _nspc_nsid = _nspc.querySelector('#result_namespace_nsid');
-            let _nspc_shortcode = _nspc.querySelector('#result_namespace_shortcode');
-
-            _nspc_nsid.id = null;
-            _nspc_shortcode.id = null;
+            _nspc.id = null;
+            let _nspc_nsid = qsgei(_nspc, '#result_namespace_nsid');
+            let _nspc_shortcode = qsgei(_nspc, '#result_namespace_shortcode');
 
             _nspc_nsid.innerText = e['namespace'][0];
             _nspc_shortcode.innerText = e['namespace'][1] + e['namespace'][2];
@@ -662,13 +658,12 @@ var nww_main = new (function () {
         };
 
         if ('shortcode' in e) {
-            let _namespace_spacer = document.getElementById('result_namespace_spacer');
+            let _namespace_spacer = gei('result_namespace_spacer');
             let _nspc = _namespace_spacer.cloneNode(true);
-            let _nspc_nsid = _nspc.querySelector('#result_namespace_nsid');
-            let _nspc_shortcode = _nspc.querySelector('#result_namespace_shortcode');
+            _nspc.id = null;
+            let _nspc_nsid = qsgei(_nspc, '#result_namespace_nsid');
+            let _nspc_shortcode = qsgei(_nspc, '#result_namespace_shortcode');
 
-            _nspc_nsid.id = null;
-            _nspc_shortcode.id = null;
 
             let _nsid = e['shortcode'][0];
             _nspc_nsid.innerText = _nsid;
@@ -691,27 +686,22 @@ var nww_main = new (function () {
         };
 
         if ('content' in e) {
-            let _content_section_spacer = document.getElementById('result_namespace_content_section');
-            let _content_spacer = document.getElementById('result_namespace_content_spacer');
+            let _content_section_spacer = gei('result_namespace_content_section');
+            let _content_spacer = gei('result_namespace_content_spacer');
             let _content_spacer_clone = _content_spacer.cloneNode(true);
-            let _content_list = _content_spacer_clone.querySelector('#result_namespace_content_list');
-
             _content_spacer_clone.id = null;
-            _content_list.id = null;
+            let _content_list = qsgei(_content_spacer_clone, '#result_namespace_content_list');
+
+            // _content_list.id = null;
             for (result in e['content']) {
                 let _ncspc = _content_section_spacer.cloneNode(true);
-                let _ncspc_time = _ncspc.querySelector('#result_namespace_content_time');
-                let _ncspc_nsid = _ncspc.querySelector('#result_namespace_content_nsid');
-                let _ncspc_shortcode = _ncspc.querySelector('#result_namespace_content_shortcode');
-                let _ncspc_key = _ncspc.querySelector('#result_namespace_content_key');
-                let _ncspc_value = _ncspc.querySelector('#result_namespace_content_value');
-
                 _ncspc.id = null;
-                _ncspc_time.id = null;
-                _ncspc_nsid.id = null;
-                _ncspc_shortcode.id = null;
-                _ncspc_key.id = null;
-                _ncspc_value.id = null;
+                let _ncspc_time = qsgei(_ncspc, '#result_namespace_content_time');
+                let _ncspc_nsid = qsgei(_ncspc, '#result_namespace_content_nsid');
+                let _ncspc_shortcode = qsgei(_ncspc, '#result_namespace_content_shortcode');
+                let _ncspc_key = qsgei(_ncspc, '#result_namespace_content_key');
+                let _ncspc_value = qsgei(_ncspc, '#result_namespace_content_value');
+
                 _ncspc_time.innerText = e['content'][result][0];
                 let _ncsid = e['content'][result][2];
                 _ncspc_nsid.innerText = _ncsid;
@@ -739,17 +729,17 @@ var nww_main = new (function () {
 
     ui_clear_block = function () {
         isection_toggle('block_loading', ['block_loading', 'block_main']);
-        let _height = document.getElementById('uibexp_bheight');
-        let _hash = document.getElementById('uibexp_bhash');
-        let _version = document.getElementById('uibexp_bversion');
-        let _phash = document.getElementById('uibexp_bphash');
-        let _merkle = document.getElementById('uibexp_bmerkle');
-        let _time = document.getElementById('uibexp_btime');
-        let _bits = document.getElementById('uibexp_bbits');
-        let _nonce = document.getElementById('uibexp_bnonce');
-        let _extra = document.getElementById('uibexp_bextra');
-        let _bt = document.getElementById('uibexp_bt');
-        let _uibexp_betxc = document.getElementById('uibexp_betxc');
+        let _height = gei('uibexp_bheight');
+        let _hash = gei('uibexp_bhash');
+        let _version = gei('uibexp_bversion');
+        let _phash = gei('uibexp_bphash');
+        let _merkle = gei('uibexp_bmerkle');
+        let _time = gei('uibexp_btime');
+        let _bits = gei('uibexp_bbits');
+        let _nonce = gei('uibexp_bnonce');
+        let _extra = gei('uibexp_bextra');
+        let _bt = gei('uibexp_bt');
+        let _uibexp_betxc = gei('uibexp_betxc');
 
         clear_table(_bt);
 
@@ -767,17 +757,17 @@ var nww_main = new (function () {
     };
 
     ui_update_block = function (e) {
-        let _height = document.getElementById('uibexp_bheight');
-        let _hash = document.getElementById('uibexp_bhash');
-        let _version = document.getElementById('uibexp_bversion');
-        let _phash = document.getElementById('uibexp_bphash');
-        let _merkle = document.getElementById('uibexp_bmerkle');
-        let _time = document.getElementById('uibexp_btime');
-        let _bits = document.getElementById('uibexp_bbits');
-        let _nonce = document.getElementById('uibexp_bnonce');
-        let _extra = document.getElementById('uibexp_bextra');
-        let _bt = document.getElementById('uibexp_bt');
-        let _uibexp_betxc = document.getElementById('uibexp_betxc');
+        let _height = gei('uibexp_bheight');
+        let _hash = gei('uibexp_bhash');
+        let _version = gei('uibexp_bversion');
+        let _phash = gei('uibexp_bphash');
+        let _merkle = gei('uibexp_bmerkle');
+        let _time = gei('uibexp_btime');
+        let _bits = gei('uibexp_bbits');
+        let _nonce = gei('uibexp_bnonce');
+        let _extra = gei('uibexp_bextra');
+        let _bt = gei('uibexp_bt');
+        let _uibexp_betxc = gei('uibexp_betxc');
 
         _height.innerText = e['height'];
         _hash.innerText = e['blockhash'];
@@ -813,20 +803,20 @@ var nww_main = new (function () {
 
     ui_clear_transaction = function () {
         isection_toggle('transaction_loading', ['transaction_loading', 'transaction_main']);
-        let _id = document.getElementById('uibexp_ti');
-        let _hash = document.getElementById('uibexp_th');
-        let _locktime = document.getElementById('uibexp_tl');
-        let _version = document.getElementById('uibexp_tv');
-        let _flag = document.getElementById('uibexp_tfl');
-        let _size = document.getElementById('uibexp_ts');
-        let _vsize = document.getElementById('uibexp_tvs');
-        let _bh = document.getElementById('uibexp_tbh');
-        let _vin = document.getElementById('uibexp_tin');
-        let _vout = document.getElementById('uibexp_tout');
-        let _wit = document.getElementById('uibexp_twit');
-        let _uibexp_txinputs = document.getElementById('uibexp_txinputs');
-        let _uibexp_txoutputs = document.getElementById('uibexp_txoutputs');
-        let _uibexp_txwit = document.getElementById('uibexp_txwit');
+        let _id = gei('uibexp_ti');
+        let _hash = gei('uibexp_th');
+        let _locktime = gei('uibexp_tl');
+        let _version = gei('uibexp_tv');
+        let _flag = gei('uibexp_tfl');
+        let _size = gei('uibexp_ts');
+        let _vsize = gei('uibexp_tvs');
+        let _bh = gei('uibexp_tbh');
+        let _vin = gei('uibexp_tin');
+        let _vout = gei('uibexp_tout');
+        let _wit = gei('uibexp_twit');
+        let _uibexp_txinputs = gei('uibexp_txinputs');
+        let _uibexp_txoutputs = gei('uibexp_txoutputs');
+        let _uibexp_txwit = gei('uibexp_txwit');
         clear_table(_vin);
         clear_table(_vout);
         clear_table(_wit);
@@ -848,21 +838,21 @@ var nww_main = new (function () {
     };
 
     ui_update_transaction = function (e) {
-        let _id = document.getElementById('uibexp_ti');
-        let _uibexp_time = document.getElementById('uibexp_time');
-        let _hash = document.getElementById('uibexp_th');
-        let _locktime = document.getElementById('uibexp_tl');
-        let _version = document.getElementById('uibexp_tv');
-        let _flag = document.getElementById('uibexp_tfl');
-        let _size = document.getElementById('uibexp_ts');
-        let _vsize = document.getElementById('uibexp_tvs');
-        let _bh = document.getElementById('uibexp_tbh');
-        let _vin = document.getElementById('uibexp_tin');
-        let _vout = document.getElementById('uibexp_tout');
-        let _wit = document.getElementById('uibexp_twit');
-        let _uibexp_txinputs = document.getElementById('uibexp_txinputs');
-        let _uibexp_txoutputs = document.getElementById('uibexp_txoutputs');
-        let _uibexp_txwit = document.getElementById('uibexp_txwit');
+        let _id = gei('uibexp_ti');
+        let _uibexp_time = gei('uibexp_time');
+        let _hash = gei('uibexp_th');
+        let _locktime = gei('uibexp_tl');
+        let _version = gei('uibexp_tv');
+        let _flag = gei('uibexp_tfl');
+        let _size = gei('uibexp_ts');
+        let _vsize = gei('uibexp_tvs');
+        let _bh = gei('uibexp_tbh');
+        let _vin = gei('uibexp_tin');
+        let _vout = gei('uibexp_tout');
+        let _wit = gei('uibexp_twit');
+        let _uibexp_txinputs = gei('uibexp_txinputs');
+        let _uibexp_txoutputs = gei('uibexp_txoutputs');
+        let _uibexp_txwit = gei('uibexp_txwit');
 
         _id.innerText = e['txid'];
         _uibexp_time.innerText = e['time'].slice(0, -12);
@@ -925,12 +915,12 @@ var nww_main = new (function () {
 
     ui_clear_address = function () {
         isection_toggle('address_loading', ['address_loading', 'address_main']);
-        let _received = document.getElementById('uibexp_ar');
-        let _sent = document.getElementById('uibexp_as');
-        let _balance = document.getElementById('uibexp_ab');
-        let _total_results = document.getElementById('uibexp_att');
-        let _recent_tx = document.getElementById('uibexp_art');
-        let _uibexp_ai = document.getElementById('uibexp_ai');
+        let _received = gei('uibexp_ar');
+        let _sent = gei('uibexp_as');
+        let _balance = gei('uibexp_ab');
+        let _total_results = gei('uibexp_att');
+        let _recent_tx = gei('uibexp_art');
+        let _uibexp_ai = gei('uibexp_ai');
         clear_table(_recent_tx);
         _uibexp_ai.innerText = null;
         _received.innerText = null;
@@ -940,12 +930,12 @@ var nww_main = new (function () {
     };
 
     ui_update_address = function (e) {
-        let _received = document.getElementById('uibexp_ar');
-        let _sent = document.getElementById('uibexp_as');
-        let _balance = document.getElementById('uibexp_ab');
-        let _total_results = document.getElementById('uibexp_att');
-        let _recent_tx = document.getElementById('uibexp_art');
-        let _uibexp_ai = document.getElementById('uibexp_ai');
+        let _received = gei('uibexp_ar');
+        let _sent = gei('uibexp_as');
+        let _balance = gei('uibexp_ab');
+        let _total_results = gei('uibexp_att');
+        let _recent_tx = gei('uibexp_art');
+        let _uibexp_ai = gei('uibexp_ai');
 
         _uibexp_ai.innerText = e[0]['address'];
         _received.innerText = e[0]['received'];
@@ -974,24 +964,24 @@ var nww_main = new (function () {
 
     ui_clear_mempool_entry = function () {
         isection_toggle('mempool_entry_loading', ['mempool_entry_loading', 'mempool_entry_main']);
-        let _mat = document.getElementById('uibexp_mat');
-        let _mdt = document.getElementById('uibexp_mdt');
+        let _mat = gei('uibexp_mat');
+        let _mdt = gei('uibexp_mdt');
         clear_table(_mat);
         clear_table(_mdt);
-        let _m = document.getElementById('uibexp_mti');
-        let ancestorcount = document.getElementById('uibexp_mac');
-        let ancestorfees = document.getElementById('uibexp_maf');
-        let ancestorsize = document.getElementById('uibexp_mas');
-        let depends = document.getElementById('uibexp_md');
-        let descendantcount = document.getElementById('uibexp_mdc');
-        let descendantfees = document.getElementById('uibexp_mdf');
-        let descendantsize = document.getElementById('uibexp_mds');
-        let fee = document.getElementById('uibexp_mfee');
-        let height = document.getElementById('uibexp_mh');
-        let modifiedfee = document.getElementById('uibexp_mf');
-        let size = document.getElementById('uibexp_ms');
-        let time = document.getElementById('uibexp_mtime');
-        let wtxid = document.getElementById('uibexp_mwtx');
+        let _m = gei('uibexp_mti');
+        let ancestorcount = gei('uibexp_mac');
+        let ancestorfees = gei('uibexp_maf');
+        let ancestorsize = gei('uibexp_mas');
+        let depends = gei('uibexp_md');
+        let descendantcount = gei('uibexp_mdc');
+        let descendantfees = gei('uibexp_mdf');
+        let descendantsize = gei('uibexp_mds');
+        let fee = gei('uibexp_mfee');
+        let height = gei('uibexp_mh');
+        let modifiedfee = gei('uibexp_mf');
+        let size = gei('uibexp_ms');
+        let time = gei('uibexp_mtime');
+        let wtxid = gei('uibexp_mwtx');
 
         _m.innerText = null;
         ancestorcount.innerText = null;
@@ -1010,22 +1000,22 @@ var nww_main = new (function () {
     };
 
     ui_update_mempool_entry = function (e) {
-        let _mat = document.getElementById('uibexp_mat');
-        let _mdt = document.getElementById('uibexp_mdt');
-        let _m = document.getElementById('uibexp_mti');
-        let ancestorcount = document.getElementById('uibexp_mac');
-        let ancestorfees = document.getElementById('uibexp_maf');
-        let ancestorsize = document.getElementById('uibexp_mas');
-        let depends = document.getElementById('uibexp_md');
-        let descendantcount = document.getElementById('uibexp_mdc');
-        let descendantfees = document.getElementById('uibexp_mdf');
-        let descendantsize = document.getElementById('uibexp_mds');
-        let fee = document.getElementById('uibexp_mfee');
-        let height = document.getElementById('uibexp_mh');
-        let modifiedfee = document.getElementById('uibexp_mf');
-        let size = document.getElementById('uibexp_ms');
-        let time = document.getElementById('uibexp_mtime');
-        let wtxid = document.getElementById('uibexp_mwtx');
+        let _mat = gei('uibexp_mat');
+        let _mdt = gei('uibexp_mdt');
+        let _m = gei('uibexp_mti');
+        let ancestorcount = gei('uibexp_mac');
+        let ancestorfees = gei('uibexp_maf');
+        let ancestorsize = gei('uibexp_mas');
+        let depends = gei('uibexp_md');
+        let descendantcount = gei('uibexp_mdc');
+        let descendantfees = gei('uibexp_mdf');
+        let descendantsize = gei('uibexp_mds');
+        let fee = gei('uibexp_mfee');
+        let height = gei('uibexp_mh');
+        let modifiedfee = gei('uibexp_mf');
+        let size = gei('uibexp_ms');
+        let time = gei('uibexp_mtime');
+        let wtxid = gei('uibexp_mwtx');
         let _path = window.location.pathname;
         let _p = _path.split("/");
 
@@ -1048,24 +1038,24 @@ var nww_main = new (function () {
 
     ui_clear_info = function () {
         isection_toggle('explorer_info_loading', ['explorer_info_loading', 'explorer_info_main']);
-        let _received = document.getElementById('bexp_inftext');
+        let _received = gei('bexp_inftext');
         _received.innerText = null;
     };
 
     ui_update_info = function (e) {
-        let _received = document.getElementById('bexp_inftext');
+        let _received = gei('bexp_inftext');
         _received.innerText = e;
         isection_toggle('explorer_info_main', ['explorer_info_loading', 'explorer_info_main']);
     };
 
     ui_clear_namespace_view = function () {
         isection_toggle('namespace_loading', ['namespace_loading', 'ns_pro', 'ns_view']);
-        let _bexp_nsv = document.getElementById('ns_view');
-        let nspro_name = document.getElementById('nspro_name');
-        let nspro_sc = document.getElementById('nspro_sc');
-        let nspro_nsid = document.getElementById('nspro_nsid');
-        let nspro_keys = document.getElementById('nspro_keys');
-        let nspro_owner = document.getElementById('nspro_owner');
+        let _bexp_nsv = gei('ns_view');
+        let nspro_name = gei('nspro_name');
+        let nspro_sc = gei('nspro_sc');
+        let nspro_nsid = gei('nspro_nsid');
+        let nspro_keys = gei('nspro_keys');
+        let nspro_owner = gei('nspro_owner');
 
         while (_bexp_nsv.firstChild) {
             _bexp_nsv.removeChild(_bexp_nsv.firstChild);
@@ -1083,17 +1073,17 @@ var nww_main = new (function () {
 
     ui_update_namespace_view = function (e) {
         if (e === 'Invaild Shortcode') {
-            let _error_msg = document.getElementById('error_msg');
+            let _error_msg = gei('error_msg');
             _error_msg.innerText = e;
             section_toggle('error_section', false);
             return;
         };
-        let _bexp_nsv = document.getElementById('ns_view');
-        let nspro_name = document.getElementById('nspro_name');
-        let nspro_sc = document.getElementById('nspro_sc');
-        let nspro_nsid = document.getElementById('nspro_nsid');
-        let nspro_keys = document.getElementById('nspro_keys');
-        let nspro_owner = document.getElementById('nspro_owner');
+        let _bexp_nsv = gei('ns_view');
+        let nspro_name = gei('nspro_name');
+        let nspro_sc = gei('nspro_sc');
+        let nspro_nsid = gei('nspro_nsid');
+        let nspro_keys = gei('nspro_keys');
+        let nspro_owner = gei('nspro_owner');
         let spacer = ce('div');
         spacer.style.marginTop = '-16px';
         _bexp_nsv.appendChild(spacer);
@@ -1112,56 +1102,51 @@ var nww_main = new (function () {
         nspro_owner.onclick = function () {
             section_link('address', nspro_owner.innerText);
         };
-        nspro_name.innerText = e['name'];
+        nspro_name.innerHTML = e['name'];
 
         function get_ns_section(dtype) {
             if (dtype === 'ns_create') {
-                return ['ns_create_section', document.getElementById('ns_create_section')];
+                return ['ns_create_section', gei('ns_create_section')];
             }
             else if (dtype === 'delete_key') {
-                return ['ns_delete_key_section', document.getElementById('ns_delete_key_section')];
+                return ['ns_delete_key_section', gei('ns_delete_key_section')];
             }
             else if (dtype === 'name_update') {
-                return ['ns_rename_section', document.getElementById('ns_rename_section')];
+                return ['ns_rename_section', gei('ns_rename_section')];
             }
             else if (dtype === 'nft_auction') {
-                return ['ns_auction_section', document.getElementById('ns_auction_section')];
+                return ['ns_auction_section', gei('ns_auction_section')];
             }
             else if (dtype === '') {
-                return ['ns_regular_section', document.getElementById('ns_regular_section')];
+                return ['ns_regular_section', gei('ns_regular_section')];
             }
             else if (dtype === 'reply') {
-                return ['ns_reply_section', document.getElementById('ns_reply_section')];
+                return ['ns_reply_section', gei('ns_reply_section')];
             }
             else if (dtype === 'repost') {
-                return ['ns_repost_section', document.getElementById('ns_repost_section')];
+                return ['ns_repost_section', gei('ns_repost_section')];
             }
             else if (dtype === 'nft_bid') {
-                return ['ns_bid_section', document.getElementById('ns_bid_section')];
+                return ['ns_bid_section', gei('ns_bid_section')];
             }
             else if (dtype === 'reward') {
-                return ['ns_reward_section', document.getElementById('ns_reward_section')];
+                return ['ns_reward_section', gei('ns_reward_section')];
             };
         };
 
         for (result in e['data']) {
             let _ns_section = get_ns_section(e['data'][result]['dtype']);
             let x = _ns_section[1].cloneNode(true);
-            let k = x.querySelector('#' + _ns_section[0] + '_key');
-            let t = x.querySelector('#' + _ns_section[0] + '_time');
-            let v = x.querySelector('#' + _ns_section[0] + '_value');
-            let b = x.querySelector('#' + _ns_section[0] + '_block');
-            let bi = x.querySelector('#' + _ns_section[0] + '_blocki');
-            let txid = x.querySelector('#' + _ns_section[0] + '_txid');
-            let replies = x.querySelector('#' + _ns_section[0] + '_replies');
             x.id = null;
-            k.id = null;
-            t.id = null;
-            v.id = null;
-            b.id = null;
-            bi.id = null;
-            txid.id = null;
-            k.innerText = e['data'][result]['dkey'];
+            let k = qsgei(x, '#' + _ns_section[0] + '_key');
+            let t = qsgei(x, '#' + _ns_section[0] + '_time');
+            let v = qsgei(x, '#' + _ns_section[0] + '_value');
+            let b = qsgei(x, '#' + _ns_section[0] + '_block');
+            let bi = qsgei(x, '#' + _ns_section[0] + '_blocki');
+            let txid = qsgei(x, '#' + _ns_section[0] + '_txid');
+            let replies = qsgei(x, '#' + _ns_section[0] + '_replies');
+
+            k.innerHTML = e['data'][result]['dkey'];
             t.innerText = e['data'][result]['time'].slice(0, -12);
 
             if (e['data'][result]['dkey'] === 'html') {
@@ -1183,9 +1168,9 @@ var nww_main = new (function () {
                 }
                 else if (_ns_section[0] === 'ns_auction_section') {
                     let auc = JSON.parse(e['data'][result]['dvalue']);
-                    let auc_name = x.querySelector('#' + _ns_section[0] + '_value_name');
-                    let auc_price = x.querySelector('#' + _ns_section[0] + '_value_price');
-                    let auc_addr = x.querySelector('#' + _ns_section[0] + '_value_addr');
+                    let auc_name = qsgei(x, '#' + _ns_section[0] + '_value_name');
+                    let auc_price = qsgei(x, '#' + _ns_section[0] + '_value_price');
+                    let auc_addr = qsgei(x, '#' + _ns_section[0] + '_value_addr');
                     auc_name.innerHTML = auc['displayName'];
                     auc_price.innerHTML = auc['price'];
                     auc_addr.innerHTML = auc['addr'];
@@ -1198,10 +1183,10 @@ var nww_main = new (function () {
 
             if (_ns_section[0] === 'ns_reply_section' || _ns_section[0] === 'ns_reward_section' || _ns_section[0] === 'ns_repost_section' || _ns_section[0] === 'ns_bid_section') {
                 let ks = e['data'][result]['target'][0];
-                let tv = x.querySelector('#' + _ns_section[0] + '_target_value');
-                tv.id = null;
+                let tv = qsgei(x, '#' + _ns_section[0] + '_target_value');
+
                 tv.innerHTML = e['data'][result]['target'][2];
-                k.innerText = ks + ' - ' + e['data'][result]['target'][1];
+                k.innerHTML = ks + ' - ' + e['data'][result]['target'][1];
                 k.style.cssText = 'cursor: pointer; text-decoration: underline;';
                 k.onclick = function () {
                     section_link('shortcode', ks);
@@ -1209,10 +1194,10 @@ var nww_main = new (function () {
             }
             else if (_ns_section[0] === 'ns_bid_section') {
                 let ks = e['data'][result]['target'][0];
-                let tv = x.querySelector('#' + _ns_section[0] + '_target_value');
-                tv.id = null;
+                let tv = qsgei(x, '#' + _ns_section[0] + '_target_value');
+
                 tv.innerHTML = e['data'][result]['target'][1];
-                k.innerText = ks + ' - ' + e['data'][result]['target'][1];
+                k.innerHTML = ks + ' - ' + e['data'][result]['target'][1];
                 k.style.cssText = 'cursor: pointer; text-decoration: underline;';
                 k.onclick = function () {
                     section_link('shortcode', ks);
@@ -1241,31 +1226,28 @@ var nww_main = new (function () {
 
             function get_ns_reply_section(dtype) {
                 if (dtype === 'reply') {
-                    return ['ns_regular_reply', document.getElementById('ns_regular_reply')];
+                    return ['ns_regular_reply', gei('ns_regular_reply')];
                 }
                 else if (dtype === 'repost') {
-                    return ['ns_repost_reply', document.getElementById('ns_repost_reply')];
+                    return ['ns_repost_reply', gei('ns_repost_reply')];
                 }
                 else if (dtype === 'nft_bid') {
-                    return ['ns_bid_reply', document.getElementById('ns_bid_reply')];
+                    return ['ns_bid_reply', gei('ns_bid_reply')];
                 }
                 else if (dtype === 'reward') {
-                    return ['ns_reward_reply', document.getElementById('ns_reward_reply')];
+                    return ['ns_reward_reply', gei('ns_reward_reply')];
                 };
             };
             for (rresult in e['data'][result]['replies']) {
                 let _ns_reply_section = get_ns_reply_section(e['data'][result]['replies'][rresult]['dtype']);
                 let rx = _ns_reply_section[1].cloneNode(true);
-                let rsc = rx.querySelector('#' + _ns_reply_section[0] + '_shortcode');
-                let rt = rx.querySelector('#' + _ns_reply_section[0] + '_time');
-                let rv = rx.querySelector('#' + _ns_reply_section[0] + '_value');
-                let rb = rx.querySelector('#' + _ns_reply_section[0] + '_block');
-                let rtxid = rx.querySelector('#' + _ns_reply_section[0] + '_txid');
-
                 rx.id = null;
-                rt.id = null;
-                rv.id = null;
-                rtxid.id = null;
+                let rsc = qsgei(rx, '#' + _ns_reply_section[0] + '_shortcode');
+                let rt = qsgei(rx, '#' + _ns_reply_section[0] + '_time');
+                let rv = qsgei(rx, '#' + _ns_reply_section[0] + '_value');
+                let rb = qsgei(rx, '#' + _ns_reply_section[0] + '_block');
+                let rtxid = qsgei(rx, '#' + _ns_reply_section[0] + '_txid');
+
                 rt.innerText = e['data'][result]['replies'][rresult]['time'].slice(0, -12);
                 rv.innerText = e['data'][result]['replies'][rresult]['dvalue'];
 
@@ -1297,8 +1279,8 @@ var nww_main = new (function () {
 
     ui_clear_market_view = function () {
         isection_toggle('market_loading', ['market_loading', 'market_main']);
-        let _bexp_nsv = document.getElementById('xbmarket');
-        let nspro_sc = document.getElementById('mnspro_sc');
+        let _bexp_nsv = gei('xbmarket');
+        let nspro_sc = gei('mnspro_sc');
 
         while (_bexp_nsv.firstChild) {
             _bexp_nsv.removeChild(_bexp_nsv.firstChild);
@@ -1308,9 +1290,9 @@ var nww_main = new (function () {
     };
 
     ui_update_market_view = function (e) {
-        let _bexp_nsv = document.getElementById('xbmarket');
-        let _nsv_c = document.getElementById('mnsv_c');
-        let nspro_sc = document.getElementById('mnspro_sc');
+        let _bexp_nsv = gei('xbmarket');
+        let _nsv_c = gei('mnsv_c');
+        let nspro_sc = gei('mnspro_sc');
 
         let spacer = ce('div');
         spacer.style.marginTop = '-16px';
@@ -1319,30 +1301,21 @@ var nww_main = new (function () {
 
         for (result in e['data']) {
             let x = _nsv_c.cloneNode(true);
-            let k = x.querySelector('#mnsv_key');
-            let kp = x.querySelector('#mnsv_keyp');
-            let krc = x.querySelector('#mnsv_keyrc');
-            let krh = x.querySelector('#mnsv_keyrh');
-            let t = x.querySelector('#mnsv_time');
-            let v = x.querySelector('#mnsv_value');
-            let b = x.querySelector('#mnsv_block');
-            let bi = x.querySelector('#mnsv_blocki');
-            let txid = x.querySelector('#mnsv_txid');
-            let a = x.querySelector('#mnsv_addr');
-            let o = x.querySelector('#mnsv_op');
-            let rc = x.querySelector('#mnsv_rc');
-            let mpreview = x.querySelector('#mpreview');
-
             x.id = null;
-            k.id = null;
-            t.id = null;
-            v.id = null;
-            b.id = null;
-            txid.id = null;
-            a.id = null;
-            o.id = null;
-            rc.id = null;
-            mpreview.id = null;
+
+            let k = qsgei(x, '#mnsv_key');
+            let kp = qsgei(x, '#mnsv_keyp');
+            let krc = qsgei(x, '#mnsv_keyrc');
+            let krh = qsgei(x, '#mnsv_keyrh');
+            let t = qsgei(x, '#mnsv_time');
+            let v = qsgei(x, '#mnsv_value');
+            let b = qsgei(x, '#mnsv_block');
+            let bi = qsgei(x, '#mnsv_blocki');
+            let txid = qsgei(x, '#mnsv_txid');
+            let a = qsgei(x, '#mnsv_addr');
+            // let o = qsgei(x, '#mnsv_op');
+            // let rc = qsgei(x, '#mnsv_rc');
+            let mpreview = qsgei(x, '#mpreview');
 
             if ('media' in e['data'][result]) {
                 mpreview.src = e['data'][result]['media'];
@@ -1437,17 +1410,28 @@ var nww_main = new (function () {
 
     search = function (e) {
         let _sq = null;
-        let _si = document.getElementById('search' + e);
+        let _si = gei('search' + e);
         _sq = _si.value;
         _si.value = null;
         isection_toggle('search_loading', ['search_loading', 'search_results_info']);
         ui_clear_search();
         section_toggle("search_section", false);
         if (_sq) {
-            let _search_q = document.getElementById('search_q');
+            let _search_q = gei('search_q');
             _search_q.innerText = _sq;
             get_search(_sq);
         };
+    };
+
+    qsgei = function (e, i) {
+        let r_e = e.querySelector(i);
+        r_e.id = null;
+        return r_e;
+    };
+
+    gei = function (e) {
+        let r_e = document.getElementById(e);
+        return r_e;
     };
 
     ce = function (e) {
