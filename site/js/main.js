@@ -628,7 +628,7 @@ var nww_main = new (function () {
             //     section_link('block', _bb);
             // };
             _bspc_height.title = 'View block';
-            cal(_bspc_height, 'block', _bb);
+            csl(_bspc_height, 'block', _bb);
             let _bhash = e['block'][2];
             _bspc_hash.innerText = _bhash;
             // _bspc_hash.style.cssText = 'cursor: pointer; text-decoration: underline;';
