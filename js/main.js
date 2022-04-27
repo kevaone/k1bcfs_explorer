@@ -469,16 +469,18 @@ var nww_main = new (function () {
         for (result in e[1]['page_results']) {
             let _bh_lnk = ce('span');
             _bh_lnk.innerText = e[1]['page_results'][result][0];
-            _bh_lnk.style.cssText = 'cursor: pointer; text-decoration: underline;';
-            _bh_lnk.onclick = function () {
-                section_link('block', _bh_lnk.innerText);
-            };
+            // _bh_lnk.style.cssText = 'cursor: pointer; text-decoration: underline;';
+            // _bh_lnk.onclick = function () {
+            //     section_link('block', _bh_lnk.innerText);
+            // };
+            csl(_bh_lnk, 'block', _bh_lnk.innerText);
             let _b_lnk = ce('span');
             _b_lnk.innerText = e[1]['page_results'][result][1];
-            _b_lnk.style.cssText = 'cursor: pointer; text-decoration: underline;';
-            _b_lnk.onclick = function () {
-                section_link('block', _b_lnk.innerText);
-            };
+            // _b_lnk.style.cssText = 'cursor: pointer; text-decoration: underline;';
+            // _b_lnk.onclick = function () {
+            //     section_link('block', _b_lnk.innerText);
+            // };
+            csl(_b_lnk, 'block', _b_lnk.innerText);
             let _r = [e[1]['page_results'][result][2].slice(0, -12), _bh_lnk, _b_lnk, e[1]['page_results'][result][3], e[1]['page_results'][result][4]];
             add_row(_uibexp_rb, _r);
         };
@@ -498,16 +500,18 @@ var nww_main = new (function () {
             let _tx_lnk = ce('span');
             let tx = e[1]['page_results'][result];
             _tx_lnk.innerText = tx[1];
-            _tx_lnk.style.cssText = 'cursor: pointer; text-decoration: underline;';
-            _tx_lnk.onclick = function () {
-                section_link('transaction', _tx_lnk.innerText);
-            };
+            // _tx_lnk.style.cssText = 'cursor: pointer; text-decoration: underline;';
+            // _tx_lnk.onclick = function () {
+            //     section_link('transaction', _tx_lnk.innerText);
+            // };
+            csl(_tx_lnk, 'transaction', _tx_lnk.innerText);
             let _b_lnk = ce('span');
             _b_lnk.innerText = tx[0];
-            _b_lnk.style.cssText = 'cursor: pointer; text-decoration: underline;';
-            _b_lnk.onclick = function () {
-                section_link('block', _b_lnk.innerText);
-            };
+            // _b_lnk.style.cssText = 'cursor: pointer; text-decoration: underline;';
+            // _b_lnk.onclick = function () {
+            //     section_link('block', _b_lnk.innerText);
+            // };
+            csl(_b_lnk, 'block', _b_lnk.innerText);
             let _r = [tx[2].slice(0, -12), _b_lnk, _tx_lnk, tx[3], tx[4], tx[5]];
             add_row(_uibexp_rt, _r);
         };
@@ -526,10 +530,11 @@ var nww_main = new (function () {
             for (result in e) {
                 let _tx_lnk = ce('span');
                 _tx_lnk.innerText = e[result];
-                _tx_lnk.style.cssText = 'cursor: pointer; text-decoration: underline;';
-                _tx_lnk.onclick = function () {
-                    section_link('mempool', _tx_lnk.innerText);
-                };
+                // _tx_lnk.style.cssText = 'cursor: pointer; text-decoration: underline;';
+                // _tx_lnk.onclick = function () {
+                //     section_link('mempool', _tx_lnk.innerText);
+                // };
+                csl(_tx_lnk, 'mempool', _tx_lnk.innerText);
                 let _r = [_tx_lnk];
                 add_row(_uibexp_rm, _r);
             };
@@ -537,10 +542,11 @@ var nww_main = new (function () {
         else {
             let _tx_lnk = ce('span');
             _tx_lnk.innerText = e;
-            _tx_lnk.style.cssText = 'cursor: pointer; text-decoration: underline;';
-            _tx_lnk.onclick = function () {
-                section_link('mempool', _tx_lnk.innerText);
-            };
+            // _tx_lnk.style.cssText = 'cursor: pointer; text-decoration: underline;';
+            // _tx_lnk.onclick = function () {
+            //     section_link('mempool', _tx_lnk.innerText);
+            // };
+            csl(_tx_lnk, 'mempool', _tx_lnk.innerText);
             let _r = [_tx_lnk];
             add_row(_uibexp_rm, _r);
         };
@@ -584,10 +590,11 @@ var nww_main = new (function () {
 
             let _addr = e['address'][0];
             _aspc_name.innerText = _addr;
-            _aspc_name.style.cssText = 'cursor: pointer; text-decoration: underline;';
-            _aspc_name.onclick = function () {
-                section_link('address', _addr);
-            };
+            // _aspc_name.style.cssText = 'cursor: pointer; text-decoration: underline;';
+            // _aspc_name.onclick = function () {
+            //     section_link('address', _addr);
+            // };
+            csl(_aspc_name, 'address', _addr);
             _aspc_bal.innerText = e['address'][1];
             _search_results.appendChild(_aspc);
             _count += 1;
@@ -604,16 +611,18 @@ var nww_main = new (function () {
             _bspc_time.innerText = e['block'][1];
             let _bb = e['block'][0];
             _bspc_height.innerText = _bb;
-            _bspc_height.style.cssText = 'cursor: pointer; text-decoration: underline;';
-            _bspc_height.onclick = function () {
-                section_link('block', _bb);
-            };
+            // _bspc_height.style.cssText = 'cursor: pointer; text-decoration: underline;';
+            // _bspc_height.onclick = function () {
+            //     section_link('block', _bb);
+            // };
+            cal(_bspc_height, 'block', _bb);
             let _bhash = e['block'][2];
             _bspc_hash.innerText = _bhash;
-            _bspc_hash.style.cssText = 'cursor: pointer; text-decoration: underline;';
-            _bspc_hash.onclick = function () {
-                section_link('block', _bhash);
-            };
+            // _bspc_hash.style.cssText = 'cursor: pointer; text-decoration: underline;';
+            // _bspc_hash.onclick = function () {
+            //     section_link('block', _bhash);
+            // };
+            csl(_bspc_hash, 'block', _bhash);
             _search_results.appendChild(_bspc);
             _count += 1;
         };
@@ -629,16 +638,18 @@ var nww_main = new (function () {
             let _tb = e['tx'][0];
             _tspc_time.innerText = e['tx'][1];
             _tspc_height.innerText = _tb;
-            _tspc_height.style.cssText = 'cursor: pointer; text-decoration: underline;';
-            _tspc_height.onclick = function () {
-                section_link('block', _tb);
-            };
+            // _tspc_height.style.cssText = 'cursor: pointer; text-decoration: underline;';
+            // _tspc_height.onclick = function () {
+            //     section_link('block', _tb);
+            // };
+            csl(_tspc_height, 'block', _tb);
             let _hash = e['tx'][2]
             _tspc_hash.innerText = _hash;
-            _tspc_hash.style.cssText = 'cursor: pointer; text-decoration: underline;';
-            _tspc_hash.onclick = function () {
-                section_link('transaction', _hash);
-            };
+            // _tspc_hash.style.cssText = 'cursor: pointer; text-decoration: underline;';
+            // _tspc_hash.onclick = function () {
+            //     section_link('transaction', _hash);
+            // };
+            csl(_tspc_hash, 'transaction', _hash);
             _search_results.appendChild(_tspc);
             _count += 1;
         };
@@ -667,16 +678,18 @@ var nww_main = new (function () {
 
             let _nsid = e['shortcode'][0];
             _nspc_nsid.innerText = _nsid;
-            _nspc_nsid.style.cssText = 'cursor: pointer; text-decoration: underline;';
-            _nspc_nsid.onclick = function () {
-                section_link('shortcode', _nsid);
-            };
+            // _nspc_nsid.style.cssText = 'cursor: pointer; text-decoration: underline;';
+            // _nspc_nsid.onclick = function () {
+            //     section_link('shortcode', _nsid);
+            // };
+            csl(_nspc_nsid, 'shortcode', _nsid);
             let _sc = e['shortcode'][1];
             _nspc_shortcode.innerText = _sc + ' ' + e['shortcode'][2];
-            _nspc_shortcode.style.cssText = 'cursor: pointer; text-decoration: underline;';
-            _nspc_shortcode.onclick = function () {
-                section_link('shortcode', _sc);
-            };
+            // _nspc_shortcode.style.cssText = 'cursor: pointer; text-decoration: underline;';
+            // _nspc_shortcode.onclick = function () {
+            //     section_link('shortcode', _sc);
+            // };
+            csl(_nspc_shortcode, 'shortcode', _sc);
 
             _nspc_nsid.innerText = e['shortcode'][0];
             _nspc_shortcode.innerText = e['shortcode'][1] + e['shortcode'][2];
@@ -705,16 +718,18 @@ var nww_main = new (function () {
                 _ncspc_time.innerText = e['content'][result][0];
                 let _ncsid = e['content'][result][2];
                 _ncspc_nsid.innerText = _ncsid;
-                _ncspc_nsid.style.cssText = 'cursor: pointer; text-decoration: underline;';
-                _ncspc_nsid.onclick = function () {
-                    section_link('shortcode', _ncsid);
-                };
+                // _ncspc_nsid.style.cssText = 'cursor: pointer; text-decoration: underline;';
+                // _ncspc_nsid.onclick = function () {
+                //     section_link('shortcode', _ncsid);
+                // };
+                csl(_ncspc_nsid, 'shortcode', _ncsid);
                 let _csc = e['content'][result][3];
                 _ncspc_shortcode.innerText = _csc + ' ' + e['content'][result][4]
-                _ncspc_shortcode.style.cssText = 'cursor: pointer; text-decoration: underline;';
-                _ncspc_shortcode.onclick = function () {
-                    section_link('shortcode', _csc);
-                };
+                // _ncspc_shortcode.style.cssText = 'cursor: pointer; text-decoration: underline;';
+                // _ncspc_shortcode.onclick = function () {
+                //     section_link('shortcode', _csc);
+                // };
+                csl(_ncspc_shortcode, 'shortcode', _csc);
                 _ncspc_key.innerText = e['content'][result][5];
                 _ncspc_value.innerText = e['content'][result][6];
 
@@ -773,9 +788,10 @@ var nww_main = new (function () {
         _hash.innerText = e['blockhash'];
         _version.innerText = e['header']['version'];
         _phash.innerText = e['header']['prev_hash'];
-        _phash.onclick = function () {
-            section_link('block', e['header']['prev_hash']);
-        };
+        // _phash.onclick = function () {
+        //     section_link('block', e['header']['prev_hash']);
+        // };
+        csl(_phash, 'block', e['header']['prev_hash']);
         _merkle.innerText = e['header']['merkle'];
         _time.innerText = e['header']['time'].slice(0, -12);
         _bits.innerText = e['header']['bits'];
@@ -792,10 +808,11 @@ var nww_main = new (function () {
             };
             let _tx_lnk = ce('span');
             _tx_lnk.innerText = r['txid'];
-            _tx_lnk.style.cssText = 'cursor: pointer; text-decoration: underline;';
-            _tx_lnk.onclick = function () {
-                section_link('transaction', r['txid']);
-            };
+            // _tx_lnk.style.cssText = 'cursor: pointer; text-decoration: underline;';
+            // _tx_lnk.onclick = function () {
+            //     section_link('transaction', r['txid']);
+            // };
+            csl(_tx_lnk, 'transaction', r['txid']);
             add_row(_bt, [_tx_lnk, r['vin'].length, r['vout'].length, sats]);
         };
         isection_toggle('block_main', ['block_loading', 'block_main']);
@@ -863,10 +880,11 @@ var nww_main = new (function () {
         _size.innerText = e['size'];
         _vsize.innerText = e['vsize'];
         _bh.innerText = e['block'];
-        _bh.style.cssText = 'cursor: pointer; text-decoration: underline;';
-        _bh.onclick = function () {
-            section_link('block', _bh.innerText);
-        };
+        // _bh.style.cssText = 'cursor: pointer; text-decoration: underline;';
+        // _bh.onclick = function () {
+        //     section_link('block', _bh.innerText);
+        // };
+        csl(_bh, 'block', _bh.innerText);
 
         _uibexp_txinputs.innerText = e['vin'].length;
         for (result in e['vin']) {
@@ -877,16 +895,18 @@ var nww_main = new (function () {
                 let _paddr_lnk = ce('span');
                 let _paddr = _piv['address'];
                 _paddr_lnk.innerText = _paddr;
-                _paddr_lnk.style.cssText = 'cursor: pointer; text-decoration: underline;';
-                _paddr_lnk.onclick = function () {
-                    section_link('address', _paddr);
-                };
+                // _paddr_lnk.style.cssText = 'cursor: pointer; text-decoration: underline;';
+                // _paddr_lnk.onclick = function () {
+                //     section_link('address', _paddr);
+                // };
+                csl(_paddr_lnk, 'address', _paddr);
                 _piv['address'] = _paddr_lnk;
                 _tx_lnk.innerText = _piv['txid'];
-                _tx_lnk.style.cssText = 'cursor: pointer; text-decoration: underline;';
-                _tx_lnk.onclick = function () {
-                    section_link('transaction', _tx);
-                };
+                // _tx_lnk.style.cssText = 'cursor: pointer; text-decoration: underline;';
+                // _tx_lnk.onclick = function () {
+                //     section_link('transaction', _tx);
+                // };
+                csl(_tx_lnk, 'transaction', _tx);
                 _piv['txid'] = _tx_lnk;
             };
             add_row(_vin, [_piv['value'], _piv['address'], _piv['txid'], _piv['vout'], _piv['sequence']]);
@@ -898,10 +918,11 @@ var nww_main = new (function () {
             if (_pov['address'] !== '') {
                 let _addr = _pov['address'];
                 _addr_lnk.innerText = _addr;
-                _addr_lnk.style.cssText = 'cursor: pointer; text-decoration: underline;';
-                _addr_lnk.onclick = function () {
-                    section_link('address', _addr);
-                };
+                // _addr_lnk.style.cssText = 'cursor: pointer; text-decoration: underline;';
+                // _addr_lnk.onclick = function () {
+                //     section_link('address', _addr);
+                // };
+                csl(_addr_lnk, 'address', _addr);
                 _pov['address'] = _addr_lnk;
             };
             add_row(_vout, [_pov['value'], _addr_lnk, _pov['script_pubkey']]);
@@ -947,16 +968,18 @@ var nww_main = new (function () {
             let r = e[1]['page_results'][result];
             let _tx_lnk = ce('span');
             _tx_lnk.innerText = r['txid'].split(':')[0];
-            _tx_lnk.style.cssText = 'cursor: pointer; text-decoration: underline;';
-            _tx_lnk.onclick = function () {
-                section_link('transaction', _tx_lnk.innerText);
-            };
+            // _tx_lnk.style.cssText = 'cursor: pointer; text-decoration: underline;';
+            // _tx_lnk.onclick = function () {
+            //     section_link('transaction', _tx_lnk.innerText);
+            // };
+            csl(_tx_lnk, 'transaction', _tx_lnk.innerText);
             let _b_lnk = ce('span');
             _b_lnk.innerText = r['block'];
-            _b_lnk.style.cssText = 'cursor: pointer; text-decoration: underline;';
-            _b_lnk.onclick = function () {
-                section_link('block', _b_lnk.innerText);
-            };
+            // _b_lnk.style.cssText = 'cursor: pointer; text-decoration: underline;';
+            // _b_lnk.onclick = function () {
+            //     section_link('block', _b_lnk.innerText);
+            // };
+            csl(_b_lnk, 'block', _b_lnk.innerText);
             add_row(_recent_tx, [r['time'].slice(0, -12), _b_lnk, _tx_lnk, r['value'], r['direction']]);
         };
         isection_toggle('address_main', ['address_loading', 'address_main']);
@@ -1090,18 +1113,21 @@ var nww_main = new (function () {
         e['data'].reverse();
 
         nspro_nsid.innerText = e['dnsid'];
-        nspro_nsid.onclick = function () {
-            section_link('shortcode', nspro_nsid.innerText);
-        };
+        // nspro_nsid.onclick = function () {
+        //     section_link('shortcode', nspro_nsid.innerText);
+        // };
+        csl(nspro_nsid, 'shortcode', nspro_nsid.innerText);
         nspro_sc.innerText = e['root_shortcode'];
-        nspro_sc.onclick = function () {
-            section_link('shortcode', nspro_sc.innerText);
-        };
+        // nspro_sc.onclick = function () {
+        //     section_link('shortcode', nspro_sc.innerText);
+        // };
+        csl(nspro_sc, 'shortcode', nspro_sc.innerText);
         nspro_keys.innerText = e['data'].length;
         nspro_owner.innerText = e['data'][0]['addr'];
-        nspro_owner.onclick = function () {
-            section_link('address', nspro_owner.innerText);
-        };
+        // nspro_owner.onclick = function () {
+        //     section_link('address', nspro_owner.innerText);
+        // };
+        csl(nspro_owner, 'address', nspro_owner.innerText);
         nspro_name.innerHTML = e['name'];
 
         function get_ns_section(dtype) {
@@ -1187,10 +1213,11 @@ var nww_main = new (function () {
 
                 tv.innerHTML = e['data'][result]['target'][2];
                 k.innerHTML = ks + ' - ' + e['data'][result]['target'][1];
-                k.style.cssText = 'cursor: pointer; text-decoration: underline;';
-                k.onclick = function () {
-                    section_link('shortcode', ks);
-                };
+                // k.style.cssText = 'cursor: pointer; text-decoration: underline;';
+                // k.onclick = function () {
+                //     section_link('shortcode', ks);
+                // };
+                csl(k, 'shortcode', ks);
             }
             else if (_ns_section[0] === 'ns_bid_section') {
                 let ks = e['data'][result]['target'][0];
@@ -1198,27 +1225,31 @@ var nww_main = new (function () {
 
                 tv.innerHTML = e['data'][result]['target'][1];
                 k.innerHTML = ks + ' - ' + e['data'][result]['target'][1];
-                k.style.cssText = 'cursor: pointer; text-decoration: underline;';
-                k.onclick = function () {
-                    section_link('shortcode', ks);
-                };
+                // k.style.cssText = 'cursor: pointer; text-decoration: underline;';
+                // k.onclick = function () {
+                //     section_link('shortcode', ks);
+                // };
+                csl(k, 'shortcode', ks);
             };
 
             let kb = e['data'][result]['block'];
-            b.style.cssText = 'cursor: pointer; text-decoration: underline;';
-            b.onclick = function () {
-                section_link('block', kb);
-            };
+            // b.style.cssText = 'cursor: pointer; text-decoration: underline;';
+            // b.onclick = function () {
+            //     section_link('block', kb);
+            // };
+            csl(b, 'block', kb);
             b.innerText = kb;
-            bi.style.cssText = 'cursor: pointer;';
-            bi.onclick = function () {
-                section_link('block', kb);
-            };
+            // bi.style.cssText = 'cursor: pointer;';
+            // bi.onclick = function () {
+            //     section_link('block', kb);
+            // };
+            csl(bi, 'block', kb);
             let ktxid = e['data'][result]['txid'];
-            txid.style.cssText = 'cursor: pointer;';
-            txid.onclick = function () {
-                section_link('transaction', ktxid);
-            };
+            // txid.style.cssText = 'cursor: pointer;';
+            // txid.onclick = function () {
+            //     section_link('transaction', ktxid);
+            // };
+            csl(txid, 'transaction', ktxid);
 
             if (e['data'][result]['replies'].length >= 1) {
                 replies.className += " w3-show";
@@ -1252,22 +1283,24 @@ var nww_main = new (function () {
                 rv.innerText = e['data'][result]['replies'][rresult]['dvalue'];
 
                 let rbit = e['data'][result]['replies'][rresult]['block'];
-                rb.style.cssText = 'cursor: pointer;';
-                rb.onclick = function () {
-                    section_link('block', rbit);
-                };
-
+                // rb.style.cssText = 'cursor: pointer;';
+                // rb.onclick = function () {
+                //     section_link('block', rbit);
+                // };
+                csl(rb, 'block', rbit);
                 let rtsc = e['data'][result]['replies'][rresult]['root_shortcode'];
                 rsc.innerText = rtsc + ' - ' + e['data'][result]['replies'][rresult]['name'];
-                rsc.style.cssText = 'cursor: pointer; text-decoration: underline;';
-                rsc.onclick = function () {
-                    section_link('shortcode', rtsc);
-                };
+                // rsc.style.cssText = 'cursor: pointer; text-decoration: underline;';
+                // rsc.onclick = function () {
+                //     section_link('shortcode', rtsc);
+                // };
+                csl(rsc, 'shortcode', rtsc);
                 let rrtxid = e['data'][result]['replies'][rresult]['txid'];
-                rtxid.style.cssText = 'cursor: pointer;';
-                rtxid.onclick = function () {
-                    section_link('transaction', rrtxid);
-                };
+                // rtxid.style.cssText = 'cursor: pointer;';
+                // rtxid.onclick = function () {
+                //     section_link('transaction', rrtxid);
+                // };
+                csl(rtxid, 'transaction', rrtxid);
 
                 replies.appendChild(rx);
             };
@@ -1330,16 +1363,17 @@ var nww_main = new (function () {
             v.innerText = e['data'][result]['desc'];
             let rsc = e['data'][result]['root_shortcode'];
             k.innerText = rsc + ' - ' + e['data'][result]['displayName'];
-            k.style.cssText = 'cursor: pointer; text-decoration: underline;';
-            k.onclick = function () {
-                section_link('shortcode', rsc);
-            };
-
+            // k.style.cssText = 'cursor: pointer; text-decoration: underline;';
+            // k.onclick = function () {
+            //     section_link('shortcode', rsc);
+            // };
+            csl(k, 'shortcode', rsc);
             let kb = e['data'][result]['block'];
-            b.style.cssText = 'cursor: pointer; text-decoration: underline;';
-            b.onclick = function () {
-                section_link('block', kb);
-            };
+            // b.style.cssText = 'cursor: pointer; text-decoration: underline;';
+            // b.onclick = function () {
+            //     section_link('block', kb);
+            // };
+            csl(b, 'block', kb);
             b.innerText = kb;
             bi.onclick = function () {
                 section_link('block', kb);
@@ -1420,6 +1454,13 @@ var nww_main = new (function () {
             let _search_q = gei('search_q');
             _search_q.innerText = _sq;
             get_search(_sq);
+        };
+    };
+
+    csl = function(e, s, l) {
+        e.style.cssText = 'cursor: pointer; text-decoration: underline;';
+        e.onclick = function () {
+            section_link(s, l);
         };
     };
 
