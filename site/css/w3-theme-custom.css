@@ -15,8 +15,19 @@
 
 .w3-theme {color:#fff !important; background-color:#98869c !important}
 .w3-text-theme {color:#98869c !important}
+.w3-text-theme-dark {color:#4d4150 !important}
 .w3-border-theme {border-color:#98869c !important}
 
 .w3-hover-theme:hover {color:#fff !important; background-color:#98869c !important}
+.w3-hover-theme-button:hover {color:#5d4e60 !important; background-color:#ad9fb0 !important}
 .w3-hover-text-theme:hover {color:#98869c !important}
 .w3-hover-border-theme:hover {border-color:#98869c !important}
+
+.w3-theme-input {padding-top:4px !important; padding-bottom:4px !important; padding-left:16px !important; padding-right:16px !important;}
+.w3-theme-button {border: 1px solid #98869c !important; padding-top:4px !important; padding-bottom:4px !important; padding-left:16px !important; padding-right:16px !important;}
+.w3-theme-th {color:#4d4150 !important; background-color:#c1b7c4 !important}
+.w3-hover-theme-tr:hover {color:#4d4150 !important; background-color:#eae7eb !important}
+.w3-theme-hl1 {cursor: pointer !important; text-decoration: underline !important;}
+.w3-theme-hl2 {cursor: pointer !important;}
+.w3-theme-padding-p1 {padding-top:8px !important; padding-bottom:8px !important;}
+.w3-theme-iframe {width: 200%; height: 200vh; -webkit-transform: scale(.5); transform: scale(.5); -webkit-transform-origin: 0 0; transform-origin: 0 0;}

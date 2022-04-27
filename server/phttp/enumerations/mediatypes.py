@@ -10,7 +10,7 @@ class content_type(Enum):
     ico = 'image/bmp'
     jpg = 'image/jpeg'
     jpeg = 'image/jpeg'
-    js = 'application/javascript'
+    js = 'text/javascript'
     png = 'image/png'
     txt = 'text/plain; charset=us-ascii'
     json = 'application/json'

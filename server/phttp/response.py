@@ -73,8 +73,8 @@ class ResponseBuilder():
 
     def body_from_file(self, **args):
         _content = b'no data'
-        print('args[file]', args['file'])
-        _content_path = os.path.join('/home/nut/.repos/k1bcfs_explorer', args['file'])
+        # print('args[file]', args['file'])
+        _content_path = os.path.join('/home/nut/.repos/k1bcfs_explorer/site', args['file'])
 
         try:
             with open(_content_path, mode='rb') as _content_file:
@@ -83,8 +83,8 @@ class ResponseBuilder():
             # Set body
             self.body = _content
             # Set headers
-            # self.add_header('Content-Type',
-            #                 content_type[args['file'].split('.')[-1]].value)
+            self.add_header('Content-Type',
+                            content_type[args['file'].split('.')[-1]].value)
             self.add_header('Content-Length', str(self.content_length))
 
             self.set_status('OK')

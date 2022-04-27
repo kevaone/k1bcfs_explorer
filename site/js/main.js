@@ -5,9 +5,11 @@ var nww_main = new (function () {
 
     let bc_general_update = 0;
     let bc_info_update = 0;
+    let market_update = 0;
     let bc_news_update = 0;
     let bc_recent_blocks_update = 0;
     let bc_recent_transactions_update = 0;
+    let market_display_filter = 'all';
 
     let _isections = ["address_section", "explorer_info", "explorer_stats", "explorer_browser", "market_section", "explorer_section", "namespace_section", "main_section", "search_section", "error_section", "about_section"];
     // let _ibsections = ["explorer_info", "explorer_stats", "market_section", "explorer_section", "namespace_section", "main_section", "search_section", "about_section"];
@@ -16,7 +18,7 @@ var nww_main = new (function () {
         check_state();
 
         Q.onmessage = function (e) {
-            console.log('Message received from worker', e['data']);
+            // console.log('Message received from worker', e['data']);
             if (e['data'][0]['call'] === 'get_supply') {
                 return ui_update_supply(e['data'][1]);
             }
@@ -147,8 +149,11 @@ var nww_main = new (function () {
         }
         else if (_path.startsWith("/market")) {
             document.title = "Keva.One - Kevacoin Auctions";
-            ui_clear_market_view();
-            get_nft_auctions('');
+            if (market_update < _d - 30000) {
+                ui_clear_market_view();
+                get_nft_auctions('');
+                market_update = _d;
+            };
             isection_toggle("market_section", _isections);
         }
         else if (_path.startsWith("/search")) {
@@ -473,6 +478,7 @@ var nww_main = new (function () {
             // _bh_lnk.onclick = function () {
             //     section_link('block', _bh_lnk.innerText);
             // };
+            _bh_lnk.title = 'View block';
             csl(_bh_lnk, 'block', _bh_lnk.innerText);
             let _b_lnk = ce('span');
             _b_lnk.innerText = e[1]['page_results'][result][1];
@@ -480,6 +486,7 @@ var nww_main = new (function () {
             // _b_lnk.onclick = function () {
             //     section_link('block', _b_lnk.innerText);
             // };
+            _b_lnk.title = 'View block';
             csl(_b_lnk, 'block', _b_lnk.innerText);
             let _r = [e[1]['page_results'][result][2].slice(0, -12), _bh_lnk, _b_lnk, e[1]['page_results'][result][3], e[1]['page_results'][result][4]];
             add_row(_uibexp_rb, _r);
@@ -504,6 +511,7 @@ var nww_main = new (function () {
             // _tx_lnk.onclick = function () {
             //     section_link('transaction', _tx_lnk.innerText);
             // };
+            _tx_lnk.title = 'View transaction';
             csl(_tx_lnk, 'transaction', _tx_lnk.innerText);
             let _b_lnk = ce('span');
             _b_lnk.innerText = tx[0];
@@ -511,6 +519,7 @@ var nww_main = new (function () {
             // _b_lnk.onclick = function () {
             //     section_link('block', _b_lnk.innerText);
             // };
+            _b_lnk.title = 'View block';
             csl(_b_lnk, 'block', _b_lnk.innerText);
             let _r = [tx[2].slice(0, -12), _b_lnk, _tx_lnk, tx[3], tx[4], tx[5]];
             add_row(_uibexp_rt, _r);
@@ -534,6 +543,7 @@ var nww_main = new (function () {
                 // _tx_lnk.onclick = function () {
                 //     section_link('mempool', _tx_lnk.innerText);
                 // };
+                _tx_lnk.title = 'View mempool transaction';
                 csl(_tx_lnk, 'mempool', _tx_lnk.innerText);
                 let _r = [_tx_lnk];
                 add_row(_uibexp_rm, _r);
@@ -546,6 +556,7 @@ var nww_main = new (function () {
             // _tx_lnk.onclick = function () {
             //     section_link('mempool', _tx_lnk.innerText);
             // };
+            _tx_lnk.title = 'View mempool transaction';
             csl(_tx_lnk, 'mempool', _tx_lnk.innerText);
             let _r = [_tx_lnk];
             add_row(_uibexp_rm, _r);
@@ -594,6 +605,7 @@ var nww_main = new (function () {
             // _aspc_name.onclick = function () {
             //     section_link('address', _addr);
             // };
+            _aspc_name.title = 'View address';
             csl(_aspc_name, 'address', _addr);
             _aspc_bal.innerText = e['address'][1];
             _search_results.appendChild(_aspc);
@@ -615,6 +627,7 @@ var nww_main = new (function () {
             // _bspc_height.onclick = function () {
             //     section_link('block', _bb);
             // };
+            _bspc_height.title = 'View block';
             cal(_bspc_height, 'block', _bb);
             let _bhash = e['block'][2];
             _bspc_hash.innerText = _bhash;
@@ -622,6 +635,7 @@ var nww_main = new (function () {
             // _bspc_hash.onclick = function () {
             //     section_link('block', _bhash);
             // };
+            _bspc_hash.title = 'View block';
             csl(_bspc_hash, 'block', _bhash);
             _search_results.appendChild(_bspc);
             _count += 1;
@@ -642,6 +656,7 @@ var nww_main = new (function () {
             // _tspc_height.onclick = function () {
             //     section_link('block', _tb);
             // };
+            _tspc_height.title = 'View block';
             csl(_tspc_height, 'block', _tb);
             let _hash = e['tx'][2]
             _tspc_hash.innerText = _hash;
@@ -649,6 +664,7 @@ var nww_main = new (function () {
             // _tspc_hash.onclick = function () {
             //     section_link('transaction', _hash);
             // };
+            _tspc_hash.title = 'View transaction';
             csl(_tspc_hash, 'transaction', _hash);
             _search_results.appendChild(_tspc);
             _count += 1;
@@ -682,6 +698,7 @@ var nww_main = new (function () {
             // _nspc_nsid.onclick = function () {
             //     section_link('shortcode', _nsid);
             // };
+            _nspc_nsid.title = 'View namespace';
             csl(_nspc_nsid, 'shortcode', _nsid);
             let _sc = e['shortcode'][1];
             _nspc_shortcode.innerText = _sc + ' ' + e['shortcode'][2];
@@ -689,6 +706,7 @@ var nww_main = new (function () {
             // _nspc_shortcode.onclick = function () {
             //     section_link('shortcode', _sc);
             // };
+            _nspc_shortcode.title = 'View namespace';
             csl(_nspc_shortcode, 'shortcode', _sc);
 
             _nspc_nsid.innerText = e['shortcode'][0];
@@ -722,6 +740,7 @@ var nww_main = new (function () {
                 // _ncspc_nsid.onclick = function () {
                 //     section_link('shortcode', _ncsid);
                 // };
+                _ncspc_nsid.title = 'View namespace';
                 csl(_ncspc_nsid, 'shortcode', _ncsid);
                 let _csc = e['content'][result][3];
                 _ncspc_shortcode.innerText = _csc + ' ' + e['content'][result][4]
@@ -729,6 +748,7 @@ var nww_main = new (function () {
                 // _ncspc_shortcode.onclick = function () {
                 //     section_link('shortcode', _csc);
                 // };
+                _ncspc_shortcode.title = 'View namespace';
                 csl(_ncspc_shortcode, 'shortcode', _csc);
                 _ncspc_key.innerText = e['content'][result][5];
                 _ncspc_value.innerText = e['content'][result][6];
@@ -791,6 +811,7 @@ var nww_main = new (function () {
         // _phash.onclick = function () {
         //     section_link('block', e['header']['prev_hash']);
         // };
+        _phash.title = 'View block';
         csl(_phash, 'block', e['header']['prev_hash']);
         _merkle.innerText = e['header']['merkle'];
         _time.innerText = e['header']['time'].slice(0, -12);
@@ -812,6 +833,7 @@ var nww_main = new (function () {
             // _tx_lnk.onclick = function () {
             //     section_link('transaction', r['txid']);
             // };
+            _tx_lnk.title = 'View transaction';
             csl(_tx_lnk, 'transaction', r['txid']);
             add_row(_bt, [_tx_lnk, r['vin'].length, r['vout'].length, sats]);
         };
@@ -884,6 +906,7 @@ var nww_main = new (function () {
         // _bh.onclick = function () {
         //     section_link('block', _bh.innerText);
         // };
+        _bh.title = 'View block';
         csl(_bh, 'block', _bh.innerText);
 
         _uibexp_txinputs.innerText = e['vin'].length;
@@ -899,6 +922,7 @@ var nww_main = new (function () {
                 // _paddr_lnk.onclick = function () {
                 //     section_link('address', _paddr);
                 // };
+                _paddr_lnk.title = 'View address';
                 csl(_paddr_lnk, 'address', _paddr);
                 _piv['address'] = _paddr_lnk;
                 _tx_lnk.innerText = _piv['txid'];
@@ -906,6 +930,7 @@ var nww_main = new (function () {
                 // _tx_lnk.onclick = function () {
                 //     section_link('transaction', _tx);
                 // };
+                _tx_lnk.title = 'View transaction';
                 csl(_tx_lnk, 'transaction', _tx);
                 _piv['txid'] = _tx_lnk;
             };
@@ -922,6 +947,7 @@ var nww_main = new (function () {
                 // _addr_lnk.onclick = function () {
                 //     section_link('address', _addr);
                 // };
+                _addr_lnk.title = 'View address';
                 csl(_addr_lnk, 'address', _addr);
                 _pov['address'] = _addr_lnk;
             };
@@ -972,6 +998,7 @@ var nww_main = new (function () {
             // _tx_lnk.onclick = function () {
             //     section_link('transaction', _tx_lnk.innerText);
             // };
+            _tx_lnk.title = 'View transaction';
             csl(_tx_lnk, 'transaction', _tx_lnk.innerText);
             let _b_lnk = ce('span');
             _b_lnk.innerText = r['block'];
@@ -979,6 +1006,7 @@ var nww_main = new (function () {
             // _b_lnk.onclick = function () {
             //     section_link('block', _b_lnk.innerText);
             // };
+            _b_lnk.title = 'View block';
             csl(_b_lnk, 'block', _b_lnk.innerText);
             add_row(_recent_tx, [r['time'].slice(0, -12), _b_lnk, _tx_lnk, r['value'], r['direction']]);
         };
@@ -1116,17 +1144,20 @@ var nww_main = new (function () {
         // nspro_nsid.onclick = function () {
         //     section_link('shortcode', nspro_nsid.innerText);
         // };
+        nspro_nsid.title = 'View namespace';
         csl(nspro_nsid, 'shortcode', nspro_nsid.innerText);
         nspro_sc.innerText = e['root_shortcode'];
         // nspro_sc.onclick = function () {
         //     section_link('shortcode', nspro_sc.innerText);
         // };
+        nspro_sc.title = 'View namespace';
         csl(nspro_sc, 'shortcode', nspro_sc.innerText);
         nspro_keys.innerText = e['data'].length;
         nspro_owner.innerText = e['data'][0]['addr'];
         // nspro_owner.onclick = function () {
         //     section_link('address', nspro_owner.innerText);
         // };
+        nspro_owner.title = 'View address';
         csl(nspro_owner, 'address', nspro_owner.innerText);
         nspro_name.innerHTML = e['name'];
 
@@ -1179,7 +1210,8 @@ var nww_main = new (function () {
                 v.innerText = '';
                 let ifra = ce('iframe');
                 ifra.srcdoc = e['data'][result]['dvalue'];
-                ifra.style.cssText = 'width: 200%; height: 200vh; -webkit-transform: scale(.5); transform: scale(.5); -webkit-transform-origin: 0 0; transform-origin: 0 0;';
+                ifra.className = 'w3-theme-iframe';
+                // ifra.style.cssText = 'width: 200%; height: 200vh; -webkit-transform: scale(.5); transform: scale(.5); -webkit-transform-origin: 0 0; transform-origin: 0 0;';
                 v.appendChild(ifra);
             }
             else {
@@ -1217,6 +1249,7 @@ var nww_main = new (function () {
                 // k.onclick = function () {
                 //     section_link('shortcode', ks);
                 // };
+                k.title = 'View namespace';
                 csl(k, 'shortcode', ks);
             }
             else if (_ns_section[0] === 'ns_bid_section') {
@@ -1229,6 +1262,7 @@ var nww_main = new (function () {
                 // k.onclick = function () {
                 //     section_link('shortcode', ks);
                 // };
+                k.title = 'View namespace';
                 csl(k, 'shortcode', ks);
             };
 
@@ -1239,17 +1273,20 @@ var nww_main = new (function () {
             // };
             csl(b, 'block', kb);
             b.innerText = kb;
+            b.title = 'View block';
             // bi.style.cssText = 'cursor: pointer;';
             // bi.onclick = function () {
             //     section_link('block', kb);
             // };
-            csl(bi, 'block', kb);
+            bi.title = 'View block';
+            csl(bi, 'block', kb, 2);
             let ktxid = e['data'][result]['txid'];
             // txid.style.cssText = 'cursor: pointer;';
             // txid.onclick = function () {
             //     section_link('transaction', ktxid);
             // };
-            csl(txid, 'transaction', ktxid);
+            txid.title = 'View transaction';
+            csl(txid, 'transaction', ktxid, 2);
 
             if (e['data'][result]['replies'].length >= 1) {
                 replies.className += " w3-show";
@@ -1287,9 +1324,11 @@ var nww_main = new (function () {
                 // rb.onclick = function () {
                 //     section_link('block', rbit);
                 // };
-                csl(rb, 'block', rbit);
+                rb.title = 'View block';
+                csl(rb, 'block', rbit, 2);
                 let rtsc = e['data'][result]['replies'][rresult]['root_shortcode'];
                 rsc.innerText = rtsc + ' - ' + e['data'][result]['replies'][rresult]['name'];
+                rsc.title = 'View namespace';
                 // rsc.style.cssText = 'cursor: pointer; text-decoration: underline;';
                 // rsc.onclick = function () {
                 //     section_link('shortcode', rtsc);
@@ -1300,7 +1339,8 @@ var nww_main = new (function () {
                 // rtxid.onclick = function () {
                 //     section_link('transaction', rrtxid);
                 // };
-                csl(rtxid, 'transaction', rrtxid);
+                rtxid.title = 'View transaction';
+                csl(rtxid, 'transaction', rrtxid, 2);
 
                 replies.appendChild(rx);
             };
@@ -1320,6 +1360,49 @@ var nww_main = new (function () {
         };
 
         nspro_sc.innerText = null;
+    };
+
+    imarket_section_toggle = function (e, h=true) {
+        let _kmedia = document.getElementsByClassName('kmedia');
+        let _kcontent = document.getElementsByClassName('kcontent');
+
+        function hide(e) {
+            for (let i = 0; i < e.length; i++) {
+                if (e[i].className.indexOf('w3-hide') == -1) {
+                    e[i].className += ' w3-hide';
+                };
+            };
+        };
+        function show(e) {
+            for (let i = 0; i < e.length; i++) {
+                if (e[i].className.indexOf('w3-hide') != -1) {
+                    e[i].className = e[i].className.replace(' w3-hide', '');
+                };
+            };
+        };
+
+        if (e === 'all') {
+            show(_kmedia);
+            show(_kcontent);
+            market_display_filter = 'all';
+        }
+        else if (e === 'media') {
+            show(_kmedia);
+            hide(_kcontent);
+            market_display_filter = 'media';
+        
+        }
+        else if (e === 'content') {
+            hide(_kmedia);
+            show(_kcontent);
+            market_display_filter = 'content';
+            
+        };
+
+        if (h === true) {
+            window.history.replaceState(null, document.title, "/market");
+        };
+
     };
 
     ui_update_market_view = function (e) {
@@ -1352,17 +1435,20 @@ var nww_main = new (function () {
 
             if ('media' in e['data'][result]) {
                 mpreview.src = e['data'][result]['media'];
+                x.className += ' kmedia';
             }
             else {
                 if (mpreview.className.indexOf("w3-hide") == -1) {
                     mpreview.className += " w3-hide";
                 };
+                x.className += ' kcontent';
             };
             kp.innerText = e['data'][result]['price'] + ' KVA';
             t.innerText = e['data'][result]['time'].slice(0, -12);
             v.innerText = e['data'][result]['desc'];
             let rsc = e['data'][result]['root_shortcode'];
             k.innerText = rsc + ' - ' + e['data'][result]['displayName'];
+            k.title = 'View namespace';
             // k.style.cssText = 'cursor: pointer; text-decoration: underline;';
             // k.onclick = function () {
             //     section_link('shortcode', rsc);
@@ -1375,13 +1461,18 @@ var nww_main = new (function () {
             // };
             csl(b, 'block', kb);
             b.innerText = kb;
-            bi.onclick = function () {
-                section_link('block', kb);
-            };
+            b.title = 'View block';
+            bi.title = 'View block';
+            // bi.onclick = function () {
+            //     section_link('block', kb);
+            // };
+            csl(bi, 'block', kb, 2);
             let ktxid = e['data'][result]['txid'];
-            txid.onclick = function () {
-                section_link('transaction', ktxid);
-            };
+            // txid.onclick = function () {
+            //     section_link('transaction', ktxid);
+            // };
+            txid.title = 'View transaction';
+            csl(txid, 'transaction', ktxid, 2);
 
             a.innerText = e['data'][result]['owner_addr'];
             krc.innerText = e['data'][result]['bids'][0];
@@ -1389,6 +1480,7 @@ var nww_main = new (function () {
             krh.innerText = _high_bid;
             _bexp_nsv.appendChild(x);
         };
+        imarket_section_toggle(market_display_filter, false);
         isection_toggle('market_main', ['market_loading', 'market_main']);
     };
 
@@ -1457,8 +1549,17 @@ var nww_main = new (function () {
         };
     };
 
-    csl = function(e, s, l) {
-        e.style.cssText = 'cursor: pointer; text-decoration: underline;';
+    csl = function(e, s, l, ul=1) {
+        if (ul === 1) {
+            e.className = 'w3-theme-hl1';
+        }
+        else if (ul === 0) {
+            e.className = 'w3-theme-hl2';
+        }
+        else if (ul === 2) {
+            e.className += ' w3-theme-hl2';
+        };
+        
         e.onclick = function () {
             section_link(s, l);
         };
@@ -1482,6 +1583,7 @@ var nww_main = new (function () {
 
     add_row = function (t, e) {
         let _row = ce('tr');
+        _row.className = 'w3-theme-text-dark w3-hover-theme-tr';
         function add_cell(_row, e) {
             let _cell = ce('td');
             if (typeof e === 'object') {

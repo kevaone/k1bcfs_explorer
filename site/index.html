@@ -31,27 +31,27 @@
         <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
             <!-- <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2"
                 href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a> -->
-            <div class="w3-bar-item w3-button w3-hover-white" title="Home" onclick="section_toggle('main_section');">
+            <div class="w3-bar-item w3-button w3-hover-theme" title="Home" onclick="section_toggle('main_section');">
                 <img src="/images/keva_one_logo.png" style="height:36px;width:36px" alt="Logo">
             </div>
-            <div class="w3-bar-item w3-button w3-padding-large w3-hover-white" title="Home"
+            <div class="w3-bar-item w3-button w3-padding-large w3-hover-theme" title="Home"
                 onclick="section_toggle('main_section');">
                 <i class="fa fa-home"></i>
             </div>
-            <div class="w3-bar-item w3-button w3-padding-large w3-hover-white" title="Search"
+            <div class="w3-bar-item w3-button w3-padding-large w3-hover-theme" title="Search"
                 onclick="section_toggle('search_section');">
                 <i class="fa fa-globe"></i>
             </div>
             <div class="w3-bar-item w3-dropdown-hover w3-padding-large w3-hide-small" title="Block Explorers">
                 <i class="fa fa-cubes"></i>
-                <div class="w3-dropdown-content w3-padding-large w3-card w3-bar-block" title="Kevacoin Explorer"
+                <div class="w3-dropdown-content w3-padding-large w3-card w3-bar-block w3-hover-theme w3-text-theme-dark" title="Kevacoin Explorer"
                     onclick="section_toggle('explorer_info');" style="cursor: pointer;">
                     <i class="fa fa-cubes">&nbsp;Kevacoin Explorer</i>
                 </div>
             </div>
-            <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-padding-large w3-hover-white w3-large w3-theme-d2"
+            <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-padding-large w3-hover-theme w3-large w3-theme-d2"
                 href="javascript:void(0);" onclick="open_nav_small();"><i class="fa fa-cubes"></i></a>
-            <div class="w3-bar-item w3-button w3-padding-large w3-hover-white" title="Marketplace"
+            <div class="w3-bar-item w3-button w3-padding-large w3-hover-theme" title="Marketplace"
                 onclick="section_toggle('market_section');">
                 <i class="fa fa-cart-plus"></i>
             </div>
@@ -63,10 +63,9 @@
                 </div>
             </div> -->
             <div class="w3-bar-item w3-hide-small w3-right">
-                <input id="search2" class="w3-border w3-padding" type="text"
-                    placeholder="Explore KevaOne or lookup a namespace">
-                <button type="button" class="w3-button w3-theme" onclick="search(2);"><i class="fa fa-search"></i>
-                    Search</button>
+                <input id="search2" class="w3-border w3-theme-input" type="text"
+                    placeholder="">
+                <button type="button" class="w3-theme-button w3-hover-theme-button w3-theme" onclick="search(2);"><i class="fa fa-search"></i>&nbsp;Search</button>
             </div>
         </div>
     </div>
@@ -121,9 +120,9 @@
                     </div>
                     <div class="w3-container w3-margin-top w3-margin-bottom">
                         <div class="w3-center">
-                            Search&nbsp;<input id="search1" class="w3-border w3-padding" type="text"
+                            <input id="search1" class="w3-border w3-theme-input" type="text"
                                 placeholder="Explore KevaOne or lookup a namespace">
-                            <button type="button" class="w3-button w3-theme" onclick="search(1);">Search</button>
+                            <button type="button" class="w3-theme-button w3-hover-theme-button w3-theme" onclick="search(1);"><i class="fa fa-search"></i>&nbsp;Search</button>
                         </div>
                     </div>
                     <!-- <div class="w3-container w3-margin-top">
@@ -150,9 +149,9 @@
                     </div>
                     <div class="w3-container w3-margin-top w3-margin-bottom w3-center">
                         <div>
-                            <input id="search0" class="w3-border w3-padding" type="text"
+                            <input id="search0" class="w3-border w3-theme-input" type="text"
                                 placeholder="Explore KevaOne or lookup a namespace">
-                            <button type="button" class="w3-button w3-theme" onclick="search(0);">Search</button>
+                            <button type="button" class="w3-theme-button w3-hover-theme-button w3-theme" onclick="search(0);"><i class="fa fa-search"></i>&nbsp;Search</button>
                         </div>
                     </div>
                 </div>
@@ -458,7 +457,7 @@
                             <div class="w3-content k1-overflow-scroll w3-margin-bottom" style="max-height: 60vh;">
                                 <table id="uibexp_art" class="w3-table">
                                     <thead style="position: sticky; top:0px;">
-                                        <tr class="w3-light-grey">
+                                        <tr class="w3-theme-th">
                                             <th>Time</th>
                                             <th>Height</th>
                                             <th>TX Hash</th>
@@ -945,12 +944,12 @@
             <div class="w3-col m3">
                 <div class="w3-card w3-round w3-white">
                     <!-- Block Explorer -->
-                    <div class="w3-container">
-                        <h4 class="w3-center">Kevacoin</h4>
+                    <div class="w3-container w3-text-theme-dark">
+                        <h4 class="w3-center w3-xlarge w3-text-theme-dark">Kevacoin</h4>
                         <p class="w3-center"><img src="/images/kevacoin-logo.png" class="w3-circle"
                                 style="height:156px;width:156px" alt="Logo"></p>
                         <hr>
-                        <p><i class="fa fa-link w3-margin-right w3-text-theme"></i>Symbol <span id="">KVA</span>
+                        <p><i class="fa fa-link w3-margin-right w3-text-theme"></i>Symbol <span id="uibs_symbol">KVA</span>
                         </p>
                         <p><i class="fa fa-level-up-alt w3-margin-right w3-text-theme"></i>Height <span
                                 id="uibs_height">0</span></p>
@@ -975,14 +974,14 @@
                     <div class="w3-col m12">
                         <div class="w3-card w3-round w3-white">
                             <div class="w3-container w3-padding">
-                                <button type="button" class="w3-button w3-theme"
-                                    onclick="section_toggle('explorer_info')"><i class="fa fa-info-circle"></i>
+                                <button type="button" class="w3-theme-button w3-theme w3-hover-theme-button"
+                                    onclick="section_toggle('explorer_info')" title="Information"><i class="fa fa-info-circle"></i>
                                     Info</button>
                                 <!-- <button type="button" class="w3-button w3-theme"
                                     onclick="section_toggle('explorer_stats')"><i class="fa fa-chart-line"></i>
                                     Stats</button> -->
-                                <button type="button" class="w3-button w3-theme"
-                                    onclick="section_toggle('explorer_browser')"><i class="fa fa-archive"></i>
+                                <button type="button" class="w3-theme-button w3-theme w3-hover-theme-button"
+                                    onclick="section_toggle('explorer_browser')" title="Explore"><i class="fa fa-archive"></i>
                                     Explore</button>
                             </div>
                         </div>
@@ -1001,8 +1000,8 @@
                         <div id="explorer_info_main" class="w3-hide">
                             <div class="w3-container w3-margin-top">
                                 <div>
-                                    <i class="fa fa-info-circle fa-4x w3-margin-right w3-text-theme w3-left"></i>
-                                    <div style="font-size: xx-large;">Information</div>
+                                    <i class="fa fa-info-circle fa-3x w3-margin-right w3-text-theme w3-left"></i>
+                                    <div class="w3-text-theme-dark" style="font-size: xx-large;">Information</div>
                                 </div>
                             </div>
                             <div class="w3-container w3-margin-bottom">
@@ -1015,7 +1014,7 @@
                     <div class="w3-container w3-card w3-white w3-round w3-margin">
                         <div class="w3-container w3-margin-top">
                             <div>
-                                <i class="fa fa-chart-line fa-4x w3-margin-right w3-text-theme w3-left"></i>
+                                <i class="fa fa-chart-line fa-4x w3-margin-right w3-text-theme-dark w3-left"></i>
                                 <div style="font-size: xx-large;">Stats</div>
                             </div>
                         </div>
@@ -1035,15 +1034,15 @@
                 <div id="explorer_browser" class="w3-hide">
                     <div class="w3-container w3-card w3-white w3-round w3-margin">
                         <div class="w3-container w3-padding">
-                            <button type="button" class="w3-button w3-theme"
-                                onclick="exp_section_toggle('explorer_recent_blocks');"><i class="fa fa-cubes"></i>
+                            <button type="button" class="w3-theme-button w3-theme w3-hover-theme-button"
+                                onclick="exp_section_toggle('explorer_recent_blocks');" title="View recent blocks"><i class="fa fa-cubes"></i>
                                 Recent Blocks</button>
-                            <button type="button" class="w3-button w3-theme"
-                                onclick="exp_section_toggle('explorer_recent_transactions');"><i
+                            <button type="button" class="w3-theme-button w3-theme w3-hover-theme-button"
+                                onclick="exp_section_toggle('explorer_recent_transactions');" title="View recent transactions"><i
                                     class="fa fa-funnel-dollar"></i>
                                 Recent TX</button>
-                            <button type="button" class="w3-button w3-theme"
-                                onclick="exp_section_toggle('explorer_mempool');"><i class="fa fa-fill-drip"></i>
+                            <button type="button" class="w3-theme-button w3-theme w3-hover-theme-button"
+                                onclick="exp_section_toggle('explorer_mempool');" title="View mempool"><i class="fa fa-fill-drip"></i>
                                 Mempool</button>
                         </div>
                     </div>
@@ -1052,7 +1051,7 @@
                         <div class="w3-container w3-margin-top">
                             <div>
                                 <i class="fa fa-cubes fa-2x w3-margin-right w3-text-theme w3-left"></i>
-                                <div style="font-size: large;">Recent Blocks</div>
+                                <div class="w3-text-theme-dark" style="font-size: large;">Recent Blocks</div>
                             </div>
                         </div>
                         <br />
@@ -1068,7 +1067,7 @@
                             style="max-height: 60vh;">
                             <table id="uibexp_rb" class="w3-table">
                                 <thead style="position: sticky; top:0px;">
-                                    <tr class="w3-light-grey">
+                                    <tr class="w3-theme-th">
                                         <th>Time</th>
                                         <th>Height</th>
                                         <th>Block Hash</th>
@@ -1085,7 +1084,7 @@
                         <div class="w3-container w3-margin-top">
                             <div>
                                 <i class="fa fa-funnel-dollar fa-2x w3-margin-right w3-text-theme w3-left"></i>
-                                <div style="font-size: large;">Recent Transactions</div>
+                                <div class="w3-text-theme-dark" style="font-size: large;">Recent Transactions</div>
                             </div>
                         </div>
                         <br />
@@ -1101,7 +1100,7 @@
                             class="w3-hide w3-content w3-margin-bottom k1-overflow-scroll" style="max-height: 60vh;">
                             <table id="uibexp_rt" class="w3-table">
                                 <thead style="position: sticky; top:0px;">
-                                    <tr class="w3-light-grey">
+                                    <tr class="w3-theme-th">
                                         <th>Time</th>
                                         <th>Height</th>
                                         <th>TX Hash</th>
@@ -1118,7 +1117,7 @@
                         <div class="w3-container w3-margin-top">
                             <div>
                                 <i class="fa fa-fill-drip fa-2x w3-margin-right w3-text-theme w3-left"></i>
-                                <div style="font-size: large;">Mempool</div>
+                                <div class="w3-text-theme-dark" style="font-size: large;">Mempool</div>
                             </div>
                         </div>
                         <br />
@@ -1134,7 +1133,7 @@
                             style="max-height: 60vh;">
                             <table id="uibexp_rm" class="w3-table">
                                 <thead style="position: sticky; top:0px;">
-                                    <tr class="w3-light-grey">
+                                    <tr class="w3-theme-th">
                                         <th>TX Hash</th>
                                     </tr>
                                 </thead>
@@ -1192,7 +1191,7 @@
                                 <div class="w3-content w3-margin-bottom k1-overflow-scroll" style="max-height: 60vh;">
                                     <table id="uibexp_bt" class="w3-table">
                                         <thead style="position: sticky; top:0px;">
-                                            <tr class="w3-light-grey">
+                                            <tr class="w3-theme-th">
                                                 <th>TX Id</th>
                                                 <th>In</th>
                                                 <th>Out</th>
@@ -1294,7 +1293,7 @@
                                         style="max-height: 60vh;">
                                         <table id="uibexp_tin" class="w3-table">
                                             <thead style="position: sticky; top:0px;">
-                                                <tr class="w3-light-grey">
+                                                <tr class="w3-theme-th">
                                                     <th>Value</th>
                                                     <th>Address</th>
                                                     <th>TxId</th>
@@ -1315,7 +1314,7 @@
                                         style="max-height: 60vh;">
                                         <table id="uibexp_tout" class="w3-table">
                                             <thead style="position: sticky; top:0px;">
-                                                <tr class="w3-light-grey">
+                                                <tr class="w3-theme-th">
                                                     <th>Value</th>
                                                     <th>Address</th>
                                                     <th>ScriptPubKey</th>
@@ -1333,7 +1332,7 @@
                                         style="max-height: 60vh;">
                                         <table id="uibexp_twit" class="w3-table">
                                             <thead style="position: sticky; top:0px;">
-                                                <tr class="w3-light-grey">
+                                                <tr class="w3-theme-th">
                                                     <th>Value</th>
                                                 </tr>
                                             </thead>
@@ -1393,7 +1392,7 @@
                                 <div class="w3-content k1-overflow-scroll" style="max-height: 60vh;">
                                     <table id="uibexp_mat" class="w3-table">
                                         <thead style="position: sticky; top:0px;">
-                                            <tr class="w3-light-grey">
+                                            <tr class="w3-theme-th">
                                                 <th>Time</th>
                                                 <th>Height</th>
                                                 <th>TX Hash</th>
@@ -1414,7 +1413,7 @@
                                 <div class="w3-content k1-overflow-scroll" style="max-height: 60vh;">
                                     <table id="uibexp_mdt" class="w3-table">
                                         <thead style="position: sticky; top:0px;">
-                                            <tr class="w3-light-grey">
+                                            <tr class="w3-theme-th">
                                                 <th>Time</th>
                                                 <th>Height</th>
                                                 <th>TX Hash</th>
@@ -1502,7 +1501,7 @@
                                 <div class="w3-container w3-margin-top">
                                     <div>
                                         <div class="w3-half w3-margin-right" style="max-width:160px"><img id="mpreview"
-                                                src="/images/keva_one_logo.png" alt="Avatar"
+                                                src=""
                                                 class="w3-left w3-rounded w3-margin-right w3-margin-bottom"
                                                 style="width:160px">
                                         </div>
@@ -1557,24 +1556,21 @@
                 <div class="w3-col m9">
                     <div class="w3-container w3-card w3-white w3-round w3-margin-left w3-margin-right w3-margin-bottom">
                         <!-- <div style="margin-top: -16px;"></div> -->
-                        <div class="w3-bar">
-                            <div class="w3-bar-item w3-xlarge">
-                                <i class="fa fa-pallet w3-text-theme"></i>&nbsp;<span>All</span>
-                            </div>
-                            <div class="w3-bar-item w3-xlarge">
-                                <i class="fa fa-photo-video w3-text-theme"></i>&nbsp;<span>Media</span>
-                            </div>
-                            <div class="w3-bar-item w3-xlarge">
-                                <i class="fa fa-file-signature w3-text-theme"></i>&nbsp;<span>Content</span>
-                            </div>
-                            <div class="w3-bar-item w3-right">
+                        <div class="w3-theme-padding-p1">
+                            <button title="View all auctions" class="w3-bar-item w3-hover-theme-button w3-theme-button w3-theme" onclick="imarket_section_toggle('all');"><i class="fa fa-pallet"></i>&nbsp;All
+                            </button>
+                            <button title="View media auctions" class="w3-bar-item w3-hover-theme-button w3-theme-button w3-theme" onclick="imarket_section_toggle('media');"><i class="fa fa-photo-video"></i>&nbsp;Media
+                            </button>
+                            <button title="View content auctions" class="w3-bar-item w3-hover-theme-button w3-theme-button w3-theme" onclick="imarket_section_toggle('content');"><i class="fa fa-file-signature"></i>&nbsp;Content
+                            </button>
+                            <!-- <div class="w3-bar-item w3-right w3-hover-white w3-button w3-theme-d3">
                                 <select class="w3-select" name="auction sort">
-                                    <!-- <option value="" disabled selected>Sort by...</option> -->
+                                     <option value="" disabled selected>Sort by...</option>
                                     <option value="1">Option 1</option>
                                     <option value="2">Option 2</option>
                                     <option value="3" selected>Option 3</option>
                                   </select>
-                            </div>
+                            </div> --->
                             <!-- <div class="w3-bar-item">
                                 <div class="w3-dropdown-hover">
                                     <button class="w3-button">Sort</button>
@@ -1613,7 +1609,7 @@
     </div>
 
 
-    <script src="/js/main.js"></script>
+    <script src="/js/main.min.js"></script>
     <script>
         function open_nav_small() {
             var x = document.getElementById("nav_small");
