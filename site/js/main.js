@@ -338,7 +338,7 @@ var nww_main = new (function () {
 
     get_supply = function () {
         let _path = window.location.pathname;
-        if (_path.startsWith("/info") || _path.startsWith("/stats") || _path.startsWith("/explorer")) {
+        if (_path === "/" || _path.startsWith("/info") || _path.startsWith("/stats") || _path.startsWith("/explorer")) {
             let _pl = {};
             _pl['endPoint'] = ep;
             _pl['call'] = 'get_supply';
