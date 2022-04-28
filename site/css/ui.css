@@ -4,11 +4,71 @@
 .k1-overflow-scroll {
     overflow-x: scroll;
 }
-td, th {
-    /* font-size: 0.875em; */
-    font-size: 14px;
+
+#recent_blocks_main > table > tr > td:nth-child(1) {
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
-tr > td:nth-child(1) {
-    overflow-x: hidden;
-    word-wrap: break-word;
+#recent_blocks_main > table > tr > td:nth-child(2) {
+    max-width: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#recent_blocks_main > table > tr > td:nth-child(3) {
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#recent_blocks_main > table > tr > td:nth-child(4) {
+    max-width: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#recent_blocks_main > table > tr > td:nth-child(5) {
+    max-width: 75px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#recent_transactions_main > table > tr > td:nth-child(1) {
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#recent_transactions_main > table > tr > td:nth-child(2) {
+    max-width: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#recent_transactions_main > table > tr > td:nth-child(3) {
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#recent_transactions_main > table > tr > td:nth-child(4) {
+    max-width: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#recent_transactions_main > table > tr > td:nth-child(5) {
+    max-width: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#recent_transactions_main > table > tr > td:nth-child(6) {
+    max-width: 75px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
