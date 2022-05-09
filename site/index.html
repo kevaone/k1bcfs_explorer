@@ -416,58 +416,72 @@
                 </div>
             </div>
             <!-- Left Column -->
-            <div id="address_main" class="w3-hide w3-row">
-                <div class="w3-col m2">
-                    <div class="w3-card w3-round w3-white">
-                        <!-- Address Summary -->
-                        <div class="w3-container">
+            <div id="address_main" class="w3-hide">
+                <div id="address_main" class="w3-row">
+                    <div class="w3-col m12">
+                        <div class="w3-container w3-card w3-round w3-white">
+                            <!-- Address Summary -->
+                            <!-- <div class="w3-container"> -->
                             <!-- <span class="w3-center">Kevacoin</span> -->
-                            <p class="w3-center">Address</p>
-                            <p id="uibexp_ai" style="word-wrap: break-word;" class="w3-center">0</p>
-                            <p class="w3-center"><img src="/images/kevacoin-logo.png" class="w3-circle w3-hide-small"
-                                    style="height:100px;width:100px" alt="Logo"></p>
-                            <hr>
-                            <p><i
-                                    class="fa fa-hand-holding-usd fa-flip-horizontal w3-margin-right w3-text-theme"></i>Received
-                                <span id="uibexp_ar">0</span>
-                            </p>
-                            <p><i class="fa fa-hand-holding-usd fa-flip-vertical w3-margin-right w3-text-theme"></i>Sent
-                                <span id="uibexp_as">0</span>
-                            </p>
-                            <p><i class="fa fa-wallet w3-margin-right w3-text-theme"></i>Balance <span
-                                    id="uibexp_ab">0</span></p>
-                            <p><i class="fa fa-funnel-dollar w3-margin-right w3-text-theme"></i>Total transactions
-                                <span id="uibexp_att">0</span>
-                            </p>
+                            <div class="w3-margin-top">
+                                <img src="/images/kevacoin-logo.png" class="w3-circle w3-margin-right"
+                                    style="height30px;width:30px" alt="Logo">
+                                <!-- <span class="w3-center">Address</span> -->
+                                <span id="uibexp_ai" class="w3-large">0</span>
+                            </div>
+                            <!-- <hr> -->
+                            <div class="w3-container w3-margin-top w3-margin-bottom">
+                                <div class="w3-third w3-center">
+                                    <i class="fa fa-wallet w3-margin-right w3-text-theme"></i>Balance <span
+                                        id="uibexp_ab">0</span>
+                                </div>
+                                <div class="w3-third w3-center">
+                                    <i
+                                        class="fa fa-hand-holding-usd fa-flip-horizontal w3-margin-right w3-text-theme"></i>Received
+                                    <span id="uibexp_ar">0</span>
+                                </div>
+                                <div class="w3-third w3-center">
+                                    <i
+                                        class="fa fa-hand-holding-usd fa-flip-vertical w3-margin-right w3-text-theme"></i>Sent
+                                    <span id="uibexp_as">0</span>
+                                </div>
+                            </div>
+                            <!-- </div> -->
                         </div>
+                        <!-- <br /> -->
                     </div>
-                    <br />
                 </div>
                 <!-- End Left Column -->
                 <!-- Begin Address View-->
-                <div class="w3-col m10">
-                    <div>
-                        <div class="w3-container w3-card w3-white w3-round w3-margin-left w3-margin-bottom">
-                            <div class="w3-container w3-margin-top w3-margin-bottom">
-                                <!-- <img src="/images/keva_one_logo.png" alt="Avatar"
-                                    class="w3-left w3-circle w3-margin-right w3-margin-bottom" style="width:60px"> -->
-                                <div>
-                                    <i class="fa fa-funnel-dollar fa-2x w3-margin-right w3-text-theme w3-left"></i>
-                                    <div style="font-size: large;">Recent Activity</div>
+                <div class="w3-row">
+                    <div class="w3-col m12">
+                        <div>
+                            <div class="w3-container w3-card w3-white w3-round w3-margin-top">
+                                <div class="w3-container w3-margin-top w3-margin-bottom">
+                                    <div class="w3-left">
+                                        <i class="fa fa-funnel-dollar fa-2x w3-margin-right w3-text-theme w3-left"></i>
+                                        <span style="font-size: large;">Recent Activity</span>
+                                    </div>
+                                    <div class="w3-right">
+                                        <i class="fa fa-funnel-dollar w3-margin-right w3-text-theme"></i>Total
+                                        transactions
+                                        <span id="uibexp_att">0</span>
+                                    </div>
+
                                 </div>
-                            </div>
-                            <div class="w3-content k1-overflow-scroll w3-margin-bottom" style="max-height: 60vh;">
-                                <table id="uibexp_art" class="w3-table">
-                                    <thead style="position: sticky; top:0px;">
-                                        <tr class="w3-theme-th">
-                                            <th>Time</th>
-                                            <th>Height</th>
-                                            <th>TX Hash</th>
-                                            <th>Value</th>
-                                            <th>Direction</th>
-                                        </tr>
-                                    </thead>
-                                </table>
+                                <div class="k1-overflow-scroll w3-margin-bottom" style="max-height: 60vh;">
+                                    <table id="uibexp_art" class="w3-table">
+                                        <thead style="position: sticky; top:0px;">
+                                            <tr class="w3-theme-th">
+                                                <th>Time</th>
+                                                <th>Height</th>
+                                                <th>TX Hash</th>
+                                                <th>Value</th>
+                                                <th>Direction</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -486,720 +500,839 @@
                 </div>
             </div>
             <!-- Left Column -->
-            <div id="ns_pro" class="w3-hide w3-col m2">
-                <div class="w3-card w3-round w3-white">
+            <div id="ns_pro" class="w3-hide w3-col m12">
+                <div class="w3-card w3-round w3-white w3-margin-bottom">
                     <!-- Profile -->
                     <div class="w3-container">
-                        <h4 id="nspro_name" class="w3-center">Kevacoin</h4>
-                        <p class="w3-center"><img src="/images/kevacoin-logo.png" class="w3-circle w3-hide-small"
-                                style="height:100px;width:100px" alt="Logo"></p>
-                        <hr>
-                        <p>
-                            <i class="fa fa-at w3-margin-right w3-text-theme"></i><span id="nspro_sc">0</span>
-                        </p>
-                        <p>
+                        <div class="w3-margin-top">
+                        <span id="nspro_name" class="w3-center w3-xlarge">Kevacoin</span>
+                    </div>
+                    <hr>
+                    <div class="w3-container w3-margin-bottom">
+                        <div class="w3-left"><i class="fa fa-at w3-margin-right w3-text-theme"></i><span id="nspro_sc">0</span></div>
+                        <div class="w3-right"><i class="fa fa-copy w3-margin-right w3-text-theme"></i>Keys <span id="nspro_keys">0</span></div>
+                    </div>
+                    <div class="w3-container w3-margin-bottom">
+                        <div class="w3-half">
                             <i class="fa fa-address-card w3-margin-right w3-text-theme"></i><span
                                 style="word-wrap: break-word;" id="nspro_nsid">0</span>
-                        </p>
-                        <p>
-                            <i class="fa fa-copy w3-margin-right w3-text-theme"></i>Keys <span id="nspro_keys">0</span>
-                        </p>
-                        <p>
-                            <i class="fa fa-passport w3-margin-right w3-text-theme"></i>Owner <span
+                        </div>
+                        <div class="w3-half">
+                            <i class="fa fa-passport w3-margin-right w3-text-theme"></i><span
                                 style="word-wrap: break-word;" id="nspro_owner">0</span>
-                        </p>
+                        </div>
+                    </div>
+                        <!-- <p class="w3-center"><img src="/images/kevacoin-logo.png" class="w3-circle w3-hide-small"
+                                style="height:100px;width:100px" alt="Logo"></p> -->
+                        
                     </div>
                 </div>
-                <br />
+                <!-- <br /> -->
             </div>
-            <!-- End Left Column -->
-            <!-- Begin Namespace Spacers-->
-            <div class="w3-hide">
-                <div id="ns_create_section">
-                    <div class="w3-container w3-card w3-white w3-round w3-margin">
-                        <div class="w3-margin-top w3-margin-bottom">
-                            <div class="w3-right">
+        </div>
+        <!-- End Left Column -->
+
+        <!-- Begin Namespace Spacers-->
+        <div class="w3-hide">
+            <div id="ns_create_section">
+                <div class="w3-card w3-white w3-round w3-margin-top">
+                    <div class="w3-margin-top w3-margin-bottom">
+                        <div>
+                            <div class="w3-right w3-margin-right w3-margin-top w3-margin-bottom">
+
+
                                 <div>
-                                    <div class="w3-right">
-                                        <div>
-                                            <i class="far fa-clock w3-text-theme"></i>&nbsp;<span
-                                                id="ns_create_section_time">0</span>&nbsp;<i id="ns_create_section_txid"
-                                                class="fa fa-file-invoice-dollar w3-text-theme"></i>&nbsp;&nbsp;<i
-                                                id="ns_create_section_blocki"
-                                                class="fas fa-cube w3-text-theme"></i>&nbsp;<span
-                                                id="ns_create_section_block">0</span>&nbsp;
-                                        </div>
-                                    </div>
+                                    <i class="far fa-clock w3-text-theme"></i>&nbsp;<span
+                                        id="ns_create_section_time">0</span>&nbsp;<i id="ns_create_section_txid"
+                                        class="fa fa-file-invoice-dollar w3-text-theme"></i>&nbsp;&nbsp;<i
+                                        id="ns_create_section_blocki" class="fas fa-cube w3-text-theme"></i>&nbsp;<span
+                                        id="ns_create_section_block">0</span>&nbsp;
                                 </div>
+
+
                             </div>
-                            <span class="w3-left">
+                            <div class="w3-left w3-margin-left w3-margin-top w3-margin-bottom">
                                 <i class="far fa-clock w3-text-theme"></i>&nbsp;&nbsp;Namespace -
                                 <span id="ns_create_section_value" style="word-wrap: break-word;">Key</span>&nbsp;has
                                 been created!
-                            </span>
-                        </div>
-                        <div class="w3-container w3-hide">
-                            <div>
-                                <div><span id="ns_create_section_key" style="word-wrap: break-word;">0</span></div>
                             </div>
                         </div>
-                        <div id="ns_create_section_replies" class="w3-hide w3-container">
-                        </div>
-                        <div class="w3-container w3-margin-bottom"></div>
                     </div>
+                    <div class="w3-container w3-hide">
+                        <div>
+                            <div><span id="ns_create_section_key" style="word-wrap: break-word;">0</span></div>
+                        </div>
+                    </div>
+                    <div id="ns_create_section_replies" class="w3-container w3-hide">
+                    </div>
+                    <div class="w3-container w3-margin-bottom"></div>
                 </div>
-                <div id="ns_delete_key_section">
-                    <div class="w3-container w3-card w3-white w3-round w3-margin">
+            </div>
+            <div id="ns_delete_key_section">
+                <div class="w3-container w3-card w3-white w3-round w3-margin-top">
+                    <div class="w3-margin-top">
+                        <div class="w3-right">
+                            <div>
+                                <div class="w3-right">
+                                    <div>
+                                        <i class="far fa-clock w3-text-theme"></i>&nbsp;
+                                        <span id="ns_delete_key_section_time">0</span>&nbsp;
+                                        <i id="ns_delete_key_section_txid"
+                                            class="fa fa-file-invoice-dollar w3-text-theme"></i>&nbsp;&nbsp;
+                                        <i id="ns_delete_key_section_blocki"
+                                            class="fas fa-cube w3-text-theme"></i>&nbsp;
+                                        <span id="ns_delete_key_section_block">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="w3-left">
+                            <i class="far fa-clock w3-text-theme"></i>&nbsp;&nbsp;
+                            <span id="ns_delete_key_section_key" style="word-wrap: break-word;">Key</span>&nbsp;has
+                            been deleted
+                        </span>
+                    </div>
+                    <div class="w3-hide w3-container">
+                        <div>
+                            <div><span id="ns_delete_key_section_value" style="word-wrap: break-word;">0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="ns_delete_key_section_replies" class="w3-hide">
+                    </div>
+                    <div class="w3-container w3-margin-bottom"></div>
+                </div>
+            </div>
+            <div id="ns_rename_section">
+                <div class="w3-container w3-card w3-white w3-round w3-margin-top">
+                    <div class="w3-margin-top w3-margin-bottom">
+                        <div class="w3-right">
+                            <div>
+                                <div class="w3-right">
+                                    <div>
+                                        <i class="far fa-clock w3-text-theme"></i>&nbsp;<span
+                                            id="ns_rename_section_time">0</span>&nbsp;<i id="ns_rename_section_txid"
+                                            class="fa fa-file-invoice-dollar w3-text-theme"></i>&nbsp;&nbsp;<i
+                                            id="ns_rename_section_blocki"
+                                            class="fas fa-cube w3-text-theme"></i>&nbsp;<span
+                                            id="ns_rename_section_block">0</span>&nbsp;
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="w3-left" style="word-wrap: break-word;">
+                            <i class="fas fa-comment" style="color: whitesmoke;"></i>&nbsp;&nbsp;Name updated
+                            to&nbsp;-&nbsp;<span id="ns_rename_section_value">0</span>
+                        </span>
+                    </div>
+                    <div class="w3-container w3-hide">
+                        <div>
+                            <div><span id="ns_rename_section_key" style="word-wrap: break-word;">0</span></div>
+                        </div>
+                    </div>
+                    <div id="ns_rename_section_replies" class="w3-hide">
+                    </div>
+                    <div class="w3-container w3-margin-bottom"></div>
+                </div>
+            </div>
+            <div id="ns_auction_section">
+                <div class="w3-container w3-card w3-white w3-round w3-margin-top">
+                    <div class="w3-margin-top w3-margin-bottom">
+                        <div class="w3-right">
+                            <div>
+                                <div class="w3-right">
+                                    <div>
+                                        <i class="far fa-clock w3-text-theme"></i>&nbsp;<span
+                                            id="ns_auction_section_time">0</span>&nbsp;<i id="ns_auction_section_txid"
+                                            class="fa fa-file-invoice-dollar w3-text-theme"></i>&nbsp;&nbsp;<i
+                                            id="ns_auction_section_blocki"
+                                            class="fas fa-cube w3-text-theme"></i>&nbsp;<span
+                                            id="ns_auction_section_block">0</span>&nbsp;
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="w3-left w3-xlarge" style="word-wrap: break-word;">
+                            <i class="fas fa-comment" style="color: whitesmoke;"></i>&nbsp;&nbsp;Auction<span
+                                class="w3-hide" id="ns_auction_section_key">0</span>
+                        </span>
+                    </div>
+                    <div class="w3-container w3-margin-bottom">
+                        <div>
+                            <div>Name:&nbsp;<span id="ns_auction_section_value_name"
+                                    style="word-wrap: break-word;">0</span></div>
+                            <div>Asking Price:&nbsp;<span id="ns_auction_section_value_price"
+                                    style="word-wrap: break-word;">0</span></div>
+                            <div>Payment Address:&nbsp;<span id="ns_auction_section_value_addr"
+                                    style="word-wrap: break-word;">0</span></div>
+                            <div>Description:&nbsp;<span id="ns_auction_section_value"
+                                    style="word-wrap: break-word;">0</span></div>
+                        </div>
+                    </div>
+                    <div id="ns_auction_section_replies" class="w3-hide">
+                    </div>
+                    <!-- <div class="w3-container w3-margin-bottom"></div> -->
+                </div>
+            </div>
+            <div id="ns_regular_section">
+                <div class="w3-container w3-card w3-white w3-round w3-margin-top">
+                    <div class="w3-margin-top w3-margin-bottom">
+                        <div class="w3-right">
+                            <div>
+                                <div class="w3-right">
+                                    <div>
+                                        <i class="far fa-clock w3-text-theme"></i>&nbsp;<span
+                                            id="ns_regular_section_time">0</span>&nbsp;<i id="ns_regular_section_txid"
+                                            class="fa fa-file-invoice-dollar w3-text-theme"></i>&nbsp;&nbsp;<i
+                                            id="ns_regular_section_blocki"
+                                            class="fas fa-cube w3-text-theme"></i>&nbsp;<span
+                                            id="ns_regular_section_block">0</span>&nbsp;
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="w3-left w3-margin-bottom">
+                            <span id="ns_regular_section_key"
+                                style="font-size: x-large; word-wrap: break-word; overflow-wrap: break-word">Key</span>
+                        </span>
+                    </div>
+                    <div class="w3-container">
+                        <div>
+                            <div id="ns_regular_section_value"
+                                style="word-wrap: break-word; word-break: keep-all; overflow-wrap: break-word; white-space: pre-line;">
+                                0</div>
+                        </div>
+                    </div>
+                    <div id="ns_regular_section_replies" class="w3-hide">
+                    </div>
+                    <div class="w3-margin-bottom"></div>
+                </div>
+            </div>
+            <div id="ns_reply_section">
+                <div class="w3-container w3-card w3-white w3-round w3-margin-top">
+                    <div class="w3-margin-top w3-margin-bottom">
+                        <div class="w3-right">
+                            <div>
+                                <div class="w3-right">
+                                    <div>
+                                        <i class="far fa-clock w3-text-theme"></i>&nbsp;<span
+                                            id="ns_reply_section_time">0</span>&nbsp;<i id="ns_reply_section_txid"
+                                            class="fa fa-file-invoice-dollar w3-text-theme"></i>&nbsp;&nbsp;<i
+                                            id="ns_reply_section_blocki"
+                                            class="fas fa-cube w3-text-theme"></i>&nbsp;<span
+                                            id="ns_reply_section_block">0</span>&nbsp;
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="w3-left" style="word-wrap: break-word;">
+                            <i class="fas fa-comment" style="color: whitesmoke;"></i>&nbsp;&nbsp;Commented
+                            on&nbsp;-&nbsp;<span id="ns_reply_section_target_value">0</span>&nbsp;from <i
+                                class="fa fa-at"></i><span id="ns_reply_section_key">Key</span>
+                        </span>
+                    </div>
+                    <div class="w3-container">
                         <div class="w3-margin-top">
-                            <div class="w3-right">
-                                <div>
-                                    <div class="w3-right">
-                                        <div>
-                                            <i class="far fa-clock w3-text-theme"></i>&nbsp;
-                                            <span id="ns_delete_key_section_time">0</span>&nbsp;
-                                            <i id="ns_delete_key_section_txid"
-                                                class="fa fa-file-invoice-dollar w3-text-theme"></i>&nbsp;&nbsp;
-                                            <i id="ns_delete_key_section_blocki"
-                                                class="fas fa-cube w3-text-theme"></i>&nbsp;
-                                            <span id="ns_delete_key_section_block">0</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <span class="w3-left">
-                                <i class="far fa-clock w3-text-theme"></i>&nbsp;&nbsp;
-                                <span id="ns_delete_key_section_key" style="word-wrap: break-word;">Key</span>&nbsp;has
-                                been deleted
-                            </span>
+                            <div><span id="ns_reply_section_value" style="word-wrap: break-word;">0</span></div>
                         </div>
-                        <div class="w3-hide w3-container">
+                    </div>
+                    <div id="ns_reply_section_replies" class="w3-hide">
+                    </div>
+                    <div class="w3-container w3-margin-bottom"></div>
+                </div>
+            </div>
+            <div id="ns_repost_section">
+                <div class="w3-container w3-card w3-white w3-round w3-margin-top">
+                    <div class="w3-margin-top w3-margin-bottom">
+                        <div class="w3-right">
                             <div>
-                                <div><span id="ns_delete_key_section_value" style="word-wrap: break-word;">0</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="ns_delete_key_section_replies" class="w3-hide w3-container">
-                        </div>
-                        <div class="w3-container w3-margin-bottom"></div>
-                    </div>
-                </div>
-                <div id="ns_rename_section">
-                    <div class="w3-container w3-card w3-white w3-round w3-margin">
-                        <div class="w3-margin-top w3-margin-bottom">
-                            <div class="w3-right">
-                                <div>
-                                    <div class="w3-right">
-                                        <div>
-                                            <i class="far fa-clock w3-text-theme"></i>&nbsp;<span
-                                                id="ns_rename_section_time">0</span>&nbsp;<i id="ns_rename_section_txid"
-                                                class="fa fa-file-invoice-dollar w3-text-theme"></i>&nbsp;&nbsp;<i
-                                                id="ns_rename_section_blocki"
-                                                class="fas fa-cube w3-text-theme"></i>&nbsp;<span
-                                                id="ns_rename_section_block">0</span>&nbsp;
-                                        </div>
+                                <div class="w3-right">
+                                    <div>
+                                        <i class="far fa-clock w3-text-theme"></i>&nbsp;<span
+                                            id="ns_repost_section_time">0</span>&nbsp;<i id="ns_repost_section_txid"
+                                            class="fa fa-file-invoice-dollar w3-text-theme"></i>&nbsp;&nbsp;<i
+                                            id="ns_repost_section_blocki"
+                                            class="fas fa-cube w3-text-theme"></i>&nbsp;<span
+                                            id="ns_repost_section_block">0</span>&nbsp;
                                     </div>
                                 </div>
                             </div>
-                            <span class="w3-left" style="word-wrap: break-word;">
-                                <i class="fas fa-comment" style="color: whitesmoke;"></i>&nbsp;&nbsp;Name updated
-                                to&nbsp;-&nbsp;<span id="ns_rename_section_value">0</span>
-                            </span>
                         </div>
-                        <div class="w3-container w3-hide">
+                        <span class="w3-left w3-xlarge" style="word-wrap: break-word;">
+                            <i class="fas fa-comment"
+                                style="color: whitesmoke;"></i>&nbsp;&nbsp;Repost&nbsp;-&nbsp;<span
+                                id="ns_repost_section_target_value">0</span>&nbsp;from <i class="fa fa-at"></i><span
+                                id="ns_repost_section_key">Key</span>
+                        </span>
+                    </div>
+                    <div class="w3-container">
+                        <div class="w3-margin-top">
+                            <div><span id="ns_repost_section_value" style="word-wrap: break-word;">0</span></div>
+                        </div>
+                    </div>
+                    <div id="ns_repost_section_replies" class="w3-hide">
+                    </div>
+                    <div class="w3-container w3-margin-bottom"></div>
+                </div>
+            </div>
+            <div id="ns_reward_section">
+                <div class="w3-container w3-card w3-white w3-round w3-margin-top">
+                    <div class="w3-margin-top w3-margin-bottom">
+                        <div class="w3-right">
                             <div>
-                                <div><span id="ns_rename_section_key" style="word-wrap: break-word;">0</span></div>
-                            </div>
-                        </div>
-                        <div id="ns_rename_section_replies" class="w3-hide w3-container">
-                        </div>
-                        <div class="w3-container w3-margin-bottom"></div>
-                    </div>
-                </div>
-                <div id="ns_auction_section">
-                    <div class="w3-container w3-card w3-white w3-round w3-margin">
-                        <div class="w3-margin-top w3-margin-bottom">
-                            <div class="w3-right">
-                                <div>
-                                    <div class="w3-right">
-                                        <div>
-                                            <i class="far fa-clock w3-text-theme"></i>&nbsp;<span
-                                                id="ns_auction_section_time">0</span>&nbsp;<i
-                                                id="ns_auction_section_txid"
-                                                class="fa fa-file-invoice-dollar w3-text-theme"></i>&nbsp;&nbsp;<i
-                                                id="ns_auction_section_blocki"
-                                                class="fas fa-cube w3-text-theme"></i>&nbsp;<span
-                                                id="ns_auction_section_block">0</span>&nbsp;
-                                        </div>
+                                <div class="w3-right">
+                                    <div>
+                                        <i class="far fa-clock w3-text-theme"></i>&nbsp;<span
+                                            id="ns_reward_section_time">0</span>&nbsp;<i id="ns_reward_section_txid"
+                                            class="fa fa-file-invoice-dollar w3-text-theme"></i>&nbsp;&nbsp;<i
+                                            id="ns_reward_section_blocki"
+                                            class="fas fa-cube w3-text-theme"></i>&nbsp;<span
+                                            id="ns_reward_section_block">0</span>&nbsp;
                                     </div>
                                 </div>
                             </div>
-                            <span class="w3-left w3-xxlarge" style="word-wrap: break-word;">
-                                <i class="fas fa-comment" style="color: whitesmoke;"></i>&nbsp;&nbsp;Auction<span
-                                    class="w3-hide" id="ns_auction_section_key">0</span>
-                            </span>
                         </div>
-                        <div class="w3-container">
+                        <span class="w3-left" style="word-wrap: break-word;">
+                            <i class="fas fa-heart" style="color: red;"></i>&nbsp;&nbsp;Sent&nbsp;<span
+                                id="ns_reward_section_value">0</span>&nbsp;KVA love to <i class="fa fa-at"></i><span
+                                id="ns_reward_section_key">Key</span>&nbsp;for:
+                        </span>
+                    </div>
+                    <div class="w3-container">
+                        <div class="w3-margin-top">
+                            <div><span id="ns_reward_section_target_value">0</span></div>
+                        </div>
+                    </div>
+                    <div id="ns_reward_section_replies" class="w3-hide">
+                    </div>
+                    <div class="w3-container w3-margin-bottom"></div>
+                </div>
+            </div>
+            <div id="ns_bid_section">
+                <div class="w3-container w3-card w3-white w3-round w3-margin-top">
+                    <div class="w3-margin-top w3-margin-bottom">
+                        <div class="w3-right">
                             <div>
-                                <div>Name:&nbsp;<span id="ns_auction_section_value_name"
-                                        style="word-wrap: break-word;">0</span></div>
-                                <div>Asking Price:&nbsp;<span id="ns_auction_section_value_price"
-                                        style="word-wrap: break-word;">0</span></div>
-                                <div>Payment Address:&nbsp;<span id="ns_auction_section_value_addr"
-                                        style="word-wrap: break-word;">0</span></div>
-                                <div>Description:&nbsp;<span id="ns_auction_section_value"
-                                        style="word-wrap: break-word;">0</span></div>
-                            </div>
-                        </div>
-                        <div id="ns_auction_section_replies" class="w3-hide w3-container">
-                        </div>
-                        <div class="w3-container w3-margin-bottom"></div>
-                    </div>
-                </div>
-                <div id="ns_regular_section">
-                    <div class="w3-container w3-card w3-white w3-round w3-margin">
-                        <div class="w3-margin-top w3-margin-bottom">
-                            <div class="w3-right">
-                                <div>
-                                    <div class="w3-right">
-                                        <div>
-                                            <i class="far fa-clock w3-text-theme"></i>&nbsp;<span
-                                                id="ns_regular_section_time">0</span>&nbsp;<i
-                                                id="ns_regular_section_txid"
-                                                class="fa fa-file-invoice-dollar w3-text-theme"></i>&nbsp;&nbsp;<i
-                                                id="ns_regular_section_blocki"
-                                                class="fas fa-cube w3-text-theme"></i>&nbsp;<span
-                                                id="ns_regular_section_block">0</span>&nbsp;
-                                        </div>
+                                <div class="w3-right">
+                                    <div>
+                                        <i class="far fa-clock w3-text-theme"></i>&nbsp;<span
+                                            id="ns_bid_section_time">0</span>&nbsp;<i id="ns_bid_section_txid"
+                                            class="fa fa-file-invoice-dollar w3-text-theme"></i>&nbsp;&nbsp;<i
+                                            id="ns_bid_section_blocki" class="fas fa-cube w3-text-theme"></i>&nbsp;<span
+                                            id="ns_bid_section_block">0</span>&nbsp;
                                     </div>
                                 </div>
                             </div>
-                            <span class="w3-left">
-                                <span id="ns_regular_section_key"
-                                    style="font-size: xx-large; word-wrap: break-word; overflow-wrap: break-word">Key</span>
-                            </span>
                         </div>
-                        <div class="w3-container">
+                        <span class="w3-left">
+                            <i class="fas fa-money-bill-wave" style="color: green;"></i>&nbsp;&nbsp;Bid -
+                            <span id="ns_bid_section_value" style="word-wrap: break-word;">Key</span>&nbsp;KVA
+                            on&nbsp;<span id="ns_bid_section_key" style="word-wrap: break-word;">Key</span>
+                        </span>
+                    </div>
+                    <div class="w3-hide w3-container">
+                        <div>
+                            <div><span id="ns_bid_section_target_value" style="word-wrap: break-word;">0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="ns_bid_section_replies" class="w3-hide">
+                    </div>
+                    <div class="w3-container w3-margin-bottom"></div>
+                </div>
+            </div>
+            <div id="ns_reward_reply">
+                <div class="w3-container w3-card w3-white w3-round w3-margin-top w3-margin-bottom">
+                    <div style="margin-top: 6px; margin-bottom: 6px; margin-left: -6px; margin-right: -6px;">
+                        <div class="w3-right">
                             <div>
-                                <div id="ns_regular_section_value"
-                                    style="word-wrap: break-word; word-break: keep-all; overflow-wrap: break-word; white-space: pre-line;">
-                                    0</div>
-                            </div>
-                        </div>
-                        <div id="ns_regular_section_replies" class="w3-hide w3-container">
-                        </div>
-                        <div class="w3-container w3-margin-bottom"></div>
-                    </div>
-                </div>
-                <div id="ns_reply_section">
-                    <div class="w3-container w3-card w3-white w3-round w3-margin">
-                        <div class="w3-margin-top w3-margin-bottom">
-                            <div class="w3-right">
-                                <div>
-                                    <div class="w3-right">
-                                        <div>
-                                            <i class="far fa-clock w3-text-theme"></i>&nbsp;<span
-                                                id="ns_reply_section_time">0</span>&nbsp;<i id="ns_reply_section_txid"
-                                                class="fa fa-file-invoice-dollar w3-text-theme"></i>&nbsp;&nbsp;<i
-                                                id="ns_reply_section_blocki"
-                                                class="fas fa-cube w3-text-theme"></i>&nbsp;<span
-                                                id="ns_reply_section_block">0</span>&nbsp;
-                                        </div>
+                                <div class="w3-right">
+                                    <div>
+                                        <i class="far fa-clock w3-text-theme"></i>&nbsp;<span
+                                            id="ns_reward_reply_time">0</span>&nbsp;&nbsp;
+                                        <i id="ns_reward_reply_txid"
+                                            class="fa fa-file-invoice-dollar w3-text-theme"></i>&nbsp;&nbsp;<i
+                                            id="ns_reward_reply_block" class="fas fa-cube w3-text-theme"></i>
                                     </div>
                                 </div>
                             </div>
-                            <span class="w3-left" style="word-wrap: break-word;">
-                                <i class="fas fa-comment" style="color: whitesmoke;"></i>&nbsp;&nbsp;Commented
-                                on&nbsp;-&nbsp;<span id="ns_reply_section_target_value">0</span>&nbsp;from <i
-                                    class="fa fa-at"></i><span id="ns_reply_section_key">Key</span>
-                            </span>
                         </div>
-                        <div class="w3-container">
-                            <div class="w3-margin-top">
-                                <div><span id="ns_reply_section_value" style="word-wrap: break-word;">0</span></div>
-                            </div>
-                        </div>
-                        <div id="ns_reply_section_replies" class="w3-hide w3-container w3-margin-bottom">
-                        </div>
-                        <div class="w3-container w3-margin-bottom"></div>
+                        <span class="w3-left">
+                            <i class="fas fa-heart" style="color: red;"></i>&nbsp;<span
+                                id="ns_reward_reply_value">0</span>&nbsp;KVA love from&nbsp;<i
+                                class="fa fa-at"></i><span id="ns_reward_reply_shortcode">Shortcode</span></i>
+                        </span>
                     </div>
+                    <div class="w3-container" style="margin-bottom: 6px;"></div>
                 </div>
-                <div id="ns_repost_section">
-                    <div class="w3-container w3-card w3-white w3-round w3-margin">
-                        <div class="w3-margin-top w3-margin-bottom">
-                            <div class="w3-right">
-                                <div>
-                                    <div class="w3-right">
-                                        <div>
-                                            <i class="far fa-clock w3-text-theme"></i>&nbsp;<span
-                                                id="ns_repost_section_time">0</span>&nbsp;<i id="ns_repost_section_txid"
-                                                class="fa fa-file-invoice-dollar w3-text-theme"></i>&nbsp;&nbsp;<i
-                                                id="ns_repost_section_blocki"
-                                                class="fas fa-cube w3-text-theme"></i>&nbsp;<span
-                                                id="ns_repost_section_block">0</span>&nbsp;
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <span class="w3-left w3-xlarge" style="word-wrap: break-word;">
-                                <i class="fas fa-comment"
-                                    style="color: whitesmoke;"></i>&nbsp;&nbsp;Repost&nbsp;-&nbsp;<span
-                                    id="ns_repost_section_target_value">0</span>&nbsp;from <i class="fa fa-at"></i><span
-                                    id="ns_repost_section_key">Key</span>
-                            </span>
-                        </div>
-                        <div class="w3-container">
-                            <div class="w3-margin-top">
-                                <div><span id="ns_repost_section_value" style="word-wrap: break-word;">0</span></div>
-                            </div>
-                        </div>
-                        <div id="ns_repost_section_replies" class="w3-hide w3-container">
-                        </div>
-                        <div class="w3-container w3-margin-bottom"></div>
-                    </div>
-                </div>
-                <div id="ns_reward_section">
-                    <div class="w3-container w3-card w3-white w3-round w3-margin">
-                        <div class="w3-margin-top w3-margin-bottom">
-                            <div class="w3-right">
-                                <div>
-                                    <div class="w3-right">
-                                        <div>
-                                            <i class="far fa-clock w3-text-theme"></i>&nbsp;<span
-                                                id="ns_reward_section_time">0</span>&nbsp;<i id="ns_reward_section_txid"
-                                                class="fa fa-file-invoice-dollar w3-text-theme"></i>&nbsp;&nbsp;<i
-                                                id="ns_reward_section_blocki"
-                                                class="fas fa-cube w3-text-theme"></i>&nbsp;<span
-                                                id="ns_reward_section_block">0</span>&nbsp;
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <span class="w3-left" style="word-wrap: break-word;">
-                                <i class="fas fa-heart" style="color: red;"></i>&nbsp;&nbsp;Sent&nbsp;<span
-                                    id="ns_reward_section_value">0</span>&nbsp;KVA love to <i class="fa fa-at"></i><span
-                                    id="ns_reward_section_key">Key</span>&nbsp;for:
-                            </span>
-                        </div>
-                        <div class="w3-container">
-                            <div class="w3-margin-top">
-                                <div><span id="ns_reward_section_target_value">0</span></div>
-                            </div>
-                        </div>
-                        <div id="ns_reward_section_replies" class="w3-hide w3-container">
-                        </div>
-                        <div class="w3-container w3-margin-bottom"></div>
-                    </div>
-                </div>
-                <div id="ns_bid_section">
-                    <div class="w3-container w3-card w3-white w3-round w3-margin">
-                        <div class="w3-margin-top w3-margin-bottom">
-                            <div class="w3-right">
-                                <div>
-                                    <div class="w3-right">
-                                        <div>
-                                            <i class="far fa-clock w3-text-theme"></i>&nbsp;<span
-                                                id="ns_bid_section_time">0</span>&nbsp;<i id="ns_bid_section_txid"
-                                                class="fa fa-file-invoice-dollar w3-text-theme"></i>&nbsp;&nbsp;<i
-                                                id="ns_bid_section_blocki"
-                                                class="fas fa-cube w3-text-theme"></i>&nbsp;<span
-                                                id="ns_bid_section_block">0</span>&nbsp;
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <span class="w3-left">
-                                <i class="fas fa-money-bill-wave" style="color: green;"></i>&nbsp;&nbsp;Bid -
-                                <span id="ns_bid_section_value" style="word-wrap: break-word;">Key</span>&nbsp;KVA
-                                on&nbsp;<span id="ns_bid_section_key" style="word-wrap: break-word;">Key</span>
-                            </span>
-                        </div>
-                        <div class="w3-hide">
+            </div>
+            <div id="ns_bid_reply">
+                <div class="w3-container w3-card w3-white w3-round w3-margin-top w3-margin-bottom">
+                    <div style="margin-top: 6px; margin-bottom: 6px; margin-left: -6px; margin-right: -6px;">
+                        <div class="w3-right">
                             <div>
-                                <div><span id="ns_bid_section_target_value" style="word-wrap: break-word;">0</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="ns_bid_section_replies" class="w3-hide w3-container">
-                        </div>
-                        <div class="w3-container w3-margin-bottom"></div>
-                    </div>
-                </div>
-                <div id="ns_reward_reply">
-                    <div class="w3-container w3-card w3-white w3-round w3-margin-top w3-margin-bottom">
-                        <div style="margin-top: 6px; margin-bottom: 6px; margin-left: -6px; margin-right: -6px;">
-                            <div class="w3-right">
-                                <div>
-                                    <div class="w3-right">
-                                        <div>
-                                            <i class="far fa-clock w3-text-theme"></i>&nbsp;<span
-                                                id="ns_reward_reply_time">0</span>&nbsp;&nbsp;
-                                            <i id="ns_reward_reply_txid"
-                                                class="fa fa-file-invoice-dollar w3-text-theme"></i>&nbsp;&nbsp;<i
-                                                id="ns_reward_reply_block" class="fas fa-cube w3-text-theme"></i>
-                                        </div>
+                                <div class="w3-right">
+                                    <div>
+                                        <i class="far fa-clock w3-text-theme"></i>&nbsp;<span
+                                            id="ns_bid_reply_time">0</span>&nbsp;&nbsp;
+                                        <i id="ns_bid_reply_txid"
+                                            class="fa fa-file-invoice-dollar w3-text-theme"></i>&nbsp;&nbsp;<i
+                                            id="ns_bid_reply_block" class="fas fa-cube w3-text-theme"></i>
                                     </div>
                                 </div>
                             </div>
-                            <span class="w3-left">
-                                <i class="fas fa-heart" style="color: red;"></i>&nbsp;<span
-                                    id="ns_reward_reply_value">0</span>&nbsp;KVA love from&nbsp;<i
-                                    class="fa fa-at"></i><span id="ns_reward_reply_shortcode">Shortcode</span></i>
-                            </span>
                         </div>
-                        <div class="w3-container" style="margin-bottom: 6px;"></div>
+                        <span class="w3-left">
+                            <i class="fas fa-money-bill-wave" style="color: green;"></i>&nbsp;<span
+                                id="ns_bid_reply_value">0</span>&nbsp;KVA bid from&nbsp;<i class="fa fa-at"></i><span
+                                id="ns_bid_reply_shortcode">Shortcode</span></i>
+                        </span>
                     </div>
+                    <div class="w3-container" style="margin-bottom: 6px;"></div>
                 </div>
-                <div id="ns_bid_reply">
-                    <div class="w3-container w3-card w3-white w3-round w3-margin-top w3-margin-bottom">
-                        <div style="margin-top: 6px; margin-bottom: 6px; margin-left: -6px; margin-right: -6px;">
-                            <div class="w3-right">
-                                <div>
-                                    <div class="w3-right">
-                                        <div>
-                                            <i class="far fa-clock w3-text-theme"></i>&nbsp;<span
-                                                id="ns_bid_reply_time">0</span>&nbsp;&nbsp;
-                                            <i id="ns_bid_reply_txid"
-                                                class="fa fa-file-invoice-dollar w3-text-theme"></i>&nbsp;&nbsp;<i
-                                                id="ns_bid_reply_block" class="fas fa-cube w3-text-theme"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <span class="w3-left">
-                                <i class="fas fa-money-bill-wave" style="color: green;"></i>&nbsp;<span
-                                    id="ns_bid_reply_value">0</span>&nbsp;KVA bid from&nbsp;<i
-                                    class="fa fa-at"></i><span id="ns_bid_reply_shortcode">Shortcode</span></i>
-                            </span>
-                        </div>
-                        <div class="w3-container" style="margin-bottom: 6px;"></div>
-                    </div>
-                </div>
-                <div id="ns_repost_reply">
-                    <div class="w3-container w3-card w3-white w3-round w3-margin-top w3-margin-bottom">
-                        <div style="margin-top: 6px; margin-bottom: 6px; margin-left: -6px; margin-right: -6px;">
-                            <div class="w3-right">
-                                <div>
-                                    <div class="w3-right">
-                                        <div>
-                                            <i class="far fa-clock w3-text-theme"></i>&nbsp;<span
-                                                id="ns_repost_reply_time">0</span>&nbsp;&nbsp;
-                                            <i id="ns_repost_reply_txid"
-                                                class="fa fa-file-invoice-dollar w3-text-theme"></i>&nbsp;&nbsp;<i
-                                                id="ns_repost_reply_block" class="fas fa-cube w3-text-theme"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <span class="w3-left">
-                                <i class="fa fa-at"></i><span id="ns_repost_reply_shortcode">Shortcode</span></i>&nbsp;
-                                reposted.
-                            </span>
-                        </div>
-                        <div class="w3-hide">
+            </div>
+            <div id="ns_repost_reply">
+                <div class="w3-container w3-card w3-white w3-round w3-margin-top w3-margin-bottom">
+                    <div style="margin-top: 6px; margin-bottom: 6px; margin-left: -6px; margin-right: -6px;">
+                        <div class="w3-right">
                             <div>
-                                <div><span id="ns_repost_reply_value"></span></div>
-                            </div>
-                        </div>
-                        <div class="w3-container" style="margin-bottom: 6px;"></div>
-                    </div>
-                </div>
-                <div id="ns_regular_reply">
-                    <div class="w3-container w3-card w3-white w3-round w3-margin-top w3-margin-bottom">
-                        <div style="margin-top: 6px; margin-bottom: 6px; margin-left: -6px; margin-right: -6px;">
-                            <div class="w3-right">
-                                <div>
-                                    <div class="w3-right">
-                                        <div>
-                                            <i class="far fa-clock w3-text-theme"></i>&nbsp;<span
-                                                id="ns_regular_reply_time">0</span>&nbsp;&nbsp;
-                                            <i id="ns_regular_reply_txid"
-                                                class="fa fa-file-invoice-dollar w3-text-theme"></i>&nbsp;&nbsp;<i
-                                                id="ns_regular_reply_block" class="fas fa-cube w3-text-theme"></i>
-                                        </div>
+                                <div class="w3-right">
+                                    <div>
+                                        <i class="far fa-clock w3-text-theme"></i>&nbsp;<span
+                                            id="ns_repost_reply_time">0</span>&nbsp;&nbsp;
+                                        <i id="ns_repost_reply_txid"
+                                            class="fa fa-file-invoice-dollar w3-text-theme"></i>&nbsp;&nbsp;<i
+                                            id="ns_repost_reply_block" class="fas fa-cube w3-text-theme"></i>
                                     </div>
                                 </div>
                             </div>
-                            <span class="w3-left">
-                                <i class="fa fa-comment fa-flip-horizontal"></i>&nbsp;
-                                <i class="fa fa-at"></i><span id="ns_regular_reply_shortcode">Shortcode</span></i>
-                            </span>
                         </div>
-                        <div class="w3-container" style="margin-bottom: 6px;">
+                        <span class="w3-left">
+                            <i class="fa fa-at"></i><span id="ns_repost_reply_shortcode">Shortcode</span></i>&nbsp;
+                            reposted.
+                        </span>
+                    </div>
+                    <div class="w3-hide">
+                        <div>
+                            <div><span id="ns_repost_reply_value"></span></div>
+                        </div>
+                    </div>
+                    <div class="w3-container" style="margin-bottom: 6px;"></div>
+                </div>
+            </div>
+            <div id="ns_regular_reply">
+                <div class="w3-container w3-card w3-white w3-round w3-margin-top w3-margin-bottom">
+                    <div style="margin-top: 6px; margin-bottom: 6px; margin-left: -6px; margin-right: -6px;">
+                        <div class="w3-right">
                             <div>
-                                <div><span id="ns_regular_reply_value">0</span></div>
+                                <div class="w3-right">
+                                    <div>
+                                        <i class="far fa-clock w3-text-theme"></i>&nbsp;<span
+                                            id="ns_regular_reply_time">0</span>&nbsp;&nbsp;
+                                        <i id="ns_regular_reply_txid"
+                                            class="fa fa-file-invoice-dollar w3-text-theme"></i>&nbsp;&nbsp;<i
+                                            id="ns_regular_reply_block" class="fas fa-cube w3-text-theme"></i>
+                                    </div>
+                                </div>
                             </div>
+                        </div>
+                        <span class="w3-left">
+                            <i class="fa fa-comment fa-flip-horizontal"></i>&nbsp;
+                            <i class="fa fa-at"></i><span id="ns_regular_reply_shortcode">Shortcode</span></i>
+                        </span>
+                    </div>
+                    <div class="w3-container" style="margin-bottom: 6px;">
+                        <div>
+                            <div><span id="ns_regular_reply_value">0</span></div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- End Namespace Spacers -->
-            <!-- Begin Namespace View -->
-            <div id="ns_view" class="w3-hide w3-col m10">
+        </div>
+        <!-- End Namespace Spacers -->
+        <!-- Begin Namespace View -->
+        <div class="w3-row">
+            <div id="ns_view" class="w3-hide w3-col m12">
                 <div style="margin-top: -16px;"></div>
             </div>
             <!-- End Namespace View -->
         </div>
         <!-- End Namespace -->
         <!-- Begin Block Explorer -->
-        <div id="explorer_section" class="w3-row w3-hide">
+        <div id="explorer_section" class="w3-hide">
             <!-- Left Column -->
-            <div class="w3-col m2">
-                <div class="w3-card w3-round w3-white">
-                    <!-- Block Explorer -->
-                    <div class="w3-container w3-text-theme-dark">
-                        <h4 class="w3-center w3-xlarge w3-text-theme-dark">Kevacoin</h4>
-                        <p class="w3-center"><img src="/images/kevacoin-logo.png" class="w3-circle w3-hide-small"
-                                style="height:100px;width:100px" alt="Logo"></p>
-                        <hr>
-                        <p><i class="fa fa-link w3-margin-right w3-text-theme"></i>Symbol <span
-                                id="uibs_symbol">KVA</span>
-                        </p>
-                        <p><i class="fa fa-level-up-alt w3-margin-right w3-text-theme"></i>Height <span
-                                id="uibs_height">0</span></p>
-                        <p><i class="fa fa-heart w3-margin-right w3-text-theme"></i>Genisis Reward <span
-                                id="uibs_genreward">0</span></p>
-                        <p><i class="fa fa-coins w3-margin-right w3-text-theme"></i>Supply <span
-                                id="uibs_supply">0</span></p>
-                        <p><i class="fa fa-cash-register w3-margin-right w3-text-theme"></i>Fees Paid <span
-                                id="uibs_fees">0</span></p>
-                        <p><i class="fa fa-hard-hat w3-margin-right w3-text-theme"></i>Difficulty <span
-                                id="uibs_diff">0</span></p>
-                        <p><i class="fa fa-chart-bar w3-margin-right w3-text-theme"></i>Network Hashrate <span
-                                id="uibs_nethash">0</span></p>
+            <!-- <div class="w3-row w3-margin-bottom">
+                <div class="w3-col m1 w3-hide-small">&nbsp;</div>
+                <div class="w3-col m10">
+                    <div class="w3-card w3-round w3-white">
+                        <div class="w3-container w3-text-theme-dark">
+                            <img src="/images/kevacoin-logo.png" class="w3-circle w3-hide-small"
+                                style="height:45px;width:45px" alt="Logo">
+                            <span class="w3-xlarge w3-text-theme-dark">Kevacoin</span>
+                            <p><i class="fa fa-link w3-margin-right w3-text-theme"></i>Symbol <span
+                                    id="uibs_symbol">KVA</span>
+                            </p>
+                            <p><i class="fa fa-level-up-alt w3-margin-right w3-text-theme"></i>Height <span
+                                    id="uibs_height">0</span></p>
+                            <p><i class="fa fa-heart w3-margin-right w3-text-theme"></i>Genisis Reward <span
+                                    id="uibs_genreward">0</span></p>
+                            <p><i class="fa fa-coins w3-margin-right w3-text-theme"></i>Supply <span
+                                    id="uibs_supply">0</span></p>
+                            <p><i class="fa fa-cash-register w3-margin-right w3-text-theme"></i>Fees Paid <span
+                                    id="uibs_fees">0</span></p>
+                            <p><i class="fa fa-hard-hat w3-margin-right w3-text-theme"></i>Difficulty <span
+                                    id="uibs_diff">0</span></p>
+                            <p><i class="fa fa-chart-bar w3-margin-right w3-text-theme"></i>Network Hashrate <span
+                                    id="uibs_nethash">0</span></p>
+                        </div>
                     </div>
                 </div>
-                <br />
-            </div>
-            <!-- End Left Column -->
-            <!-- Begin Block Explorer View -->
-            <div class="w3-col m10">
-                <div class="w3-row-padding">
-                    <div class="w3-col m12">
-                        <div class="w3-card w3-round w3-white">
-                            <div class="w3-container w3-padding">
+                <div class="w3-col m1 w3-hide-small">&nbsp;</div>
+            </div> -->
+            <div class="w3-row w3-margin-bottom">
+                <!-- <div class="w3-col m1 w3-hide-small">&nbsp;</div> -->
+                <!-- End Left Column -->
+                <!-- Begin Block Explorer View -->
+                <div class="w3-col m12">
+                    <div class="w3-card w3-round w3-white">
+                        <div class="w3-container w3-padding">
+                            <img src="/images/kevacoin-logo.png" class="w3-circle w3-hide-small"
+                                style="height:40px;width:40px" alt="Logo">
+                            <span class="w3-xlarge w3-text-theme-dark">Kevacoin</span>
+                            <div class="w3-right" style="margin-top: 4px;">
                                 <button type="button" class="w3-theme-button w3-theme w3-hover-theme-button"
                                     onclick="section_toggle('explorer_info')" title="Information"><i
                                         class="fa fa-info-circle"></i>
                                     Info</button>
-                                <!-- <button type="button" class="w3-button w3-theme"
+                                <button type="button" class="w3-theme-button w3-theme w3-hover-theme-button"
                                     onclick="section_toggle('explorer_stats')"><i class="fa fa-chart-line"></i>
-                                    Stats</button> -->
+                                    Stats</button>
                                 <button type="button" class="w3-theme-button w3-theme w3-hover-theme-button"
                                     onclick="section_toggle('explorer_browser')" title="Explore"><i
                                         class="fa fa-archive"></i>
                                     Explore</button>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div id="explorer_info" class="w3-hide w3-show">
-                    <div class="w3-container w3-card w3-white w3-round w3-margin">
-                        <div id="explorer_info_loading"
-                            class="w3-hide w3-container w3-card w3-white w3-round w3-margin-bottom w3-margin-top">
-                            <div>
-                                <div class="w3-center" style="font-size: large;">
-                                    <i class="fa fa-info w3-text-theme"></i>&nbsp;&nbsp;Loading please wait...
+
+
+
+                        <div id="explorer_info" class="w3-hide w3-show">
+                            <div class="w3-container w3-card w3-round w3-white w3-margin">
+                                <!-- Block Explorer -->
+                                <div class="w3-container w3-text-theme-dark">
+                                    <!-- <img src="/images/kevacoin-logo.png" class="w3-circle w3-hide-small"
+                                        style="height:45px;width:45px" alt="Logo">
+                                <span class="w3-xlarge w3-text-theme-dark">Kevacoin</span> -->
+                                    <!-- <p class="w3-center"></p>
+                                <hr> -->
+                                    <p><i class="fa fa-link w3-margin-right w3-text-theme"></i>Symbol <span
+                                            id="uibs_symbol">KVA</span>
+                                    </p>
+                                    <p><i class="fa fa-level-up-alt w3-margin-right w3-text-theme"></i>Height <span
+                                            id="uibs_height">0</span></p>
+                                    <p><i class="fa fa-heart w3-margin-right w3-text-theme"></i>Genisis Reward <span
+                                            id="uibs_genreward">0</span></p>
+                                    <p><i class="fa fa-coins w3-margin-right w3-text-theme"></i>Supply <span
+                                            id="uibs_supply">0</span></p>
+                                    <p><i class="fa fa-cash-register w3-margin-right w3-text-theme"></i>Fees Paid <span
+                                            id="uibs_fees">0</span></p>
+                                    <p><i class="fa fa-hard-hat w3-margin-right w3-text-theme"></i>Difficulty <span
+                                            id="uibs_diff">0</span></p>
+                                    <p><i class="fa fa-chart-bar w3-margin-right w3-text-theme"></i>Network Hashrate
+                                        <span id="uibs_nethash">0</span>
+                                    </p>
                                 </div>
                             </div>
-                        </div>
-                        <div id="explorer_info_main" class="w3-hide">
-                            <div class="w3-container w3-margin-top">
-                                <div>
-                                    <i class="fa fa-info-circle fa-3x w3-margin-right w3-text-theme w3-left"></i>
-                                    <div class="w3-text-theme-dark" style="font-size: xx-large;">Information</div>
-                                </div>
-                            </div>
-                            <div class="w3-container w3-margin-bottom">
-                                <p id="bexp_inftext"></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="explorer_stats" class="w3-hide">
-                    <div class="w3-container w3-card w3-white w3-round w3-margin">
-                        <div class="w3-container w3-margin-top">
-                            <div>
-                                <i class="fa fa-chart-line fa-4x w3-margin-right w3-text-theme-dark w3-left"></i>
-                                <div style="font-size: xx-large;">Stats</div>
-                            </div>
-                        </div>
-                        <div id="stats_loading" class="w3-hide w3-container w3-card w3-white w3-round w3-margin-bottom">
-                            <div>
-                                <div class="w3-center" style="font-size: large;">
-                                    <i class="fa fa-info w3-text-theme"></i>&nbsp;&nbsp;Loading please wait...
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w3-container w3-margin-bottom">
-                            <p>Coming Soon!</p>
-                            <img src="/images/keva_one_logo.png" style="width:100%" class="w3-margin-bottom">
-                        </div>
-                    </div>
-                </div>
-                <div id="explorer_browser" class="w3-hide">
-                    <div class="w3-container w3-card w3-white w3-round w3-margin">
-                        <div class="w3-container w3-padding">
-                            <button type="button" class="w3-theme-button w3-theme w3-hover-theme-button"
-                                onclick="exp_section_toggle('explorer_recent_blocks');" title="View recent blocks"><i
-                                    class="fa fa-cubes"></i>
-                                Blocks</button>
-                            <button type="button" class="w3-theme-button w3-theme w3-hover-theme-button"
-                                onclick="exp_section_toggle('explorer_recent_transactions');"
-                                title="View recent transactions"><i class="fa fa-funnel-dollar"></i>
-                                TX</button>
-                            <button type="button" class="w3-theme-button w3-theme w3-hover-theme-button"
-                                onclick="exp_section_toggle('explorer_mempool');" title="View mempool"><i
-                                    class="fa fa-fill-drip"></i>
-                                Mempool</button>
-                        </div>
-                    </div>
-                    <div id="explorer_recent_blocks"
-                        class="w3-hide w3-container w3-card w3-white w3-round w3-margin w3-show">
-                        <div class="w3-container w3-margin-top">
-                            <div>
-                                <i class="fa fa-cubes fa-2x w3-margin-right w3-text-theme w3-left"></i>
-                                <div class="w3-text-theme-dark" style="font-size: large;">Recent Blocks</div>
-                            </div>
-                        </div>
-                        <br />
-                        <div id="recent_blocks_loading"
-                            class="w3-hide w3-container w3-card w3-white w3-round w3-margin-bottom">
-                            <div>
-                                <div class="w3-center" style="font-size: large;">
-                                    <i class="fa fa-info w3-text-theme"></i>&nbsp;&nbsp;Loading please wait...
-                                </div>
-                            </div>
-                        </div>
-                        <div id="recent_blocks_main" class="w3-hide w3-container w3-margin-bottom k1-overflow-scroll"
-                            style="max-height: 60vh;">
-                            <table id="uibexp_rb" class="w3-table">
-                                <thead style="position: sticky; top:0px;">
-                                    <tr class="w3-theme-th">
-                                        <th>Time</th>
-                                        <th>Height</th>
-                                        <th>Block Hash</th>
-                                        <th>TX</th>
-                                        <th>Value</th>
-                                    </tr>
-                                </thead>
-                                <tr></tr>
-                            </table>
-                        </div>
-                    </div>
-                    <div id="explorer_recent_transactions"
-                        class="w3-hide w3-container w3-card w3-white w3-round w3-margin">
-                        <div class="w3-container w3-margin-top">
-                            <div>
-                                <i class="fa fa-funnel-dollar fa-2x w3-margin-right w3-text-theme w3-left"></i>
-                                <div class="w3-text-theme-dark" style="font-size: large;">Recent Transactions</div>
-                            </div>
-                        </div>
-                        <br />
-                        <div id="recent_transactions_loading"
-                            class="w3-hide w3-container w3-card w3-white w3-round w3-margin-bottom">
-                            <div>
-                                <div class="w3-center" style="font-size: large;">
-                                    <i class="fa fa-info w3-text-theme"></i>&nbsp;&nbsp;Loading please wait...
-                                </div>
-                            </div>
-                        </div>
-                        <div id="recent_transactions_main"
-                            class="w3-hide w3-container w3-margin-bottom k1-overflow-scroll" style="max-height: 60vh;">
-                            <table id="uibexp_rt" class="w3-table">
-                                <thead style="position: sticky; top:0px;">
-                                    <tr class="w3-theme-th">
-                                        <th>Time</th>
-                                        <th>Height</th>
-                                        <th>TX Hash</th>
-                                        <th>In</th>
-                                        <th>Out</th>
-                                        <th>Value</th>
-                                        <!-- <th>Fee</th> -->
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
-                    </div>
-                    <div id="explorer_mempool" class="w3-hide w3-container w3-card w3-white w3-round w3-margin">
-                        <div class="w3-container w3-margin-top">
-                            <div>
-                                <i class="fa fa-fill-drip fa-2x w3-margin-right w3-text-theme w3-left"></i>
-                                <div class="w3-text-theme-dark" style="font-size: large;">Mempool</div>
-                            </div>
-                        </div>
-                        <br />
-                        <div id="mempool_loading"
-                            class="w3-hide w3-container w3-card w3-white w3-round w3-margin-bottom">
-                            <div>
-                                <div class="w3-center" style="font-size: large;">
-                                    <i class="fa fa-info w3-text-theme"></i>&nbsp;&nbsp;Loading please wait...
-                                </div>
-                            </div>
-                        </div>
-                        <div id="mempool_main" class="w3-hide w3-container w3-margin-bottom k1-overflow-scroll"
-                            style="max-height: 60vh;">
-                            <table id="uibexp_rm" class="w3-table">
-                                <thead style="position: sticky; top:0px;">
-                                    <tr class="w3-theme-th">
-                                        <th>TX Hash</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
-                    </div>
-                    <div id="explorer_block" class="w3-hide w3-container w3-card w3-white w3-round w3-margin">
-                        <div id="block_loading"
-                            class="w3-hide w3-container w3-card w3-white w3-round w3-margin-bottom w3-margin-top">
-                            <div>
-                                <div class="w3-center" style="font-size: large;">
-                                    <i class="fa fa-info w3-text-theme"></i>&nbsp;&nbsp;Loading please wait...
-                                </div>
-                            </div>
-                        </div>
-                        <div id="block_main" class="w3-hide">
-                            <div class="w3-container w3-margin-top">
-                                <div>
+                            <div class="w3-container w3-card w3-white w3-round w3-margin">
+                                <div id="explorer_info_loading"
+                                    class="w3-hide w3-container w3-card w3-white w3-round w3-margin-bottom w3-margin-top">
                                     <div>
-                                        <i class="fa fa-cube fa-4x w3-margin-right w3-text-theme w3-left"></i>
-                                        Block - <span id="uibexp_bheight">0</span>
-                                        <div class="w3-right"><i class="far fa-clock w3-text-theme"></i>&nbsp;<span
-                                                id="uibexp_btime">0</span></div>
+                                        <div class="w3-center" style="font-size: large;">
+                                            <i class="fa fa-info w3-text-theme"></i>&nbsp;&nbsp;Loading please wait...
+                                        </div>
                                     </div>
-                                    <div><span id="uibexp_bhash" style="word-wrap: break-word;">0</span></div>
+                                </div>
+
+                                <div id="explorer_info_main" class="w3-hide">
+                                    <div class="w3-container w3-margin-top">
+                                        <div>
+                                            <i
+                                                class="fa fa-info-circle fa-3x w3-margin-right w3-text-theme w3-left"></i>
+                                            <div class="w3-text-theme-dark" style="font-size: xx-large;">Information
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="w3-container w3-margin-bottom">
+                                        <p id="bexp_inftext"></p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="w3-container w3-margin-top">
-                                <!-- <div class="w3-half">
-                                <div>confirmations: <span id="uibexp_bconfirmations">0</span></div>
-                                <div>difficutly: <span id="uibexp_bdifficulty">0</span></div>
-                                <div>network hash rate: <span id="uibexp_bnethash">0</span></div>
-                            </div> -->
-                                <div class="w3-half">
-                                    <div>version: <span id="uibexp_bversion">0</span></div>
-                                    <div>bits: <span id="uibexp_bbits">0</span></div>
-                                    <div>nonce: <span id="uibexp_bnonce">0</span></div>
+
+                        </div>
+                        <div id="explorer_stats" class="w3-hide">
+                            <div
+                                class="w3-container w3-card w3-white w3-round w3-margin-top w3-margin-left w3-margin-right">
+                                <div id="stats_loading"
+                                    class="w3-hide w3-container w3-card w3-white w3-round w3-margin-bottom">
+                                    <div>
+                                        <div class="w3-center" style="font-size: large;">
+                                            <i class="fa fa-info w3-text-theme"></i>&nbsp;&nbsp;Loading please wait...
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="w3-container">
-                                <div>previous hash: <span id="uibexp_bphash"
-                                        style="cursor: pointer; text-decoration: underline; word-wrap: break-word;">0</span>
+                            <div class="w3-container w3-card w3-white w3-round w3-margin-left w3-margin-right">
+                                <div id="stats_tops" class="w3-margin-top">
+                                    <div class="w3-margin-bottom">
+                                        <i class="fa fa-chart-line fa-2x w3-margin-right w3-text-theme w3-left"></i>
+                                        <i class="fa fa-eye fa-2x w3-text-theme w3-right"></i>
+                                        <div class="w3-text-theme-dark" style="font-size: large;">Top 100's</div>
+                                    </div>
+                                    <div class="w3-margin-bottom">
+                                        <button type="button"
+                                            class="w3-theme-button w3-theme w3-hover-theme-button w3-margin-bottom"
+                                            onclick="chart_section_toggle('tops_balance')"
+                                            title="Top 100 addresses by balance"><i class="fa fa-info-circle"></i>
+                                            Balance</button>
+                                        <button type="button" class="w3-theme-button w3-theme w3-hover-theme-button"
+                                            onclick="chart_section_toggle('tops_received')"
+                                            title="Top 100 addresses by received amount"><i
+                                                class="fa fa-chart-line"></i>
+                                            Received</button>
+                                        <button type="button" class="w3-theme-button w3-theme w3-hover-theme-button"
+                                            onclick="chart_section_toggle('tops_sent')"
+                                            title="Top 100 addresses by sent amount"><i class="fa fa-archive"></i>
+                                            Sent</button>
+                                        <button type="button" class="w3-theme-button w3-theme w3-hover-theme-button"
+                                            onclick="chart_section_toggle('tops_receivers')"
+                                            title="Top 100 receivers by transaction count"><i class="fa fa-archive"></i>
+                                            Receivers</button>
+                                        <button type="button" class="w3-theme-button w3-theme w3-hover-theme-button"
+                                            onclick="chart_section_toggle('tops_senders')"
+                                            title="Top 100 senders by transaction count"><i class="fa fa-archive"></i>
+                                            Senders</button>
+                                    </div>
+                                    <div class="w3-margin-bottom">
+                                        <div id="stats_tops_table_section" class="w3-half k1-overflow-scroll"
+                                            style="max-height: 60vh;">
+                                            <table id="stats_tops_table" class="w3-table">
+                                                <thead style="position: sticky; top:0px;">
+                                                    <tr class="w3-theme-th">
+                                                        <th>#</th>
+                                                        <th>Address</th>
+                                                        <th id="stthl">Balance</th>
+                                                        <th id="stthxp">%</th>
+                                                        <th id="stthxtp">%</th>
+                                                    </tr>
+                                                </thead>
+                                                <tr></tr>
+                                            </table>
+                                        </div>
+                                        <div class="w3-half">
+                                            <div>
+                                                <canvas id="myChart"></canvas>
+                                            </div>
+                                            <div class="w3-container w3-padding w3-center w3-margin-top">
+                                                <button type="button"
+                                                    class="w3-theme-button w3-theme w3-hover-theme-button"
+                                                    onclick="chart_section_toggle('tops_receivers')"
+                                                    title="Top 100 receivers by transaction count"><i
+                                                        class="fa fa-archive"></i>
+                                                    Receivers</button>
+                                                <button type="button"
+                                                    class="w3-theme-button w3-theme w3-hover-theme-button"
+                                                    onclick="chart_section_toggle('tops_senders')"
+                                                    title="Top 100 senders by transaction count"><i
+                                                        class="fa fa-archive"></i>
+                                                    Senders</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div>merkle: <span id="uibexp_bmerkle" style="word-wrap: break-word;">0</span></div>
                             </div>
-                            <div class="w3-container w3-margin-bottom">
-                                <div>extra: <span id="uibexp_bextra" class="k1-text-wrap">0</span></div>
-                            </div>
-                            <div class="w3-container w3-card w3-white w3-round w3-margin-bottom">
-                                <div class="w3-margin-bottom w3-margin-top">
-                                    <i
-                                        class="fa fa-file-invoice-dollar fa-2x w3-margin-right w3-text-theme w3-left"></i>
-                                    <div>Transactions - <span id="uibexp_betxc">0</span></div>
+                            <div
+                                class="w3-container w3-card w3-white w3-round w3-margin-top w3-margin-left w3-margin-right">
+                                <div id="stats_Mining" class="w3-margin-top">
+                                    <div class="w3-margin-bottom">
+                                        <i class="fa fa-chart-line fa-2x w3-margin-right w3-text-theme w3-left"></i>
+                                        <i class="fa fa-eye fa-2x w3-text-theme w3-right"></i>
+                                        <div class="w3-text-theme-dark" style="font-size: large;">Mining</div>
+                                    </div>
+                                    <div class="w3-container w3-padding">
+                                        <button type="button"
+                                            class="w3-theme-button w3-theme w3-hover-theme-button w3-margin-bottom"
+                                            onclick="chart_section_toggle('tops_balance')"
+                                            title="Top 100 addresses by balance"><i class="fa fa-info-circle"></i>
+                                            Balance</button>
+                                    </div>
+                                    <div class="w3-margin-bottom">
+                                        <div id="stats_tops_table" class="w3-half k1-overflow-scroll"
+                                            style="max-height: 60vh;">
+                                            <table id="uibexp_rbxxx" class="w3-table">
+                                                <thead style="position: sticky; top:0px;">
+                                                    <tr class="w3-theme-th">
+                                                        <th>#</th>
+                                                        <th>Address</th>
+                                                        <th>Balance</th>
+                                                        <th>%</th>
+                                                        <th>%</th>
+                                                    </tr>
+                                                </thead>
+                                                <tr></tr>
+                                            </table>
+                                        </div>
+                                        <div class="w3-half">
+                                            <div>
+                                                <canvas id="myChart"></canvas>
+                                            </div>
+                                            <div class="w3-container w3-padding w3-center w3-margin-top">
+                                                <button type="button"
+                                                    class="w3-theme-button w3-theme w3-hover-theme-button"
+                                                    onclick="chart_section_toggle('tops_receivers')"
+                                                    title="Top 100 receivers by transaction count"><i
+                                                        class="fa fa-archive"></i>
+                                                    Receivers</button>
+                                                <button type="button"
+                                                    class="w3-theme-button w3-theme w3-hover-theme-button"
+                                                    onclick="chart_section_toggle('tops_senders')"
+                                                    title="Top 100 senders by transaction count"><i
+                                                        class="fa fa-archive"></i>
+                                                    Senders</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="w3-content w3-margin-bottom k1-overflow-scroll" style="max-height: 60vh;">
-                                    <table id="uibexp_bt" class="w3-table">
+                            </div>
+                            <div class="w3-container w3-card w3-white w3-round w3-margin">
+                                <div id="stats_network" class="w3-margin-top">
+                                    <div class="w3-margin-bottom">
+                                        <i class="fa fa-chart-line fa-2x w3-margin-right w3-text-theme w3-left"></i>
+                                        <i class="fa fa-eye fa-2x w3-text-theme w3-right"></i>
+                                        <div class="w3-text-theme-dark" style="font-size: large;">Network</div>
+                                    </div>
+                                    <div class="w3-container w3-padding">
+                                        <button type="button"
+                                            class="w3-theme-button w3-theme w3-hover-theme-button w3-margin-bottom"
+                                            onclick="chart_section_toggle('tops_balance')"
+                                            title="Top 100 addresses by balance"><i class="fa fa-info-circle"></i>
+                                            Balance</button>
+                                    </div>
+                                    <div class="w3-margin-bottom">
+                                        <div id="stats_tops_table" class="w3-half k1-overflow-scroll"
+                                            style="max-height: 60vh;">
+                                            <table id="uibexp_rbxxx" class="w3-table">
+                                                <thead style="position: sticky; top:0px;">
+                                                    <tr class="w3-theme-th">
+                                                        <th>#</th>
+                                                        <th>Address</th>
+                                                        <th>Balance</th>
+                                                        <th>%</th>
+                                                        <th>%</th>
+                                                    </tr>
+                                                </thead>
+                                                <tr></tr>
+                                            </table>
+                                        </div>
+                                        <div class="w3-half">
+                                            <div>
+                                                <canvas id="myChart"></canvas>
+                                            </div>
+                                            <div class="w3-container w3-padding w3-center w3-margin-top">
+                                                <button type="button"
+                                                    class="w3-theme-button w3-theme w3-hover-theme-button"
+                                                    onclick="chart_section_toggle('tops_receivers')"
+                                                    title="Top 100 receivers by transaction count"><i
+                                                        class="fa fa-archive"></i>
+                                                    Receivers</button>
+                                                <button type="button"
+                                                    class="w3-theme-button w3-theme w3-hover-theme-button"
+                                                    onclick="chart_section_toggle('tops_senders')"
+                                                    title="Top 100 senders by transaction count"><i
+                                                        class="fa fa-archive"></i>
+                                                    Senders</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div id="explorer_browser" class="w3-hide">
+                            <div class="w3-container w3-card w3-white w3-round w3-margin">
+                                <div class="w3-container w3-padding">
+                                    <button type="button" class="w3-theme-button w3-theme w3-hover-theme-button"
+                                        onclick="exp_section_toggle('explorer_recent_blocks');"
+                                        title="View recent blocks"><i class="fa fa-cubes"></i>
+                                        Blocks</button>
+                                    <button type="button" class="w3-theme-button w3-theme w3-hover-theme-button"
+                                        onclick="exp_section_toggle('explorer_recent_transactions');"
+                                        title="View recent transactions"><i class="fa fa-funnel-dollar"></i>
+                                        TX</button>
+                                    <button type="button" class="w3-theme-button w3-theme w3-hover-theme-button"
+                                        onclick="exp_section_toggle('explorer_mempool');" title="View mempool"><i
+                                            class="fa fa-fill-drip"></i>
+                                        Mempool</button>
+                                </div>
+                            </div>
+                            <div id="explorer_recent_blocks"
+                                class="w3-hide w3-container w3-card w3-white w3-round w3-margin w3-show">
+                                <div class="w3-container w3-margin-top">
+                                    <div>
+                                        <i class="fa fa-cubes fa-2x w3-margin-right w3-text-theme w3-left"></i>
+                                        <div class="w3-text-theme-dark" style="font-size: large;">Recent Blocks</div>
+                                    </div>
+                                </div>
+                                <br />
+                                <div id="recent_blocks_loading"
+                                    class="w3-hide w3-container w3-card w3-white w3-round w3-margin-bottom">
+                                    <div>
+                                        <div class="w3-center" style="font-size: large;">
+                                            <i class="fa fa-info w3-text-theme"></i>&nbsp;&nbsp;Loading please wait...
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="recent_blocks_main" class="w3-hide w3-margin-bottom k1-overflow-scroll"
+                                    style="max-height: 60vh;">
+                                    <table id="uibexp_rb" class="w3-table">
                                         <thead style="position: sticky; top:0px;">
                                             <tr class="w3-theme-th">
-                                                <th>TX Id</th>
+                                                <th>Time</th>
+                                                <th>Height</th>
+                                                <th>Block Hash</th>
+                                                <th>TX</th>
+                                                <th>Value</th>
+                                            </tr>
+                                        </thead>
+                                        <tr></tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div id="explorer_recent_transactions"
+                                class="w3-hide w3-container w3-card w3-white w3-round w3-margin">
+                                <div class="w3-container w3-margin-top">
+                                    <div>
+                                        <i class="fa fa-funnel-dollar fa-2x w3-margin-right w3-text-theme w3-left"></i>
+                                        <div class="w3-text-theme-dark" style="font-size: large;">Recent Transactions
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                                <div id="recent_transactions_loading"
+                                    class="w3-hide w3-container w3-card w3-white w3-round w3-margin-bottom">
+                                    <div>
+                                        <div class="w3-center" style="font-size: large;">
+                                            <i class="fa fa-info w3-text-theme"></i>&nbsp;&nbsp;Loading please wait...
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="recent_transactions_main" class="w3-hide w3-margin-bottom k1-overflow-scroll"
+                                    style="max-height: 60vh;">
+                                    <table id="uibexp_rt" class="w3-table">
+                                        <thead style="position: sticky; top:0px;">
+                                            <tr class="w3-theme-th">
+                                                <th>Time</th>
+                                                <th>Height</th>
+                                                <th>TX Hash</th>
                                                 <th>In</th>
                                                 <th>Out</th>
                                                 <th>Value</th>
@@ -1209,38 +1342,130 @@
                                     </table>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div id="explorer_transaction" class="w3-hide w3-container w3-card w3-white w3-round w3-margin">
-                        <div id="transaction_loading"
-                            class="w3-hide w3-container w3-card w3-white w3-round w3-margin-bottom w3-margin-top">
-                            <div>
-                                <div class="w3-center" style="font-size: large;">
-                                    <i class="fa fa-info w3-text-theme"></i>&nbsp;&nbsp;Loading please wait...
+                            <div id="explorer_mempool" class="w3-hide w3-container w3-card w3-white w3-round w3-margin">
+                                <div class="w3-container w3-margin-top">
+                                    <div>
+                                        <i class="fa fa-fill-drip fa-2x w3-margin-right w3-text-theme w3-left"></i>
+                                        <div class="w3-text-theme-dark" style="font-size: large;">Mempool</div>
+                                    </div>
+                                </div>
+                                <br />
+                                <div id="mempool_loading"
+                                    class="w3-hide w3-container w3-card w3-white w3-round w3-margin-bottom">
+                                    <div>
+                                        <div class="w3-center" style="font-size: large;">
+                                            <i class="fa fa-info w3-text-theme"></i>&nbsp;&nbsp;Loading please wait...
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="mempool_main" class="w3-hide w3-margin-bottom k1-overflow-scroll"
+                                    style="max-height: 60vh;">
+                                    <table id="uibexp_rm" class="w3-table">
+                                        <thead style="position: sticky; top:0px;">
+                                            <tr class="w3-theme-th">
+                                                <th>TX Hash</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
                                 </div>
                             </div>
-                        </div>
-                        <div id="transaction_main" class="w3-hide">
-                            <div class="w3-container w3-margin-top">
-                                <div>
-                                    <i
-                                        class="fa fa-file-invoice-dollar fa-4x w3-margin-right w3-text-theme w3-left"></i>
+                            <div id="explorer_block" class="w3-hide w3-container w3-card w3-white w3-round w3-margin">
+                                <div id="block_loading"
+                                    class="w3-hide w3-container w3-card w3-white w3-round w3-margin-bottom w3-margin-top">
                                     <div>
-                                        <div class="w3-right">
-                                            <i class="far fa-clock w3-text-theme"></i>&nbsp;&nbsp;<span id="uibexp_time"
-                                                class="w3-opacity">32 min</span>
+                                        <div class="w3-center" style="font-size: large;">
+                                            <i class="fa fa-info w3-text-theme"></i>&nbsp;&nbsp;Loading please wait...
                                         </div>
+                                    </div>
+                                </div>
+                                <div id="block_main" class="w3-hide">
+                                    <div class="w3-container w3-margin-top">
                                         <div>
-                                            <span class="w3-xlarge w3-margin-right">Transaction</span>
                                             <div>
-                                                <span id="uibexp_ti" class="w3-large"
-                                                    style="word-wrap: break-word;">0</span>
+                                                <i class="fa fa-cube fa-4x w3-margin-right w3-text-theme w3-left"></i>
+                                                Block - <span id="uibexp_bheight">0</span>
+                                                <div class="w3-right"><i
+                                                        class="far fa-clock w3-text-theme"></i>&nbsp;<span
+                                                        id="uibexp_btime">0</span></div>
                                             </div>
+                                            <div><span id="uibexp_bhash" style="word-wrap: break-word;">0</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="w3-container w3-margin-top">
+                                        <!-- <div class="w3-half">
+                                <div>confirmations: <span id="uibexp_bconfirmations">0</span></div>
+                                <div>difficutly: <span id="uibexp_bdifficulty">0</span></div>
+                                <div>network hash rate: <span id="uibexp_bnethash">0</span></div>
+                            </div> -->
+                                        <div class="w3-half">
+                                            <div>version: <span id="uibexp_bversion">0</span></div>
+                                            <div>bits: <span id="uibexp_bbits">0</span></div>
+                                            <div>nonce: <span id="uibexp_bnonce">0</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="w3-container">
+                                        <div>previous hash: <span id="uibexp_bphash"
+                                                style="cursor: pointer; text-decoration: underline; word-wrap: break-word;">0</span>
+                                        </div>
+                                        <div>merkle: <span id="uibexp_bmerkle" style="word-wrap: break-word;">0</span>
+                                        </div>
+                                    </div>
+                                    <div class="w3-container w3-margin-bottom">
+                                        <div>extra: <span id="uibexp_bextra" class="k1-text-wrap">0</span></div>
+                                    </div>
+                                    <div class="w3-container w3-card w3-white w3-round w3-margin-bottom">
+                                        <div class="w3-margin-bottom w3-margin-top">
+                                            <i
+                                                class="fa fa-file-invoice-dollar fa-2x w3-margin-right w3-text-theme w3-left"></i>
+                                            <div>Transactions - <span id="uibexp_betxc">0</span></div>
+                                        </div>
+                                        <div class="w3-margin-bottom k1-overflow-scroll" style="max-height: 60vh;">
+                                            <table id="uibexp_bt" class="w3-table">
+                                                <thead style="position: sticky; top:0px;">
+                                                    <tr class="w3-theme-th">
+                                                        <th>TX Id</th>
+                                                        <th>In</th>
+                                                        <th>Out</th>
+                                                        <th>Value</th>
+                                                        <!-- <th>Fee</th> -->
+                                                    </tr>
+                                                </thead>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div id='tx_pretty'>
+                            <div id="explorer_transaction"
+                                class="w3-hide w3-container w3-card w3-white w3-round w3-margin">
+                                <div id="transaction_loading"
+                                    class="w3-hide w3-container w3-card w3-white w3-round w3-margin-bottom w3-margin-top">
+                                    <div>
+                                        <div class="w3-center" style="font-size: large;">
+                                            <i class="fa fa-info w3-text-theme"></i>&nbsp;&nbsp;Loading please wait...
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="transaction_main" class="w3-hide">
+                                    <div class="w3-container w3-margin-top">
+                                        <div>
+                                            <i
+                                                class="fa fa-file-invoice-dollar fa-4x w3-margin-right w3-text-theme w3-left"></i>
+                                            <div>
+                                                <div class="w3-right">
+                                                    <i class="far fa-clock w3-text-theme"></i>&nbsp;&nbsp;<span
+                                                        id="uibexp_time" class="w3-opacity">32 min</span>
+                                                </div>
+                                                <div>
+                                                    <span class="w3-xlarge w3-margin-right">Transaction</span>
+                                                    <div>
+                                                        <span id="uibexp_ti" class="w3-large"
+                                                            style="word-wrap: break-word;">0</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div id='tx_pretty'>
                             <div class="w3-container w3-card w3-white w3-round w3-margin-bottom">
                                 <div class="w3-container w3-margin-top">
                                     <div class="w3-content w3-half w3-margin-bottom" style="max-height: 60vh;">
@@ -1266,175 +1491,185 @@
                                 </div>
                             </div>
                         </div> -->
-                            <div id='tx_raw'>
-                                <div class="w3-hide w3-container w3-margin-top">
-                                    <div>
-                                        <div><span id="tx_raw_data">raw_data</span></div>
+                                    <div id='tx_raw'>
+                                        <div class="w3-hide w3-container w3-margin-top">
+                                            <div>
+                                                <div><span id="tx_raw_data">raw_data</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id='tx_json'>
+                                        <div class="w3-container w3-margin-top">
+                                            <div>
+                                                <div>hash: <span id="uibexp_th" style="word-wrap: break-word;">0</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="w3-container w3-margin-bottom">
+                                            <div class="w3-half">
+                                                <div>version: <span id="uibexp_tv">0</span></div>
+                                                <div>flag: <span id="uibexp_tfl">0</span></div>
+                                                <div>locktime: <span id="uibexp_tl">0</span></div>
+                                            </div>
+                                            <div class="w3-half">
+                                                <div>block height: <span id="uibexp_tbh">0</span></div>
+                                                <div>size: <span id="uibexp_ts">0</span></div>
+                                                <div>vsize: <span id="uibexp_tvs">0</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="w3-container w3-card w3-white w3-round w3-margin-bottom">
+                                            <div class="w3-margin-bottom w3-margin-top">
+                                                <i
+                                                    class="fa fa-file-import fa-2x w3-margin-right w3-text-theme w3-left"></i>
+                                                <div>Inputs - <span id="uibexp_txinputs">0</span></div>
+                                            </div>
+                                            <div class="w3-margin-bottom k1-overflow-scroll" style="max-height: 60vh;">
+                                                <table id="uibexp_tin" class="w3-table">
+                                                    <thead style="position: sticky; top:0px;">
+                                                        <tr class="w3-theme-th">
+                                                            <th>Value</th>
+                                                            <th>Address</th>
+                                                            <th>TxId</th>
+                                                            <th>vout</th>
+                                                            <th>ScriptSig</th>
+                                                            <th>Sequence</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="w3-container w3-card w3-white w3-round w3-margin-bottom">
+                                            <div class="w3-margin-bottom w3-margin-top">
+                                                <i
+                                                    class="fa fa-file-export fa-2x w3-margin-right w3-text-theme w3-left"></i>
+                                                <div>Outputs - <span id="uibexp_txoutputs">0</span></div>
+                                            </div>
+                                            <div class="w3-margin-bottom k1-overflow-scroll" style="max-height: 60vh;">
+                                                <table id="uibexp_tout" class="w3-table">
+                                                    <thead style="position: sticky; top:0px;">
+                                                        <tr class="w3-theme-th">
+                                                            <th>Value</th>
+                                                            <th>Address</th>
+                                                            <th>ScriptPubKey</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="w3-container w3-card w3-white w3-round w3-margin-bottom">
+                                            <div class="w3-margin-bottom w3-margin-top">
+                                                <i class="fa fa-users fa-2x w3-margin-right w3-text-theme w3-left"></i>
+                                                <div>Witnesses - <span id="uibexp_txwit">0</span></div>
+                                            </div>
+                                            <div class="w3-margin-bottom k1-overflow-scroll" style="max-height: 60vh;">
+                                                <table id="uibexp_twit" class="w3-table">
+                                                    <thead style="position: sticky; top:0px;">
+                                                        <tr class="w3-theme-th">
+                                                            <th>Value</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div id='tx_json'>
-                                <div class="w3-container w3-margin-top">
+                            <div id="explorer_mempool_entry"
+                                class="w3-hide w3-container w3-card w3-white w3-round w3-margin">
+                                <div id="mempool_entry_loading"
+                                    class="w3-hide w3-container w3-card w3-white w3-round w3-margin-bottom w3-margin-top">
                                     <div>
-                                        <div>hash: <span id="uibexp_th" style="word-wrap: break-word;">0</span></div>
+                                        <div class="w3-center" style="font-size: large;">
+                                            <i class="fa fa-info w3-text-theme"></i>&nbsp;&nbsp;Loading please wait...
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="w3-container w3-margin-bottom">
-                                    <div class="w3-half">
-                                        <div>version: <span id="uibexp_tv">0</span></div>
-                                        <div>flag: <span id="uibexp_tfl">0</span></div>
-                                        <div>locktime: <span id="uibexp_tl">0</span></div>
+                                <div id="mempool_entry_main" class="w3-hide">
+                                    <div class="w3-container w3-margin-top">
+                                        <div>
+                                            <i class="fa fa-fill-drip fa-4x w3-margin-right w3-text-theme w3-left"></i>
+                                            <div>Mempool Entry</div>
+                                            <div><span id="uibexp_mti" style="word-wrap: break-word;">0</span></div>
+                                        </div>
                                     </div>
-                                    <div class="w3-half">
-                                        <div>block height: <span id="uibexp_tbh">0</span></div>
-                                        <div>size: <span id="uibexp_ts">0</span></div>
-                                        <div>vsize: <span id="uibexp_tvs">0</span></div>
+                                    <div class="w3-container w3-margin-top">
+                                        <div class="w3-half">
+                                            <div>fee: <span id="uibexp_mfee">0</span></div>
+                                            <div>height: <span id="uibexp_mh">0</span></div>
+                                            <div>modifiedfee: <span id="uibexp_mf">0</span></div>
+                                            <div>size: <span id="uibexp_ms">0</span></div>
+                                            <div>time: <span id="uibexp_mtime">0</span></div>
+                                        </div>
+                                        <div class="w3-half">
+                                            <div>ancestorcount: <span id="uibexp_mac">0</span></div>
+                                            <div>ancestorfees: <span id="uibexp_maf">0</span></div>
+                                            <div>ancestorsize: <span id="uibexp_mas">0</span></div>
+                                            <div>depends: <span id="uibexp_md" style="word-wrap: break-word;">0</span>
+                                            </div>
+                                            <div>descendantcount: <span id="uibexp_mdc">0</span></div>
+                                            <div>descendantfees: <span id="uibexp_mdf">0</span></div>
+                                            <div>descendantsize: <span id="uibexp_mds">0</span></div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="w3-container w3-card w3-white w3-round w3-margin-bottom">
-                                    <div class="w3-margin-bottom w3-margin-top">
-                                        <i class="fa fa-file-import fa-2x w3-margin-right w3-text-theme w3-left"></i>
-                                        <div>Inputs - <span id="uibexp_txinputs">0</span></div>
+                                    <div class="w3-container w3-margin-bottom">
+                                        <div>
+                                            <div>wtxid: <span id="uibexp_mwtx" style="word-wrap: break-word;">0</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="w3-content w3-margin-bottom k1-overflow-scroll"
-                                        style="max-height: 60vh;">
-                                        <table id="uibexp_tin" class="w3-table">
-                                            <thead style="position: sticky; top:0px;">
-                                                <tr class="w3-theme-th">
-                                                    <th>Value</th>
-                                                    <th>Address</th>
-                                                    <th>TxId</th>
-                                                    <th>vout</th>
-                                                    <th>ScriptSig</th>
-                                                    <th>Sequence</th>
-                                                </tr>
-                                            </thead>
-                                        </table>
+                                    <div class="w3-container w3-card w3-white w3-round w3-margin-bottom">
+                                        <div class="w3-margin-top w3-margin-bottom">
+                                            <div>
+                                                <i class="fa fa-link fa-2x w3-margin-right w3-text-theme w3-left"></i>
+                                                <div>Ancestors</div>
+                                            </div>
+                                        </div>
+                                        <div class="k1-overflow-scroll" style="max-height: 60vh;">
+                                            <table id="uibexp_mat" class="w3-table">
+                                                <thead style="position: sticky; top:0px;">
+                                                    <tr class="w3-theme-th">
+                                                        <th>Time</th>
+                                                        <th>Height</th>
+                                                        <th>TX Hash</th>
+                                                        <th>Value</th>
+                                                        <th>Direction</th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="w3-container w3-card w3-white w3-round w3-margin-bottom">
-                                    <div class="w3-margin-bottom w3-margin-top">
-                                        <i class="fa fa-file-export fa-2x w3-margin-right w3-text-theme w3-left"></i>
-                                        <div>Outputs - <span id="uibexp_txoutputs">0</span></div>
-                                    </div>
-                                    <div class="w3-content w3-margin-bottom k1-overflow-scroll"
-                                        style="max-height: 60vh;">
-                                        <table id="uibexp_tout" class="w3-table">
-                                            <thead style="position: sticky; top:0px;">
-                                                <tr class="w3-theme-th">
-                                                    <th>Value</th>
-                                                    <th>Address</th>
-                                                    <th>ScriptPubKey</th>
-                                                </tr>
-                                            </thead>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="w3-container w3-card w3-white w3-round w3-margin-bottom">
-                                    <div class="w3-margin-bottom w3-margin-top">
-                                        <i class="fa fa-users fa-2x w3-margin-right w3-text-theme w3-left"></i>
-                                        <div>Witnesses - <span id="uibexp_txwit">0</span></div>
-                                    </div>
-                                    <div class="w3-content w3-margin-bottom k1-overflow-scroll"
-                                        style="max-height: 60vh;">
-                                        <table id="uibexp_twit" class="w3-table">
-                                            <thead style="position: sticky; top:0px;">
-                                                <tr class="w3-theme-th">
-                                                    <th>Value</th>
-                                                </tr>
-                                            </thead>
-                                        </table>
+                                    <div class="w3-container w3-card w3-white w3-round w3-margin-bottom">
+                                        <div class="w3-margin-top w3-margin-bottom">
+                                            <div>
+                                                <i class="fa fa-link fa-2x w3-margin-right w3-text-theme w3-left"></i>
+                                                <div>Descendants</div>
+                                            </div>
+                                        </div>
+                                        <div class="k1-overflow-scroll" style="max-height: 60vh;">
+                                            <table id="uibexp_mdt" class="w3-table">
+                                                <thead style="position: sticky; top:0px;">
+                                                    <tr class="w3-theme-th">
+                                                        <th>Time</th>
+                                                        <th>Height</th>
+                                                        <th>TX Hash</th>
+                                                        <th>Value</th>
+                                                        <th>Direction</th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <!-- <div class="w3-margin-bottom">&nbsp;</div> -->
                         </div>
+                        <div class="w3-margin-top w3-tiny">&nbsp;</div>
                     </div>
-                    <div id="explorer_mempool_entry" class="w3-hide w3-container w3-card w3-white w3-round w3-margin">
-                        <div id="mempool_entry_loading"
-                            class="w3-hide w3-container w3-card w3-white w3-round w3-margin-bottom w3-margin-top">
-                            <div>
-                                <div class="w3-center" style="font-size: large;">
-                                    <i class="fa fa-info w3-text-theme"></i>&nbsp;&nbsp;Loading please wait...
-                                </div>
-                            </div>
-                        </div>
-                        <div id="mempool_entry_main" class="w3-hide">
-                            <div class="w3-container w3-margin-top">
-                                <div>
-                                    <i class="fa fa-fill-drip fa-4x w3-margin-right w3-text-theme w3-left"></i>
-                                    <div>Mempool Entry</div>
-                                    <div><span id="uibexp_mti" style="word-wrap: break-word;">0</span></div>
-                                </div>
-                            </div>
-                            <div class="w3-container w3-margin-top">
-                                <div class="w3-half">
-                                    <div>fee: <span id="uibexp_mfee">0</span></div>
-                                    <div>height: <span id="uibexp_mh">0</span></div>
-                                    <div>modifiedfee: <span id="uibexp_mf">0</span></div>
-                                    <div>size: <span id="uibexp_ms">0</span></div>
-                                    <div>time: <span id="uibexp_mtime">0</span></div>
-                                </div>
-                                <div class="w3-half">
-                                    <div>ancestorcount: <span id="uibexp_mac">0</span></div>
-                                    <div>ancestorfees: <span id="uibexp_maf">0</span></div>
-                                    <div>ancestorsize: <span id="uibexp_mas">0</span></div>
-                                    <div>depends: <span id="uibexp_md" style="word-wrap: break-word;">0</span></div>
-                                    <div>descendantcount: <span id="uibexp_mdc">0</span></div>
-                                    <div>descendantfees: <span id="uibexp_mdf">0</span></div>
-                                    <div>descendantsize: <span id="uibexp_mds">0</span></div>
-                                </div>
-                            </div>
-                            <div class="w3-container w3-margin-bottom">
-                                <div>
-                                    <div>wtxid: <span id="uibexp_mwtx" style="word-wrap: break-word;">0</span></div>
-                                </div>
-                            </div>
-                            <div class="w3-container w3-card w3-white w3-round w3-margin-bottom">
-                                <div class="w3-margin-top w3-margin-bottom">
-                                    <div>
-                                        <i class="fa fa-link fa-2x w3-margin-right w3-text-theme w3-left"></i>
-                                        <div>Ancestors</div>
-                                    </div>
-                                </div>
-                                <div class="w3-content k1-overflow-scroll" style="max-height: 60vh;">
-                                    <table id="uibexp_mat" class="w3-table">
-                                        <thead style="position: sticky; top:0px;">
-                                            <tr class="w3-theme-th">
-                                                <th>Time</th>
-                                                <th>Height</th>
-                                                <th>TX Hash</th>
-                                                <th>Value</th>
-                                                <th>Direction</th>
-                                            </tr>
-                                        </thead>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="w3-container w3-card w3-white w3-round w3-margin-bottom">
-                                <div class="w3-margin-top w3-margin-bottom">
-                                    <div>
-                                        <i class="fa fa-link fa-2x w3-margin-right w3-text-theme w3-left"></i>
-                                        <div>Descendants</div>
-                                    </div>
-                                </div>
-                                <div class="w3-content k1-overflow-scroll" style="max-height: 60vh;">
-                                    <table id="uibexp_mdt" class="w3-table">
-                                        <thead style="position: sticky; top:0px;">
-                                            <tr class="w3-theme-th">
-                                                <th>Time</th>
-                                                <th>Height</th>
-                                                <th>TX Hash</th>
-                                                <th>Value</th>
-                                                <th>Direction</th>
-                                            </tr>
-                                        </thead>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
+                <!-- <div class="w3-col m1 w3-hide-small">&nbsp;</div> -->
             </div>
+
             <!-- End Block Explorer View -->
         </div>
         <!-- End Block Explorer -->
@@ -1559,21 +1794,22 @@
                 </div>
                 <!-- End Market Spacers -->
                 <!-- Begin Market View -->
-                <div class="w3-col m1 w3-hide-small">&nbsp;</div>
-                <div class="w3-col m10">
+                <!-- <div class="w3-col m1 w3-hide-small">&nbsp;</div> -->
+                <div class="w3-col m12">
                     <div class="w3-container w3-card w3-round w3-white w3-margin-bottom">
                         <!-- Market -->
-                        <div class="w3-container w3-margin-top w3-margin-bottom w3-cell-middle w3-large w3-text-theme-dark">
+                        <div
+                            class="w3-container w3-margin-top w3-margin-bottom w3-cell-middle w3-large w3-text-theme-dark">
                             <span>
                                 <img src="/images/kevacoin-logo.png" class="w3-circle w3-image" style="max-height:35px;"
                                     alt="Logo">&nbsp;
                                 <span id="mnspro_name">Kevacoin</span>
-                            
-                            <span class="w3-right">
-                                <i class="fa fa-dolly-flatbed w3-margin-right w3-text-theme"></i>Total Auctions:&nbsp;<span
-                                    id="mnspro_sc">0</span>
+
+                                <span class="w3-right">
+                                    <i class="fa fa-dolly-flatbed w3-margin-right w3-text-theme"></i>Total
+                                    Auctions:&nbsp;<span id="mnspro_sc">0</span>
+                                </span>
                             </span>
-                        </span>
 
                         </div>
                         <div class="w3-container w3-card w3-white w3-round w3-margin-bottom">
@@ -1621,7 +1857,7 @@
                         <!-- <div style="margin-top: -16px;"></div> -->
                     </div>
                 </div>
-                <div class="w3-col m1"></div>
+                <!-- <div class="w3-col m1"></div> -->
                 <!-- End Market View -->
             </div>
         </div>
@@ -1642,7 +1878,10 @@
     </div>
 
 
-    <script src="/js/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"
+        integrity="sha256-ErZ09KkZnzjpqcane4SCyyHsKAXMvID9/xwbl/Aq1pc=" crossorigin="anonymous"></script>
+    <script src="/js/main.js"></script>
+
     <script>
         function open_nav_small() {
             var x = document.getElementById("nav_small");

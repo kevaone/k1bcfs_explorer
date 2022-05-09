@@ -1,7 +1,7 @@
 var nww_main = new (function () {
     let Q = new Worker('/js/worker.js');
-    let ep = 'https://kva.keva.one/';
-    // let ep = 'http://127.0.0.1:9999/';
+    // let ep = 'https://kva.keva.one/';
+    let ep = 'http://127.0.0.1:9999/';
 
     let bc_general_update = 0;
     let bc_info_update = 0;
@@ -16,6 +16,7 @@ var nww_main = new (function () {
 
     function nww_main() {
         check_state();
+        
 
         Q.onmessage = function (e) {
             // console.log('Message received from worker', e['data']);
@@ -54,6 +55,9 @@ var nww_main = new (function () {
             }
             else if (e['data'][0]['call'] === 'get_nft_auctions') {
                 return ui_update_market_view(e['data'][1]);
+            }
+            else if (e['data'][0]['call'] === 'get_stats_tops') {
+                return ui_update_stats_tops(e['data'][1]);
             }
             // else if (e['data'][0]['call'] === 'get_info') {
             else if (e['data'][0]['call'] === 'README.md') {
@@ -457,6 +461,15 @@ var nww_main = new (function () {
         let _pl = {};
         _pl['endPoint'] = ep;
         _pl['call'] = 'get_search';
+        _pl['call_data'] = e;
+        _pl['type'] = 'GET';
+        Q.postMessage(_pl);
+    };
+
+    get_stats_tops = function (e) {
+        let _pl = {};
+        _pl['endPoint'] = ep;
+        _pl['call'] = 'get_stats_tops';
         _pl['call_data'] = e;
         _pl['type'] = 'GET';
         Q.postMessage(_pl);
@@ -1484,6 +1497,58 @@ var nww_main = new (function () {
         isection_toggle('market_main', ['market_loading', 'market_main']);
     };
 
+    ui_clear_stats_tops = function () {
+        let _bexp_nsv = gei('stats_tops_table');
+        clear_table(_bexp_nsv);
+        // isection_toggle('market_loading', ['market_loading', 'market_main']);
+        // let _bexp_nsv = gei('stats_tops_table');
+        // // let nspro_sc = gei('mnspro_sc');
+
+        // while (_bexp_nsv.firstChild) {
+        //     _bexp_nsv.removeChild(_bexp_nsv.firstChild);
+        // };
+
+        // nspro_sc.innerText = null;
+    };
+
+    ui_update_stats_tops = function (e) {
+        let _bexp_nsv = gei('stats_tops_table');
+        // let _nsv_c = gei('mnsv_c');
+        // let nspro_sc = gei('mnspro_sc');
+        // console.log(e);
+
+        // let spacer = ce('div');
+        // spacer.style.marginTop = '-16px';
+        // _bexp_nsv.appendChild(spacer);
+        // nspro_sc.innerText = e['len'];
+        let labels = [];
+        let data = [];
+        let colors = [];
+        let _total_counter = 100.0;
+        for (result in e) {
+            // console.log(e[result][1])
+            labels.push(e[result][1]);
+            colors.push('rgb(' + random_int(155, 255) + ', ' + random_int(55, 155) + ', ' + random_int(90, 175) + ')')
+            // data.push(e[result][2]);
+            if (e[result].length === 5) {
+                _total_counter -= e[result][4]
+                data.push(e[result][3]);
+                add_row(_bexp_nsv, [e[result][0], e[result][1], e[result][2], e[result][3], e[result][4]]);
+                
+            }
+            else {
+                add_row(_bexp_nsv, [e[result][0], e[result][1], e[result][2]]);
+            };
+            
+            
+        };
+        // labels.push('Rest')
+        // data.push(_total_counter)
+        // console.log(labels)
+        build_chart(labels, data, colors);
+    };
+
+
     section_link = function (section, value) {
         // TODO Clear sections upon link nav and set loading display
         // NOTE Q will fire display element update when api responds back
@@ -1547,6 +1612,89 @@ var nww_main = new (function () {
             _search_q.innerText = _sq;
             get_search(_sq);
         };
+    };
+
+    chart_section_toggle = function (e) {
+        ui_clear_stats_tops();
+        let x = gei('stthl');
+        let xp = gei('stthxp');
+        let xtp = gei('stthxtp');
+        if (e === 'tops_balance') {
+            if (xp.className.indexOf("w3-hide") != -1) {
+                xp.className = xp.className.replace(" w3-hide", "");
+            };
+            if (xtp.className.indexOf("w3-hide") != -1) {
+                xtp.className = xtp.className.replace(" w3-hide", "");
+            };
+        }
+        else {
+            if (xp.className.indexOf("w3-hide") == -1) {
+                xp.className += " w3-hide";
+            };
+            if (xtp.className.indexOf("w3-hide") == -1) {
+                xtp.className += " w3-hide";
+            };
+        }
+        if (e === 'tops_balance') {
+            x.innerText = 'Balance';
+            if (xp.className.indexOf("w3-hide") != -1) {
+                xp.className.replace(" w3-hide", "");
+            };
+            if (xtp.className.indexOf("w3-hide") != -1) {
+                xtp.className.replace(" w3-hide", "");
+            };
+            get_stats_tops('total');
+        }
+        else if (e === 'tops_received') {
+            x.innerText = 'Received';
+            get_stats_tops('received');
+        }
+        else if (e === 'tops_sent') {
+            x.innerText = 'Sent';
+            get_stats_tops('sent');
+        }
+        else if (e === 'tops_receivers') {
+            x.innerText = 'R-Count';
+            get_stats_tops('rcount');
+        }
+        else if (e === 'tops_senders') {
+            x.innerText = 'S-Count';
+            get_stats_tops('scount');
+        };
+    };
+
+    build_chart = function (labels, data, colors) {
+        // const labels = [
+        //     'January',
+        //     'February',
+        //     'March',
+        //     'April',
+        //     'May',
+        //     'June',
+        //     'all'
+        //   ];
+        
+          const cdata = {
+            labels: labels,
+            datasets: [{
+              label: 'My First dataset',
+              backgroundColor: colors,
+              borderColor: colors,
+              data: data,
+            }]
+          };
+        
+          const config = {
+            type: 'doughnut', //'line',
+            data: cdata,
+            options: {}
+          };
+
+          //
+          const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+          );
     };
 
     csl = function(e, s, l, ul=1) {
@@ -1613,6 +1761,10 @@ var nww_main = new (function () {
     rounder = function (number, places) {
         return +(Math.round(number + 'e+'.concat(places)) + 'e-'.concat(places));
     };
+
+    random_int = function (min, max) {
+        return Math.floor(Math.random() * (max - min + 1) ) + min;
+      }
 
     return new nww_main();
 
