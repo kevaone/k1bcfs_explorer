@@ -231,7 +231,7 @@ var nww_main = new (function () {
     };
 
     section_toggle = function (id, cs = true) {
-        let sections = ["explorer_info", "explorer_stats", "explorer_browser", "market_section", "main_section", "search_section", "error_section", "about_section"];
+        let sections = ["namespace_section", "address_section", "explorer_info", "explorer_stats", "explorer_browser", "market_section", "main_section", "search_section", "error_section", "about_section"];
         isection_toggle(id, sections);
         if (cs) {
             if (id === "explorer_info") {
