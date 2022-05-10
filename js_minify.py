@@ -16,8 +16,8 @@ for file_ in os.listdir('site/js/'):
         url = 'https://closure-compiler.appspot.com/compile'
         payload = {
             'js_code': java,
-            'compilation_level': 'ADVANCED_OPTIMIZATIONS',
-            # 'SIMPLE_OPTIMIZATIONS',  # 'WHITESPACE_ONLY
+            'compilation_level': 'SIMPLE_OPTIMIZATIONS',
+            # 'SIMPLE_OPTIMIZATIONS',  # 'WHITESPACE_ONLY ADVANCED_OPTIMIZATIONS
             'output_format': 'text',  # 'json'
             'output_info': 'compiled_code',
             # 'formatting': 'pretty_print'

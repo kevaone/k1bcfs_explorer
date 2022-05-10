@@ -1,7 +1,7 @@
 var nww_main = new (function () {
-    let Q = new Worker('/js/worker.js');
-    // let ep = 'https://kva.keva.one/';
-    let ep = 'http://127.0.0.1:9999/';
+    let Q = new Worker('/js/worker.min.js');
+    let ep = 'https://kva.keva.one/';
+    // let ep = 'http://127.0.0.1:9999/';
 
     let bc_general_update = 0;
     let bc_info_update = 0;
@@ -11,12 +11,13 @@ var nww_main = new (function () {
     let bc_recent_transactions_update = 0;
     let market_display_filter = 'all';
 
+    let stats_tops_chart = undefined;
+
     let _isections = ["address_section", "explorer_info", "explorer_stats", "explorer_browser", "market_section", "explorer_section", "namespace_section", "main_section", "search_section", "error_section", "about_section"];
     // let _ibsections = ["explorer_info", "explorer_stats", "market_section", "explorer_section", "namespace_section", "main_section", "search_section", "about_section"];
 
     function nww_main() {
         check_state();
-        
 
         Q.onmessage = function (e) {
             // console.log('Message received from worker', e['data']);
@@ -64,8 +65,8 @@ var nww_main = new (function () {
                 return ui_update_info(e['data'][1]);
             };
         };
-        get_supply();
-        window.setInterval(get_supply, 30000);
+        // get_supply();
+        // window.setInterval(get_supply, 30000);
         window.onpopstate = function () {
             check_state();
         };
@@ -79,6 +80,7 @@ var nww_main = new (function () {
             if (bc_info_update < _d - 3000) {
                 ui_clear_info();
                 get_info('');
+                get_supply();
                 bc_info_update = _d;
             };
             document.title = "Keva.One - Kevacoin Info";
@@ -88,6 +90,7 @@ var nww_main = new (function () {
         else if (_path.startsWith("/stats")) {
             document.title = "Keva.One - Kevacoin Stats";
             // ui_clear_stats();
+            chart_section_toggle('tops_balance');
             isection_toggle("explorer_section", _isections);
             section_toggle("explorer_stats", false);
         }
@@ -1500,27 +1503,19 @@ var nww_main = new (function () {
     ui_clear_stats_tops = function () {
         let _bexp_nsv = gei('stats_tops_table');
         clear_table(_bexp_nsv);
-        // isection_toggle('market_loading', ['market_loading', 'market_main']);
-        // let _bexp_nsv = gei('stats_tops_table');
-        // // let nspro_sc = gei('mnspro_sc');
 
-        // while (_bexp_nsv.firstChild) {
-        //     _bexp_nsv.removeChild(_bexp_nsv.firstChild);
-        // };
-
-        // nspro_sc.innerText = null;
+        try {
+            if (typeof(stats_tops_chart) !== 'undefined') {
+                stats_tops_chart.destroy();
+            };
+        }
+        catch (err) {
+            console.log(err.message);
+        };
     };
 
     ui_update_stats_tops = function (e) {
         let _bexp_nsv = gei('stats_tops_table');
-        // let _nsv_c = gei('mnsv_c');
-        // let nspro_sc = gei('mnspro_sc');
-        // console.log(e);
-
-        // let spacer = ce('div');
-        // spacer.style.marginTop = '-16px';
-        // _bexp_nsv.appendChild(spacer);
-        // nspro_sc.innerText = e['len'];
         let labels = [];
         let data = [];
         let colors = [];
@@ -1532,18 +1527,20 @@ var nww_main = new (function () {
             // data.push(e[result][2]);
             if (e[result].length === 5) {
                 _total_counter -= e[result][4]
-                data.push(e[result][3]);
+                data.push(e[result][4]);
                 add_row(_bexp_nsv, [e[result][0], e[result][1], e[result][2], e[result][3], e[result][4]]);
                 
             }
             else {
+                data.push(e[result][2]);
                 add_row(_bexp_nsv, [e[result][0], e[result][1], e[result][2]]);
             };
             
             
         };
-        // labels.push('Rest')
-        // data.push(_total_counter)
+        labels.push('Non-Top 100')
+        colors.push('rgb(' + random_int(155, 255) + ', ' + random_int(55, 155) + ', ' + random_int(90, 175) + ')')
+        data.push(_total_counter)
         // console.log(labels)
         build_chart(labels, data, colors);
     };
@@ -1654,47 +1651,46 @@ var nww_main = new (function () {
             get_stats_tops('sent');
         }
         else if (e === 'tops_receivers') {
-            x.innerText = 'R-Count';
+            x.innerText = 'Received TX Count';
             get_stats_tops('rcount');
         }
         else if (e === 'tops_senders') {
-            x.innerText = 'S-Count';
+            x.innerText = 'Sent TX Count';
             get_stats_tops('scount');
         };
     };
 
     build_chart = function (labels, data, colors) {
-        // const labels = [
-        //     'January',
-        //     'February',
-        //     'March',
-        //     'April',
-        //     'May',
-        //     'June',
-        //     'all'
-        //   ];
-        
-          const cdata = {
+        let cdata = {
             labels: labels,
             datasets: [{
-              label: 'My First dataset',
-              backgroundColor: colors,
-              borderColor: colors,
-              data: data,
+            //   label: '',
+            backgroundColor: colors,
+            borderColor: colors,
+            data: data,
             }]
-          };
+        };
         
-          const config = {
+        let config = {
             type: 'doughnut', //'line',
             data: cdata,
-            options: {}
-          };
+            options: {
+                plugins: {
+                    legend: {
+                        display: false,
+                        labels: {
+                            color: 'rgb(255, 99, 132)'
+                        },
+                        position: 'bottom'
+                    }
+                }
+            }
+        };
 
-          //
-          const myChart = new Chart(
-            document.getElementById('myChart'),
+        stats_tops_chart = new Chart(
+            gei('stats_tops_chart'),
             config
-          );
+        );
     };
 
     csl = function(e, s, l, ul=1) {

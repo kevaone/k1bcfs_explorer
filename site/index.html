@@ -505,26 +505,30 @@
                     <!-- Profile -->
                     <div class="w3-container">
                         <div class="w3-margin-top">
-                        <span id="nspro_name" class="w3-center w3-xlarge">Kevacoin</span>
-                    </div>
-                    <hr>
-                    <div class="w3-container w3-margin-bottom">
+                            <div class="w3-left w3-xlarge"><i class="fa fa-at w3-text-theme"></i><span
+                                    id="nspro_sc">0</span>&nbsp;</div>
+                            <span id="nspro_name" class="w3-center w3-xlarge">Kevacoin</span>
+                            <div class="w3-right"><i class="fa fa-copy w3-margin-right w3-text-theme"></i>Keys <span
+                                    id="nspro_keys">0</span></div>
+                        </div>
+                        <hr>
+                        <!-- <div class="w3-container w3-margin-bottom">
                         <div class="w3-left"><i class="fa fa-at w3-margin-right w3-text-theme"></i><span id="nspro_sc">0</span></div>
                         <div class="w3-right"><i class="fa fa-copy w3-margin-right w3-text-theme"></i>Keys <span id="nspro_keys">0</span></div>
-                    </div>
-                    <div class="w3-container w3-margin-bottom">
-                        <div class="w3-half">
-                            <i class="fa fa-address-card w3-margin-right w3-text-theme"></i><span
-                                style="word-wrap: break-word;" id="nspro_nsid">0</span>
+                    </div> -->
+                        <div class="w3-container w3-margin-bottom">
+                            <div class="w3-half w3-center">
+                                <i class="fa fa-address-card w3-margin-right w3-text-theme"></i><span
+                                    style="word-wrap: break-word;" id="nspro_nsid">0</span>
+                            </div>
+                            <div class="w3-half w3-center">
+                                <i class="fa fa-passport w3-margin-right w3-text-theme"></i><span
+                                    style="word-wrap: break-word;" id="nspro_owner">0</span>
+                            </div>
                         </div>
-                        <div class="w3-half">
-                            <i class="fa fa-passport w3-margin-right w3-text-theme"></i><span
-                                style="word-wrap: break-word;" id="nspro_owner">0</span>
-                        </div>
-                    </div>
                         <!-- <p class="w3-center"><img src="/images/kevacoin-logo.png" class="w3-circle w3-hide-small"
                                 style="height:100px;width:100px" alt="Logo"></p> -->
-                        
+
                     </div>
                 </div>
                 <!-- <br /> -->
@@ -1085,35 +1089,36 @@
                                 <div id="stats_tops" class="w3-margin-top">
                                     <div class="w3-margin-bottom">
                                         <i class="fa fa-chart-line fa-2x w3-margin-right w3-text-theme w3-left"></i>
-                                        <i class="fa fa-eye fa-2x w3-text-theme w3-right"></i>
+                                        <!-- <i class="fa fa-eye fa-2x w3-text-theme w3-right"></i> -->
                                         <div class="w3-text-theme-dark" style="font-size: large;">Top 100's</div>
                                     </div>
                                     <div class="w3-margin-bottom">
                                         <button type="button"
                                             class="w3-theme-button w3-theme w3-hover-theme-button w3-margin-bottom"
-                                            onclick="chart_section_toggle('tops_balance')"
+                                            onclick="chart_section_toggle('tops_balance');"
                                             title="Top 100 addresses by balance"><i class="fa fa-info-circle"></i>
                                             Balance</button>
                                         <button type="button" class="w3-theme-button w3-theme w3-hover-theme-button"
-                                            onclick="chart_section_toggle('tops_received')"
+                                            onclick="chart_section_toggle('tops_received');"
                                             title="Top 100 addresses by received amount"><i
                                                 class="fa fa-chart-line"></i>
                                             Received</button>
                                         <button type="button" class="w3-theme-button w3-theme w3-hover-theme-button"
-                                            onclick="chart_section_toggle('tops_sent')"
+                                            onclick="chart_section_toggle('tops_sent');"
                                             title="Top 100 addresses by sent amount"><i class="fa fa-archive"></i>
                                             Sent</button>
                                         <button type="button" class="w3-theme-button w3-theme w3-hover-theme-button"
-                                            onclick="chart_section_toggle('tops_receivers')"
+                                            onclick="chart_section_toggle('tops_receivers');"
                                             title="Top 100 receivers by transaction count"><i class="fa fa-archive"></i>
                                             Receivers</button>
                                         <button type="button" class="w3-theme-button w3-theme w3-hover-theme-button"
-                                            onclick="chart_section_toggle('tops_senders')"
+                                            onclick="chart_section_toggle('tops_senders');"
                                             title="Top 100 senders by transaction count"><i class="fa fa-archive"></i>
                                             Senders</button>
                                     </div>
                                     <div class="w3-margin-bottom">
-                                        <div id="stats_tops_table_section" class="w3-half k1-overflow-scroll"
+                                        <div id="stats_tops_table_section"
+                                            class="w3-twothird w3-margin-bottom k1-overflow-scroll"
                                             style="max-height: 60vh;">
                                             <table id="stats_tops_table" class="w3-table">
                                                 <thead style="position: sticky; top:0px;">
@@ -1128,30 +1133,29 @@
                                                 <tr></tr>
                                             </table>
                                         </div>
-                                        <div class="w3-half">
-                                            <div>
-                                                <canvas id="myChart"></canvas>
+                                        <div class="w3-third">
+                                            <div class=" w3-margin-left w3-margin-right w3-margin-bottom">
+                                                <canvas id="stats_tops_chart"></canvas>
                                             </div>
-                                            <div class="w3-container w3-padding w3-center w3-margin-top">
+                                            <!-- <div class="w3-container w3-padding w3-center w3-margin-top">
                                                 <button type="button"
                                                     class="w3-theme-button w3-theme w3-hover-theme-button"
                                                     onclick="chart_section_toggle('tops_receivers')"
-                                                    title="Top 100 receivers by transaction count"><i
+                                                    title="Filter chart to top 100"><i
                                                         class="fa fa-archive"></i>
-                                                    Receivers</button>
+                                                    Top 100</button>
                                                 <button type="button"
                                                     class="w3-theme-button w3-theme w3-hover-theme-button"
                                                     onclick="chart_section_toggle('tops_senders')"
-                                                    title="Top 100 senders by transaction count"><i
+                                                    title="Filter chart to include non-top 100 wedge"><i
                                                         class="fa fa-archive"></i>
-                                                    Senders</button>
-                                            </div>
+                                                    All</button>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div
-                                class="w3-container w3-card w3-white w3-round w3-margin-top w3-margin-left w3-margin-right">
+                            <!-- <div class="w3-container w3-card w3-white w3-round w3-margin-top w3-margin-left w3-margin-right">
                                 <div id="stats_Mining" class="w3-margin-top">
                                     <div class="w3-margin-bottom">
                                         <i class="fa fa-chart-line fa-2x w3-margin-right w3-text-theme w3-left"></i>
@@ -1254,7 +1258,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
                         </div>
                         <div id="explorer_browser" class="w3-hide">
@@ -1880,7 +1884,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"
         integrity="sha256-ErZ09KkZnzjpqcane4SCyyHsKAXMvID9/xwbl/Aq1pc=" crossorigin="anonymous"></script>
-    <script src="/js/main.js"></script>
+    <script src="/js/main.min.js"></script>
 
     <script>
         function open_nav_small() {
