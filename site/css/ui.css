@@ -45,32 +45,34 @@ html, body, h1, h2, h3, h4, h5 {
 
 #recent_transactions_main > table > tr > td:nth-child(1) {
     min-width: 15px;
-    max-width: 20px;
+    max-width: 25px;
     /* overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap; */
 }
 #recent_transactions_main > table > tr > td:nth-child(2) {
-    min-width: 50px;
-    max-width: 75px;
+    min-width: 70px;
+    max-width: 95px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 #recent_transactions_main > table > tr > td:nth-child(3) {
-    max-width: 5px;
+    min-width: 5px;
+    max-width: 10px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 #recent_transactions_main > table > tr > td:nth-child(4) {
-    max-width: 5px;
+    min-width: 5px;
+    max-width: 10px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 #recent_transactions_main > table > tr > td:nth-child(5) {
-    max-width: 25vw;
+    max-width: 30vw;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -122,8 +124,132 @@ html, body, h1, h2, h3, h4, h5 {
     white-space: nowrap;
 }
 
+#block_display_main > table > tr > td:nth-child(1) {
+    min-width: 60px;
+    max-width: 75px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#block_display_main > table > tr > td:nth-child(2) {
+    max-width: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#block_display_main > table > tr > td:nth-child(3) {
+    max-width: 15vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#uibexp_ptin > tr > td:nth-child(1) {
+    min-width: 60px;
+    max-width: 75px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#uibexp_ptin > tr > td:nth-child(2) {
+    max-width: 10vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#uibexp_ptin > tr > td:nth-child(3) {
+    max-width: 15vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#uibexp_ptout > tr > td:nth-child(1) {
+    min-width: 60px;
+    max-width: 75px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#uibexp_ptout > tr > td:nth-child(2) {
+    max-width: 45vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#uibexp_tin > tr > td:nth-child(1) {
+    max-width: 30vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#uibexp_tin > tr > td:nth-child(2) {
+    max-width: 15vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#uibexp_tin > tr > td:nth-child(3) {
+    max-width: 20vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#uibexp_tin > tr > td:nth-child(4) {
+    max-width: 5vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#uibexp_tout > tr > td:nth-child(1) {
+    min-width: 55px;
+    max-width: 75px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#uibexp_tout > tr > td:nth-child(2) {
+    max-width: 35vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#uibexp_twit > tr > td {
+    display: none;
+}
+#uibexp_twit > tr > td:nth-child(1) {
+    display: block;
+    max-width: 85vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#stats_tops_table > tr > td:nth-child(1) {
+    max-width: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#stats_tops_table > tr > td:nth-child(2) {
+    max-width: 25vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#stats_tops_table > tr > td:nth-child(3) {
+    min-width: 50px;
+    max-width: 75px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 
 @media screen and (min-width: 0px) and (max-width: 400px) {
     #recent_address_main > table > thead > tr > th:nth-child(2) { display: none; }
     #recent_address_main > table > tr > td:nth-child(2) { display: none; }  /* show it on small screens */
+    #recent_transactions_main > table > tr > td:nth-child(5) { max-width: 15vw; }
   }

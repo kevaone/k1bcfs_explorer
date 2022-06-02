@@ -345,7 +345,7 @@ var nww_main = new (function () {
     };
 
     open_nav_small = function () {
-        var x = document.getElementById("nav_small");
+        let x = document.getElementById("nav_small");
         if (x.className.indexOf("w3-show") == -1) {
             x.className += " w3-show";
         }
@@ -355,9 +355,35 @@ var nww_main = new (function () {
     };
 
     close_nav_small = function () {
-        var x = document.getElementById("nav_small");
+        let x = document.getElementById("nav_small");
         if (x.className.indexOf("w3-show") != -1) {
             x.className = x.className.replace(" w3-show", "");
+        };
+    };
+
+    toggle_tx_view = function () {
+        let x = document.getElementById("tx_view_toggle");
+        let v = document.getElementById("tx_pretty");
+        let c = document.getElementById("tx_json");
+        let d = document.getElementById("tx_raw");
+        
+        if (v.className.indexOf("w3-show") != -1) {
+            c.className += " w3-show";
+            v.className = v.className.replace(" w3-show", "");
+            d.className = d.className.replace(" w3-show", "");
+            x.className = x.className.replace("fa-file-code", "fa-file")
+        }
+        else if (c.className.indexOf("w3-show") != -1) {
+            d.className += " w3-show";
+            v.className = v.className.replace(" w3-show", "");
+            c.className = c.className.replace(" w3-show", "");
+            x.className = x.className.replace("fa-file", "fa-eye")
+        }
+        else if (d.className.indexOf("w3-show") != -1) {
+            v.className += " w3-show";
+            d.className = d.className.replace(" w3-show", "");
+            c.className = c.className.replace(" w3-show", "");
+            x.className = x.className.replace("fa-eye", "fa-file-code")
         };
     };
 
@@ -871,7 +897,7 @@ var nww_main = new (function () {
             // };
             _tx_lnk.title = 'View transaction';
             csl(_tx_lnk, 'transaction', r['txid']);
-            add_row(_bt, [_tx_lnk, r['vin'].length, r['vout'].length, sats]);
+            add_row(_bt, [sats, (r['vin'].length + ' / ' + r['vout'].length), _tx_lnk]);
         };
         isection_toggle('block_main', ['block_loading', 'block_main']);
     };
@@ -880,18 +906,28 @@ var nww_main = new (function () {
         isection_toggle('transaction_loading', ['transaction_loading', 'transaction_main']);
         let _id = gei('uibexp_ti');
         let _hash = gei('uibexp_th');
+        let _phash = gei('uibexp_pth');
         let _locktime = gei('uibexp_tl');
         let _version = gei('uibexp_tv');
         let _flag = gei('uibexp_tfl');
         let _size = gei('uibexp_ts');
         let _vsize = gei('uibexp_tvs');
+        let _psize = gei('uibexp_pts');
+        let _pvsize = gei('uibexp_tvs');
         let _bh = gei('uibexp_tbh');
         let _vin = gei('uibexp_tin');
         let _vout = gei('uibexp_tout');
         let _wit = gei('uibexp_twit');
+        let _pbh = gei('uibexp_ptbh');
+        let _pvin = gei('uibexp_ptin');
+        let _pvout = gei('uibexp_ptout');
         let _uibexp_txinputs = gei('uibexp_txinputs');
         let _uibexp_txoutputs = gei('uibexp_txoutputs');
+        let _puibexp_txinputs = gei('uibexp_ptxinputs');
+        let _puibexp_txoutputs = gei('uibexp_ptxoutputs');
         let _uibexp_txwit = gei('uibexp_txwit');
+        clear_table(_pvin);
+        clear_table(_pvout);
         clear_table(_vin);
         clear_table(_vout);
         clear_table(_wit);
@@ -899,6 +935,7 @@ var nww_main = new (function () {
         _id.innerText = null;
         uibexp_time.innerText = null;
         _hash.innerText = null;
+        _phash.innerText = null;
         _locktime.innerText = null;
         _version.innerText = null;
         _flag.innerText = null;
@@ -907,6 +944,13 @@ var nww_main = new (function () {
         _bh.innerText = null;
         _bh.style.cssText = '';
         _bh.onclick = null;
+        _psize.innerText = null;
+        _pvsize.innerText = null;
+        _pbh.innerText = null;
+        _pbh.style.cssText = '';
+        _pbh.onclick = null;
+        _puibexp_txinputs.innerText = null;
+        _puibexp_txoutputs.innerText = null;
         _uibexp_txinputs.innerText = null;
         _uibexp_txoutputs.innerText = null;
         _uibexp_txwit.innerText = null;
@@ -916,15 +960,23 @@ var nww_main = new (function () {
         let _id = gei('uibexp_ti');
         let _uibexp_time = gei('uibexp_time');
         let _hash = gei('uibexp_th');
+        let _phash = gei('uibexp_pth');
         let _locktime = gei('uibexp_tl');
         let _version = gei('uibexp_tv');
         let _flag = gei('uibexp_tfl');
         let _size = gei('uibexp_ts');
         let _vsize = gei('uibexp_tvs');
         let _bh = gei('uibexp_tbh');
+        let _psize = gei('uibexp_pts');
+        let _pvsize = gei('uibexp_ptvs');
+        let _pbh = gei('uibexp_ptbh');
         let _vin = gei('uibexp_tin');
+        let _pvin = gei('uibexp_ptin');
         let _vout = gei('uibexp_tout');
+        let _pvout = gei('uibexp_ptout');
         let _wit = gei('uibexp_twit');
+        let _puibexp_txinputs = gei('uibexp_ptxinputs');
+        let _puibexp_txoutputs = gei('uibexp_ptxoutputs');
         let _uibexp_txinputs = gei('uibexp_txinputs');
         let _uibexp_txoutputs = gei('uibexp_txoutputs');
         let _uibexp_txwit = gei('uibexp_txwit');
@@ -932,20 +984,27 @@ var nww_main = new (function () {
         _id.innerText = e['txid'];
         _uibexp_time.innerText = e['time'].slice(0, -12);
         _hash.innerText = e['hash'];
+        _phash.innerText = e['hash'];
         _locktime.innerText = e['locktime'];
         _version.innerText = e['version'];
         _flag.innerText = e['flag'];
         _size.innerText = e['size'];
         _vsize.innerText = e['vsize'];
         _bh.innerText = e['block'];
+        _psize.innerText = e['size'];
+        _pvsize.innerText = e['vsize'];
+        _pbh.innerText = e['block'];
         // _bh.style.cssText = 'cursor: pointer; text-decoration: underline;';
         // _bh.onclick = function () {
         //     section_link('block', _bh.innerText);
         // };
         _bh.title = 'View block';
         csl(_bh, 'block', _bh.innerText);
+        _pbh.title = 'View block';
+        csl(_pbh, 'block', _pbh.innerText);
 
         _uibexp_txinputs.innerText = e['vin'].length;
+        _puibexp_txinputs.innerText = e['vin'].length;
         for (result in e['vin']) {
             let _piv = e['vin'][result];
             if (_piv['address'] !== 'coinbase') {
@@ -969,10 +1028,17 @@ var nww_main = new (function () {
                 _tx_lnk.title = 'View transaction';
                 csl(_tx_lnk, 'transaction', _tx);
                 _piv['txid'] = _tx_lnk;
+                add_row(_vin, [_piv['txid'].cloneNode(true), _piv['vout'], _piv['script_sig'], _piv['sequence']]);
+            }
+            else {
+                add_row(_vin, [_piv['txid'], _piv['vout'], _piv['script_sig'], _piv['sequence']]);
             };
-            add_row(_vin, [_piv['value'], _piv['address'], _piv['txid'], _piv['vout'], _piv['sequence']]);
+
+            // add_row(_vin, [_piv['txid'].cloneNode(true), _piv['vout'], _piv['script_sig'], _piv['sequence']]);
+            add_row(_pvin, [_piv['value'], _piv['address'], _piv['txid']]);
         };
         _uibexp_txoutputs.innerText = e['vout'].length;
+        _puibexp_txoutputs.innerText = e['vout'].length;
         for (result in e['vout']) {
             let _pov = e['vout'][result]
             let _addr_lnk = ce('span');
@@ -987,7 +1053,9 @@ var nww_main = new (function () {
                 csl(_addr_lnk, 'address', _addr);
                 _pov['address'] = _addr_lnk;
             };
-            add_row(_vout, [_pov['value'], _addr_lnk, _pov['script_pubkey']]);
+
+            add_row(_vout, [_pov['value'], _pov['script_pubkey']]);
+            add_row(_pvout, [_pov['value'], _addr_lnk]);
         };
         _uibexp_txwit.innerText = e['witness'].length;
         for (result in e['witness']) {
@@ -1530,7 +1598,6 @@ var nww_main = new (function () {
     ui_clear_stats_tops = function () {
         let _bexp_nsv = gei('stats_tops_table');
         clear_table(_bexp_nsv);
-
         try {
             if (typeof(stats_tops_chart) !== 'undefined') {
                 stats_tops_chart.destroy();
@@ -1542,6 +1609,7 @@ var nww_main = new (function () {
     };
 
     ui_update_stats_tops = function (e) {
+        // ui_clear_stats_tops();
         let _bexp_nsv = gei('stats_tops_table');
         let labels = [];
         let data = [];
@@ -1555,7 +1623,8 @@ var nww_main = new (function () {
             if (e[result].length === 5) {
                 _total_counter -= e[result][4]
                 data.push(e[result][4]);
-                add_row(_bexp_nsv, [e[result][0], e[result][1], e[result][2], e[result][3], e[result][4]]);
+                // add_row(_bexp_nsv, [e[result][0], e[result][1], e[result][2], e[result][3], e[result][4]]);
+                add_row(_bexp_nsv, [e[result][0], e[result][1], e[result][2], e[result][4]]);
                 
             }
             else {
@@ -1642,31 +1711,37 @@ var nww_main = new (function () {
         ui_clear_stats_tops();
         let x = gei('stthl');
         let xp = gei('stthxp');
-        let xtp = gei('stthxtp');
+        // let xtp = gei('stthxtp');
         if (e === 'tops_balance') {
             if (xp.className.indexOf("w3-hide") != -1) {
                 xp.className = xp.className.replace(" w3-hide", "");
             };
-            if (xtp.className.indexOf("w3-hide") != -1) {
-                xtp.className = xtp.className.replace(" w3-hide", "");
-            };
+            // if (xtp.className.indexOf("w3-hide") != -1) {
+            //     xtp.className = xtp.className.replace(" w3-hide", "");
+            // };
+            // if (xp.className.indexOf("w3-hide") == -1) {
+            //     xp.className += " w3-hide";
+            // };
+            // if (xtp.className.indexOf("w3-hide") == -1) {
+            //     xtp.className += " w3-hide";
+            // };
         }
         else {
             if (xp.className.indexOf("w3-hide") == -1) {
                 xp.className += " w3-hide";
             };
-            if (xtp.className.indexOf("w3-hide") == -1) {
-                xtp.className += " w3-hide";
-            };
+            // if (xtp.className.indexOf("w3-hide") == -1) {
+            //     xtp.className += " w3-hide";
+            // };
         }
         if (e === 'tops_balance') {
             x.innerText = 'Balance';
             if (xp.className.indexOf("w3-hide") != -1) {
                 xp.className.replace(" w3-hide", "");
             };
-            if (xtp.className.indexOf("w3-hide") != -1) {
-                xtp.className.replace(" w3-hide", "");
-            };
+            // if (xtp.className.indexOf("w3-hide") != -1) {
+            //     xtp.className.replace(" w3-hide", "");
+            // };
             get_stats_tops('total');
         }
         else if (e === 'tops_received') {
@@ -1777,16 +1852,17 @@ var nww_main = new (function () {
     };
 
     clear_table = function (table) {
-        for (let i = 1, row; row = table.rows[i]; i++) {
-            for (let j = 0, col; col = row.cells[j]; j++) {
-                if (col.firstChild.tagName === 'SPAN') {
-                    col.firstChild.title = '';
-                    col.firstChild.onclick = '';
-                };
-            };
-         };
-        for (let i = 1; i < table.rows.length; i++) {
-            table.deleteRow(i);
+        // for (let i = 1, row; row = table.rows[i]; i++) {
+        //     for (let j = 0, col; col = row.cells[j]; j++) {
+        //         if (col.firstChild.tagName === 'SPAN') {
+        //             col.firstChild.title = '';
+        //             col.firstChild.onclick = '';
+        //         };
+        //     };
+        //  };
+        let len = table.rows.length;
+        for (let i = 1; i < len; i++) {
+            table.deleteRow(1);
         };
     };
 
