@@ -514,7 +514,8 @@ var nww_main = new (function () {
             // };
             _b_lnk.title = 'View block';
             csl(_b_lnk, 'block', _b_lnk.innerText);
-            let _r = [e[1]['page_results'][result][2].slice(0, -12), _bh_lnk, _b_lnk, e[1]['page_results'][result][3], e[1]['page_results'][result][4]];
+            // let _r = [e[1]['page_results'][result][2].slice(0, -12), _bh_lnk, _b_lnk, e[1]['page_results'][result][3], e[1]['page_results'][result][4]];
+            let _r = [_bh_lnk, e[1]['page_results'][result][4], e[1]['page_results'][result][3], _b_lnk];
             add_row(_uibexp_rb, _r);
         };
         isection_toggle('recent_blocks_main', ['recent_blocks_loading', 'recent_blocks_main']);
@@ -547,7 +548,8 @@ var nww_main = new (function () {
             // };
             _b_lnk.title = 'View block';
             csl(_b_lnk, 'block', _b_lnk.innerText);
-            let _r = [tx[2].slice(0, -12), _b_lnk, _tx_lnk, tx[3], tx[4], tx[5]];
+            // let _r = [tx[2].slice(0, -12), _b_lnk, _tx_lnk, tx[3], tx[4], tx[5]];
+            let _r = [_b_lnk, tx[5], tx[3], tx[4], _tx_lnk];
             add_row(_uibexp_rt, _r);
         };
         isection_toggle('recent_transactions_main', ['recent_transactions_loading', 'recent_transactions_main']);
