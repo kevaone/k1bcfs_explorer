@@ -88,3 +88,42 @@ html, body, h1, h2, h3, h4, h5 {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
+#recent_address_main > table > tr > td:nth-child(1) {
+    width: 5px;
+    /* overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; */
+}
+#recent_address_main > table > tr > td:nth-child(2) {
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#recent_address_main > table > tr > td:nth-child(3) {
+    min-width: 15px;
+    max-width: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#recent_address_main > table > tr > td:nth-child(4) {
+    min-width: 50px;
+    max-width: 75px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#recent_address_main > table > tr > td:nth-child(5) {
+    max-width: 20vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+@media screen and (min-width: 0px) and (max-width: 400px) {
+    #recent_address_main > table > thead > tr > th:nth-child(2) { display: none; }
+    #recent_address_main > table > tr > td:nth-child(2) { display: none; }  /* show it on small screens */
+  }

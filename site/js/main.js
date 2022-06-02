@@ -232,7 +232,7 @@ var nww_main = new (function () {
 
     section_toggle = function (id, cs = true) {
         let sections = ["namespace_section", "address_section", "explorer_info", "explorer_stats", "explorer_browser", "market_section", "main_section", "search_section", "error_section", "about_section"];
-        open_nav_small();
+        close_nav_small();
         isection_toggle(id, sections);
         if (cs) {
             if (id === "explorer_info") {
@@ -348,7 +348,15 @@ var nww_main = new (function () {
         var x = document.getElementById("nav_small");
         if (x.className.indexOf("w3-show") == -1) {
             x.className += " w3-show";
-        } else {
+        }
+        else {
+            x.className = x.className.replace(" w3-show", "");
+        };
+    };
+
+    close_nav_small = function () {
+        var x = document.getElementById("nav_small");
+        if (x.className.indexOf("w3-show") != -1) {
             x.className = x.className.replace(" w3-show", "");
         };
     };
@@ -1036,7 +1044,14 @@ var nww_main = new (function () {
             // };
             _b_lnk.title = 'View block';
             csl(_b_lnk, 'block', _b_lnk.innerText);
-            add_row(_recent_tx, [r['time'].slice(0, -12), _b_lnk, _tx_lnk, r['value'], r['direction']]);
+            let _d_lnk = ce('i');
+            if (r['direction'] === 'Receive') {
+                _d_lnk.className = 'fa fa-hand-holding-usd fa-flip-horizontal w3-icon-theme-receive';
+            }
+            else if (r['direction'] === 'Send') {
+                _d_lnk.className = 'fa fa-hand-holding-usd fa-flip-vertical w3-icon-theme-send';
+            };
+            add_row(_recent_tx, [_d_lnk, r['time'].slice(0, -12), _b_lnk, r['value'], _tx_lnk]);
         };
         isection_toggle('address_main', ['address_loading', 'address_main']);
     };
@@ -1746,6 +1761,9 @@ var nww_main = new (function () {
                 if (e.nodeName === 'SPAN') {
                     _cell.appendChild(e);
                 }
+                else if (e.nodeName === 'I') {
+                    _cell.appendChild(e);
+                };
             } else {
                 _cell.innerText = e;
             };

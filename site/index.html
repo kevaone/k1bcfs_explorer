@@ -59,8 +59,8 @@
     </div>
 
     <!-- Explorer Navbar on small screens -->
-    <div id="nav_small" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
-        <div class="w3-bar-item w3-button w3-margin-bottom w3-padding-large">&nbsp;</div>
+    <div id="nav_small" class="w3-bar-block w3-theme-d2 w3-hide w3-large">
+        <div class="w3-bar-item w3-button w3-padding-large">&nbsp;</div>
         <i class="fa fa-cubes w3-bar-item w3-button w3-padding-large"
             onclick="section_toggle('explorer_info')">&nbsp;Kevacoin Explorer</i>
     </div>
@@ -425,12 +425,12 @@
                                 </div>
                                 <div class="w3-quarter w3-center">
                                     <i
-                                        class="fa fa-hand-holding-usd fa-flip-horizontal w3-margin-right w3-text-theme"></i>Received
+                                        class="fa fa-hand-holding-usd fa-flip-horizontal w3-margin-right w3-icon-theme-receive"></i>Received
                                     <span id="uibexp_ar">0</span>
                                 </div>
                                 <div class="w3-quarter w3-center">
                                     <i
-                                        class="fa fa-hand-holding-usd fa-flip-vertical w3-margin-right w3-text-theme"></i>Sent
+                                        class="fa fa-hand-holding-usd fa-flip-vertical w3-margin-right w3-icon-theme-send"></i>Sent
                                     <span id="uibexp_as">0</span>
                                 </div>
                                 <div class="w3-quarter w3-center">
@@ -458,15 +458,15 @@
                                     
 
                                 </div>
-                                <div class="k1-overflow-scroll w3-margin-bottom" style="max-height: 60vh;">
+                                <div id="recent_address_main" class="w3-margin-bottom">
                                     <table id="uibexp_art" class="w3-table">
                                         <thead style="position: sticky; top:0px;">
                                             <tr class="w3-theme-th">
+                                                <th></th>
                                                 <th>Time</th>
                                                 <th>Height</th>
-                                                <th>TX Hash</th>
                                                 <th>Value</th>
-                                                <th>Direction</th>
+                                                <th>TX Hash</th>
                                             </tr>
                                         </thead>
                                     </table>
