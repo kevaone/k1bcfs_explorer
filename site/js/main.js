@@ -1759,10 +1759,16 @@ var nww_main = new (function () {
     };
 
     clear_table = function (table) {
-        let tableHeaderRowCount = 1;
-        let rowCount = table.rows.length;
-        for (let i = tableHeaderRowCount; i < rowCount; i++) {
-            table.deleteRow(tableHeaderRowCount);
+        for (let i = 1, row; row = table.rows[i]; i++) {
+            for (let j = 0, col; col = row.cells[j]; j++) {
+                if (col.firstChild.tagName === 'SPAN') {
+                    col.firstChild.title = '';
+                    col.firstChild.onclick = '';
+                };
+            };
+         };
+        for (let i = 1; i < table.rows.length; i++) {
+            table.deleteRow(i);
         };
     };
 
