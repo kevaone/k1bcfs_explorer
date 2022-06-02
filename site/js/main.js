@@ -232,6 +232,7 @@ var nww_main = new (function () {
 
     section_toggle = function (id, cs = true) {
         let sections = ["namespace_section", "address_section", "explorer_info", "explorer_stats", "explorer_browser", "market_section", "main_section", "search_section", "error_section", "about_section"];
+        open_nav_small();
         isection_toggle(id, sections);
         if (cs) {
             if (id === "explorer_info") {
@@ -340,6 +341,15 @@ var nww_main = new (function () {
             else if (id === "explorer_mempool") {
                 window.history.replaceState(null, document.title, "/explorer/mempool");
             };
+        };
+    };
+
+    open_nav_small = function () {
+        var x = document.getElementById("nav_small");
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
         };
     };
 

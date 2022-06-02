@@ -224,8 +224,8 @@
                         </div>
                     </div>
                     <div id="result_namespace_content_spacer"
-                        class="w3-container w3-card w3-white w3-round w3-margin-top w3-margin-bottom">
-                        <div class="w3-container w3-margin-top w3-margin-bottom">
+                        class="w3-round w3-margin-top w3-margin-bottom">
+                        <div class="w3-margin-top w3-margin-bottom">
                             <div class="w3-margin-bottom">Namespace Content</div>
                             <div id="result_namespace_content_list">
                             </div>
@@ -274,7 +274,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="search_results" class="w3-container w3-card w3-white w3-round w3-margin-top w3-margin-bottom">
+                <div id="search_results" class="w3-margin-top w3-margin-bottom">
                 </div>
             </div>
         </div>
@@ -411,27 +411,32 @@
                             <!-- Address Summary -->
                             <!-- <div class="w3-container"> -->
                             <!-- <span class="w3-center">Kevacoin</span> -->
-                            <div class="w3-margin-top">
+                            <div class="w3-margin-top w3-center">
                                 <img src="/images/kevacoin-logo.png" class="w3-circle w3-margin-right"
                                     style="height:30px;width:30px" alt="Logo">
                                 <!-- <span class="w3-center">Address</span> -->
-                                <span id="uibexp_ai" class="w3-large">0</span>
+                                <span id="uibexp_ai" class="w3-large k1-text-wrap">0</span>
                             </div>
                             <!-- <hr> -->
                             <div class="w3-container w3-margin-top w3-margin-bottom">
-                                <div class="w3-third w3-center">
+                                <div class="w3-quarter w3-center">
                                     <i class="fa fa-wallet w3-margin-right w3-text-theme"></i>Balance <span
                                         id="uibexp_ab">0</span>
                                 </div>
-                                <div class="w3-third w3-center">
+                                <div class="w3-quarter w3-center">
                                     <i
                                         class="fa fa-hand-holding-usd fa-flip-horizontal w3-margin-right w3-text-theme"></i>Received
                                     <span id="uibexp_ar">0</span>
                                 </div>
-                                <div class="w3-third w3-center">
+                                <div class="w3-quarter w3-center">
                                     <i
                                         class="fa fa-hand-holding-usd fa-flip-vertical w3-margin-right w3-text-theme"></i>Sent
                                     <span id="uibexp_as">0</span>
+                                </div>
+                                <div class="w3-quarter w3-center">
+                                    <i class="fa fa-funnel-dollar w3-margin-right w3-text-theme"></i>Total
+                                    transactions
+                                    <span id="uibexp_att">0</span>
                                 </div>
                             </div>
                             <!-- </div> -->
@@ -450,11 +455,7 @@
                                         <i class="fa fa-funnel-dollar fa-2x w3-margin-right w3-text-theme w3-left"></i>
                                         <span style="font-size: large;">Recent Activity</span>
                                     </div>
-                                    <div class="w3-right">
-                                        <i class="fa fa-funnel-dollar w3-margin-right w3-text-theme"></i>Total
-                                        transactions
-                                        <span id="uibexp_att">0</span>
-                                    </div>
+                                    
 
                                 </div>
                                 <div class="k1-overflow-scroll w3-margin-bottom" style="max-height: 60vh;">
@@ -995,7 +996,7 @@
                 <div class="w3-col m12">
                     <div class="w3-card w3-round w3-white">
                         <div class="w3-container w3-padding">
-                            <img src="/images/kevacoin-logo.png" class="w3-circle w3-hide-small"
+                            <img src="/images/kevacoin-logo.png" class="w3-circle"
                                 style="height:40px;width:40px" alt="Logo">
                             <span class="w3-xlarge w3-text-theme-dark">Kevacoin</span>
                             <div class="w3-right" style="margin-top: 4px;">
@@ -1014,7 +1015,7 @@
                         </div>
 
                         <div id="explorer_info" class="w3-hide w3-show">
-                            <div class="w3-container w3-card w3-round w3-white w3-margin">
+                            <div class="w3-container">
                                 <!-- Block Explorer -->
                                 <div class="w3-container w3-text-theme-dark">
                                     <!-- <img src="/images/kevacoin-logo.png" class="w3-circle w3-hide-small"
@@ -1078,7 +1079,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="w3-container w3-card w3-white w3-round w3-margin-left w3-margin-right">
+                            <div class="w3-container">
                                 <div id="stats_tops" class="w3-margin-top">
                                     <div class="w3-margin-bottom">
                                         <i class="fa fa-chart-line fa-2x w3-margin-right w3-text-theme w3-left"></i>
@@ -1256,23 +1257,23 @@
                         </div>
                         <div id="explorer_browser" class="w3-hide">
                             <div class="w3-container w3-card w3-white w3-round w3-margin">
-                                <div class="w3-container w3-padding">
-                                    <button type="button" class="w3-theme-button w3-theme w3-hover-theme-button"
+                                <div class="w3-container">
+                                    <button type="button" class="w3-theme-button w3-theme w3-hover-theme-button w3-margin-top w3-margin-bottom"
                                         onclick="exp_section_toggle('explorer_recent_blocks');"
                                         title="View recent blocks"><i class="fa fa-cubes"></i>
                                         Blocks</button>
-                                    <button type="button" class="w3-theme-button w3-theme w3-hover-theme-button"
+                                    <button type="button" class="w3-theme-button w3-theme w3-hover-theme-button w3-margin-bottom"
                                         onclick="exp_section_toggle('explorer_recent_transactions');"
                                         title="View recent transactions"><i class="fa fa-funnel-dollar"></i>
                                         TX</button>
-                                    <button type="button" class="w3-theme-button w3-theme w3-hover-theme-button"
+                                    <button type="button" class="w3-theme-button w3-theme w3-hover-theme-button w3-margin-bottom"
                                         onclick="exp_section_toggle('explorer_mempool');" title="View mempool"><i
                                             class="fa fa-fill-drip"></i>
                                         Mempool</button>
                                 </div>
                             </div>
                             <div id="explorer_recent_blocks"
-                                class="w3-hide w3-container w3-card w3-white w3-round w3-margin w3-show">
+                                class="w3-hide w3-container w3-show">
                                 <div class="w3-container w3-margin-top">
                                     <div>
                                         <i class="fa fa-cubes fa-2x w3-margin-right w3-text-theme w3-left"></i>
@@ -1305,7 +1306,7 @@
                                 </div>
                             </div>
                             <div id="explorer_recent_transactions"
-                                class="w3-hide w3-container w3-card w3-white w3-round w3-margin">
+                                class="w3-hide w3-container">
                                 <div class="w3-container w3-margin-top">
                                     <div>
                                         <i class="fa fa-funnel-dollar fa-2x w3-margin-right w3-text-theme w3-left"></i>
@@ -1339,7 +1340,7 @@
                                     </table>
                                 </div>
                             </div>
-                            <div id="explorer_mempool" class="w3-hide w3-container w3-card w3-white w3-round w3-margin">
+                            <div id="explorer_mempool" class="w3-hide w3-container">
                                 <div class="w3-container w3-margin-top">
                                     <div>
                                         <i class="fa fa-fill-drip fa-2x w3-margin-right w3-text-theme w3-left"></i>
@@ -1366,7 +1367,7 @@
                                     </table>
                                 </div>
                             </div>
-                            <div id="explorer_block" class="w3-hide w3-container w3-card w3-white w3-round w3-margin">
+                            <div id="explorer_block" class="w3-hide w3-container">
                                 <div id="block_loading"
                                     class="w3-hide w3-container w3-card w3-white w3-round w3-margin-bottom w3-margin-top">
                                     <div>
@@ -1433,7 +1434,7 @@
                                 </div>
                             </div>
                             <div id="explorer_transaction"
-                                class="w3-hide w3-container w3-card w3-white w3-round w3-margin">
+                                class="w3-hide w3-container">
                                 <div id="transaction_loading"
                                     class="w3-hide w3-container w3-card w3-white w3-round w3-margin-bottom w3-margin-top">
                                     <div>
@@ -1572,7 +1573,7 @@
                                 </div>
                             </div>
                             <div id="explorer_mempool_entry"
-                                class="w3-hide w3-container w3-card w3-white w3-round w3-margin">
+                                class="w3-hide w3-container">
                                 <div id="mempool_entry_loading"
                                     class="w3-hide w3-container w3-card w3-white w3-round w3-margin-bottom w3-margin-top">
                                     <div>
@@ -1877,18 +1878,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"
         integrity="sha256-ErZ09KkZnzjpqcane4SCyyHsKAXMvID9/xwbl/Aq1pc=" crossorigin="anonymous"></script>
-    <script src="/js/main.min.js"></script>
-
-    <script>
-        function open_nav_small() {
-            var x = document.getElementById("nav_small");
-            if (x.className.indexOf("w3-show") == -1) {
-                x.className += " w3-show";
-            } else {
-                x.className = x.className.replace(" w3-show", "");
-            };
-        };
-    </script>
+    <script src="/js/main.js"></script>
 
 </body>
 
