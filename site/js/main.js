@@ -1009,7 +1009,7 @@ var nww_main = new (function () {
         _uibexp_txwit.innerText = wits;
         for (result in e['vin']) {
             let _piv = e['vin'][result];
-            if (!'coinbase' in _piv) {
+            if (!('coinbase' in _piv)) {
                 let _tx_lnk = ce('span');
                 let _tx = _piv['txid'];
                 let _paddr_lnk = ce('span');
