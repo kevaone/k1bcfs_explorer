@@ -38,6 +38,10 @@ class RequestProcessor():
 
     def process(self):
         self._decoder()
+        # print('self.headers', self.headers)
+        # User-Agent
+        # Accept-Language
+
 
     def _decoder(self):
         # TODO: Extend for receiving more than 8096 bytes

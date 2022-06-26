@@ -1129,8 +1129,7 @@
                                                     All</button>
                                             </div> -->
                                         </div>
-                                        <div id="stats_tops_table_section"
-                                            class="w3-twothird w3-margin-bottom">
+                                        <div id="stats_tops_table_section" class="w3-twothird w3-margin-bottom">
                                             <table id="stats_tops_table" class="w3-table">
                                                 <thead style="position: sticky; top:0px;">
                                                     <tr class="w3-theme-th">
@@ -1449,7 +1448,10 @@
                                                         id="uibexp_time" class="w3-opacity">32 min</span>
                                                 </div>
                                                 <div>
-                                                    <span class="w3-xlarge w3-margin-right">Transaction</span><i id="tx_view_toggle" class="fa fa-file-code w3-margin-right w3-text-theme" onclick="toggle_tx_view();"></i>
+                                                    <span class="w3-xlarge w3-margin-right">Transaction</span><i
+                                                        id="tx_view_toggle"
+                                                        class="fa fa-file-code w3-margin-right w3-text-theme"
+                                                        onclick="toggle_tx_view();"></i>
                                                     <div>
                                                         <span id="uibexp_ti" class="w3-large"
                                                             style="word-wrap: break-word;">0</span>
@@ -1466,139 +1468,138 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                        
-                                        <div id='tx_pretty' class='w3-hide w3-show'>
-                                            <div class="w3-container w3-margin-top">
-                                                <div>
-                                                    <div>hash: <span id="uibexp_pth" style="word-wrap: break-word;">0</span>
-                                                    </div>
+
+
+                                    <div id='tx_pretty' class='w3-hide w3-show'>
+                                        <div class="w3-container w3-margin-top">
+                                            <div>
+                                                <div>hash: <span id="uibexp_pth" style="word-wrap: break-word;">0</span>
                                                 </div>
                                             </div>
-                                            <div class="w3-container w3-margin-bottom">
-                                                <!-- <div class="w3-half"> -->
-                                                    <div class="w3-third">block height: <span id="uibexp_ptbh">0</span></div>
-                                                    <div class="w3-third">size: <span id="uibexp_pts">0</span></div>
-                                                    <div class="w3-third">vsize: <span id="uibexp_ptvs">0</span></div>
-                                                <!-- </div> -->
+                                        </div>
+                                        <div class="w3-container w3-margin-bottom">
+                                            <!-- <div class="w3-half"> -->
+                                            <div class="w3-third">block height: <span id="uibexp_ptbh">0</span></div>
+                                            <div class="w3-third">size: <span id="uibexp_pts">0</span></div>
+                                            <div class="w3-third">vsize: <span id="uibexp_ptvs">0</span></div>
+                                            <!-- </div> -->
+                                        </div>
+                                        <div class="w3-margin-bottom">
+                                            <div class="w3-margin-bottom w3-margin-top">
+                                                <i
+                                                    class="fa fa-file-import fa-2x w3-margin-right w3-text-theme w3-left"></i>
+                                                <div>Inputs - <span id="uibexp_ptxinputs">0</span></div>
                                             </div>
                                             <div class="w3-margin-bottom">
-                                                <div class="w3-margin-bottom w3-margin-top">
-                                                    <i
-                                                        class="fa fa-file-import fa-2x w3-margin-right w3-text-theme w3-left"></i>
-                                                    <div>Inputs - <span id="uibexp_ptxinputs">0</span></div>
-                                                </div>
-                                                <div class="w3-margin-bottom">
-                                                    <table id="uibexp_ptin" class="w3-table">
-                                                        <thead style="position: sticky; top:0px;">
-                                                            <tr class="w3-theme-th">
-                                                                <th>Value</th>
-                                                                <th>Address</th>
-                                                                <th>TxId</th>
-                                                                <!-- <th>vout</th>
+                                                <table id="uibexp_ptin" class="w3-table">
+                                                    <thead style="position: sticky; top:0px;">
+                                                        <tr class="w3-theme-th">
+                                                            <th>Value</th>
+                                                            <th>Address</th>
+                                                            <th>TxId</th>
+                                                            <!-- <th>vout</th>
                                                                 <th>ScriptSig</th>
                                                                 <th>Sequence</th> -->
-                                                            </tr>
-                                                        </thead>
-                                                    </table>
-                                                </div>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
                                             </div>
+                                        </div>
+                                        <div>
+                                            <div class="w3-margin-bottom w3-margin-top">
+                                                <i
+                                                    class="fa fa-file-export fa-2x w3-margin-right w3-text-theme w3-left"></i>
+                                                <div>Outputs - <span id="uibexp_ptxoutputs">0</span></div>
+                                            </div>
+                                            <div class="w3-margin-bottom">
+                                                <table id="uibexp_ptout" class="w3-table">
+                                                    <thead style="position: sticky; top:0px;">
+                                                        <tr class="w3-theme-th">
+                                                            <th>Value</th>
+                                                            <th>Address</th>
+                                                            <!-- <th>ScriptPubKey</th> -->
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id='tx_json' class='w3-hide'>
+                                        <div class="w3-container w3-margin-top">
                                             <div>
-                                                <div class="w3-margin-bottom w3-margin-top">
-                                                    <i
-                                                        class="fa fa-file-export fa-2x w3-margin-right w3-text-theme w3-left"></i>
-                                                    <div>Outputs - <span id="uibexp_ptxoutputs">0</span></div>
-                                                </div>
-                                                <div class="w3-margin-bottom">
-                                                    <table id="uibexp_ptout" class="w3-table">
-                                                        <thead style="position: sticky; top:0px;">
-                                                            <tr class="w3-theme-th">
-                                                                <th>Value</th>
-                                                                <th>Address</th>
-                                                                <!-- <th>ScriptPubKey</th> -->
-                                                            </tr>
-                                                        </thead>
-                                                    </table>
+                                                <div>hash: <span id="uibexp_th" style="word-wrap: break-word;">0</span>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div id='tx_json' class='w3-hide'>
-                                            <div class="w3-container w3-margin-top">
-                                                <div>
-                                                    <div>hash: <span id="uibexp_th" style="word-wrap: break-word;">0</span>
-                                                    </div>
-                                                </div>
+                                        <div class="w3-container w3-margin-bottom">
+                                            <div class="w3-half">
+                                                <div>version: <span id="uibexp_tv">0</span></div>
+                                                <div>flag: <span id="uibexp_tfl">0</span></div>
+                                                <div>locktime: <span id="uibexp_tl">0</span></div>
                                             </div>
-                                            <div class="w3-container w3-margin-bottom">
-                                                <div class="w3-half">
-                                                    <div>version: <span id="uibexp_tv">0</span></div>
-                                                    <div>flag: <span id="uibexp_tfl">0</span></div>
-                                                    <div>locktime: <span id="uibexp_tl">0</span></div>
-                                                </div>
-                                                <div class="w3-half">
-                                                    <div>block height: <span id="uibexp_tbh">0</span></div>
-                                                    <div>size: <span id="uibexp_ts">0</span></div>
-                                                    <div>vsize: <span id="uibexp_tvs">0</span></div>
-                                                </div>
+                                            <div class="w3-half">
+                                                <div>block height: <span id="uibexp_tbh">0</span></div>
+                                                <div>size: <span id="uibexp_ts">0</span></div>
+                                                <div>vsize: <span id="uibexp_tvs">0</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="w3-margin-bottom">
+                                            <div class="w3-margin-bottom w3-margin-top">
+                                                <i
+                                                    class="fa fa-file-import fa-2x w3-margin-right w3-text-theme w3-left"></i>
+                                                <div>Inputs - <span id="uibexp_txinputs">0</span></div>
                                             </div>
                                             <div class="w3-margin-bottom">
-                                                <div class="w3-margin-bottom w3-margin-top">
-                                                    <i
-                                                        class="fa fa-file-import fa-2x w3-margin-right w3-text-theme w3-left"></i>
-                                                    <div>Inputs - <span id="uibexp_txinputs">0</span></div>
-                                                </div>
-                                                <div class="w3-margin-bottom">
-                                                    <table id="uibexp_tin" class="w3-table">
-                                                        <thead style="position: sticky; top:0px;">
-                                                            <tr class="w3-theme-th">
-                                                                <!-- <th>Value</th>
+                                                <table id="uibexp_tin" class="w3-table">
+                                                    <thead style="position: sticky; top:0px;">
+                                                        <tr class="w3-theme-th">
+                                                            <!-- <th>Value</th>
                                                             <th>Address</th> -->
-                                                                <th>TxId</th>
-                                                                <th>vout</th>
-                                                                <th>ScriptSig</th>
-                                                                <th>Seq.</th>
-                                                            </tr>
-                                                        </thead>
-                                                    </table>
-                                                </div>
-                                            </div>
-
-                                            <div class="w3-margin-bottom">
-                                                <div class="w3-margin-bottom w3-margin-top">
-                                                    <i
-                                                        class="fa fa-file-export fa-2x w3-margin-right w3-text-theme w3-left"></i>
-                                                    <div>Outputs - <span id="uibexp_txoutputs">0</span></div>
-                                                </div>
-                                                <div class="w3-margin-bottom">
-                                                    <table id="uibexp_tout" class="w3-table">
-                                                        <thead style="position: sticky; top:0px;">
-                                                            <tr class="w3-theme-th">
-                                                                <th>Value</th>
-                                                                <!-- <th>Address</th> -->
-                                                                <th>ScriptPubKey</th>
-                                                            </tr>
-                                                        </thead>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <div class="w3-margin-bottom w3-margin-top">
-                                                    <i
-                                                        class="fa fa-users fa-2x w3-margin-right w3-text-theme w3-left"></i>
-                                                    <div>Witnesses - <span id="uibexp_txwit">0</span></div>
-                                                </div>
-                                                <div>
-                                                    <table id="uibexp_twit" class="w3-table">
-                                                        <thead style="position: sticky; top:0px;">
-                                                            <tr class="w3-theme-th">
-                                                                <th>Value</th>
-                                                            </tr>
-                                                        </thead>
-                                                    </table>
-                                                </div>
+                                                            <th>TxId</th>
+                                                            <th>vout</th>
+                                                            <th>ScriptSig</th>
+                                                            <th>Seq.</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
                                             </div>
                                         </div>
-                                    
+
+                                        <div class="w3-margin-bottom">
+                                            <div class="w3-margin-bottom w3-margin-top">
+                                                <i
+                                                    class="fa fa-file-export fa-2x w3-margin-right w3-text-theme w3-left"></i>
+                                                <div>Outputs - <span id="uibexp_txoutputs">0</span></div>
+                                            </div>
+                                            <div class="w3-margin-bottom">
+                                                <table id="uibexp_tout" class="w3-table">
+                                                    <thead style="position: sticky; top:0px;">
+                                                        <tr class="w3-theme-th">
+                                                            <th>Value</th>
+                                                            <!-- <th>Address</th> -->
+                                                            <th>ScriptPubKey</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="w3-margin-bottom w3-margin-top">
+                                                <i class="fa fa-users fa-2x w3-margin-right w3-text-theme w3-left"></i>
+                                                <div>Witnesses - <span id="uibexp_txwit">0</span></div>
+                                            </div>
+                                            <div>
+                                                <table id="uibexp_twit" class="w3-table">
+                                                    <thead style="position: sticky; top:0px;">
+                                                        <tr class="w3-theme-th">
+                                                            <th>Value</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                             <div id="explorer_mempool_entry" class="w3-hide w3-container">
@@ -1906,7 +1907,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"
         integrity="sha256-ErZ09KkZnzjpqcane4SCyyHsKAXMvID9/xwbl/Aq1pc=" crossorigin="anonymous"></script>
-    <script src="/js/main.js"></script>
+    <script src="/js/main.min.js"></script>
 
 </body>
 

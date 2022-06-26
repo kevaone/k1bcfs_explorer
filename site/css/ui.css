@@ -141,7 +141,8 @@ html, body, h1, h2, h3, h4, h5 {
     max-width: 15vw;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    word-wrap: break-word;
+    white-space: wrap;
 }
 
 #uibexp_ptin > tr > td:nth-child(1) {
@@ -149,19 +150,22 @@ html, body, h1, h2, h3, h4, h5 {
     max-width: 75px;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    word-wrap: break-word;
+    white-space: wrap;
 }
 #uibexp_ptin > tr > td:nth-child(2) {
     max-width: 10vw;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    word-wrap: break-word;
+    white-space: wrap;
 }
 #uibexp_ptin > tr > td:nth-child(3) {
     max-width: 15vw;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    word-wrap: break-word;
+    white-space: wrap;
 }
 
 #uibexp_ptout > tr > td:nth-child(1) {
@@ -169,38 +173,44 @@ html, body, h1, h2, h3, h4, h5 {
     max-width: 75px;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    word-wrap: break-word;
+    white-space: wrap;
 }
 #uibexp_ptout > tr > td:nth-child(2) {
     max-width: 45vw;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    word-wrap: break-word;
+    white-space: wrap;
 }
 
 #uibexp_tin > tr > td:nth-child(1) {
     max-width: 30vw;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    word-wrap: break-word;
+    white-space: wrap;
 }
 #uibexp_tin > tr > td:nth-child(2) {
     max-width: 15vw;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    word-wrap: break-word;
+    white-space: wrap;
 }
 #uibexp_tin > tr > td:nth-child(3) {
     max-width: 20vw;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    word-wrap: break-word;
+    white-space: wrap;
 }
 #uibexp_tin > tr > td:nth-child(4) {
     max-width: 5vw;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    word-wrap: break-word;
+    white-space: wrap;
 }
 
 #uibexp_tout > tr > td:nth-child(1) {
@@ -208,13 +218,15 @@ html, body, h1, h2, h3, h4, h5 {
     max-width: 75px;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    word-wrap: break-word;
+    white-space: wrap;
 }
 #uibexp_tout > tr > td:nth-child(2) {
     max-width: 35vw;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    word-wrap: break-word;
+    white-space: wrap;
 }
 
 #uibexp_twit > tr > td {
@@ -225,7 +237,8 @@ html, body, h1, h2, h3, h4, h5 {
     max-width: 85vw;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    word-wrap: break-word;
+    white-space: wrap;
 }
 
 #stats_tops_table > tr > td:nth-child(1) {

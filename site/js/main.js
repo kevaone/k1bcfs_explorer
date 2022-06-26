@@ -1005,9 +1005,11 @@ var nww_main = new (function () {
 
         _uibexp_txinputs.innerText = e['vin'].length;
         _puibexp_txinputs.innerText = e['vin'].length;
+        let wits = 0;
+        _uibexp_txwit.innerText = wits;
         for (result in e['vin']) {
             let _piv = e['vin'][result];
-            if (_piv['address'] !== 'coinbase') {
+            if (!'coinbase' in _piv) {
                 let _tx_lnk = ce('span');
                 let _tx = _piv['txid'];
                 let _paddr_lnk = ce('span');
@@ -1028,14 +1030,23 @@ var nww_main = new (function () {
                 _tx_lnk.title = 'View transaction';
                 csl(_tx_lnk, 'transaction', _tx);
                 _piv['txid'] = _tx_lnk;
-                add_row(_vin, [_piv['txid'].cloneNode(true), _piv['vout'], _piv['script_sig'], _piv['sequence']]);
+                add_row(_vin, [_piv['txid'].cloneNode(true), _piv['vout'], _piv['scriptSig']['asm'], _piv['sequence']]);
             }
             else {
-                add_row(_vin, [_piv['txid'], _piv['vout'], _piv['script_sig'], _piv['sequence']]);
+                add_row(_vin, [_piv['txid'], _piv['vout'], _piv['coinbase'], _piv['sequence']]);
             };
 
             // add_row(_vin, [_piv['txid'].cloneNode(true), _piv['vout'], _piv['script_sig'], _piv['sequence']]);
             add_row(_pvin, [_piv['value'], _piv['address'], _piv['txid']]);
+            if ('txinwitness' in _piv) {
+                let _w = '';
+                for (w in _piv['txinwitness']) {
+                    _w = _w + ' ' + _piv['txinwitness'][w];
+                };
+                wits += 1;
+                _uibexp_txwit.innerText = wits;
+                add_row(_wit, [_w]);
+            };
         };
         _uibexp_txoutputs.innerText = e['vout'].length;
         _puibexp_txoutputs.innerText = e['vout'].length;
@@ -1043,23 +1054,16 @@ var nww_main = new (function () {
             let _pov = e['vout'][result]
             let _addr_lnk = ce('span');
             if (_pov['address'] !== '') {
-                let _addr = _pov['address'];
-                _addr_lnk.innerText = _addr;
-                // _addr_lnk.style.cssText = 'cursor: pointer; text-decoration: underline;';
-                // _addr_lnk.onclick = function () {
-                //     section_link('address', _addr);
-                // };
-                _addr_lnk.title = 'View address';
-                csl(_addr_lnk, 'address', _addr);
-                _pov['address'] = _addr_lnk;
+                if ('addresses' in _pov['scriptPubKey']) {
+                    let _addr = _pov['scriptPubKey']['addresses'][0];
+                    _addr_lnk.innerText = _addr;
+                    _addr_lnk.title = 'View address';
+                    csl(_addr_lnk, 'address', _addr);
+                    _pov['address'] = _addr_lnk;
+                };
             };
-
-            add_row(_vout, [_pov['value'], _pov['script_pubkey']]);
+            add_row(_vout, [_pov['value'], _pov['scriptPubKey']['asm']]);
             add_row(_pvout, [_pov['value'], _addr_lnk]);
-        };
-        _uibexp_txwit.innerText = e['witness'].length;
-        for (result in e['witness']) {
-            add_row(_wit, e['witness'][result]);
         };
         isection_toggle('transaction_main', ['transaction_loading', 'transaction_main']);
     };

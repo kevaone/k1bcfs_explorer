@@ -17,7 +17,9 @@ for file_ in os.listdir('site/js/'):
         payload = {
             'js_code': java,
             'compilation_level': 'SIMPLE_OPTIMIZATIONS',
-            # 'SIMPLE_OPTIMIZATIONS',  # 'WHITESPACE_ONLY ADVANCED_OPTIMIZATIONS
+            # 'SIMPLE_OPTIMIZATIONS'
+            # 'WHITESPACE_ONLY
+            # 'ADVANCED_OPTIMIZATIONS'
             'output_format': 'text',  # 'json'
             'output_info': 'compiled_code',
             # 'formatting': 'pretty_print'
