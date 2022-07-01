@@ -1451,7 +1451,7 @@
                                                     <span class="w3-xlarge w3-margin-right">Transaction</span><i
                                                         id="tx_view_toggle"
                                                         class="fa fa-file-code w3-margin-right w3-text-theme"
-                                                        onclick="toggle_tx_view();"></i>
+                                                        onclick="toggle_tx_view();" title="TX Detail View"></i>
                                                     <div>
                                                         <span id="uibexp_ti" class="w3-large"
                                                             style="word-wrap: break-word;">0</span>
@@ -1461,10 +1461,10 @@
                                         </div>
                                     </div>
 
-                                    <div id='tx_raw'>
-                                        <div class="w3-hide w3-container w3-margin-top">
+                                    <div id='tx_raw' class='w3-hide'>
+                                        <div class="w3-container w3-margin-top">
                                             <div>
-                                                <div><span id="tx_raw_data">raw_data</span></div>
+                                                <div><span id="tx_raw_data" style="word-wrap: break-word;">raw_data</span></div>
                                             </div>
                                         </div>
                                     </div>

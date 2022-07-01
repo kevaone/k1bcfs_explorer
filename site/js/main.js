@@ -371,19 +371,22 @@ var nww_main = new (function () {
             c.className += " w3-show";
             v.className = v.className.replace(" w3-show", "");
             d.className = d.className.replace(" w3-show", "");
-            x.className = x.className.replace("fa-file-code", "fa-file")
+            x.className = x.className.replace("fa-file-code", "fa-file");
+            x.title = 'TX Raw View';
         }
         else if (c.className.indexOf("w3-show") != -1) {
             d.className += " w3-show";
             v.className = v.className.replace(" w3-show", "");
             c.className = c.className.replace(" w3-show", "");
-            x.className = x.className.replace("fa-file", "fa-eye")
+            x.className = x.className.replace("fa-file", "fa-eye");
+            x.title = 'TX Pretty View';
         }
         else if (d.className.indexOf("w3-show") != -1) {
             v.className += " w3-show";
             d.className = d.className.replace(" w3-show", "");
             c.className = c.className.replace(" w3-show", "");
-            x.className = x.className.replace("fa-eye", "fa-file-code")
+            x.className = x.className.replace("fa-eye", "fa-file-code");
+            x.title = 'TX Detail View';
         };
     };
 
@@ -926,6 +929,7 @@ var nww_main = new (function () {
         let _puibexp_txinputs = gei('uibexp_ptxinputs');
         let _puibexp_txoutputs = gei('uibexp_ptxoutputs');
         let _uibexp_txwit = gei('uibexp_txwit');
+        let _rtxd = gei('tx_raw_data');
         clear_table(_pvin);
         clear_table(_pvout);
         clear_table(_vin);
@@ -954,6 +958,7 @@ var nww_main = new (function () {
         _uibexp_txinputs.innerText = null;
         _uibexp_txoutputs.innerText = null;
         _uibexp_txwit.innerText = null;
+        _rtxd.innerText = null;
     };
 
     ui_update_transaction = function (e) {
@@ -980,6 +985,7 @@ var nww_main = new (function () {
         let _uibexp_txinputs = gei('uibexp_txinputs');
         let _uibexp_txoutputs = gei('uibexp_txoutputs');
         let _uibexp_txwit = gei('uibexp_txwit');
+        let _rtxd = gei('tx_raw_data');
 
         _id.innerText = e['txid'];
         _uibexp_time.innerText = e['time'].slice(0, -12);
@@ -994,6 +1000,7 @@ var nww_main = new (function () {
         _psize.innerText = e['size'];
         _pvsize.innerText = e['vsize'];
         _pbh.innerText = e['block'];
+        _rtxd.innerText = e['hex']
         // _bh.style.cssText = 'cursor: pointer; text-decoration: underline;';
         // _bh.onclick = function () {
         //     section_link('block', _bh.innerText);
