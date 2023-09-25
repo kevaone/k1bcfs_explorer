@@ -73,8 +73,11 @@ class ResponseBuilder():
 
     def body_from_file(self, **args):
         _content = b'no data'
-        # print('args[file]', args['file'])
+        # NOTE Uncomment for local
         _content_path = os.path.join('/home/nut/.repos/k1bcfs_explorer/site', args['file'])
+        # NOTE Uncomment for server
+        # _content_path = os.path.join('/var/lib/keva-one/new_server/site', args['file'])
+        
 
         try:
             with open(_content_path, mode='rb') as _content_file:

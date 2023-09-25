@@ -20,7 +20,10 @@ class Server():
         _socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         _socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
+        # NOTE Uncomment for local
         _socket.bind(('127.0.0.1', 8899))
+        # NOTE Uncomment for server
+        # _socket.bind(('0.0.0.0', 8080))
 
         _socket.listen(5)
 

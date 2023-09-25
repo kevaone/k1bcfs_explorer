@@ -1124,10 +1124,10 @@ var nww_main = new (function () {
             _b_lnk.title = 'View block';
             csl(_b_lnk, 'block', _b_lnk.innerText);
             let _d_lnk = ce('i');
-            if (r['direction'] === 'Receive') {
+            if (!('received' in r)) {
                 _d_lnk.className = 'fa fa-hand-holding-usd fa-flip-horizontal w3-icon-theme-receive';
             }
-            else if (r['direction'] === 'Send') {
+            else {
                 _d_lnk.className = 'fa fa-hand-holding-usd fa-flip-vertical w3-icon-theme-send';
             };
             add_row(_recent_tx, [_d_lnk, r['time'].slice(0, -12), _b_lnk, r['value'], _tx_lnk]);
